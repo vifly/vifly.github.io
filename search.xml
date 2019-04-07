@@ -4,19 +4,34 @@
   
     
     <entry>
-      <title>Test</title>
-      <link href="/2019/03/17/test/"/>
-      <url>/2019/03/17/test/</url>
+      <title>使用Github Pages和Hexo搭建个人博客</title>
+      <link href="/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/"/>
+      <url>/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/</url>
       
-        <content type="html"><![CDATA[<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello"></a>Hello</h1><p>test</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="Github-Pages是什么"><a href="#Github-Pages是什么" class="headerlink" title="Github Pages是什么"></a>Github Pages是什么</h2><p>先看看维基百科的说法:  </p><blockquote><p>GitHub Pages是GitHub提供的一个网页寄存服务，于2008年推出。可以用于存放静态网页，包括博客、项目文档甚至整本书。</p></blockquote><p><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="noopener">阮一峰的这篇文章</a>的说法更为简短：</p><blockquote><p>github Pages可以被认为是用户编写的、托管在github上的静态网页。</p></blockquote><p>根据维基百科的介绍，我们可以得知Github Pages可用来存放博客，而且是免费且无限存储容量的，只不过它只支持静态网页，也就是说无法使用WordPress等工具建站。</p><h2 id="Hexo是什么"><a href="#Hexo是什么" class="headerlink" title="Hexo是什么"></a>Hexo是什么</h2><p>先上一个官方的介绍：</p><blockquote><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p></blockquote><p>从官方介绍中我们可以得知<strong>Hexo是用来生成静态网页的</strong>。<br>由于Github Pages上只能发布静态网页，所以我们需要找到一个生成静态网页的软件来让我们能快速发布博文，Hexo就是其中的一个。github官方是推荐使用Jekyll来生成和发布的，然而Hexo有许多好看的主题，为此我选择了Hexo。</p><h1 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h1><h2 id="安装与运行"><a href="#安装与运行" class="headerlink" title="安装与运行"></a>安装与运行</h2><p>Windows下请自行下载安装nodejs与git，Linux请根据自己所使用的发行版安装nodejs，npm，git。<br>安装好后输入以下指令安装hexo-cli（g参数代表全局，请无视运行过程中出现的错误）：</p><pre><code>npm install hexo-cli -g</code></pre><p>然后在博客目录下输入以下指令：</p><pre><code>npm install hexo --save  </code></pre><p>完成后可输入hexo -v验证是否安装成功。<br>接着输入以下指令进行初始化：</p><pre><code>hexo init</code></pre><p>然后输入以下指令安装依赖：</p><pre><code>npm install </code></pre><p>搞定后就可以运行一下测试效果了，生成静态网页：</p><pre><code>hexo g</code></pre><p>运行本地服务器：</p><pre><code>hexo s</code></pre><p>根据输出信息使用浏览器打开<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>，即可看到效果</p><h2 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h2><p>可以使用命令行或手动创建方法新建博文。<br>使用命令行：</p><pre><code>hexo new &lt;title&gt;</code></pre><p>手动创建：在博客根目录下 source -&gt; _posts 新建以 .md 为后缀的文件。</p><h1 id="主题选择"><a href="#主题选择" class="headerlink" title="主题选择"></a>主题选择</h1><p>就我个人而言，查看技术类博文时总是看到写博文的博主使用了Next主题，虽然很简洁，但我总感觉过度简单了，在16：9的屏幕上左右两侧的空白太多了。经过一番查找，我选择了在集成服务和美观程度上成功打动了我的Material主题。  </p><h2 id="使用Material主题后运行报错"><a href="#使用Material主题后运行报错" class="headerlink" title="使用Material主题后运行报错"></a>使用Material主题后运行报错</h2><p>使用Material主题后，运行hexo s后打开网页报错：  </p><pre>Unhandled rejection TypeError: /home/blog/themes/Material/layout/layout.ejs:3    1| <!DOCTYPE html>    2| <html style="display: none;" <% if(config.language !="=" null) { %>lang="<%- config.language.substring(0,2) %>"<% } %>> >> 3|     <%- partial('_partial head') %>    4|     5|     <% if(page.layout="==" 'gallery') { %></%></%-></%></%-></html></pre><p>在官方仓库的issues中找到了<a href="https://github.com/viosey/hexo-theme-Material/issues/686" target="_blank" rel="noopener">解决方法</a>，需要对layout/_widget/dnsprefetch.ejs进行修改：<br>将</p><pre><code>&lt;% } else if(theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt; </code></pre><p>改为 </p><pre><code>&lt;% } else if(theme.comment.use &amp;&amp; theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt;</code></pre><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>首先打开blog根目录下的_config.yml（下面统称为站点配置文件），按照以下示例进行修改：  </p><pre><code>title: 你的站点名称author: 你的名字language: zh-CN</code></pre><p>注意冒号后必须有空格，如果你不喜欢默认主题的话，可自行寻找Hexo主题，按照对应的主题的说明文档进行安装，记得修改theme内容：  </p><pre><code>theme: 新主题名字</code></pre><h2 id="Material主题配置"><a href="#Material主题配置" class="headerlink" title="Material主题配置"></a>Material主题配置</h2><p>这里按照<a href="https://github.com/neko-dev/Material-theme-docs/" target="_blank" rel="noopener">Material主题官方文档</a>配置即可，选择Material主题的一个重要原因就是这个主题提供了很多对第三方服务的支持（前端小白的福音），所以看看有什么需要的第三方服务吧（RSS，评论区，访问统计等等）。</p><h2 id="Material主题文档的一个小坑"><a href="#Material主题文档的一个小坑" class="headerlink" title="Material主题文档的一个小坑"></a>Material主题文档的一个小坑</h2><p>在配置过程中遇到了一个问题，不知道如何在侧边栏添加独立页面的入口（比如关于，友链之类的），添加后点击入口却无法进入对应的页面，官方文档说明如下：</p><blockquote><p>link 的参数为相对路径，对应 hexo 目录下的 source 文件夹内的相应文件夹。  </p></blockquote><p>然而我已经按照说明创建了文件夹，为什么还是不行呢？最后在<a href="https://github.com/viosey/hexo-theme-Material/wiki/%E5%88%9B%E5%BB%BA%E3%80%8C%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E3%80%8D%E9%A1%B5%E9%9D%A2" target="_blank" rel="noopener">这个页面</a>找到了解决方法，以创建关于页面为例：<br>在source文件夹下创建about文件夹，新建一个index.md文件，写下（其中layout的值不可修改）：  </p><pre><code>---title: aboutdate: layout: about---</code></pre><p><em>假如是创建友链页面的话，记得还要按照“添加数据”这个步骤进行操作。</em><br>总结一下，其实是官方文档没有提到需要创建index.md这一点坑了我，我还一直以为是我对文档的理解有误呢。</p><h1 id="部署到Github-Pages"><a href="#部署到Github-Pages" class="headerlink" title="部署到Github Pages"></a>部署到Github Pages</h1><h2 id="Github上的准备"><a href="#Github上的准备" class="headerlink" title="Github上的准备"></a>Github上的准备</h2><p>这部分参考知乎的<a href="https://zhuanlan.zhihu.com/p/35668237" target="_blank" rel="noopener">这篇文章</a>，打开<a href="https://github.com" target="_blank" rel="noopener">github</a>并登录你的帐号，如果你还没在github帐号中添加ssh key，请参考<a href="https://gist.github.com/yisibl/8019693" target="_blank" rel="noopener">这篇文章</a>进行添加。接着点击右上角的个人头像，再点击Your repositories：  </p><p><img src="/img/article/go_to_repositories.png" alt="进入项目页面"></p><p>点击右侧的New新建项目。当然，你也可以直接点击<a href="https://github.com/new" target="_blank" rel="noopener">这个链接</a>新建项目。输入自己的项目名字，后面一定要加.github.io后缀，README初始化也要勾上。</p><p><img src="/img/article/new_repositories.png" alt="新建项目"></p><p>创建好项目后，点击Settings，向下拉到最后有个GitHub Pages，点击Choose a theme选择一个主题。然后等一会儿就可看到页面了。</p><h2 id="正式部署到Github-Pages"><a href="#正式部署到Github-Pages" class="headerlink" title="正式部署到Github Pages"></a>正式部署到Github Pages</h2><p>打开站点配置文件，按以下示例进行修改：</p><pre><code>deploy:    type: git    repository: 你的github项目地址    branch: master</code></pre><p>repository填写的应是类似于<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:vifly/viflyblog.github.io.git这样的ssh地址。假如你不知道地址，那么可以打开你在github上的这个项目，点击右侧的Clone or download，就会出现所需的地址：</p><p><img src="/img/article/view_repositories_url.png" alt="查看项目ssh地址"></p><p>最后，发布到Github Pages：</p><pre><code>hexo d</code></pre><p>假如一直卡住的话，可中断后加上-debug参数再次运行这个部署指令，查看哪里出现问题。</p>]]></content>
       
       
       
         <tags>
             
-            <tag> test </tag>
+            <tag> 折腾 </tag>
+            
+            <tag> 网站相关 </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello, world!</title>
+      <link href="/2019/04/06/hello/"/>
+      <url>/2019/04/06/hello/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Hello"><a href="#Hello" class="headerlink" title="Hello"></a>Hello</h1><p>开始写博客了！</p>]]></content>
+      
+      
       
     </entry>
     

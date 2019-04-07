@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="vifly.github.io/"/>
-  <updated>2019-03-30T15:02:51.064Z</updated>
+  <updated>2019-04-07T05:59:30.345Z</updated>
   <id>vifly.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Test</title>
-    <link href="vifly.github.io/2019/03/17/test/"/>
-    <id>vifly.github.io/2019/03/17/test/</id>
-    <published>2019-03-17T11:33:41.000Z</published>
-    <updated>2019-03-30T15:02:51.064Z</updated>
+    <title>使用Github Pages和Hexo搭建个人博客</title>
+    <link href="vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/"/>
+    <id>vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/</id>
+    <published>2019-04-07T02:23:56.000Z</published>
+    <updated>2019-04-07T05:59:30.345Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;h2 id=&quot;Github-Pages是什么&quot;&gt;&lt;a href=&quot;#Github-Pages是什么&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="折腾" scheme="vifly.github.io/tags/%E6%8A%98%E8%85%BE/"/>
+    
+      <category term="网站相关" scheme="vifly.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello, world!</title>
+    <link href="vifly.github.io/2019/04/06/hello/"/>
+    <id>vifly.github.io/2019/04/06/hello/</id>
+    <published>2019-04-06T11:33:41.000Z</published>
+    <updated>2019-04-07T05:36:56.991Z</updated>
     
     <summary type="html">
     
@@ -35,8 +61,6 @@
     
     </summary>
     
-    
-      <category term="test" scheme="vifly.github.io/tags/test/"/>
     
   </entry>
   
