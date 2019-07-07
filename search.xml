@@ -41,22 +41,22 @@
     
     
     <entry>
-      <title>About</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>Links</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
-        <content type="html"><![CDATA[<h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><p>hello,world!</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="友链"><a href="#友链" class="headerlink" title="友链"></a>友链</h1><p>暂时没有</p>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>Links</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>About</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[<h1 id="友链"><a href="#友链" class="headerlink" title="友链"></a>友链</h1><p>暂时没有</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><p>hello,world!</p>]]></content>
       
     </entry>
     
