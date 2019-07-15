@@ -45,7 +45,7 @@
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[<h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><p>hello,world!</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><p>hello,world!<br>我是一个喜欢折腾技术的大学生，目前正在经历深度学习从入门到放弃，欢迎大家与我交流。</p>]]></content>
       
     </entry>
     
