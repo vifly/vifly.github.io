@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Sun Apr 07 2019 10:23:56 GMT+0800">
-        <meta property="article:modified_time" content="Sun Apr 07 2019 13:59:30 GMT+0800">
+        <meta property="article:modified_time" content="Mon Jul 15 2019 23:56:35 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "http://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/index.html",
     "headline": "使用Github Pages和Hexo搭建个人博客",
     "datePublished": "Sun Apr 07 2019 10:23:56 GMT+0800",
-    "dateModified": "Sun Apr 07 2019 13:59:30 GMT+0800",
+    "dateModified": "Mon Jul 15 2019 23:56:35 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "vifly",
@@ -555,7 +555,7 @@ author: 你的名字
 language: zh-CN
 </code></pre><p>注意冒号后必须有空格，如果你不喜欢默认主题的话，可自行寻找Hexo主题，按照对应的主题的说明文档进行安装，记得修改theme内容：  </p>
 <pre><code>theme: 新主题名字
-</code></pre><h2 id="Material主题配置"><a href="#Material主题配置" class="headerlink" title="Material主题配置"></a>Material主题配置</h2><p>这里按照<a href="https://github.com/neko-dev/Material-theme-docs/" target="_blank" rel="noopener">Material主题官方文档</a>配置即可，选择Material主题的一个重要原因就是这个主题提供了很多对第三方服务的支持（前端小白的福音），所以看看有什么需要的第三方服务吧（RSS，评论区，访问统计等等）。</p>
+</code></pre><h2 id="Material主题配置"><a href="#Material主题配置" class="headerlink" title="Material主题配置"></a>Material主题配置</h2><p>这里按照<a href="https://github.com/neko-dev/Material-theme-docs/" target="_blank" rel="noopener">Material主题官方文档</a>配置即可，选择Material主题的一个重要原因就是这个主题提供了很多对第三方服务的支持（前端小白的福音），所以看看有什么需要的第三方服务吧（RSS，评论区，访问统计等等）,可以参考我写的<a href="https://vifly.github.io/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced">进阶篇</a>。</p>
 <h2 id="Material主题文档的一个小坑"><a href="#Material主题文档的一个小坑" class="headerlink" title="Material主题文档的一个小坑"></a>Material主题文档的一个小坑</h2><p>在配置过程中遇到了一个问题，不知道如何在侧边栏添加独立页面的入口（比如关于，友链之类的），添加后点击入口却无法进入对应的页面，官方文档说明如下：</p>
 <blockquote>
 <p>link 的参数为相对路径，对应 hexo 目录下的 source 文件夹内的相应文件夹。  </p>
@@ -696,6 +696,14 @@ layout: about
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
@@ -794,7 +802,7 @@ layout: about
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a>
             </li></ul>
         </li>
         
@@ -831,7 +839,7 @@ layout: about
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">2</span>
+                <span class="sidebar-badge">3</span>
             </a>
         </li>
         

@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://vifly.github.io/about/index.html</loc>
+    <loc>http://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/</loc>
     
-    <lastmod>2019-07-15T15:19:46.140Z</lastmod>
+    <lastmod>2019-07-15T15:56:35.036Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/</loc>
+    <loc>http://vifly.github.io/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced/</loc>
     
-    <lastmod>2019-04-07T05:59:30.345Z</lastmod>
+    <lastmod>2019-07-15T15:53:43.738Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://vifly.github.io/about/index.html</loc>
+    
+    <lastmod>2019-07-15T15:19:46.140Z</lastmod>
     
   </url>
   

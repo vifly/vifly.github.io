@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://vifly.github.io/"/>
-  <updated>2019-04-07T05:59:30.345Z</updated>
+  <updated>2019-07-15T15:53:43.738Z</updated>
   <id>http://vifly.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用Github Pages和Hexo搭建个人博客(进阶篇)</title>
+    <link href="http://vifly.github.io/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced/"/>
+    <id>http://vifly.github.io/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced/</id>
+    <published>2019-07-15T11:51:36.000Z</published>
+    <updated>2019-07-15T15:53:43.738Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在&lt;a href=&quot;https://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog&quot;&gt;上一篇博文&lt;/a&gt;当中我已经说完了使用Github
+        
+      
+    
+    </summary>
+    
+    
+      <category term="折腾" scheme="http://vifly.github.io/tags/%E6%8A%98%E8%85%BE/"/>
+    
+      <category term="网站相关" scheme="http://vifly.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用Github Pages和Hexo搭建个人博客</title>
     <link href="http://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/"/>
     <id>http://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/</id>
     <published>2019-04-07T02:23:56.000Z</published>
-    <updated>2019-04-07T05:59:30.345Z</updated>
+    <updated>2019-07-15T15:56:35.036Z</updated>
     
     <summary type="html">
     
