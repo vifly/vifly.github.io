@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Mon Jul 15 2019 19:51:36 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jul 23 2019 20:56:53 GMT+0800">
+        <meta property="article:modified_time" content="Sun Aug 18 2019 13:10:05 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "https://viflythink.com/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced/index.html",
     "headline": "使用Github Pages和Hexo搭建个人博客(进阶篇)",
     "datePublished": "Mon Jul 15 2019 19:51:36 GMT+0800",
-    "dateModified": "Tue Jul 23 2019 20:56:53 GMT+0800",
+    "dateModified": "Sun Aug 18 2019 13:10:05 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "vifly",
@@ -508,14 +508,14 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>在<a href="https://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog" target="_blank" rel="noopener">上一篇博文</a>当中我已经说完了使用Github Pages和Hexo搭建博客的基础操作了，只是这个刚搭建好的博客还缺了不少经常能在别人的博客上看到的东西，例如RSS订阅，评论区等功能。同时，不知道各位有没有发现一个问题，在搜索引擎当中搜索自己的站点时，搜索引擎返回的结果中并不会出现你的站点。本篇教程将会说明如何解决这些问题，如果还有更多的问题，请在评论区留言。</p>
+        <p><em>2019.8.18.更新：增加了如何搭建自己的统计分析服务的说明</em><br>在<a href="https://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog" target="_blank" rel="noopener">上一篇博文</a>当中我已经说完了使用Github Pages和Hexo搭建博客的基础操作了，只是这个刚搭建好的博客还缺了不少经常能在别人的博客上看到的东西，例如RSS订阅，评论区等功能。同时，不知道各位有没有发现一个问题，在搜索引擎当中搜索自己的站点时，搜索引擎返回的结果中并不会出现你的站点。本篇教程将会说明如何解决这些问题，如果还有更多的问题，请在评论区留言。</p>
 <h1 id="额外的功能与服务"><a href="#额外的功能与服务" class="headerlink" title="额外的功能与服务"></a>额外的功能与服务</h1><p><em>下面提到的这些功能与自己使用的Hexo主题相关，存在某些主题并没有提供某项功能的可能性</em></p>
 <h2 id="RSS订阅"><a href="#RSS订阅" class="headerlink" title="RSS订阅"></a>RSS订阅</h2><p>想要提供RSS订阅这个功能，各位需要查看自己使用的Hexo主题的文档进行操作，以我使用的material主题为例，<a href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" target="_blank" rel="noopener">官方文档</a>简单地说明了一下，其实就是在安装了<a href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener">hexo-generator-feed</a>插件后，修改material主题下的配置文件（_config.yml）中的rss:的值：</p>
 <pre><code>url:
     rss: atom.xml
 </code></pre><p>按照这样配置的话，你的博客的RSS订阅地址就是https://你的博客域名/atom.xml，例如我的博客的RSS订阅地址就是<a href="https://vifly.github.io/atom.xml" target="_blank" rel="noopener">https://vifly.github.io/atom.xml</a>。</p>
 <h2 id="评论区"><a href="#评论区" class="headerlink" title="评论区"></a>评论区</h2><p>依然使用material主题举例子，<a href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" target="_blank" rel="noopener">官方文档</a>也说明了如何搭建评论系统，为了能让读者畅所欲言，我否决了全部的国内评论系统，同时为了不翻墙的读者的体验，所以选择了disqus_click，其依赖于<a href="https://disqus.com/" target="_blank" rel="noopener">Disqus</a>。</p>
-<h2 id="数据统计与分析"><a href="#数据统计与分析" class="headerlink" title="数据统计与分析"></a>数据统计与分析</h2><p>继续贴<a href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" target="_blank" rel="noopener">官方文档</a>。基于对读者隐私的考虑，我直接排除了百度和CNZZ的分析系统，至于Google分析，考虑到谷歌近年来的名声与未翻墙用户的体验，最终也决定不予采用，那么就只剩下一条路了，自己搭建分析系统，这个暂时也咕咕咕了，若是能成功搭建的话，再写一篇博文进行叙述。</p>
+<h2 id="数据统计与分析"><a href="#数据统计与分析" class="headerlink" title="数据统计与分析"></a>数据统计与分析</h2><p>继续贴<a href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" target="_blank" rel="noopener">官方文档</a>。基于对读者隐私的考虑，我直接排除了百度和CNZZ的分析系统，至于Google分析，考虑到谷歌近年来的名声与未翻墙用户的体验，最终也决定不予采用，那么就只剩下一条路了，自己搭建分析系统。<del>这个暂时也咕咕咕了，若是能成功搭建的话，再写一篇博文进行叙述。</del> 目前已经成功使用Matemo搭建了自己的网站统计分析服务，具体操作请看<a href="viflythink.com/2019/08/18/Install_Matomo(Piwik">Debian安装Matomo(Piwik)开源统计分析服务</a>_on_Debian/)。</p>
 <h1 id="搜索引擎优化（SEO）"><a href="#搜索引擎优化（SEO）" class="headerlink" title="搜索引擎优化（SEO）"></a>搜索引擎优化（SEO）</h1><h2 id="验证网站所有权"><a href="#验证网站所有权" class="headerlink" title="验证网站所有权"></a>验证网站所有权</h2><p>这是非常重要的一步，验证网站所有权相当于告诉搜索引擎存在着这一个网站，若是没有这一步，在搜索引擎当中直接搜索自己的博客地址是没有任何结果的。假如你将自己的域名（指的是*.github.io以外的域名）用作博客的域名，那么便可以通过添加DNS记录的方式验证所有权（<em>PS：每家搜索引擎对这个验证方法有不同的称呼，谷歌称为“域名提供商”，而Bing称为“手动向 DNS 添加 CNAME 记录”</em>），不采用下面提到的方法了。</p>
 <h3 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h3><p>前往Google搜索的<a href="https://search.google.com/search-console/ownership" target="_blank" rel="noopener">控制台</a>添加自己的博客地址即可，Google提供了几种验证方式:<br><img src="/img/article/google_add_site.png" alt="Google的网站所有权验证"><br>对于material主题，请使用HTML标记或Google分析（假如你的博客使用了Google分析）进行验证，具体操作只需看<a href="https://github.com/viosey/material-theme-docs/blob/master/intro-zh-cn.md" target="_blank" rel="noopener">官方文档</a>。</p>
 <h3 id="Bing（必应）"><a href="#Bing（必应）" class="headerlink" title="Bing（必应）"></a>Bing（必应）</h3><p>很不幸的是，material主题官方并没有提供Bing的站点所有权验证，那只能自己动手修改源代码了，经过一番查找，终于找到了用于在HTML页面当中标记所有权的部分，其代码位于themes/material/layout/_partial/head.ejs中，CTRL+F查找“site_verification”发现在约142行的位置就是我们要找的代码，在下方照葫芦画瓢地加上： </p>
@@ -525,7 +525,7 @@
     bing: xxxxxxxxxx
     google: 
     baidu:
-</code></pre><h2 id="提交网站站点地图"><a href="#提交网站站点地图" class="headerlink" title="提交网站站点地图"></a>提交网站站点地图</h2><p>这一步就是告诉搜索引擎需要怎样抓取你的网站信息的，只需要在博客目录下输入以下指令安装<a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="noopener">hexo-generator-sitemap</a>插件即可：</p>
+</code></pre><h2 id="提交网站站点地图"><a href="#提交网站站点地图" class="headerlink" title="提交网站站点地图"></a>提交网站站点地图</h2><p>这一步就是告诉搜索引擎你的网站的构成，只需要在博客目录下输入以下指令安装<a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="noopener">hexo-generator-sitemap</a>插件即可：</p>
 <pre><code>npm install hexo-generator-sitemap --save
 </code></pre><p>这个插件默认站点地图生成路径为https://你的博客域名/sitemap.xml，在使用hexo g重新生成网址内容后，将此网址提交到各个搜索引擎就可以了，以Google为例子，只需要发送 <a href="http://www.google.com/ping?sitemap=https://你的博客域名/sitemap.xml" target="_blank" rel="noopener">http://www.google.com/ping?sitemap=https://你的博客域名/sitemap.xml</a> 这个网络请求即可。而Bing则是需要在其Web面板中添加sitemap。</p>
 <h2 id="提交网页地址（收录新页面）"><a href="#提交网页地址（收录新页面）" class="headerlink" title="提交网页地址（收录新页面）"></a>提交网页地址（收录新页面）</h2><p>我从<a href="http://www.guxiaobei.com/submit-your-content-of-google.html" target="_blank" rel="noopener">这篇文章</a>中看到了如何让Google及时收录新发布的博文，然而Google的控制台页面已经进行了改版，我根据<a href="https://support.google.com/webmasters/answer/9012289" target="_blank" rel="noopener">Google官方的帮助文档</a>找到了新的提交新页面的方法，打开<a href="https://www.google.com/webmasters/tools" target="_blank" rel="noopener">https://www.google.com/webmasters/tools</a>，转到网址检查，输入你的新页面的网址，这就可以及时提交新的网页了。     </p>
@@ -759,7 +759,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a>
             </li></ul>
         </li>
         
@@ -769,6 +769,16 @@
     
 
     <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">layers</i>
+                
+                标签
+            </a>
+        </li>
+        
     
         <li>
             <a href="/about" title="关于">
@@ -796,7 +806,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">4</span>
+                <span class="sidebar-badge">5</span>
             </a>
         </li>
         
