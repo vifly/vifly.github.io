@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>viflyblog</title>
+  <title>vifly的博客</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://viflythink.com/"/>
-  <updated>2019-08-18T06:07:46.219Z</updated>
+  <updated>2019-09-08T11:50:56.549Z</updated>
   <id>https://viflythink.com/</id>
   
   <author>
@@ -18,20 +18,14 @@
   
   <entry>
     <title>Debian安装Matomo(Piwik)开源统计分析服务</title>
-    <link href="https://viflythink.com/2019/08/18/Install_Matomo(Piwik)_on_Debian/"/>
-    <id>https://viflythink.com/2019/08/18/Install_Matomo(Piwik)_on_Debian/</id>
+    <link href="https://viflythink.com/Install_Matomo(Piwik)_on_Debian/"/>
+    <id>https://viflythink.com/Install_Matomo(Piwik)_on_Debian/</id>
     <published>2019-08-18T04:42:10.000Z</published>
-    <updated>2019-08-18T06:07:46.219Z</updated>
+    <updated>2019-09-08T11:50:56.549Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前我在&lt;a
-        
-      
+      在Debian VPS上搭建Matomo进行网站访客分析
     
     </summary>
     
@@ -39,49 +33,41 @@
       <category term="折腾" scheme="https://viflythink.com/tags/%E6%8A%98%E8%85%BE/"/>
     
       <category term="网站相关" scheme="https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="Matomo" scheme="https://viflythink.com/tags/Matomo/"/>
     
   </entry>
   
   <entry>
     <title>作为大学生的我如何申请外币信用卡并用于境外支付</title>
-    <link href="https://viflythink.com/2019/07/28/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/"/>
-    <id>https://viflythink.com/2019/07/28/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</id>
+    <link href="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/"/>
+    <id>https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</id>
     <published>2019-07-28T08:58:41.000Z</published>
-    <updated>2019-07-28T09:46:47.878Z</updated>
+    <updated>2019-09-08T11:49:53.872Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
-        
-      
+      大学生申请外币信用卡，在Google Play等商家使用美元支付
     
     </summary>
     
     
-      <category term="流下了没钱的眼泪" scheme="https://viflythink.com/tags/%E6%B5%81%E4%B8%8B%E4%BA%86%E6%B2%A1%E9%92%B1%E7%9A%84%E7%9C%BC%E6%B3%AA/"/>
+      <category term="理财" scheme="https://viflythink.com/tags/%E7%90%86%E8%B4%A2/"/>
+    
+      <category term="购物" scheme="https://viflythink.com/tags/%E8%B4%AD%E7%89%A9/"/>
     
   </entry>
   
   <entry>
     <title>使用Github Pages和Hexo搭建个人博客(进阶篇)</title>
-    <link href="https://viflythink.com/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced/"/>
-    <id>https://viflythink.com/2019/07/15/Use_GithubPages_and_Hexo_to_build_blog_advanced/</id>
+    <link href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/"/>
+    <id>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</id>
     <published>2019-07-15T11:51:36.000Z</published>
     <updated>2019-08-18T05:10:05.000Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;&lt;em&gt;2019.8.18.更新：增加了如何搭建自己的统计分析服务的说明&lt;/em&gt;&lt;br&gt;在&lt;a href=&quot;https://vifly.github.io/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog&quot;
-        
-      
+      对Github Pages进行个性化定制，添加RSS，评论区等功能，进行SEO
     
     </summary>
     
@@ -89,25 +75,23 @@
       <category term="折腾" scheme="https://viflythink.com/tags/%E6%8A%98%E8%85%BE/"/>
     
       <category term="网站相关" scheme="https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"/>
+    
+      <category term="Hexo" scheme="https://viflythink.com/tags/Hexo/"/>
+    
+      <category term="SEO" scheme="https://viflythink.com/tags/SEO/"/>
     
   </entry>
   
   <entry>
     <title>使用Github Pages和Hexo搭建个人博客</title>
-    <link href="https://viflythink.com/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/"/>
-    <id>https://viflythink.com/2019/04/07/Use_GithubPages_and_Hexo_to_build_blog/</id>
+    <link href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/"/>
+    <id>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</id>
     <published>2019-04-07T02:23:56.000Z</published>
-    <updated>2019-09-07T16:06:44.546Z</updated>
+    <updated>2019-09-08T11:46:56.045Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;h2 id=&quot;Github-Pages是什么&quot;&gt;&lt;a href=&quot;#Github-Pages是什么&quot; class=&quot;headerlink&quot;
-        
-      
+      使用hexo在GitHub Pages搭建博客，安利Material主题
     
     </summary>
     
@@ -116,12 +100,14 @@
     
       <category term="网站相关" scheme="https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/"/>
     
+      <category term="Hexo" scheme="https://viflythink.com/tags/Hexo/"/>
+    
   </entry>
   
   <entry>
     <title>Hello, world!</title>
-    <link href="https://viflythink.com/2019/04/06/hello/"/>
-    <id>https://viflythink.com/2019/04/06/hello/</id>
+    <link href="https://viflythink.com/hello/"/>
+    <id>https://viflythink.com/hello/</id>
     <published>2019-04-06T11:33:41.000Z</published>
     <updated>2019-04-07T05:36:56.991Z</updated>
     
