@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</loc>
+        <lastmod>2019-09-13T10:12:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://viflythink.com/Install_Matomo(Piwik)_on_Debian/</loc>
         <lastmod>2019-09-08T11:50:56.549Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -26,14 +34,6 @@
     <url>
         <loc>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</loc>
         <lastmod>2019-09-08T11:46:56.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</loc>
-        <lastmod>2019-08-18T05:10:05.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

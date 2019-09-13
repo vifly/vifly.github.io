@@ -3,21 +3,35 @@
 
 
     <url>
-        <loc>https://viflythink.com/tags/Matomo/</loc>
-        <lastmod>2019-09-08T11:50:56.549Z</lastmod>
+        <loc>https://viflythink.com/tags/SEO/</loc>
+        <lastmod>2019-09-13T10:12:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/tags/Hexo/</loc>
+        <lastmod>2019-09-13T10:12:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
-        <lastmod>2019-09-08T11:50:56.549Z</lastmod>
+        <lastmod>2019-09-13T10:12:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://viflythink.com/tags/%E6%8A%98%E8%85%BE/</loc>
+        <lastmod>2019-09-13T10:12:35.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/tags/Matomo/</loc>
         <lastmod>2019-09-08T11:50:56.549Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -33,20 +47,6 @@
     <url>
         <loc>https://viflythink.com/tags/%E7%90%86%E8%B4%A2/</loc>
         <lastmod>2019-09-08T11:49:53.872Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://viflythink.com/tags/Hexo/</loc>
-        <lastmod>2019-09-08T11:46:56.045Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://viflythink.com/tags/SEO/</loc>
-        <lastmod>2019-08-18T05:10:05.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
