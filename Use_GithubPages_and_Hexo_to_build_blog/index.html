@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Sun Apr 07 2019 10:23:56 GMT+0800">
-        <meta property="article:modified_time" content="Sun Sep 08 2019 19:46:56 GMT+0800">
+        <meta property="article:modified_time" content="Sun Sep 15 2019 00:13:25 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/index.html",
     "headline": "使用Github Pages和Hexo搭建个人博客",
     "datePublished": "Sun Apr 07 2019 10:23:56 GMT+0800",
-    "dateModified": "Sun Sep 08 2019 19:46:56 GMT+0800",
+    "dateModified": "Sun Sep 15 2019 00:13:25 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "vifly",
@@ -285,7 +285,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar.png"
         },
-        "description": "千里之行，始于足下"
+        "description": "千里之行，始于足下,与魔鬼战斗的人，应当小心自己不要成为魔鬼。当你凝视深渊时，深渊也在凝视着你,自由并非免费赠饮,简单即是美,真正的无知不是知识的贫乏，而是拒绝获取知识,世上只有一种英雄主义——就是在认清生活的真相之后依然热爱生活,战争即和平，自由即奴役，无知即力量,思想罪不会带来死亡，思想罪本身就是死亡"
     },
     "publisher": {
         "@type": "Organization",
@@ -553,7 +553,7 @@ Unhandled rejection TypeError: /home/blog/themes/Material/layout/layout.ejs:3
 <pre><code>&lt;% } else if(theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt; 
 </code></pre><p>改为 </p>
 <pre><code>&lt;% } else if(theme.comment.use &amp;&amp; theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt;
-</code></pre><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>首先打开blog根目录下的_config.yml（下面统称为站点配置文件），按照以下示例进行修改：  </p>
+</code></pre><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h2><p>首先打开blog根目录下的_config.yml（下面统称为<strong>站点配置文件</strong>），按照以下示例进行修改：  </p>
 <pre><code>title: 你的站点名称
 author: 你的名字
 language: zh-CN
@@ -576,7 +576,7 @@ layout: about
 <p>点击右侧的New新建项目。当然，你也可以直接点击<a href="https://github.com/new" rel="external nofollow noopener noreferrer" target="_blank">这个链接</a>新建项目。输入自己的项目名字，后面一定要加.github.io后缀，README初始化也要勾上。</p>
 <p><img src="/img/article/new_repositories.png" alt="新建项目"></p>
 <p>创建好项目后，点击Settings，向下拉到最后有个GitHub Pages，点击Choose a theme选择一个主题。然后等一会儿就可看到页面了。</p>
-<h2 id="正式部署到Github-Pages"><a href="#正式部署到Github-Pages" class="headerlink" title="正式部署到Github Pages"></a>正式部署到Github Pages</h2><p>打开站点配置文件，按以下示例进行修改：</p>
+<h2 id="正式部署到Github-Pages"><a href="#正式部署到Github-Pages" class="headerlink" title="正式部署到Github Pages"></a>正式部署到Github Pages</h2><p>打开<strong>站点配置文件</strong>，按以下示例进行修改：</p>
 <pre><code>deploy:
     type: git
     repository: 你的github项目地址
@@ -591,7 +591,7 @@ layout: about
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
                          
-                            If the article is no special statement, the article is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> License.<br>除了特殊声明，所有文章均基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow noopener noreferrer" target="_blank"> CC-BY-NC-SA 4.0</a> 协议进行授权。
+                            If the article is no special statement, the article is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> License.<br>除了特殊声明，所有文章均基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow noopener noreferrer" target="_blank"> CC-BY-NC-SA 4.0</a> 协议进行授权，转载请署名。
                         </strong>
                         <br>
                         <strong>本文链接：</strong><a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/">https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</a>
