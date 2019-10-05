@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Sun Aug 18 2019 12:42:10 GMT+0800">
-        <meta property="article:modified_time" content="Sun Sep 08 2019 19:50:56 GMT+0800">
+        <meta property="article:modified_time" content="Sat Oct 05 2019 14:14:13 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "https://viflythink.com/Install_Matomo(Piwik)_on_Debian/index.html",
     "headline": "Debian安装Matomo(Piwik)开源统计分析服务",
     "datePublished": "Sun Aug 18 2019 12:42:10 GMT+0800",
-    "dateModified": "Sun Sep 08 2019 19:50:56 GMT+0800",
+    "dateModified": "Sat Oct 05 2019 14:14:13 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "vifly",
@@ -508,28 +508,28 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前我在<a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/#%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90">使用Github Pages和Hexo搭建个人博客(进阶篇)</a>这一篇博文中已经提到了不考虑使用大型公司提供的网站统计分析服务了，只不过网站统计分析服务还是有必要的，至少能看到有多少人浏览过自己的网站。之所以不采用商业公司提供的分析服务是因为这等于助纣为虐，帮助这些公司建立更精准的用户画像，这些公司可以利用遍布于大半个互联网的自家的跟踪代码对读者进行浏览痕迹的跟踪，从而建立精准的用户画像，我无法接受这种侵犯用户隐私的行为，所以只能考虑自己搭建统计分析服务了。在Google上搜了一下后决定采用Matomo（原名为Piwik）这个开源的网站统计分析服务。本文主要参考了<a href="https://my.oschina.net/u/3944788/blog/2874366" rel="external nofollow noopener noreferrer" target="_blank">在Debian 9上安装Matomo Analytics</a>这一个教程，只不过很不巧的是目前Debain 10已经发布，这篇教程里的php7.0已经过时，但是没关系，下文中提供的安装php的指令并没有指定版本，所以对于Debian 9/10的用户都是可行的。</p>
-<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>1.基本的Linux终端操作经验<br>2.一个安装了Debian 9/10的服务器（VPS），理论上来说Ubuntu 18也可以（并没有实测过）<br>3.一个属于自己的域名，并且已经将其DNS解析指向自己的服务器</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前我在<a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/#%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90">使用Github Pages和Hexo搭建个人博客(进阶篇)</a>这一篇博文中已经提到了不考虑使用大型公司提供的网站统计分析服务了，只不过网站统计分析服务还是有必要的，至少能看到有多少人浏览过自己的网站。之所以不采用商业公司提供的分析服务是因为这等于助纣为虐，帮助这些公司建立更精准的用户画像，这些公司可以利用遍布于大半个互联网的自家的跟踪代码对读者进行浏览痕迹的跟踪，从而建立精准的用户画像，我无法接受这种侵犯用户隐私的行为，所以只能考虑自己搭建统计分析服务了。在 Google 上搜了一下后决定采用 Matomo（原名为 Piwik）这个开源的网站统计分析服务。本文主要参考了<a href="https://my.oschina.net/u/3944788/blog/2874366" rel="external nofollow noopener noreferrer" target="_blank">在Debian 9上安装Matomo Analytics</a>这一个教程，只不过很不巧的是目前 Debain 10 已经发布，这篇教程里的 php7.0 已经过时，但是没关系，下文中提供的安装 php 的指令并没有指定版本，所以对于 Debian 9/10 的用户都是可行的。</p>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>1.基本的 Linux 终端操作经验<br>2.一个安装了 Debian 9/10 的服务器（VPS），理论上来说 Ubuntu 18 也可以（并没有实测过）<br>3.一个属于自己的域名，并且已经将其 DNS 解析指向自己的服务器</p>
 <h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>先安装必须的库：     </p>
 <pre><code>sudo apt install unzip apt-transport-https curl wget dirmngr php php-fpm php-curl php-gd php-cli php-mysql php-xml php-mbstring    
-</code></pre><p>安装mysql的替代品mariadb，这里必须提到的一点是，从Debian9开始，软件包中的mysql实际上已经变成了mariadb：     </p>
+</code></pre><p>安装 mysql 的替代品 mariadb，这里必须提到的一点是，从 Debian9 开始，软件包中的 mysql 实际上已经变成了 mariadb：     </p>
 <pre><code>sudo apt install mariadb-server     
-</code></pre><p>运行mysql_secure_installation脚本以改进MariaDB安装的安全性：    </p>
+</code></pre><p>运行 mysql_secure_installation 脚本以改进 MariaDB 安装的安全性：    </p>
 <pre><code>sudo mysql_secure_installation  
-</code></pre><p>作为数据库root用户登录到MariaDB（注意，必须使用root权限才可以作为数据库root用户登录到MariaDB，数据库的root用户与系统中的root用户不是同一个东西）：  </p>
+</code></pre><p>作为数据库 root 用户登录到 MariaDB（注意，必须使用 root 权限才可以作为数据库 root 用户登录到 MariaDB，数据库的 root 用户与系统中的 root 用户不是同一个东西）：  </p>
 <pre><code>sudo mysql -u root -p   
-</code></pre><p>假如没有一个用于Matomo的数据库用户的话，先执行以下指令新建数据库用户，localhost意味这个用户只可以本地登录（<em>PS：记得将username和password替换为自己准备设置的用户名和密码，下同</em>）：     </p>
+</code></pre><p>假如没有一个用于 Matomo 的数据库用户的话，先执行以下指令新建数据库用户，localhost 意味这个用户只可以本地登录（<em>PS：记得将username和password替换为自己准备设置的用户名和密码，下同</em>）：     </p>
 <pre><code>CREATE USER &#39;username&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;password&#39;;     
-</code></pre><p>创建后请记住用户名和密码。<br>创建一个新的MariaDB数据库并授权：   </p>
+</code></pre><p>创建后请记住用户名和密码。<br>创建一个新的 MariaDB 数据库并授权：   </p>
 <pre><code>CREATE DATABASE db_name;     
 GRANT ALL ON db_name.* TO &#39;username&#39; IDENTIFIED BY &#39;password&#39;;       
 FLUSH PRIVILEGES;        
 quit;     
-</code></pre><p>安装nginx：     </p>
+</code></pre><p>安装 nginx：     </p>
 <pre><code>sudo apt install -y nginx       
-</code></pre><p>新建Nginx配置文件：     </p>
+</code></pre><p>新建 Nginx 配置文件：     </p>
 <pre><code>sudo nano /etc/nginx/sites-available/matomo     
-</code></pre><p>在其中填入（将your_domain替换为你的域名，例如 stats.viflythink.com）：    </p>
+</code></pre><p>在其中填入（将 your_domain 替换为你的域名，例如 stats.viflythink.com）：    </p>
 <pre><code>server {
   listen 80;
   server_name your_domain;
@@ -545,13 +545,13 @@ quit;
     fastcgi_param SCRIPT_FILENAME   $document_root$fastcgi_script_name;
   }
 }
-</code></pre><p>通过建立软链接将刚写好的配置文件对应的网站设置为可访问的（Debian系上的Nginx都是这样将网站设为可访问的，RedHat系与此不同）：  </p>
+</code></pre><p>通过建立软链接将刚写好的配置文件对应的网站设置为可访问的（Debian 系上的 Nginx 都是这样将网站设为可访问的，RedHat 系与此不同）：  </p>
 <pre><code>sudo ln -s /etc/nginx/sites-available/matomo /etc/nginx/sites-enabled/     
 </code></pre><p>测试配置：  </p>
 <pre><code>sudo nginx -t
-</code></pre><p>创建matomo目录：  </p>
+</code></pre><p>创建 matomo 目录：  </p>
 <pre><code>sudo mkdir -p /var/www/html/matomo  
-</code></pre><p>下载和解压matomo：  </p>
+</code></pre><p>下载和解压 matomo：  </p>
 <pre><code>cd /var/www/html/matomo   
 wget https://builds.piwik.org/piwik.zip
 unzip piwik.zip
@@ -560,9 +560,9 @@ mv piwik/* .
 rmdir piwik
 </code></pre><p>更改该目录的所有权，确保访问者可以访问这些页面文件：    </p>
 <pre><code>sudo chown -R www-data:www-data /var/www/html/matomo
-</code></pre><p>重新加载Nginx以让配置生效： </p>
+</code></pre><p>重新加载 Nginx 以让配置生效： </p>
 <pre><code>sudo systemctl reload nginx.service
-</code></pre><p>接下来使用浏览器打开Nginx配置文件中填写的域名，按照指引完成matomo的安装。</p>
+</code></pre><p>接下来使用浏览器打开 Nginx 配置文件中填写的域名，按照指引完成 matomo 的安装。</p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
