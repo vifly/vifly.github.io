@@ -135,6 +135,17 @@
     
     
     <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>About</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
@@ -149,17 +160,6 @@
       <title>Links</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
