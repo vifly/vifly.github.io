@@ -135,22 +135,11 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>About</title>
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[<h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><p>Hello,world!<br>我是一个喜欢折腾技术与阅读的大学生，支持开源/自由软件（FOSS），目前在学习深度学习（<del>炼丹</del>）。这个博客是我用来记录折腾经历与发表自己感想的地方，希望能通过写博客结识更多的好友与增进自己的技术，欢迎各位留言。   </p><p>我的邮箱是 <a href="mailto:hellovifly@outlook.com" rel="external nofollow noopener noreferrer" target="_blank">hellovifly@outlook.com</a>，你也可以通过<a href="https://t.me/viflythink" rel="external nofollow noopener noreferrer" target="_blank"> telegram </a>联系我。</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><p>Hello,world!<br>这个博客是 vifly 的自留地，既包括技术折腾记录，也有对于各种东西的感想。<br>我是一个喜欢折腾技术与阅读的大学生，支持开源/自由软件（FOSS），目前在学习深度学习（<del>炼丹</del>）。我在这个博客上记录折腾经历与发表自己感想，希望能通过这个过程结识更多的好友与增进自己的技术，欢迎各位在博客上留言。   </p><p>我的邮箱是 <a href="mailto:hellovifly@outlook.com" rel="external nofollow noopener noreferrer" target="_blank">hellovifly@outlook.com</a>，你也可以通过<a href="https://t.me/viflythink" rel="external nofollow noopener noreferrer" target="_blank"> telegram </a>联系我。</p>]]></content>
       
     </entry>
     
@@ -160,6 +149,17 @@
       <title>Links</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
