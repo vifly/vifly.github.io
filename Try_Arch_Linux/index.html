@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Sun Nov 03 2019 14:34:27 GMT+0800">
-        <meta property="article:modified_time" content="Sun Nov 03 2019 14:52:05 GMT+0800">
+        <meta property="article:modified_time" content="Sun Nov 03 2019 18:09:36 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "https://viflythink.com/Try_Arch_Linux/index.html",
     "headline": "从 Debian 迁移到 Arch Linux",
     "datePublished": "Sun Nov 03 2019 14:34:27 GMT+0800",
-    "dateModified": "Sun Nov 03 2019 14:52:05 GMT+0800",
+    "dateModified": "Sun Nov 03 2019 18:09:36 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "vifly",
@@ -523,7 +523,7 @@
 sudo systemctl start v2ray.service
 </code></pre><p>如果想让桌面应用走代理，可以在 KDE 的系统设置中点击“网络”中的设置，然后点击“代理”，选中“使用系统代理服务器配置”，填入对应的代理信息，示例如下：</p>
 <p><img src="/img/article/set_kde_proxy.png" alt="KDE 设置系统代理"></p>
-<p>另外，V2Ray 支持 ShadowSocks 协议，可根据<a href="https://www.v2ray.com/chapter_02/protocols/shadowsocks.html" rel="external nofollow noopener noreferrer" target="_blank"> V2Ray 官方文档</a>写出配置文件，也可使用<a href="https://www.veekxt.com/utils/v2ray_gen" rel="external nofollow noopener noreferrer" target="_blank">在线工具</a>生成，想让 V2Ray 指定修改 V2Ray 的 systemd 配置文件的话，编辑/etc/systemd/system/multi-user.target.wants/v2ray.service；如果你使用 SSR 翻墙，AUR 中有<a href="https://aur.archlinux.org/packages/electron-ssr/" rel="external nofollow noopener noreferrer" target="_blank"> electron-ssr</a>，也有<a href="https://aur.archlinux.org/packages/shadowsocksr/" rel="external nofollow noopener noreferrer" target="_blank"> shadowsocksr</a>，但需要注意的是 electron-ssr 无法在 KDE 下自动设置代理（它使用了 gsetting 设置系统代理，不支持 KDE）。总之，安装好翻墙软件后终于能在电脑上使用 Google 查问题了。</p>
+<p>另外，V2Ray 支持 ShadowSocks 协议，可根据<a href="https://www.v2ray.com/chapter_02/protocols/shadowsocks.html" rel="external nofollow noopener noreferrer" target="_blank"> V2Ray 官方文档</a>写出配置文件，也可使用<a href="https://www.veekxt.com/utils/v2ray_gen" rel="external nofollow noopener noreferrer" target="_blank">在线工具</a>生成；如果你使用 SSR 翻墙，AUR 中有<a href="https://aur.archlinux.org/packages/electron-ssr/" rel="external nofollow noopener noreferrer" target="_blank"> electron-ssr</a>，也有<a href="https://aur.archlinux.org/packages/shadowsocksr/" rel="external nofollow noopener noreferrer" target="_blank"> shadowsocksr</a>，但需要注意的是 electron-ssr 无法在 KDE 下自动设置代理（它使用了 gsetting 设置系统代理，不支持 KDE）。总之，安装好翻墙软件后终于能在电脑上使用 Google 查问题了。</p>
 <h1 id="终端模拟器与Shell"><a href="#终端模拟器与Shell" class="headerlink" title="终端模拟器与Shell"></a>终端模拟器与Shell</h1><p>既然在 Linux 下，那么肯定免不了与终端打交道，既然如此，我们就需要一个美观、实用的终端（模拟器）。要说美观的话，KDE 自带的 Konsole 已经足够漂亮了，透明背景这一点让一直使用 Gnome Terminal 的我感到非常舒服，只需要稍微调整一下，就可以做到<a href="https://kirikira.moe/post/28/#3" rel="external nofollow noopener noreferrer" target="_blank"> kiri 大佬这样的效果</a>，让自己一整天都保持心情愉悦。不过在实用性方面我开始时遇到了一点问题，Konsole 使用的 Shell 是 Bash，而 Arch Linux 本身的 Bash 并没有自动补全配置，想要自动补全的话需要安装 bash-completion： </p>
 <pre><code>sudo pacman -S bash-completion
 </code></pre><p>想要更高级的 Shell 体验的话（不知道终端模拟器与 Shell 有什么区别？请看<a href="https://www.ihewro.com/archives/933/" rel="external nofollow noopener noreferrer" target="_blank">这</a>），也可以安装 zsh 加 oh-my-zsh 这样一整套的懒人包（或者自己配置 zsh？），只不过这里有一个小坑，在 AUR 中的 oh-my-zsh-git 并不会在 home 目录下生成.zshrc，查找后发现在/usr/share/oh-my-zsh 下有 zshrc 文件，我直接复制到 home 目录了，这里贴出安装懒人包的操作命令（将 username 改为你的用户名）：   </p>
@@ -537,7 +537,7 @@ cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
 <pre><code>export XMODIFIERS=&quot;@im=fcitx&quot;
 export GTK_IM_MODULE=&quot;fcitx&quot;
 export QT_IM_MODULE=&quot;fcitx&quot;
-</code></pre><p>另外，需要更改一下输入法配置，操作步骤是右键点击托盘中的输入法图标，选择“配置”，修改后的配置如下图所示（按Shift键可切换中英文）：</p>
+</code></pre><p>另外，需要更改一下输入法配置，操作步骤是右键点击托盘中的输入法图标，选择“配置”，修改后的配置如下图所示（按 Shift 键可切换中英文）：</p>
 <p><img src="/img/article/set_fcitx_1.png" alt="输入法配置图1"></p>
 <p><img src="/img/article/set_fcitx_2.png" alt="输入法配置图2"></p>
 <p>最后，将我已经在 Debian 上调校好的 Rime 输入法配置文件拷贝过来（调校 Rime 的教程太多了，这里懒得贴了～），就能畅快地输入中文了。</p>
