@@ -329,15 +329,23 @@
 
     <!-- Pic & Slogan -->
     <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/daily_pic.png)">
-        <p class="index-top-block-slogan"><a href="#">
-        
-            
-                
-                简单即是美
-            
-        
+        <p id="myslogan" class="index-top-block-slogan"><a href="#">
+            无法加载 gists 上的标语
         </a></p>
     </div>
+    
+    <!-- 动态显示标语 -->
+    <script src="js/jquery.min.js"></script>
+    <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                    jQuery.getJSON( "https://api.github.com/gists/7a04e2188185ddb19cbd19d8217b9400", function(data) {
+                            slogans = JSON.parse(data.files["slogans.json"].content);
+                            randomSlogan = slogans[ Math.floor( Math.random() * slogans.length ) ];
+                            jQuery("#myslogan").html(randomSlogan.content);
+                    });
+            });
+            
+    </script>
 
     <!-- Avatar & Name -->
     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
@@ -925,7 +933,7 @@
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        hellovifly@outlook.com
+        viflythink@gmail.com
         <b class="caret"></b>
     </a>
 </div>
