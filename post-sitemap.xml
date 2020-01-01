@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://viflythink.com/KDE_to_Windows10/</loc>
+        <lastmod>2020-01-01T03:45:46.864Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</loc>
         <lastmod>2019-12-14T04:47:11.430Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -40,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</loc>
+        <loc>https://viflythink.com/Install_Matomo(Piwik)_on_Debian/</loc>
         <lastmod>2019-10-05T06:14:13.463Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://viflythink.com/Install_Matomo(Piwik)_on_Debian/</loc>
+        <loc>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</loc>
         <lastmod>2019-10-05T06:14:13.463Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

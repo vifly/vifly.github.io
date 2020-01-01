@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://viflythink.com/"/>
-  <updated>2019-12-14T04:47:11.430Z</updated>
+  <updated>2020-01-01T03:45:46.864Z</updated>
   <id>https://viflythink.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将 KDE 改造为 Windows 10</title>
+    <link href="https://viflythink.com/KDE_to_Windows10/"/>
+    <id>https://viflythink.com/KDE_to_Windows10/</id>
+    <published>2020-01-01T02:08:32.000Z</published>
+    <updated>2020-01-01T03:45:46.864Z</updated>
+    
+    <summary type="html">
+    
+      将 KDE 桌面改造为 Windows 10 风格的折腾记录，也算是 KDE 美化教程
+    
+    </summary>
+    
+    
+      <category term="折腾" scheme="https://viflythink.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+      <category term="Linux" scheme="https://viflythink.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>【译】椭圆曲线密码介绍</title>
