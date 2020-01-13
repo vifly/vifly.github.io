@@ -59,6 +59,20 @@
     </url>
 
     <url>
+        <loc>https://viflythink.com/tags/Matomo/</loc>
+        <lastmod>2019-10-05T06:14:13.463Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
+        <lastmod>2019-10-05T06:14:13.463Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://viflythink.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</loc>
         <lastmod>2019-10-05T06:14:13.463Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -74,20 +88,6 @@
 
     <url>
         <loc>https://viflythink.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-        <lastmod>2019-10-05T06:14:13.463Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://viflythink.com/tags/Matomo/</loc>
-        <lastmod>2019-10-05T06:14:13.463Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
         <lastmod>2019-10-05T06:14:13.463Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
