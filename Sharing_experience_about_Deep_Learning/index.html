@@ -622,7 +622,7 @@ print(model)
     var gitalk = new Gitalk({
             clientID: '67b4d38763a5846a0029',
             clientSecret: 'c4b4fd850af1081ad0bb883cbef7f725f09bbe2f',
-            repo: 'https://github.com/vifly/vifly.github.io',
+            repo: 'vifly.github.io',
             owner: 'vifly',
             admin: ['vifly'],
             // facebook-like distraction free mode
@@ -645,6 +645,8 @@ print(model)
         var disqusComment = document.getElementById("disqus-comments");
         var gitalkButton = document.getElementById("comment-toggle-gitalk");
         var disqusButton = document.getElementById("comment-toggle-disqus");
+        gitalkComment.style.display = "none";
+        disqusComment.style.display = "none";
 
         if (disqusButton != null) {
             disqusButton.onclick = function () {
