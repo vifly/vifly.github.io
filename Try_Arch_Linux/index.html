@@ -615,7 +615,7 @@ export QT_IM_MODULE=&quot;fcitx&quot;
 <div class="comment-buttons">
     <button class="button" id="comment-toggle-disqus">Disqus</button>
     <button class="button" id="comment-toggle-gitalk">Gitalk</button>
-    <div id="disqus-comment">
+    <div id="disqus-comments">
         <!-- 使用 DISQUS -->
 <div id="disqus-comment">
     <div id="disqus_thread"></div>
@@ -645,28 +645,28 @@ export QT_IM_MODULE=&quot;fcitx&quot;
     }
 </style>
     </div>
-    <div id="gitalk-comment">
+    <div id="gitalk-comments">
         <!-- 使用 Gitalk -->
 <div id="gitalk-comment">
-    <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_config = function () {
-        this.page.url = 'https://viflythink.com/Try_Arch_Linux/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://viflythink.com/Try_Arch_Linux/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-</script>
-<script type="text/ls-javascript" id="disqus-thread-script">
-    queue.offer(function() {
-            (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document;
-                var s = d.createElement('script');
-                s.src = '//vifly.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', + new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        });
-</script>
+    <!-- Gitalk 评论框 -->
+<div id="gitalk-container"></div>
 
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script>
+    var gitalk = new Gitalk({
+            clientID: '67b4d38763a5846a0029',
+            clientSecret: 'c4b4fd850af1081ad0bb883cbef7f725f09bbe2f',
+            repo: 'https://github.com/vifly/vifly.github.io',
+            owner: 'vifly',
+            admin: ['vifly'],
+            // facebook-like distraction free mode
+            distractionFreeMode: false
+        })
+   gitalk.render('gitalk-container')
+</script>
 </div>
 <style>
     #gitalk-comment {
@@ -674,11 +674,12 @@ export QT_IM_MODULE=&quot;fcitx&quot;
         padding: 2pc;
     }
 </style>
+
     </div>
 
     <script>
-        var gitalkComment = document.getElementById("gitalk-comment");
-        var disqusComment = document.getElementById("disqus-comment");
+        var gitalkComment = document.getElementById("gitalk-comments");
+        var disqusComment = document.getElementById("disqus-comments");
         var gitalkButton = document.getElementById("comment-toggle-gitalk");
         var disqusButton = document.getElementById("comment-toggle-disqus");
 
