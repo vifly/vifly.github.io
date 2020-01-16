@@ -620,82 +620,27 @@ description: 你的博文描述
 
                 <!-- Post Comments -->
                 
-                    
-    <!-- 使用 DISQUS_CLICK -->
+                    <!-- 
+    <!-- 使用 DISQUS -->
 <div id="disqus-comment">
     <div id="disqus_thread"></div>
-
-<!-- add animation -->
-<style>
-	.disqus_click_btn {
-            line-height: 30px;
-            margin: 0;
-            min-width: 50px;
-            padding: 0 14px;
-            display: inline-block;
-            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0;
-            overflow: hidden;
-            will-change: box-shadow;
-            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
-            outline: 0;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            vertical-align: middle;
-            border: 0;
-            background: rgba(158, 158, 158, .2);
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-            color: #fff;
-            background-color: #757575;
-            text-shadow: 0;
-            display: none
-        }
-</style>
-	
-<div class="btn_click_load"> 
-    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
-</div>
-
 <script type="text/javascript">
     var disqus_config = function () {
         this.page.url = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/';  // Replace PAGE_URL with your page's canonical URL variable
         this.page.identifier = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
-
-<script type="text/ls-javascript" id="disqus-lazy-load-script">
-    $.ajax({
-        url: 'https://disqus.com/next/config.json',
-        timeout: 4000,
-        type: 'GET',
-        success: (function() {
-            var d = document;
-            var s = d.createElement('script');
-            s.src = '//vifly.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', + new Date());
-            (d.head || d.body).appendChild(s);
-            $('.disqus_click_btn').css('display','none');
-        })(),
-        error: function() {
-          $('.disqus_click_btn').css('display','block');
-        }
-    });
-    $('.btn_click_load').click(function() {  //click to load comments
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document;
-            var s = d.createElement('script');
-            s.src = '//vifly.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', + new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-        $('.disqus_click_btn').css('display','none');
-    });
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//vifly.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
 </script>
-  	
 
 </div>
 <style>
@@ -704,7 +649,99 @@ description: 你的博文描述
         padding: 2pc;
     }
 </style>
+ -->
+<div class="comment-buttons">
+    <button class="button" id="comment-toggle-disqus">Disqus</button>
+    <button class="button" id="comment-toggle-gitalk">Gitalk</button>
+    <div id="disqus-comment">
+        <!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//vifly.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
 
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+    </div>
+    <div id="gitalk-comment">
+        <!-- 使用 Gitalk -->
+<div id="gitalk-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//vifly.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #gitalk-comment {
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+    </div>
+
+    <script>
+        var gitalkComment = document.getElementById("gitalk-comment");
+        var disqusComment = document.getElementById("disqus-comment");
+        var gitalkButton = document.getElementById("comment-toggle-gitalk");
+        var disqusButton = document.getElementById("comment-toggle-disqus");
+
+        if (disqusButton != null) {
+            disqusButton.onclick = function () {
+                if (gitalkComment != null) {
+                    gitalkComment.style.display = "none";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "block";
+                }
+            };
+        }
+        if (gitalkButton != null) {
+            gitalkButton.onclick = function () {
+                if (gitalkComment != null) {
+                    gitalkComment.style.display = "block";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "none";
+                }
+            };
+        }
+    </script>
+</div>
                 
             </div>
 
@@ -1060,7 +1097,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
    <!-- 使用 DISQUS js 代码 -->
-
+<script id="dsq-count-scr" src="//vifly.disqus.com/count.js" async></script>
 
 
 
