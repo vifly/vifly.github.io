@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://viflythink.com/"/>
-  <updated>2020-01-11T06:16:38.226Z</updated>
+  <updated>2020-07-23T22:46:24.000Z</updated>
   <id>https://viflythink.com/</id>
   
   <author>
@@ -17,11 +17,53 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>GitHub Actions 打造 AUR 打包下载一条龙服务</title>
+    <link href="https://viflythink.com/Use_GitHubActions_to_build_AUR/"/>
+    <id>https://viflythink.com/Use_GitHubActions_to_build_AUR/</id>
+    <published>2020-04-28T12:15:05.000Z</published>
+    <updated>2020-07-23T22:46:24.000Z</updated>
+    
+    <summary type="html">
+    
+      使用免费的 GitHub Actions 体验全自动化的 Arch 软件打包安装的工作流
+    
+    </summary>
+    
+    
+      <category term="折腾" scheme="https://viflythink.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+      <category term="Linux" scheme="https://viflythink.com/tags/Linux/"/>
+    
+      <category term="CI" scheme="https://viflythink.com/tags/CI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>永恒才是你的敌人——《永久记录》读后感</title>
+    <link href="https://viflythink.com/Permanent_Record/"/>
+    <id>https://viflythink.com/Permanent_Record/</id>
+    <published>2020-02-28T09:11:57.000Z</published>
+    <updated>2020-07-23T22:44:08.000Z</updated>
+    
+    <summary type="html">
+    
+      假如我们的在线上的一言一行都被永久保存，那会是怎样的一个光景呢？
+    
+    </summary>
+    
+    
+      <category term="隐私" scheme="https://viflythink.com/tags/%E9%9A%90%E7%A7%81/"/>
+    
+      <category term="读书笔记" scheme="https://viflythink.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>将 KDE 改造为 Windows 10</title>
     <link href="https://viflythink.com/KDE_to_Windows10/"/>
     <id>https://viflythink.com/KDE_to_Windows10/</id>
     <published>2020-01-01T02:08:32.000Z</published>
-    <updated>2020-01-11T06:16:38.226Z</updated>
+    <updated>2020-07-23T22:45:18.000Z</updated>
     
     <summary type="html">
     
@@ -41,7 +83,7 @@
     <link href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/"/>
     <id>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</id>
     <published>2019-12-14T03:20:03.000Z</published>
-    <updated>2019-12-14T04:47:11.430Z</updated>
+    <updated>2019-12-14T12:47:10.000Z</updated>
     
     <summary type="html">
     
@@ -61,7 +103,7 @@
     <link href="https://viflythink.com/Try_Arch_Linux/"/>
     <id>https://viflythink.com/Try_Arch_Linux/</id>
     <published>2019-11-03T06:34:27.000Z</published>
-    <updated>2019-11-23T02:30:57.183Z</updated>
+    <updated>2020-07-23T23:06:48.000Z</updated>
     
     <summary type="html">
     
@@ -83,7 +125,7 @@
     <link href="https://viflythink.com/Sharing_experience_about_Deep_Learning/"/>
     <id>https://viflythink.com/Sharing_experience_about_Deep_Learning/</id>
     <published>2019-10-04T14:44:08.000Z</published>
-    <updated>2019-10-05T06:14:13.463Z</updated>
+    <updated>2019-10-05T14:14:12.000Z</updated>
     
     <summary type="html">
     
@@ -111,7 +153,7 @@
     <link href="https://viflythink.com/Install_Matomo(Piwik)_on_Debian/"/>
     <id>https://viflythink.com/Install_Matomo(Piwik)_on_Debian/</id>
     <published>2019-08-18T04:42:10.000Z</published>
-    <updated>2019-10-05T06:14:13.463Z</updated>
+    <updated>2020-07-23T00:09:22.000Z</updated>
     
     <summary type="html">
     
@@ -133,7 +175,7 @@
     <link href="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/"/>
     <id>https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</id>
     <published>2019-07-28T08:58:41.000Z</published>
-    <updated>2019-10-05T06:15:14.275Z</updated>
+    <updated>2019-10-05T14:15:14.000Z</updated>
     
     <summary type="html">
     
@@ -149,7 +191,7 @@
   </entry>
   
   <entry>
-    <title>使用 Github Pages 和 Hexo 搭建个人博客(进阶篇)</title>
+    <title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</title>
     <link href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/"/>
     <id>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</id>
     <published>2019-07-15T11:51:36.000Z</published>
@@ -157,7 +199,7 @@
     
     <summary type="html">
     
-      对使用 material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO
+      对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO
     
     </summary>
     
@@ -177,7 +219,7 @@
     <link href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/"/>
     <id>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</id>
     <published>2019-04-07T02:23:56.000Z</published>
-    <updated>2019-10-05T06:14:13.463Z</updated>
+    <updated>2019-10-05T14:14:12.000Z</updated>
     
     <summary type="html">
     
@@ -199,7 +241,7 @@
     <link href="https://viflythink.com/hello/"/>
     <id>https://viflythink.com/hello/</id>
     <published>2019-04-06T11:33:41.000Z</published>
-    <updated>2019-11-30T16:07:08.722Z</updated>
+    <updated>2019-12-01T00:07:08.000Z</updated>
     
     <summary type="html">
     

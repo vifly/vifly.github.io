@@ -8,56 +8,32 @@
     </url>
 
     <url>
-        <loc>https://viflythink.com/KDE_to_Windows10/</loc>
-        <lastmod>2020-01-11T06:16:38.226Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</loc>
-        <lastmod>2019-12-14T04:47:11.430Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://viflythink.com/hello/</loc>
-        <lastmod>2019-11-30T16:07:08.722Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://viflythink.com/Try_Arch_Linux/</loc>
-        <lastmod>2019-11-23T02:30:57.183Z</lastmod>
+        <lastmod>2020-07-23T23:06:48.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</loc>
-        <lastmod>2019-10-05T06:15:14.275Z</lastmod>
+        <loc>https://viflythink.com/Use_GitHubActions_to_build_AUR/</loc>
+        <lastmod>2020-07-23T22:46:24.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://viflythink.com/Sharing_experience_about_Deep_Learning/</loc>
-        <lastmod>2019-10-05T06:14:13.463Z</lastmod>
+        <loc>https://viflythink.com/KDE_to_Windows10/</loc>
+        <lastmod>2020-07-23T22:45:18.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</loc>
-        <lastmod>2019-10-05T06:14:13.463Z</lastmod>
+        <loc>https://viflythink.com/Permanent_Record/</loc>
+        <lastmod>2020-07-23T22:44:08.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -65,7 +41,47 @@
 
     <url>
         <loc>https://viflythink.com/Install_Matomo(Piwik)_on_Debian/</loc>
-        <lastmod>2019-10-05T06:14:13.463Z</lastmod>
+        <lastmod>2020-07-23T00:09:22.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</loc>
+        <lastmod>2019-12-14T12:47:10.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/hello/</loc>
+        <lastmod>2019-12-01T00:07:08.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</loc>
+        <lastmod>2019-10-05T14:15:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</loc>
+        <lastmod>2019-10-05T14:14:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://viflythink.com/Sharing_experience_about_Deep_Learning/</loc>
+        <lastmod>2019-10-05T14:14:12.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
