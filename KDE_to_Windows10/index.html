@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Wed Jan 01 2020 10:08:32 GMT+0800">
-        <meta property="article:modified_time" content="Fri Jul 24 2020 06:45:18 GMT+0800">
+        <meta property="article:modified_time" content="Tue Aug 18 2020 20:41:20 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "https://viflythink.com/KDE_to_Windows10/index.html",
     "headline": "将 KDE 改造为 Windows 10",
     "datePublished": "Wed Jan 01 2020 10:08:32 GMT+0800",
-    "dateModified": "Fri Jul 24 2020 06:45:18 GMT+0800",
+    "dateModified": "Tue Aug 18 2020 20:41:20 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Vifly",
@@ -514,18 +514,20 @@
 <p>觉得很漂亮吧？那么，接下来就开始我们的改造吧。</p>
 <h1 id="底部栏"><a href="#底部栏" class="headerlink" title="底部栏"></a>底部栏</h1><p>在没有打开任何窗口时，底部栏是与 win10 相差最远的一个地方，所以我们的改造工作先从底部栏开始。可以先看看改造完成后的底部栏效果图：</p>
 <p><img src="/img/article/my_bottom.png" alt="底部栏"></p>
-<h2 id="开始菜单"><a href="#开始菜单" class="headerlink" title="开始菜单"></a>开始菜单</h2><p>喜欢 win10 那简洁的开始菜单吗，在 KDE 下只需安装一个部件（widgets）即可拥有同样的体验。下载 <a href="https://store.kde.org/p/1160672/" rel="external nofollow noopener noreferrer" target="_blank">Tiled Menu</a>，然后将压缩包解压到 ~/.local/share/plasma/plasmoids/ 下，这样就完成安装了。想要使用的话有两种方法：在你左下角的开始菜单处鼠标右键单击，选择“显示替代方案”，选择 Tiled Menu；在底部栏右键单击，选择“编辑面板”，鼠标移到原来的开始菜单，选择移除，然后选择“添加部件”，选择 Tiled Menu。你可以在弹出的开始菜单右上角按住 ALT 和 鼠标右键进行拖拽以更改菜单大小。        </p>
+<h2 id="开始菜单"><a href="#开始菜单" class="headerlink" title="开始菜单"></a>开始菜单</h2><p>喜欢 win10 那简洁的开始菜单吗，在 KDE 下只需安装一个部件（widgets）即可拥有同样的体验。下载 <a href="https://store.kde.org/p/1160672/" rel="external nofollow noopener noreferrer" target="_blank">Tiled Menu</a>，并在底部栏空白处单击右键，然后点击“添加部件”，按照下图所示进行安装。</p>
+<p><img src="/img/article/install_widget.png" alt="安装部件"></p>
+<p>想要使用的话有两种方法：在你左下角的开始菜单处鼠标右键单击，选择“显示替代方案”，选择 Tiled Menu；在底部栏右键单击，选择“编辑面板”，鼠标移到原来的开始菜单，选择移除，然后选择“添加部件”，选择 Tiled Menu。你可以在弹出的开始菜单右上角按住 ALT 和 鼠标右键进行拖拽以更改菜单大小。        </p>
 <p><img src="/img/article/set_start_menu.png" alt="将 Tiled Menu 设为开始菜单"></p>
 <p>另外，想实现像在 Windows 那样按下 win 键便弹出开始菜单这一点，还需要做一点设置：右键单击开始菜单并选择“配置Tiled Menu”，点击“Keyboard shortcuts”，然后在下面截图所示位置左键单击并顺序按下 ALT 和 F1 键。</p>
 <p><img src="/img/article/set_tiled_menu_shortcut.png" alt="设置 Tiled Menu 的快捷键"></p>
 <h2 id="毛玻璃效果"><a href="#毛玻璃效果" class="headerlink" title="毛玻璃效果"></a>毛玻璃效果</h2><p>是否觉得在我的截图中的底部栏非常好看呢，这在很大程度上都是毛玻璃效果带来的。想要做到这样的效果，只需安装一个被称为 <a href="https://store.kde.org/p/1084931/" rel="external nofollow noopener noreferrer" target="_blank">Breeze AlphaBlack</a> 的 Plasma Themes。下载完成后将其解压到 ~/.local/share/plasma/desktoptheme/，然后打开系统设置，在侧栏点击“Plasma 样式”，选择 Breeze AlphaBlack 并应用更改。重启电脑后就能在系统托盘处见到 AlphaBlack Control（长得像是个雨滴），单击即可进行调整：将“Accent Color”的“Panel, Widget, Window TitleBars &amp; Frames”处的值改为 #343434（默认的纯黑不好看），将“Opacity”的“Panel”处的值调整为 10% 以加强底部栏透明度。</p>
 <p><img src="/img/article/set_alpha_black.png" alt="设置 AlphaBlack"></p>
-<p>另外，你还可以通过以下方法令 QT 系的应用的右键菜单拥有毛玻璃效果：打开系统设置，在侧栏点击“应用程序风格”，选择“应用样式”，并在“应用程序风格”处选择“微风”，点击旁边的配置按钮，点击“透明度”一栏，将透明度变大。将透明度变大能达到毛玻璃效果的原因是 KDE 默认的半透明是带有模糊效果的，而不是简单的透明，具体的模糊设置可在系统设置下的“工作空间行为”-&gt;“桌面特效”中找到。</p>
+<p>另外，你还可以通过以下方法令 QT 系的应用的右键菜单拥有毛玻璃效果：打开系统设置，在侧栏点击“应用程序风格”，选择“应用样式”，找到“微风”，点击右下角的配置按钮，点击“透明度”一栏，将透明度变大。将透明度变大能达到毛玻璃效果的原因是 KDE 默认的半透明是带有模糊效果的，而不是简单的透明，具体的模糊设置可在系统设置下的“工作空间行为”-&gt;“桌面特效”中找到。</p>
 <p><img src="/img/article/set_breeze_style.png" alt="设置微风的应用程序风格"></p>
 <p><img src="/img/article/set_breeze_transparency.png" alt="设置微风的菜单透明度"></p>
 <h2 id="任务管理器部件"><a href="#任务管理器部件" class="headerlink" title="任务管理器部件"></a>任务管理器部件</h2><p>依然是在底部栏右键单击，选择“编辑面板”，将鼠标移动到底部栏空白处，点击“显示替代方案”，选择图标任务管理器（Icon-Only Task Manager），然后你就可以看到类似于 win10 的底部窗口了，这里说明一下，图标任务管理器是自带的一个部件，无需安装。</p>
 <p><img src="/img/article/set_task_manager.png" alt="设置图标任务管理器"></p>
-<h2 id="快速查看已打开的窗口"><a href="#快速查看已打开的窗口" class="headerlink" title="快速查看已打开的窗口"></a>快速查看已打开的窗口</h2><p>win10 可点击左下角的按钮快速查看已打开的窗口，在安装了 <a href="https://store.kde.org/p/1181039" rel="external nofollow noopener noreferrer" target="_blank">Present Windows Button</a> 这个部件后，我们也可以做到这一点。与安装 Tiled Menu 时相同，将下载好的压缩包解压到 ~/.local/share/plasma/plasmoids/ 下，然后把这个部件放在开始菜单和任务管理器之间即可。点击按钮产生的效果与在 Gnome 下将鼠标移动到屏幕左上角触发的效果差不多，KDE 也可设置这样的触发角，不过我觉得设置这样的一个按钮没什么实际意义，可能最大的好处就是没事点一下能有效消遣无聊吧（雾）。这里还有一个能让底部栏变得更美观的 Tips，在底部栏右键单击，选择“编辑面板”后点击“添加间距”，以此添加两个间距，将其缩到最小后对其右键取消勾选“设置可变大小”，然后将这两个间距拖到 Present Windows Button 两边，这能令 Present Windows Button 两边不会显得拥挤，从而变得美观。</p>
+<h2 id="快速查看已打开的窗口"><a href="#快速查看已打开的窗口" class="headerlink" title="快速查看已打开的窗口"></a>快速查看已打开的窗口</h2><p>win10 可点击左下角的按钮快速查看已打开的窗口，在安装了 <a href="https://store.kde.org/p/1181039" rel="external nofollow noopener noreferrer" target="_blank">Present Windows Button</a> 这个部件后，我们也可以做到这一点。这个部件的安装方法与 Tiled Menu 时相同，在安装完成后把这个部件放在开始菜单和任务管理器之间。这个部件产生的点击效果与在 Gnome 下将鼠标移动到屏幕左上角触发的效果差不多，KDE 也可设置这样的触发角，不过我觉得设置这样的一个按钮没什么实际意义，可能最大的好处就是没事点一下能有效消遣无聊吧（雾）。这里还有一个能让底部栏变得更美观的 Tips，在底部栏右键单击，选择“编辑面板”后点击“添加间距”，以此添加两个间距，将其缩到最小后对其右键取消勾选“设置可变大小”，然后将这两个间距拖到 Present Windows Button 两边，这能令 Present Windows Button 两边不会显得拥挤，从而变得美观。</p>
 <h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>想要在其他人面前假装自己在使用 win10 吗，将开始菜单的图标更换为 win10 开始菜单的图标无疑能让 KDE 变得更像 win10。你可以在 <a href="https://www.iconfinder.com/icons/1220364/microsoft_window_windows_icon" rel="external nofollow noopener noreferrer" target="_blank">IconFinder</a> 上下载 win10 图标，也可使用我在该图标的基础上<a href="https://1drv.ms/u/s!AnrGd4m50K7QbMyHxI-JM4EWUu4?e=0JXp1I" rel="external nofollow noopener noreferrer" target="_blank">使用 Inkscape 手动缩小后的 win10 图标</a>。右键单击开始菜单并选择“配置Tiled Menu”即可更换图标。我知道存在 <a href="https://store.kde.org/p/1167558/" rel="external nofollow noopener noreferrer" target="_blank">Winux10</a> 之类的图标主题可以将默认的图标替换为 win10 图标，但我经过尝试后发现其覆盖不全面，用以截图假装自己在使用 win10 是可以的，但日常使用会感到违和，所以还是推荐使用默认的图标主题。让我们再关注另一个细节，那就是右下角的时钟，想让它像 win10 那样双栏显示日期和时间并不难：在底部栏空白处右键单击，选择“编辑面板”，左键按住“高度”并进行上下拖拽，这样可以调整面板高度，稍微调高一些后，右键单击时钟，选择“配置数字时钟”，勾选“显示日期”，并将时间显示改为24小时制。</p>
 <h1 id="窗口装饰"><a href="#窗口装饰" class="headerlink" title="窗口装饰"></a>窗口装饰</h1><p>KDE 的窗口装饰指的是打开的应用程序窗口的顶部部分（就是包含了最小化、最大化、关闭按钮的那一栏）。我在 Google 搜索如何让 KDE 变得像 win10 时发现了一个非常新的 KDE 主题 <a href="https://github.com/fauzie811/Breeze10" rel="external nofollow noopener noreferrer" target="_blank">Breeze10</a>，从 Github 页面上的图片可以看出这个主题可以完美地将窗口装饰变为 win10 的风格。<del>由于目前（2019年12月）还没人打包，所以需要按照其 Github 页面上的操作步骤进行编译安装</del>。AUR 上已有人打包，所以我们可以在终端输入指令安装（需要安装 Yay 这个 AUR 助手）：     </p>
 <pre><code>yay -S breeze10-kde-git
