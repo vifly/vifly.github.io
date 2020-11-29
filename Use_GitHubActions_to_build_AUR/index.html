@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Tue Apr 28 2020 20:15:05 GMT+0800">
-        <meta property="article:modified_time" content="Fri Jul 24 2020 06:46:24 GMT+0800">
+        <meta property="article:modified_time" content="Sun Nov 29 2020 20:09:06 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "https://viflythink.com/Use_GitHubActions_to_build_AUR/index.html",
     "headline": "GitHub Actions 打造 AUR 打包下载一条龙服务",
     "datePublished": "Tue Apr 28 2020 20:15:05 GMT+0800",
-    "dateModified": "Fri Jul 24 2020 06:46:24 GMT+0800",
+    "dateModified": "Sun Nov 29 2020 20:09:06 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Vifly",
@@ -563,12 +563,12 @@ jobs:
       with:
         repo-name: osu-lazer
 </code></pre><p>提醒一下，使用别人的 action 时可能需要使用 with 对象输入一些变量，在这里我们输入的就是想要构建的 AUR 软件的软件包名。</p>
-<h2 id="上传到-GitHub-Releases"><a href="#上传到-GitHub-Releases" class="headerlink" title="上传到 GitHub Releases"></a>上传到 GitHub Releases</h2><p>在上一步中我们已成功地构建了想要的软件包，接下来需要解决的就是如何把软件包取出来这个问题了。最好的解决方案莫过于将构建出来的软件包上传到 Releases，GitHub 官方提供了 <a href="https://github.com/actions/upload-release-asset" rel="external nofollow noopener noreferrer" target="_blank">upload-release-asset</a> 来完成这个操作，但我看了说明文档后觉得这个太麻烦了，它不支持通过 Unix 终端规则（例如 “*.xz”）筛选要上传的文件，而且需要先创建 Releases 后才能上传文件。经过一番谷歌，我找到了 <a href="https://github.com/ncipollo/release-action" rel="external nofollow noopener noreferrer" target="_blank">release-action</a> 这个替代品，与 upload-release-asset 相比，这个 action 的配置明显更简单，从下面这段配置即可看得出来：</p>
-<pre><code>- uses: ncipollo/release-action@v1.6.1
+<h2 id="上传到-GitHub-Releases"><a href="#上传到-GitHub-Releases" class="headerlink" title="上传到 GitHub Releases"></a>上传到 GitHub Releases</h2><p>在上一步中我们已成功地构建了想要的软件包，接下来需要解决的就是如何把软件包取出来这个问题了。最好的解决方案莫过于将构建出来的软件包上传到 Releases，GitHub 官方提供了 <a href="https://github.com/actions/upload-release-asset" rel="external nofollow noopener noreferrer" target="_blank">upload-release-asset</a> 来完成这个操作，但我看了说明文档后觉得这个太麻烦了，它不支持通过 Unix 终端规则（例如 “*.zst”）筛选要上传的文件，而且需要先创建 Releases 后才能上传文件。经过一番谷歌，我找到了 <a href="https://github.com/ncipollo/release-action" rel="external nofollow noopener noreferrer" target="_blank">release-action</a> 这个替代品，与 upload-release-asset 相比，这个 action 的配置明显更简单，从下面这段配置即可看得出来：</p>
+<pre><code>- uses: ncipollo/release-action@v1.7.3
   with:
     allowUpdates: true
     tag: &quot;packages&quot;
-    artifacts: &quot;./*/*.xz&quot;
+    artifacts: &quot;./*/*.zst&quot;
     token: ${{ secrets.GITHUB_TOKEN }}
 </code></pre><p>把这段配置添加到 workflow 中，然后我们先看看 with 对象中输入的变量。token 是上传文件到 Releases 时必需的一项变量，从它的形式就可以看出这是一个私密变量，不过这个私密变量是内置的，我们不需要在项目中手动设置这个变量，直接使用即可；接着就是 tag 了，为了方便管理，我们在仓库的 Releases 页面创建一个 tag，然后将 tag 的名字填入其中。完成配置后这个 action 就会把构建的软件包上传到指定 tag 下的 Releases，我们也可以下载该软件包了。</p>
 <h2 id="使用-matrix-进行改进"><a href="#使用-matrix-进行改进" class="headerlink" title="使用 matrix 进行改进"></a>使用 matrix 进行改进</h2><p>虽然目前我们的 workflow 已经能用了，但是需要编译多个 AUR 的软件时需要多次复制粘贴上面的 step，这可太难看了，是否存在更优雅的方法呢？答案是有的，经 DuckSoft 的提醒，可以使用 <a href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix" rel="external nofollow noopener noreferrer" target="_blank">matrix</a>，它基于单个 job 中定义的 steps 并行运行多个 job，多个 job 之间的差异就是特定变量的差异，这些变量以数组的形式存在。一般来说，matrix 的用处就是为不同平台采取同样的步骤进行构建，在本文的场景下就是采用同样的步骤构建不同的 AUR 软件。虽然听着有点抽象，但看一下这个例子你就应该能明白了：</p>
