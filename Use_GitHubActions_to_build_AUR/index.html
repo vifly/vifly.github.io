@@ -254,7 +254,7 @@
 
     
         <meta property="article:published_time" content="Tue Apr 28 2020 20:15:05 GMT+0800">
-        <meta property="article:modified_time" content="Sun Nov 29 2020 20:09:06 GMT+0800">
+        <meta property="article:modified_time" content="Sat Dec 26 2020 20:15:50 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -277,7 +277,7 @@
     "mainEntityOfPage": "https://viflythink.com/Use_GitHubActions_to_build_AUR/index.html",
     "headline": "GitHub Actions 打造 AUR 打包下载一条龙服务",
     "datePublished": "Tue Apr 28 2020 20:15:05 GMT+0800",
-    "dateModified": "Sun Nov 29 2020 20:09:06 GMT+0800",
+    "dateModified": "Sat Dec 26 2020 20:15:50 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Vifly",
@@ -552,7 +552,7 @@ jobs:
 
 on:
   schedule:
-    - cron: &#39;* */6 * * *&#39;
+    - cron: &#39;1 */6 * * *&#39;
 
 jobs:
   build:
@@ -587,7 +587,7 @@ jobs:
       with:
         repo-name: ${{ matrix.repos }}
 </code></pre><p>与之前的 workflow 不同，我们先创建了 repos 数组，并在其中填入需要构建的软件名。如果不把 fail-fast 设置为 false，在并行 job 中出现一个运行失败的 job 时会导致其它的 job 被终止。另外，使用 build-aur-action 时我们没有直接输入 repo-name，而是以 $ 的形式输入，数组中的变量会自动应用到对应的 job 中。<br>最终版的配置可以在<a href="https://github.com/vifly/arch-build/blob/master/.github/workflows/build.yml" rel="external nofollow noopener noreferrer" target="_blank">这</a>查看，各位只需复制粘贴并修改 matrix 内的软件包名即可食用。到此为止，借助 GitHub Actions，我们拥有了一个 24 小时可用的编译机以及公开的软件包存储库，解决了本文开始提到的第二与第三点问题。这些都是全自动且免费的，为了更好的体验，下文将介绍如何让安装软件包也实现自动化。</p>
-<h1 id="简单的自动更新仓库"><a href="#简单的自动更新仓库" class="headerlink" title="简单的自动更新仓库"></a>简单的自动更新仓库</h1><p>打开浏览器，从 Releases 页面下载软件包，然后执行 pacman -U xxx.pkg.tar.xz 安装软件包，这些操作实在太麻烦了，为何不建立一个软件源，令每次执行 pacman -Syu 时自动安装最新版本的软件呢。自建软件源听上去十分高大上，但其实只是建立一个本地软件源并不难，<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Custom_local_repository" rel="external nofollow noopener noreferrer" target="_blank">Arch WiKi 几段文字</a>便说明白了，当然，如果想建立一个在线的公用软件源会麻烦一些，所以这里只说明如何建立一个自动更新的本地软件源，另有需要的同学请自行谷歌。</p>
+<h1 id="简单的自动更新仓库"><a href="#简单的自动更新仓库" class="headerlink" title="简单的自动更新仓库"></a>简单的自动更新仓库</h1><p>打开浏览器，从 Releases 页面下载软件包，然后执行 pacman -U xxx.pkg.tar.zst 安装软件包，这些操作实在太麻烦了，为何不建立一个软件源，令每次执行 pacman -Syu 时自动安装最新版本的软件呢。自建软件源听上去十分高大上，但其实只是建立一个本地软件源并不难，<a href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Custom_local_repository" rel="external nofollow noopener noreferrer" target="_blank">Arch WiKi 几段文字</a>便说明白了，当然，如果想建立一个在线的公用软件源会麻烦一些，所以这里只说明如何建立一个自动更新的本地软件源，另有需要的同学请自行谷歌。</p>
 <h2 id="使用自动化脚本"><a href="#使用自动化脚本" class="headerlink" title="使用自动化脚本"></a>使用自动化脚本</h2><p>作为一个爱偷懒的人，我肯定希望能自动化下载软件包与更新软件仓库的操作，为此我写了一个脚本来完成这些事情，各位只需打开<a href="https://github.com/vifly/helper" rel="external nofollow noopener noreferrer" target="_blank">项目地址</a>，下载代码并根据说明进行操作即可。我在这里说明一下 conf.py 的配置：UserName 和 GitHubRepoName 并不难理解，举个例子，我的白嫖仓库地址是 <a href="https://github.com/vifly/arch-build" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/vifly/arch-build</a> ，那么需要填写的 UserName 便是 vifly，GitHubRepoName 则是 arch-build；ProxyURL 在下一小节会提到，这里先不说；DownloadPath 是从 Releases 下载的软件包的存储路径；末尾的 ArchRepoDBPath 和 ArchRepoName 是用于生成本地软件源的数据库的，脚本会调用 repo-add 根据 DownloadPath 中的软件包生成路径为 ArchRepoDBPath/ArchRepoName.db.tar.gz 的数据库。<br>当你成功运行脚本建立了一个本地软件源后，还需要修改 /etc/pacman.conf 文件，在末尾添加以下配置以让 Pacman 同步你的软件源的数据库（自行替换 ArchRepoName 与 ArchRepoDBPath）：</p>
 <pre><code>[ArchRepoName]
 SigLevel = Optional TrustAll
