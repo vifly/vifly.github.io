@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://vifly.disqus.com">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.proxy.ustclug.org">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇) | 
+        
+        Vifly 的博客
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO">
+    <meta name="keywords" content=",折腾,网站相关,Hexo,SEO">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Vifly 的博客">
+    <meta name="msapplication-starturl" content="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Vifly 的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+    
+    <meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+
+    <!-- RSS -->
+    
+        
+            <link rel="alternate" type="application/atom+xml" href="atom.xml">
+        
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇) | Vifly 的博客">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO">
+    <meta property="og:article:tag" content="折腾"> <meta property="og:article:tag" content="网站相关"> <meta property="og:article:tag" content="Hexo"> <meta property="og:article:tag" content="SEO"> 
+
+    
+        <meta property="article:published_time" content="Mon Jul 15 2019 19:51:36 GMT+0800">
+        <meta property="article:modified_time" content="Sat Sep 14 2019 23:56:51 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/index.html",
+    "headline": "使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)",
+    "datePublished": "Mon Jul 15 2019 19:51:36 GMT+0800",
+    "dateModified": "Sat Sep 14 2019 23:56:51 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Vifly",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "千里之行，始于足下"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Vifly 的博客",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",折腾,网站相关,Hexo,SEO",
+    "description": "对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+        
+            <!-- Matomo --> <script type="text/javascript"> var _paq = window._paq || []; /* tracker methods like "setCustomDimension" should be called before "trackPageView" */ _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']); (function() { var u="//stats.viflythink.com/"; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', '1']); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s); })(); </script> <!-- End Matomo Code -->
+        
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#额外的功能与服务"><span class="post-toc-number">1.</span> <span class="post-toc-text">额外的功能与服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RSS-订阅"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">RSS 订阅</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#评论区"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">评论区</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据统计与分析"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">数据统计与分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#搜索引擎优化（SEO）"><span class="post-toc-number">2.</span> <span class="post-toc-text">搜索引擎优化（SEO）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#验证网站所有权"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">验证网站所有权</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Google"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">Google</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Bing（必应）"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">Bing（必应）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#提交网站站点地图"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">提交网站站点地图</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#提交网页地址（收录新页面）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">提交网页地址（收录新页面）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SEO-进阶"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">SEO 进阶</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改文章链接地址"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">修改文章链接地址</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#出站链接添加-nofollow-标签"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">出站链接添加 nofollow 标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加文章描述"><span class="post-toc-number">2.4.3.</span> <span class="post-toc-text">添加文章描述</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#个性化"><span class="post-toc-number">3.</span> <span class="post-toc-text">个性化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#启用自己的域名"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">启用自己的域名</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自定义的域名与-GitHub-Page-的绑定"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">自定义的域名与 GitHub Page 的绑定</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启用-HTTPS-加密"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">启用 HTTPS 加密</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Material-主题的进阶设置"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Material 主题的进阶设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Material-主题实现随机显示标语（slogan）"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">Material 主题实现随机显示标语（slogan）</span></a></li></ol></li></ol></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Vifly</strong>
+        <span>7月 15, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Hexo/">Hexo</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/SEO/">SEO</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/折腾/">折腾</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/网站相关/">网站相关</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)&url=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/index.html&via=Vifly" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/index.html" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/index.html&title=使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/index.html&text=使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p><em>2019.8.18.更新：增加了如何搭建自己的统计分析服务的说明。</em><br><em>2019.9.13.更新：增加了更多的 SEO 内容，对一些内容进行修改。</em><br><em>2019.11.9.更新：增加了 Material 主题添加随机标语（slogan）的方法。</em><br>在<a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog">上一篇博文</a>当中我已经说完了使用 GitHub Pages 和 Hexo 搭建博客的基础操作了，只是这个刚搭建好的博客还缺了不少经常能在别人的博客上看到的东西，例如 RSS 订阅，评论区等功能。同时，不知道各位有没有发现一个问题，在搜索引擎当中搜索自己的站点时，搜索引擎返回的结果中并不会出现你的站点。本篇教程将会说明如何解决这些问题，如果还有更多的问题，请在评论区留言。</p>
+<h1 id="额外的功能与服务"><a href="#额外的功能与服务" class="headerlink" title="额外的功能与服务"></a>额外的功能与服务</h1><p><em>下面提到的这些功能与自己使用的 Hexo 主题相关，存在某些主题并没有提供某项功能的可能性</em></p>
+<h2 id="RSS-订阅"><a href="#RSS-订阅" class="headerlink" title="RSS 订阅"></a>RSS 订阅</h2><p>想要提供 RSS 订阅这个功能，各位需要查看自己使用的 Hexo 主题的文档进行操作，以我使用的 Material 主题为例，<a href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" rel="external nofollow noopener noreferrer" target="_blank">官方文档</a>简单地说明了一下，其实就是在安装了<a href="https://github.com/hexojs/hexo-generator-feed" rel="external nofollow noopener noreferrer" target="_blank"> hexo-generator-feed </a>插件后，修改 Material 主题下的配置文件（_config.yml）中的 rss:的值：</p>
+<pre><code>url:
+    rss: atom.xml
+</code></pre><p>按照这样配置的话，你的博客的 RSS 订阅地址就是 <a href="https://你的博客域名/atom.xml" rel="external nofollow noopener noreferrer" target="_blank">https://你的博客域名/atom.xml</a>，例如我的博客的 RSS 订阅地址就是 <a href="https://vifly.github.io/atom.xml" rel="external nofollow noopener noreferrer" target="_blank">https://vifly.github.io/atom.xml</a>。</p>
+<h2 id="评论区"><a href="#评论区" class="headerlink" title="评论区"></a>评论区</h2><p>依然使用 Material 主题举例子，<a href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" rel="external nofollow noopener noreferrer" target="_blank">官方文档</a>也说明了如何设置评论系统，为了能让读者畅所欲言，我否决了全部的国内评论系统，同时为了不翻墙的读者的体验以及匿名评论的需求，我最后选择了 Material 主题提供的 <a href="https://disqus.com/" rel="external nofollow noopener noreferrer" target="_blank">Disqus</a> 加自建 <a href="https://posativ.org/isso/docs/" rel="external nofollow noopener noreferrer" target="_blank">Isso</a> 评论系统（这里要感谢 <a href="https://alynx.one" rel="external nofollow noopener noreferrer" target="_blank">Alynx Zhou</a> 提供的多评论系统前端代码，话说周老师不去当前端工程师是不是太浪费了鸭≧▽≦）。</p>
+<h2 id="数据统计与分析"><a href="#数据统计与分析" class="headerlink" title="数据统计与分析"></a>数据统计与分析</h2><p>继续贴<a href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" rel="external nofollow noopener noreferrer" target="_blank">官方文档</a>。基于对读者隐私的考虑，我直接排除了百度和 CNZZ 的分析系统，至于 Google 分析，考虑到谷歌近年来的名声与未翻墙用户的体验，最终也决定不予采用，那么就只剩下一条路了，自己搭建分析系统。<del>这个暂时也咕咕咕了，若是能成功搭建的话，再写一篇博文进行叙述。</del> 目前已经成功使用 Matemo 搭建了自己的网站统计分析服务，具体操作请看<a href="https://viflythink.com/Install_Matomo%28Piwik%29_on_Debian/"> Debian 安装 Matomo(Piwik) 开源统计分析服务</a>。</p>
+<h1 id="搜索引擎优化（SEO）"><a href="#搜索引擎优化（SEO）" class="headerlink" title="搜索引擎优化（SEO）"></a>搜索引擎优化（SEO）</h1><p>假如你在搜索引擎中输入 site:xxxxx.github.io（自己的博客网址） 后发现没有出现自己的网站，那么请赶快看一下下面的“提交网站站点地图”小节。</p>
+<h2 id="验证网站所有权"><a href="#验证网站所有权" class="headerlink" title="验证网站所有权"></a>验证网站所有权</h2><p>为了便于以后在各个搜索引擎当中管理和查看我们的博客，我强烈建议在各个搜索引擎验证网站所有权，完成这一步后即可使用站长工具查看数据了，而且这也是完成后面某些步骤的必要前提。假如你将自己的域名（指的是 *.github.io 以外的域名）用作博客的域名，那么便可以通过添加 DNS 记录的方式验证所有权（<em>PS：每家搜索引擎对这个验证方法有不同的称呼，谷歌称为“域名提供商”，而 Bing 称为“手动向 DNS 添加 CNAME 记录”</em>），不采用下面提到的方法了。</p>
+<h3 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h3><p>前往 Google 搜索的<a href="https://search.google.com/search-console/ownership" rel="external nofollow noopener noreferrer" target="_blank">控制台</a>添加自己的博客地址即可，Google 提供了几种验证方式:<br><img src="/img/article/google_add_site.png" alt="Google 的网站所有权验证"><br>对于 Material 主题，请使用 HTML 标记或 Google 分析（假如你的博客使用了 Google 分析）进行验证，具体操作只需看<a href="https://github.com/viosey/material-theme-docs/blob/master/intro-zh-cn.md" rel="external nofollow noopener noreferrer" target="_blank">官方文档</a>。</p>
+<h3 id="Bing（必应）"><a href="#Bing（必应）" class="headerlink" title="Bing（必应）"></a>Bing（必应）</h3><p>前往 Bing 的<a href="https://www.bing.com/toolbox/webmaster/" rel="external nofollow noopener noreferrer" target="_blank">网站管理员工具</a>进行验证。很不幸的是，Material 主题官方并没有提供 Bing 的站点所有权验证，那只能自己动手修改源代码了，经过一番查找，终于找到了用于在 HTML 页面当中标记所有权的部分，其代码位于 themes/material/layout/_partial/head.ejs 中，CTRL+F 查找“site_verification”发现在约 142 行的位置就是我们要找的代码，在下方照葫芦画瓢地加上： </p>
+<pre><code>&lt;% if(theme.head.site_verification.bing) { %&gt;&lt;meta name=&quot;msvalidate.01&quot; content=&quot;&lt;%= theme.head.site_verification.bing %&gt;&quot; /&gt;&lt;% } %&gt;
+</code></pre><p><strong>注意，我感觉这里的 meta name 不一定对于每个人都适用，请观察一下 Bing 提供的 HTML 代码后再修改 head.ejs。</strong><br><img src="/img/article/bing_add_site.png" alt="Bing 的网站所有权验证"><br>在复制了“&lt;meta name=”msvalidate.01” content=”xxxxxxxxxx” /&gt;”中的 xxxxxxxxxx 对应的值后，在主题的_config.yml 中进行修改：</p>
+<pre><code>site_verification:
+    bing: xxxxxxxxxx
+    google: 
+    baidu:
+</code></pre><h2 id="提交网站站点地图"><a href="#提交网站站点地图" class="headerlink" title="提交网站站点地图"></a>提交网站站点地图</h2><p>这一步就是告诉搜索引擎你的网站有哪些链接，提交后搜索引擎就会自动顺着站点地图中的链接爬取你的站点内容了，若是没有这一步，在搜索引擎当中直接搜索自己的博客地址是没有任何结果的。要完成这一步骤，需要在博客目录下输入以下指令安装<a href="https://github.com/hexojs/hexo-generator-sitemap" rel="external nofollow noopener noreferrer" target="_blank"> hexo-generator-sitemap </a>插件：</p>
+<pre><code>npm install hexo-generator-sitemap --save
+</code></pre><p>这个插件默认站点地图生成路径为 <a href="https://你的博客域名/sitemap.xml" rel="external nofollow noopener noreferrer" target="_blank">https://你的博客域名/sitemap.xml</a>，在使用 hexo g 重新生成网址内容后，将此网址提交到各个搜索引擎就可以了，以 Google 为例子，只需要发送 <a href="http://www.google.com/ping?sitemap=https://你的博客域名/sitemap.xml" rel="external nofollow noopener noreferrer" target="_blank">http://www.google.com/ping?sitemap=https://你的博客域名/sitemap.xml</a> 这个网络请求即可，也可以在<a href="https://search.google.com/search-console/" rel="external nofollow noopener noreferrer" target="_blank">Google 搜索控制台</a>中的 sitemaps（站点地图）一栏提交自己的站点地图。而 Bing 则是需要在其 Web 面板中添加 sitemap。</p>
+<h2 id="提交网页地址（收录新页面）"><a href="#提交网页地址（收录新页面）" class="headerlink" title="提交网页地址（收录新页面）"></a>提交网页地址（收录新页面）</h2><p>虽然搜索引擎会自动顺着站点地图爬取网页内容，但是我就是想让它赶快收录刚发布的文章（因为不知道这个这个自动流程需要多少时间），这种时候该怎么办呢？我从<a href="http://www.guxiaobei.com/submit-your-content-of-google.html" rel="external nofollow noopener noreferrer" target="_blank">“SEO 技巧！如何最快时间让 Google 收录你的页面”</a>中了解到了如何让 Google 及时收录新发布的博文，然而 Google 的控制台页面已经进行了改版，经过一番搜索，在<a href="https://support.google.com/webmasters/answer/9012289" rel="external nofollow noopener noreferrer" target="_blank"> Google 官方的帮助文档</a>找到了新的提交新页面的方法，打开<a href="https://www.google.com/webmasters/tools" rel="external nofollow noopener noreferrer" target="_blank">https://www.google.com/webmasters/tools</a>，转到网址检查，输入你的新页面的网址，这就可以及时提交新的网页了。     </p>
+<p><img src="/img/article/submit_new_address.png" alt="网址检查"></p>
+<h2 id="SEO-进阶"><a href="#SEO-进阶" class="headerlink" title="SEO 进阶"></a>SEO 进阶</h2><p>为了让搜索引擎更好地爬取我们的网页，还需要使用一些技巧。这一部分主要参考了 <a href="https://hoxis.github.io/Hexo+Next%20SEO%E4%BC%98%E5%8C%96.html" rel="external nofollow noopener noreferrer" target="_blank">Hexo 博客 Next 主题 SEO 优化方法</a>这一博文，虽然 Material 主题与 Next 主题不同，不过有不少地方还是共通的。 </p>
+<h3 id="修改文章链接地址"><a href="#修改文章链接地址" class="headerlink" title="修改文章链接地址"></a>修改文章链接地址</h3><p>Hexo 默认的文章链接形式为 domain/year/month/day/postname，这种四级 url 形式对于搜索引擎而言并不友好，我们可以修改为 domain/postname 这种形式。打开 blog 根目录下的_config.yml（下面统称为<strong>站点配置文件</strong>），找到 permalink 部分，将 permalink: :year/:month/:day/:title/改为 permalink: :title.html。  </p>
+<pre><code>#permalink: :year/:month/:day/:title/
+permalink: :title.html  
+</code></pre><h3 id="出站链接添加-nofollow-标签"><a href="#出站链接添加-nofollow-标签" class="headerlink" title="出站链接添加 nofollow 标签"></a>出站链接添加 nofollow 标签</h3><p>博文中总是会引用其它的文章，为了不让搜索引擎跳转到其它的网站，专注于我们的网页，我们需要为这些站外链接设置 nofollow 标签，可以通过安装<a href="https://github.com/liuzc/hexo-autonofollow" rel="external nofollow noopener noreferrer" target="_blank"> hexo-autonofollow </a>自动完成这一个步骤。   </p>
+<pre><code>npm install hexo-autonofollow --save
+</code></pre><p>然后在<strong>站点配置文件</strong>中添加（更多配置请看 GitHub 页面）：  </p>
+<pre><code>nofollow:
+    enable: true
+</code></pre><h3 id="添加文章描述"><a href="#添加文章描述" class="headerlink" title="添加文章描述"></a>添加文章描述</h3><p>由于在 Material 主题中，文章的 tags 等于 keywords，所以无需再添加关键字了。不过我们可以为每篇博文添加描述，添加方法与添加 tags 等相似，在博客文章 markdown 文件开头添加 description：    </p>
+<pre><code>---
+title: 标题
+date: year-month-day xx:xx:xx
+tags: [tag01,tag02]
+description: 你的博文描述
+---
+</code></pre><h1 id="个性化"><a href="#个性化" class="headerlink" title="个性化"></a>个性化</h1><h2 id="启用自己的域名"><a href="#启用自己的域名" class="headerlink" title="启用自己的域名"></a>启用自己的域名</h2><p>千篇一律的 xxxxxxx.github.io 总是让人觉得厌烦，说到个性化，怎么能缺少使用自己喜欢的域名作为博客网址这一项呢？使用自定义的域名更有可能让人记住你的博客，而且只要不是前往 GoDaddy 这种价格偏高的网站购买域名，一个普通的 com 顶级域名每年也只需花费 10 美刀左右就可以拥有。在这么多的域名服务商当中，我选择了国外的<a href="namecheap.com"> namecheap</a>，主要的好处就是以下几点：   </p>
+<ol>
+<li>价格便宜（从网站名字就可以看出来了） </li>
+<li>老牌商家，服务可靠。别看这个网站的页面长得不好看，而且价格也比较便宜，但这个网站真的是老牌服务商，我并没有找到它坑客户的案例，基本可以放心。 </li>
+<li>提供免费的 WhoisGuard 服务，保护你的隐私。  </li>
+<li>不用备案，选择国外的域名服务商的话都能享受到这点。</li>
+</ol>
+<h3 id="自定义的域名与-GitHub-Page-的绑定"><a href="#自定义的域名与-GitHub-Page-的绑定" class="headerlink" title="自定义的域名与 GitHub Page 的绑定"></a>自定义的域名与 GitHub Page 的绑定</h3><p>买好了域名，接下来要做的事就是让我们的域名能够指向自己的博客啦。这个操作流程十分简单，只需前往自己的域名服务商的控制面板，然后参考这条<a href="https://www.zhihu.com/question/31377141/answer/87541858" rel="external nofollow noopener noreferrer" target="_blank">知乎回答</a>进行操作，只需在域名解析当中添加两条 CNAME 记录让域名（以我的域名为例就是 viflythink.com 和 www.viflythink.com ）指向 xxxxxx.github.io，大概就是下面这样：<br><img src="/img/article/set_dns.png" alt="设置DNS解析"><br>然后在 source 目录下新建一个叫 CNAME 的文本文件，里面填入你的域名（如 viflythink.com），与不少网上的操作不同，我们这里并不需要绑定 GitHub 的 IP，因为有时候 IP 地址会变化，所以绑定 xxxxxx.github.io 会更好。</p>
+<h3 id="启用-HTTPS-加密"><a href="#启用-HTTPS-加密" class="headerlink" title="启用 HTTPS 加密"></a>启用 HTTPS 加密</h3><p>为了保证读者的隐私，防止 ISP 的广告植入，稍微提高自己的网站在搜索引擎中的权重，我们需要为自己的域名启用 HTTPS 加密，当你成功启用 HTTPS 加密后读者访问你的网站时就会看到浏览器上出现一个绿色小锁头了，整个步骤也不难，这里参考了<a href="https://tzhou2018.github.io/2018/04/%E4%B8%BAGitHub-Pages%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%B9%B6%E6%B7%BB%E5%8A%A0SSL-%E5%BC%80%E5%90%AFHTTPS%E5%BC%BA%E5%88%B6/" rel="external nofollow noopener noreferrer" target="_blank">为 GitHub Pages 自定义域名并添加SSL-开启https强制</a>这一篇博文，使用 cloudflare 提供的免费服务，这里必须提醒一句，使用 cloudflare 的 <em>Universal SSL</em> 并不意味着全程加密，这个服务其实是通过 cloudflare 自己的服务器进行中转，读者到 cloudflare 的服务器这一段路是加密的，而 cloudflare 到 GitHub 的这一段并没有加密，另外，我在部署后出现“重定向次数过多”的错误，将 cloudflare 的加密由 Flexible 转为默认的 FULL 后就可以了，暂不知道原因。  </p>
+<h2 id="Material-主题的进阶设置"><a href="#Material-主题的进阶设置" class="headerlink" title="Material 主题的进阶设置"></a>Material 主题的进阶设置</h2><h3 id="Material-主题实现随机显示标语（slogan）"><a href="#Material-主题实现随机显示标语（slogan）" class="headerlink" title="Material 主题实现随机显示标语（slogan）"></a>Material 主题实现随机显示标语（slogan）</h3><p>是否觉得仅仅一句标语（格言）不足以说明什么呢？我想要在博客首页的标语更能表达我自己，使用随机显示的标语是一个很好的主意，这样就可以使用多个名言警句了，但是 Google 了一番后并没有找到为 Material 主题设置随机标语的方案，那么只能自己动手了（<del>在改源码的道路上越走越远</del>）。这里主要参考了萌狼的<a href="https://blog.yoitsu.moe/pelican/new_yoitsu_birth_notes.html" rel="external nofollow noopener noreferrer" target="_blank">新约伊兹的萌狼乡手札诞生全过程伪实录</a>里的“实现动态格言”部分，由于我不懂前端，所以最后只能做到在每次刷新网页后显示随机的标语，而不能动态刷新。这里记录下我的折腾过程，欢迎前端大佬帮忙改进。<br>首先找到 Material 主题负责显示标语的代码，其路径是 themes/material/layout/_partial/daily_pic.ejs，可以看到相关代码：    </p>
+<pre><code>&lt;div class=&quot;mdl-card__media mdl-color-text--grey-50&quot; style=&quot;background-image:url(&lt;%= url_for(theme.img.daily_pic) %&gt;)&quot;&gt;
+    &lt;p class=&quot;index-top-block-slogan&quot;&gt;&lt;a href=&quot;&lt;%= theme.url.daily_pic %&gt;&quot;&gt;
+        &lt;% if(theme.uiux.slogan) { %&gt;
+            &lt;% if(Array.isArray(theme.uiux.slogan)) { %&gt;
+                &lt;%- theme.uiux.slogan.join(&#39;&lt;br&gt;&#39;) %&gt;
+            &lt;% } else { %&gt;
+                &lt;%- theme.uiux.slogan %&gt;
+            &lt;% } %&gt;
+        &lt;% } %&gt;
+    &lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>这部分最后会被转换为 HTML 文本，然而我们需要每次加载时都能显示不同的标语，该怎么办呢？答案是使用 document.addEventListener() 设置一个监听器，加载多个标语后随机选择一个显示，这就是我写的代码的思路，当然，由于我是一个前端小白，所以借鉴了萌狼的代码，期间遇到了“$ is not defined”的错误，按照查到的<a href="https://stackoverflow.com/questions/10779148/javascript-jquery-is-not-defined-function-error" rel="external nofollow noopener noreferrer" target="_blank"> stackoverflow 上的回答</a>成功解决了（说的简单，其实为了读懂相关的代码花了不少时间），最后写出的能用的代码如下（使用下面的代码替换上面贴出的代码）：  </p>
+<pre><code>&lt;div class=&quot;mdl-card__media mdl-color-text--grey-50&quot; style=&quot;background-image:url(&lt;%= url_for(theme.img.daily_pic) %&gt;)&quot;&gt;
+    &lt;p id=&quot;myslogan&quot; class=&quot;index-top-block-slogan&quot;&gt;&lt;a href=&quot;&lt;%= theme.url.daily_pic %&gt;&quot;&gt;
+        无法加载 gists 上的标语
+    &lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- 动态显示标语 --&gt;
+&lt;script src=&quot;js/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+        document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
+                jQuery.getJSON( &quot;https://api.github.com/gists/7a04e2188185ddb19cbd19d8217b9400&quot;, function(data) {
+                        slogans = JSON.parse(data.files[&quot;slogans.json&quot;].content);
+                        randomSlogan = slogans[ Math.floor( Math.random() * slogans.length ) ];
+                        jQuery(&quot;#myslogan&quot;).html(randomSlogan.content);
+                });
+        });
+
+&lt;/script&gt;
+</code></pre><p>可以看出，使用了 jQuery 来解析 json 文件和提取标语内容，也用来更改页面中的标语，用 myslogan 这个 ID 标记标语所在区域。另外，想要使用这个代码的话，需要在<a href="https://gist.github.com/" rel="external nofollow noopener noreferrer" target="_blank"> gist </a>上创建一个 json 文件，其格式类似于这样（与萌狼不同的是，我的代码并没有显示名言作者，所以这里的 json 文件并不需要填写 author）：     </p>
+<pre><code>[
+    {
+        &quot;content&quot;:&quot;example1&quot;
+    },
+    {
+        &quot;content&quot;:&quot;example2&quot;
+    },
+]
+</code></pre><p>然后将得到的类似于<a href="https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400" rel="external nofollow noopener noreferrer" target="_blank">https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400</a>这样的网址里的”gist.github.com”替换为”api.github.com/gists”，再用这个替换后的网址替换上面代码中的 gist 网址。完成后就能实现打开首页时随机显示标语了。</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            If the article is no special statement, the article is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> License.<br>除了特殊声明，所有文章均基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow noopener noreferrer" target="_blank"> CC-BY-NC-SA 4.0</a> 协议进行授权，转载请署名。
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/">https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    <div class="comment-buttons" style="text-align: center;">
+    <button class="mdl-button mdl-button--colored" id="comment-toggle-isso" style="margin-right: auto; margin-left: auto; font-size: 20px;">Isso 评论</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="mdl-button mdl-button--colored" id="comment-toggle-disqus" style="margin-right: auto; margin-left: auto; font-size: 20px;">Disqus 评论</button>
+
+    <script>
+        $(document).ready(function(){
+        var issoComment = document.getElementById("isso-comment");
+        var disqusComment = document.getElementById("disqus-comment");
+        var issoButton = document.getElementById("comment-toggle-isso");
+        var disqusButton = document.getElementById("comment-toggle-disqus");
+        disqusComment.style.display = "none";
+
+        if (disqusButton != null) {
+            disqusButton.onclick = function () {
+                if (issoComment != null) {
+                    issoComment.style.display = "none";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "block";
+                }
+            };
+        }
+        if (issoButton != null) {
+            issoButton.onclick = function () {
+                if (issoComment != null) {
+                    issoComment.style.display = "block";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "none";
+                }
+            };
+        }
+        });
+    </script>
+</div>
+
+<div style="text-align: center;">
+请注意，Isso 并不回复通知哦（Disqus 是可以的）
+</div>
+
+<!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//vifly.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+<!-- 使用 Isso -->
+<div id="isso-comment">
+    <script data-isso="https://comments.viflythink.com/isso/" data-isso-css="true" data-isso-lang="zh_CN" data-isso-reply-to-self="true" data-isso-require-author="true" data-isso-require-email="false" data-isso-avatar="true" src="https://comments.viflythink.com/isso/js/embed.min.js"></script>
+        
+        <section id="isso-thread"></section>
+</div>
+<style>
+    #isso-comment {
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/Use_GithubPages_and_Hexo_to_build_blog/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Vifly's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        viflythink@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="email" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">layers</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gpg" title="我的公钥">
+                
+                    <i class="material-icons sidebar-material-icons">lock</i>
+                
+                我的公钥
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">contacts</i>
+                
+                友链
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">13</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank" rel="external nofollow noopener noreferrer">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/viflythink" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/vifly" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+        <a href="https://t.me/viflythink" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-telegram">
+                <span class="visuallyhidden">Telegram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Vifly 的博客
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+<script id="dsq-count-scr" src="//vifly.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2019;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

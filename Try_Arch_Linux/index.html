@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://vifly.disqus.com">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.proxy.ustclug.org">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            从 Debian 迁移到 Arch Linux | 
+        
+        Vifly 的博客
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="我从 Debian 迁移到 Arch Linux 的过程，主要是安利软件">
+    <meta name="keywords" content=",折腾,Linux,软件安利">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Vifly 的博客">
+    <meta name="msapplication-starturl" content="https://viflythink.com/Try_Arch_Linux/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Vifly 的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+    
+    <meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+
+    <!-- RSS -->
+    
+        
+            <link rel="alternate" type="application/atom+xml" href="atom.xml">
+        
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://viflythink.com/Try_Arch_Linux/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="从 Debian 迁移到 Arch Linux | Vifly 的博客">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="我从 Debian 迁移到 Arch Linux 的过程，主要是安利软件">
+    <meta property="og:article:tag" content="折腾"> <meta property="og:article:tag" content="Linux"> <meta property="og:article:tag" content="软件安利"> 
+
+    
+        <meta property="article:published_time" content="Sun Nov 03 2019 14:34:27 GMT+0800">
+        <meta property="article:modified_time" content="Fri Jul 24 2020 07:06:48 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://viflythink.com/Try_Arch_Linux/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://viflythink.com/Try_Arch_Linux/index.html",
+    "headline": "从 Debian 迁移到 Arch Linux",
+    "datePublished": "Sun Nov 03 2019 14:34:27 GMT+0800",
+    "dateModified": "Fri Jul 24 2020 07:06:48 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Vifly",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "千里之行，始于足下"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Vifly 的博客",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",折腾,Linux,软件安利",
+    "description": "我从 Debian 迁移到 Arch Linux 的过程，主要是安利软件",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+        
+            <!-- Matomo --> <script type="text/javascript"> var _paq = window._paq || []; /* tracker methods like "setCustomDimension" should be called before "trackPageView" */ _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']); (function() { var u="//stats.viflythink.com/"; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', '1']); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s); })(); </script> <!-- End Matomo Code -->
+        
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#大陆用户所需的东西"><span class="post-toc-number">2.</span> <span class="post-toc-text">大陆用户所需的东西</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#中文设置"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">中文设置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#翻墙"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">翻墙</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#终端模拟器与-Shell"><span class="post-toc-number">3.</span> <span class="post-toc-text">终端模拟器与 Shell</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#输入法"><span class="post-toc-number">4.</span> <span class="post-toc-text">输入法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#多媒体"><span class="post-toc-number">5.</span> <span class="post-toc-text">多媒体</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#生产力"><span class="post-toc-number">6.</span> <span class="post-toc-text">生产力</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浏览器"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">浏览器</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码编辑器与IDE"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">代码编辑器与IDE</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#笔记"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">笔记</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#虚拟机"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">虚拟机</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#后记"><span class="post-toc-number">7.</span> <span class="post-toc-text">后记</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                从 Debian 迁移到 Arch Linux
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Vifly</strong>
+        <span>11月 03, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Linux/">Linux</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/折腾/">折腾</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/软件安利/">软件安利</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=从 Debian 迁移到 Arch Linux&url=https://viflythink.com/Try_Arch_Linux/index.html&via=Vifly" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://viflythink.com/Try_Arch_Linux/index.html" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://viflythink.com/Try_Arch_Linux/index.html&title=从 Debian 迁移到 Arch Linux" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://viflythink.com/Try_Arch_Linux/index.html&text=从 Debian 迁移到 Arch Linux" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>在用了将近两年的 Debian 后，我打算尝试另一个与 Debian 存在较大差别的发行版，做了一番比较后（<del>并没有</del>）选择了相比 Debian 激进许多（经常需要滚包）的 Arch Linux。其实我在刚开始使用 Debian 时便听说过 Arch Linux 了，这都要归功于活跃的<a href="https://www.archlinuxcn.org/" rel="external nofollow noopener noreferrer" target="_blank"> Arch Linux 中文社区</a>，里面的人整天忙着安利 Arch Linux（<del>传教</del>），而且，<a href="https://wiki.archlinux.org/index.php/Main_page_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" rel="external nofollow noopener noreferrer" target="_blank"> Arch Linux 的 Wiki </a>也是非常优秀的文档，我在 Debian 上遇到问题时也会参考 Arch Linux 的 Wiki，久而久之，便产生了尝试 Arch Linux 的想法，此外，对于现在的我而言，<a href="https://wiki.archlinux.org/index.php/Arch_Linux_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#%E5%8E%9F%E5%88%99" rel="external nofollow noopener noreferrer" target="_blank">Arch Linux 的哲学</a>也非常有意思，其中提到：    </p>
+<blockquote>
+<p>Arch 适用于乐于自己动手的用户，他们愿意花时间阅读文档，解决自己的问题。</p>
+</blockquote>
+<p>这完全符合我想折腾 Linux 的想法！当然，我认为 Arch Linux 并不适合 Linux 新手，因为光是第一步的命令行安装系统（Arch Linux 官方没有提供图形化安装界面）恐怕就能劝退不少人了，不过对于接触过 Linux 的人，通过理解 Arch Linux 安装过程中所需要输入的指令的含义，能体会到一种完全掌握自己的系统的快感（<del>误入邪教</del>）。总而言之，对于喜欢折腾的人来说，尝试 Arch Linux 是绝对不会后悔的决定。     </p>
+<p>由于 Arch Linux 的激进策略，安装教程很容易过时，我也不打算费力不讨好地写具体的安装步骤了，本文主要分享我在 Arch Linux 下使用的软件，希望能安利更多人使用（提到的不少软件都是跨平台的，即使不使用 Arch Linux 也可使用这些软件）。先在这里说一下我挑选软件的原则：通用性是最重要的，无论在哪个平台上使用都具有近乎一致的体验，为此没有利用单个平台的特性也是可接受的；数据可无障碍导出与导入，尊重用户的选择自由；简单易用且具备可扩展性（例如可安装扩展增强功能），但我也不排斥“一次配置，终身受用”这样需要折腾的软件；当然，开源是最好的。能达到这些要求的软件实属少数派，我在下文仅仅推荐几个，有空再补充。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>考虑到 Arch Linux 经常变动，所以最好的安装指南应该是官方的<a href="https://wiki.archlinux.org/index.php/Installation_guide" rel="external nofollow noopener noreferrer" target="_blank"> Installation Guide</a>，我另外也参考了两篇博文，一个是萌狼的<a href="https://blog.yoitsu.moe/arch-linux/installing_arch_linux_for_complete_newbies.html" rel="external nofollow noopener noreferrer" target="_blank">给 GNU/Linux 萌新的 Arch Linux 安装指南 rev.B</a>，<del>另一个是<a href="https://www.viseator.com/2017/05/17/arch_install/" rel="external nofollow noopener noreferrer" target="_blank">以官方Wiki的方式安装ArchLinux</a></del>（由于 2019 年 10 月 Arch Linux 将 base 包组替换为同名的元包，这篇教程已过时）。对于我这样存在多系统的情况，执行了 grub-mkconfig 后最好检查一下/boot/grub/grub.cfg 是否包括了所有的系统。<br>有关于桌面环境的选择，鉴于之前总是看到各位大佬吹 Arch Linux 的 KDE 桌面的美观，而我一直在 Debian 下使用 Gnome，这回便决定尝试 KDE（<del>其实是为了在出问题时更容易找到大佬求救</del>），在安装了 kde-applications 后，开始嫌弃如此多的用不上的应用了（说的就是教育与游戏分类下的那堆东西），所以花了点时间写了一个<a href="https://gist.github.com/vifly/33d1a4f63b0b7319c6db9af9d3bdbdb0" rel="external nofollow noopener noreferrer" target="_blank">简单的 Python 脚本</a>删除这些软件（<strong>需要 root 权限，使用需谨慎</strong>）。安装完成后重启进入桌面，我不得不表示默认的 KDE 桌面比 Gnome 漂亮多了，相比之下，Gnome 的塑料风格看着实在是让我难受。另外，KDE 全家桶之间的配合也令我十分满意，统一的设计风格，美观的特效，让我忍不住想吹爆 KDE 了。有一个值得一提的细节，在 KDE 下的鼠标单击等于其它桌面环境下的鼠标双击（例如在其它桌面环境下打开文件需要双击），一开始我并不习惯这种设置，觉得不便于选中单个文件，但用多了以后发现这种操作明显更轻松，因为平常使用鼠标时双击的频率比单击要高，而双击肯定比单击累，将双击替换为单击肯定可以减缓疲劳，对于需要选中单个文件的情况，右键也能满足需求，这又成了一个我喜欢 KDE 的原因。<br>除了桌面环境外，首先需要熟悉的还有 Arch Linux 的软件包管理器 Pacman，它的命令行参数与 apt 完全不一样，开始使用时经常需要查看其<a href="https://wiki.archlinux.org/index.php/Pacman" rel="external nofollow noopener noreferrer" target="_blank"> Wiki 页面</a>，值得一提的是，得益于<a href="https://wiki.archlinux.org/index.php/Arch_User_Repository" rel="external nofollow noopener noreferrer" target="_blank"> AUR(Arch User Repository) </a>的存在以及 Arch Linux 打包的低门槛，Arch Linux 拥有数量庞大的软件包，考虑到可能会使用 AUR 里的软件包，所以我安装了<a href="https://github.com/Jguer/yay" rel="external nofollow noopener noreferrer" target="_blank"> Yay </a>这个<a href="https://wiki.archlinux.org/index.php/AUR_helpers" rel="external nofollow noopener noreferrer" target="_blank"> AUR 助手</a>（Yay 完全兼容 Pacman 的命令行参数）帮我节省输入 makepkg 等指令的步骤，下文涉及到安装软件的指令既有可能使用 Pacman，也有可能使用 Yay。</p>
+<h1 id="大陆用户所需的东西"><a href="#大陆用户所需的东西" class="headerlink" title="大陆用户所需的东西"></a>大陆用户所需的东西</h1><h2 id="中文设置"><a href="#中文设置" class="headerlink" title="中文设置"></a>中文设置</h2><p>我直接根据<a href="https://szclsya.me/zh-cn/posts/fonts/linux-config-guide/" rel="external nofollow noopener noreferrer" target="_blank"> Linux 下的字体调校指南</a>一文进行调教，在这里我想说一下该博文中提到的“archlinuxcn required”，这意味着需要<a href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/" rel="external nofollow noopener noreferrer" target="_blank">添加 archlinuxcn 源</a>，上面介绍已经提到了 Arch Linux 中文社区，而这个社区维护着一个非官方软件仓库，被称为 Arch Linux 中文社区仓库（archlinuxcn 源），该仓库包括了很多中文用户会用到的已编译好的软件包，而 AUR 提供的是 PKGBUILD 打包脚本（这就是为什么你可通过 AUR 安装不少明确禁止二次分发的闭源软件的原因，因为 AUR 分发的是打包脚本而不是软件本体），需要下载后进行编译打包安装，如果你懒得自己打包的话，建议添加 archlinuxcn 源。在配置完成中文字体的显示后，在 KDE 的系统设置中将语言设置为中文就行了。另外，强烈建议阅读官方的<a href="https://wiki.archlinux.org/index.php/Arch_Linux_%E4%B8%AD%E6%96%87%E5%8C%96" rel="external nofollow noopener noreferrer" target="_blank"> Arch Linux 中文化</a>页面。</p>
+<h2 id="翻墙"><a href="#翻墙" class="headerlink" title="翻墙"></a>翻墙</h2><p>折腾 Linux 总是会遇到各种问题，这种时候便需要 Google 了，让我们先解决使用无法使用 Google 的问题（此处使用 V2Ray 作为例子，在官方软件仓库有 V2Ray 的软件包真是太好了）：  </p>
+<pre><code>yay -S v2ray
+</code></pre><p>安装后修改/etc/v2ray/config.json 的配置，然后：   </p>
+<pre><code>sudo systemctl enable v2ray.service
+sudo systemctl start v2ray.service
+</code></pre><p>如果想让桌面应用走代理，可以在 KDE 的系统设置中点击“网络”中的设置，然后点击“代理”，选中“使用系统代理服务器配置”，填入对应的代理信息，示例如下：</p>
+<p><img src="/img/article/set_kde_proxy.png" alt="KDE 设置系统代理"></p>
+<p>另外，V2Ray 支持 ShadowSocks 协议，可根据<a href="https://www.v2ray.com/chapter_02/protocols/shadowsocks.html" rel="external nofollow noopener noreferrer" target="_blank"> V2Ray 官方文档</a>写出配置文件，也可使用<a href="https://www.veekxt.com/utils/v2ray_gen" rel="external nofollow noopener noreferrer" target="_blank">在线工具</a>生成；如果你使用 SSR 翻墙，AUR 中有<a href="https://aur.archlinux.org/packages/electron-ssr/" rel="external nofollow noopener noreferrer" target="_blank"> electron-ssr</a>，也有<a href="https://aur.archlinux.org/packages/shadowsocksr/" rel="external nofollow noopener noreferrer" target="_blank"> shadowsocksr</a>，但需要注意的是 electron-ssr 无法在 KDE 下自动设置代理（它使用了 gsetting 设置系统代理，不支持 KDE）。总之，安装好翻墙软件后终于能在电脑上使用 Google 查问题了。</p>
+<h1 id="终端模拟器与-Shell"><a href="#终端模拟器与-Shell" class="headerlink" title="终端模拟器与 Shell"></a>终端模拟器与 Shell</h1><p>既然在 Linux 下，那么肯定免不了与终端打交道，既然如此，我们就需要一个美观、实用的终端（模拟器）。要说美观的话，KDE 自带的 Konsole 已经足够漂亮了，透明背景这一点让一直使用 Gnome Terminal 的我感到非常舒服，只需要稍微调整一下，就可以做到<a href="https://kirikira.moe/post/28/#3" rel="external nofollow noopener noreferrer" target="_blank"> kiri 大佬这样的效果</a>，让自己一整天都保持心情愉悦。不过在实用性方面我开始时遇到了一点问题，Konsole 使用的 Shell 是 Bash，而 Arch Linux 本身的 Bash 并没有自动补全配置，想要自动补全的话需要安装 bash-completion： </p>
+<pre><code>sudo pacman -S bash-completion
+</code></pre><p>想要更高级的 Shell 体验的话（不知道终端模拟器与 Shell 有什么区别？请看<a href="https://www.ihewro.com/archives/933/" rel="external nofollow noopener noreferrer" target="_blank">这</a>），也可以安装 zsh 加 oh-my-zsh 这样一整套的懒人包（或者自己配置 zsh？），只不过这里有一个小坑，在 AUR 中的 oh-my-zsh-git 并不会在 home 目录下生成.zshrc，查找后发现在/usr/share/oh-my-zsh 下有 zshrc 文件，我直接复制到 home 目录了，这里贴出安装懒人包的操作命令（将 username 改为你的用户名）：   </p>
+<pre><code>yay -S zsh
+sudo chsh -s /bin/zsh username
+yay -S oh-my-zsh-git
+cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
+</code></pre><p>更新：博主已经放弃启动速度慢的 oh-my-zsh，转向 Zinit 这个神器的怀抱了。Zinit 不仅轻松可以使用 oh-my-zsh 的各种插件，还拥有 Turbo mode 这个大幅减少插件加载时间的大杀器。如果你心动的话，请看<a href="https://www.aloxaf.com/2019/11/zplugin_tutorial/" rel="external nofollow noopener noreferrer" target="_blank">加速你的 zsh —— 最强 zsh 插件管理器 zplugin/zinit 教程</a>一文。仅仅是照抄文末的示例配置，我也在保留 oh-my-zsh 体验的前提下感受到了起飞的加载速度，所以请无视上面的 oh-my-zsh，使用以下指令体验顺滑如丝的 Zinit（这里用了配置难度低的 proxychains-ng 翻墙下载 GitHub 片段，也可使用其它手段）：</p>
+<pre><code>yay -S zsh proxychains-ng
+git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+# 在 .zshrc 中添加 source ~/.zinit/bin/zinit.zsh 以及其它配置，可参考我的配置
+nano .zshrc
+# 配置 proxychains-ng，在最后一行添加类似 socks5 127.0.0.1 1080 的内容即可，自行谷歌了解配置
+sudo nano /etc/proxychains.conf
+# 启动 zsh，由于 .zshrc 已加载 Zinit，所以 zsh 首次启动时会自行下载 GitHub 上的片段
+proxychains zsh
+# 下载片段完成后退出执行这条指令更改默认 Shell，重启后见效果
+sudo chsh -s /bin/zsh username
+</code></pre><p>你可以在<a href="https://github.com/vifly/dotfiles/blob/master/zsh/.zshrc" rel="external nofollow noopener noreferrer" target="_blank"> GitHub </a>查看我的 zsh 配置，不过请记得根据自己的需求进行修改。</p>
+<h1 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h1><p>前面搞定了中文字体的显示，但是还没解决输入中文这个问题，在这里我选择了与使用 Debian 时同样的方案：基于 Fcitx 框架的 Rime 输入法。先贴一波安装指令（其它基于 Fcitx 框架的输入法请看<a href="https://wiki.archlinux.org/index.php/Fcitx" rel="external nofollow noopener noreferrer" target="_blank"> Wiki 页面</a>）：   </p>
+<pre><code>sudo pacman -S fcitx fcitx-im fcitx-rime
+</code></pre><p>为了确保能输入中文，修改一下/etc/profile，在开头加上：  </p>
+<pre><code>export XMODIFIERS=&quot;@im=fcitx&quot;
+export GTK_IM_MODULE=&quot;fcitx&quot;
+export QT_IM_MODULE=&quot;fcitx&quot;
+</code></pre><p>另外，需要更改一下输入法配置，操作步骤是右键点击托盘中的输入法图标，选择“配置”，修改后的配置如下图所示（按 Shift 键可切换中英文）：</p>
+<p><img src="/img/article/set_fcitx_1.png" alt="输入法配置图1"></p>
+<p><img src="/img/article/set_fcitx_2.png" alt="输入法配置图2"></p>
+<p>最后，将我已经在 Debian 上调校好的 Rime 输入法配置文件拷贝过来（调校 Rime 的教程太多了，这里懒得贴了～），就能畅快地输入中文了。</p>
+<h1 id="多媒体"><a href="#多媒体" class="headerlink" title="多媒体"></a>多媒体</h1><p>这里选择在 Debian 上非常熟悉的 MPV 和 Rhythmbox 作为视频和音频播放器，之所以选择 MPV 是因为我已经有了一套<a href="https://github.com/vifly/dotfiles/blob/master/mpv/.config/mpv/mpv.conf" rel="external nofollow noopener noreferrer" target="_blank">配置方案</a>，没必要选择其它播放器了，如果你还没使用过 MPV，那么<a href="https://vcb-s.com/archives/7594/comment-page-1" rel="external nofollow noopener noreferrer" target="_blank">这里</a>有一篇相当不错的配置教程。而 Rhythmbox 支持不少插件，例如，在 KDE 桌面下，Rhythmbox 无法在关闭窗口时隐藏到托盘继续播放，可以通过安装 rhythmbox-tray-icon 插件解决：   </p>
+<pre><code>yay -S rhythmbox-tray-icon
+</code></pre><p>安装好插件后记得点击 Rhythmbox 右上角的设置按钮-&gt;“插件”，在弹出的窗口中勾选刚安装的插件以激活插件效果，如下图：   </p>
+<p><img src="/img/article/rhythmbox_plugin.png" alt="Rhythmbox 插件"></p>
+<p>除此以外，我还推荐 rhythmbox-equalizer 插件，安装后可调整 EQ。</p>
+<h1 id="生产力"><a href="#生产力" class="headerlink" title="生产力"></a>生产力</h1><p>属于生产力的工具有很多，我在这里只选择分享几个比较重要的工具。如果平常使用的生产力工具没有 Linux 客户端，或许可用网页版代替客户端（连网页版都没有的话，折腾下 wine 或放弃在 Linux 下使用吧）。</p>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>都说程序猿是面向 Google 编程的，既然如此，怎能缺少一个趁手的浏览器用于查资料呢。直接安装我在 Debian 上一直在使用的 Firefox 与 Chromium（Google Chrome 的开源部分）：   </p>
+<pre><code>yay -S firefox-i18n-zh-cn chromium
+</code></pre><p>这两个浏览器都有云同步机制，可直接将在其它平台上的浏览器资料同步过来，不想使用云同步的话，也可以手动复制用户资料以进行数据备份和迁移，Chromium 的用户资料在~/.config/chromium/Default/，浏览器扩展及其数据存放在这个目录下带有“Extensions”的子目录中；Firefox 有些不同，它轻松支持多个用户配置，你可以打开<a href="about:profiles" rel="external nofollow noopener noreferrer" target="_blank"> about:profiles </a>页面查看用户配置文件路径，显示“正在使用此配置文件，因而不能删除。”的就是当前的用户配置文件。<br>对于我来说，选择这两个浏览器的一个重要原因就是可以安装扩展改善各种功能，例如禁用 JS 的 NoScript/ScriptSafe，拦截广告的 uBlock，为网页注入实用 JS 的 Greasemonkey，对于 Firefox 用户，还可参考编程随想的<a href="https://program-think.blogspot.com/2016/10/custom-firefox-theme-without-extension.html" rel="external nofollow noopener noreferrer" target="_blank">无需任何插件或扩展，定制 Firefox 外观</a>和<a href="https://program-think.blogspot.com/2019/07/Customize-Firefox.html" rel="external nofollow noopener noreferrer" target="_blank">扫盲 Firefox 定制——从“user.js”到“omni.ja”</a>进行更高级的定制。另外，从安全补丁的及时性这一角度来说，我也更推荐这两个浏览器，而不是基于这两者的衍生版。</p>
+<h2 id="代码编辑器与IDE"><a href="#代码编辑器与IDE" class="headerlink" title="代码编辑器与IDE"></a>代码编辑器与IDE</h2><p>要问对程序猿而言最重要的生产力工具是什么，回答肯定是代码编辑器或 IDE。目前在 Linux 下我喜欢的编辑器就是 Visual Studio Code（简称 VS Code）了，虽然这是微软出品的（别跟 VS 搞混了，两者之间的差别非常大），不过用了以后还是要说一句“真香！”。它可以胜任多种需求，常见的 Python、C/C++等完全不在话下，也可以用作 Markdown 写作，像本文就是在 VS Code 下完成的，当然，值得一提的还有美观的界面，开箱即用的设置，这都令它在短时间内打动了我，再配合各种扩展，带来的是十分舒适的体验。对于 VS Code，我目前推荐 TabNine 以及 Markdown Preview Enhanced 这两个扩展，前者带来优秀的主流编程语言自动补全，后者带来更高级的 Markdown 预览体验（例如查看 LaTex）。     </p>
+<p><img src="/img/article/vs_code.png" alt="VS Code 图"></p>
+<p>如果需要一个 IDE 的话，我推荐由 JetBrains 出品的 IDE，应该有不少人用过它家的 PyCharm 了，除此以外，Clion(C/C++)与 IntelliJ IDEA(Java)也是非常优秀的 IDE，至少在目前来说，Clion 对 Cmake 项目的支持可比 VS 好多了。另外，配合 Github 的学生认证可以白嫖 JetBrains 的产品，在此强烈推荐学生党尝试一下 Clion。</p>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><p>作为一个程序猿，总是会有记录笔记的需求，我目前有相当一部分的笔记资料储存在 EverNote 这个云笔记上，而它并没有 Linux 官方客户端，不过，得益于它的开放 API，早就有开发者做了一个在 Linux 下的客户端：NixNote（原名 Nevernote），Arch Linux 官方仓库有这个软件包：   </p>
+<pre><code>sudo pacman -S nixnote2 
+</code></pre><p><del>只不过我遇到了在已设置应用程序使用语言为中文的情况下，菜单依然为英文的问题，Google 后找到一篇<a href="https://blue-leaf81.net/archives/nixnote-translate-jp/" rel="external nofollow noopener noreferrer" target="_blank">让 NixNote 显示日语的教程</a>，受到这篇教程的启发，我查看了一下/usr/share/nixnote2/translations/目录，发现其中只有 nixnote2_cs_CZ.qm 文件，看来想要让菜单显示中文，就必须在这个目录下添加中文翻译。具体来说，先前往 GitHub 仓库下载<a href="https://github.com/baumgarr/nixnote2/blob/master/translations/nixnote2_zh_CN.ts" rel="external nofollow noopener noreferrer" target="_blank">中文翻译源文件</a>，接着使用 Qt Linguist 打开下载回来的文件，然后点击左上角“File”-&gt;”Release As”导出到/usr/share/nixnote2/translations/nixnote2_zh_CN.qm。重启 NixNote 便可以看到中文菜单了</del>。更新：2020年5月的更新已带上中文翻译，无需再按上面折腾。<br>当然，EverNote 在 Linux 下还有<a href="https://itsfoss.com/evernote-on-linux/" rel="external nofollow noopener noreferrer" target="_blank">几个非官方客户端</a>，我选择 NixNote 的原因在于它是使用 C++ QT 开发的，而不是类似于<a href="https://github.com/klauscfhq/tusk" rel="external nofollow noopener noreferrer" target="_blank"> Tusk </a>等使用前端技术开发的套壳 Web 应用，但对于 EverNote 的高级用户，我建议使用 EverNote 的网页版，而不是使用 NixNote，因为网页版的编辑功能比 NixNote 更优秀。</p>
+<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>我有时候会有使用虚拟机运行 Windows 或其它 Linux 发行版的需求，这个时候就需要用到虚拟机了，VirtualBox 是一个操作简单且免费开源的虚拟机软件，根据<a href="https://wiki.archlinux.org/index.php/VirtualBox" rel="external nofollow noopener noreferrer" target="_blank"> Wiki 页面</a>进行安装（安装时会要求选择内核模块，没有更换默认内核的话，选择 virtualbox-host-modules-arch，不然选择 virtualbox-host-dkms）： </p>
+<pre><code>yay -S virtualbox virtualbox-ext-oracle virtualbox-guest-iso
+</code></pre><p>假如你没有用过 VirtualBox，那么这里提醒一句，拖放文件和共享粘贴板等功能需要在运行中的虚拟机窗口上方点击“设备”-&gt;“安装增强功能”才可使用。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>得益于我对软件的通用性的要求，可以说是无痛从 Debian 迁移到了 Arch Linux，不少软件只需简单地复制粘贴配置文件即可（前提是已经有配置文件了），而且 Arch Linux 的系统安装过程也并不像我之前想象的那样复杂。折腾完这堆东西后最大的感触就是之前折腾积累的东西（如相关知识与配置）并没有浪费，若是没有相关的积累，面对安装 Arch Linux 以及安装完成后做什么这些问题恐怕会一头雾水，浪费不少时间，从节约时间的角度来说，编程随想所说的<a href="https://program-think.blogspot.com/2013/10/personal-it-infrastructure.html" rel="external nofollow noopener noreferrer" target="_blank">重视个人 IT 基础设施的改善</a>是很有道理的。总之，安装好 Arch Linux 的我就像是一个刚得到新玩具的小孩子，正迫不及待地想要探索这个新玩具的有趣之处，更多有趣的软件留待日后补充好了。</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            If the article is no special statement, the article is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> License.<br>除了特殊声明，所有文章均基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow noopener noreferrer" target="_blank"> CC-BY-NC-SA 4.0</a> 协议进行授权，转载请署名。
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://viflythink.com/Try_Arch_Linux/">https://viflythink.com/Try_Arch_Linux/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    <div class="comment-buttons" style="text-align: center;">
+    <button class="mdl-button mdl-button--colored" id="comment-toggle-isso" style="margin-right: auto; margin-left: auto; font-size: 20px;">Isso 评论</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="mdl-button mdl-button--colored" id="comment-toggle-disqus" style="margin-right: auto; margin-left: auto; font-size: 20px;">Disqus 评论</button>
+
+    <script>
+        $(document).ready(function(){
+        var issoComment = document.getElementById("isso-comment");
+        var disqusComment = document.getElementById("disqus-comment");
+        var issoButton = document.getElementById("comment-toggle-isso");
+        var disqusButton = document.getElementById("comment-toggle-disqus");
+        disqusComment.style.display = "none";
+
+        if (disqusButton != null) {
+            disqusButton.onclick = function () {
+                if (issoComment != null) {
+                    issoComment.style.display = "none";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "block";
+                }
+            };
+        }
+        if (issoButton != null) {
+            issoButton.onclick = function () {
+                if (issoComment != null) {
+                    issoComment.style.display = "block";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "none";
+                }
+            };
+        }
+        });
+    </script>
+</div>
+
+<div style="text-align: center;">
+请注意，Isso 并不回复通知哦（Disqus 是可以的）
+</div>
+
+<!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://viflythink.com/Try_Arch_Linux/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://viflythink.com/Try_Arch_Linux/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//vifly.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+<!-- 使用 Isso -->
+<div id="isso-comment">
+    <script data-isso="https://comments.viflythink.com/isso/" data-isso-css="true" data-isso-lang="zh_CN" data-isso-reply-to-self="true" data-isso-require-author="true" data-isso-require-email="false" data-isso-avatar="true" src="https://comments.viflythink.com/isso/js/embed.min.js"></script>
+        
+        <section id="isso-thread"></section>
+</div>
+<style>
+    #isso-comment {
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/translate_elliptic_curve_cryptography_explained/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/Sharing_experience_about_Deep_Learning/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Vifly's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        viflythink@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="email" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">layers</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gpg" title="我的公钥">
+                
+                    <i class="material-icons sidebar-material-icons">lock</i>
+                
+                我的公钥
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">contacts</i>
+                
+                友链
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">13</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank" rel="external nofollow noopener noreferrer">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/viflythink" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/vifly" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+        <a href="https://t.me/viflythink" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-telegram">
+                <span class="visuallyhidden">Telegram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Vifly 的博客
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+<script id="dsq-count-scr" src="//vifly.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2019;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

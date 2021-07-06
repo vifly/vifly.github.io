@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://vifly.disqus.com">
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.proxy.ustclug.org">
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            致刚入门深度学习的我——作为过来人的一点经验分享 | 
+        
+        Vifly 的博客
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="Vifly 的自留地，既包括技术折腾记录，也有对于各种东西的感想">
+    <meta name="keywords" content=",深度学习,经验分享,计算机视觉">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.proxy.ustclug.org/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Vifly 的博客">
+    <meta name="msapplication-starturl" content="https://viflythink.com/Sharing_experience_about_Deep_Learning/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Vifly 的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+    
+    <meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+
+    <!-- RSS -->
+    
+        
+            <link rel="alternate" type="application/atom+xml" href="atom.xml">
+        
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://viflythink.com/Sharing_experience_about_Deep_Learning/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="致刚入门深度学习的我——作为过来人的一点经验分享 | Vifly 的博客">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="Vifly 的自留地，既包括技术折腾记录，也有对于各种东西的感想">
+    <meta property="og:article:tag" content="深度学习"> <meta property="og:article:tag" content="经验分享"> <meta property="og:article:tag" content="计算机视觉"> 
+
+    
+        <meta property="article:published_time" content="Fri Oct 04 2019 22:44:08 GMT+0800">
+        <meta property="article:modified_time" content="Sat Oct 05 2019 22:14:12 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://viflythink.com/Sharing_experience_about_Deep_Learning/index.html">
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://viflythink.com/Sharing_experience_about_Deep_Learning/index.html",
+    "headline": "致刚入门深度学习的我——作为过来人的一点经验分享",
+    "datePublished": "Fri Oct 04 2019 22:44:08 GMT+0800",
+    "dateModified": "Sat Oct 05 2019 22:14:12 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Vifly",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "千里之行，始于足下"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Vifly 的博客",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",深度学习,经验分享,计算机视觉",
+    "description": "Vifly 的自留地，既包括技术折腾记录，也有对于各种东西的感想",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+        
+            <!-- Matomo --> <script type="text/javascript"> var _paq = window._paq || []; /* tracker methods like "setCustomDimension" should be called before "trackPageView" */ _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']); (function() { var u="//stats.viflythink.com/"; _paq.push(['setTrackerUrl', u+'matomo.php']); _paq.push(['setSiteId', '1']); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s); })(); </script> <!-- End Matomo Code -->
+        
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常见问题解答（FAQ）"><span class="post-toc-number">1.</span> <span class="post-toc-text">常见问题解答（FAQ）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#理论"><span class="post-toc-number">2.</span> <span class="post-toc-text">理论</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实战"><span class="post-toc-number">3.</span> <span class="post-toc-text">实战</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#下一步？"><span class="post-toc-number">4.</span> <span class="post-toc-text">下一步？</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                致刚入门深度学习的我——作为过来人的一点经验分享
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Vifly</strong>
+        <span>10月 04, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/深度学习/">深度学习</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/经验分享/">经验分享</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/计算机视觉/">计算机视觉</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=致刚入门深度学习的我——作为过来人的一点经验分享&url=https://viflythink.com/Sharing_experience_about_Deep_Learning/index.html&via=Vifly" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://viflythink.com/Sharing_experience_about_Deep_Learning/index.html" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://viflythink.com/Sharing_experience_about_Deep_Learning/index.html&title=致刚入门深度学习的我——作为过来人的一点经验分享" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://viflythink.com/Sharing_experience_about_Deep_Learning/index.html&text=致刚入门深度学习的我——作为过来人的一点经验分享" target="_blank" rel="external nofollow noopener noreferrer">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>前几天突然有了一个很有趣的想法，假如能与一年前刚入门深度学习的我进行交流，那么此时的我会有什么经验想分享给过去的我呢？想到入门深度学习以来踩的各种坑以及经历过的迷茫，我决定写一篇文章，从过来人（入门一年？）的角度说一下对新手的一些建议。由于我的水平有限，所以文章肯定会有遗漏与错误之处，望各位大佬轻拍。</p>
+<h1 id="常见问题解答（FAQ）"><a href="#常见问题解答（FAQ）" class="headerlink" title="常见问题解答（FAQ）"></a>常见问题解答（FAQ）</h1><p>1.问：网上好多深度学习入门教程啊，该选择哪个呢？<br>答：随便在 Google 上搜一下“深度学习入门”，就能找到不少高质量的回答以及学习资源分享。我并不想在这推荐什么学习资源，因为在这方面的好文章太多了，我只想强调一点：<strong>无论你选择了哪个入门教程（书籍），都请专注于该教程</strong>，不要总是被五花八门的教程扰乱自己，任何教程都是殊途同归的，学成后的效果总是一致的。其实最关键的是需要有一个明确的目标，我会在正文突出学习目标，当你在学习时只需关注<strong>如何达成学习目标</strong>即可。</p>
+<p>2.问：我的数学/英语水平低，会不会难以入门？<br>答：其实不必那么担心。在我看来，入门深度学习对数学并没有太高的要求，入门阶段只需要知道导数与积分，矩阵等几个概念即可；至于英语，我只能说即使是天天翻阅英语文档的程序员也不见得能熟练地使用英语，想学习深度学习，能记住英语术语即可。如果一定要说入门有什么要求的话，我觉得能使用 Google 查找资料和不畏惧英语阅读这两点是必需的，当然，还需要一点编程能力。  </p>
+<p>3.问：学习深度学习需要懂编程吗？<br>答：实战部分需要（可能有些教程在讲解理论时也会贴一段 Python 代码），但是要求不高。目前（2019 年）学术界的主流编程语言依然是 Python，假如你有编程基础，那么只需花 3 天时间学习 Python 基础语法即可，深度学习并不需要 Python 的高级语法知识；如果没有编程基础，请先老老实实地找个 Python 入门教程学习，不必担心难以学习，Python 作为一门小学生都能学会的编程语言，相信你用半个月到一个月的时间足以学会它的基础语法。</p>
+<h1 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h1><p>首先，回答一个问题：你是为了什么而决定学习深度学习呢？是需要与老师做深度学习相关的科研项目？开发软件项目时需要用到深度学习？还是觉得近几年深度学习很火，想学习一下？如果只是软件项目中需要深度学习，那么可以考虑直接使用腾讯等大厂提供的 API，这些 API 可以实现图片分类等许多实用的功能。对于我来说，我是在跟着老师做计算机视觉（CV）科研项目时开始学习深度学习的，此前并没有相关经验。在这种情况下如何学习一个新的技术呢？完全可以根据<a href="https://program-think.blogspot.com/2009/02/study-technology-in-three-steps.html" rel="external nofollow noopener noreferrer" target="_blank">学习技术的三部曲：WHAT、HOW、WHY</a>中提到的 WHAT、HOW、WHY 这三个步骤进行学习，不过要注意的一点是在深度学习中想达到 WHY 这一步非常困难（学到后面就会发现神经网络基本是一个黑盒，所以训练模型也被戏称为炼丹）。先说下如何知道 WHAT 吧，想要知道 WHAT，你就必须知道深度学习中常见的名词的含义，例如卷积、梯度下降、神经网络、前向传播、反向传播等，最重要的是，知道神经网络的训练流程是怎样的。这一步比较简单，我推荐观看吴恩达的<a href="https://www.coursera.org/specializations/deep-learning" rel="external nofollow noopener noreferrer" target="_blank">Deep Learning Specialization</a>系列视频，上面有 5 门课程，每门课程都安排了 4 周的学习时间，但实际上我们不必全部看完，只需观看课程 1、2 即可，凡是需要写代码的练习全部跳过，因为我们只需要了解概念，等下我会说明如何进行实战练习。跳过课程 3 是因为入门阶段可以无视机器学习。准备进入计算机视觉（CV）领域的请另外看课程 4 的第一周的视频，了解卷积神经网络（CNN）的概念；准备进入自然语言处理（NLP）领域的请另外观看课程 5 的第一周的视频，了解循环神经网络（RNN）的概念。（PS：因为好奇而学习深度学习，不知道 CV 和 NLP 是干什么的？先去查下这两个领域有什么应用吧，看看哪些是你感兴趣的或者未来工作可能会用到的） </p>
+<p>除了吴恩达的深度学习系列视频，你也可以通过看书完成这一步，只不过我没有仔细看过深度学习入门的书籍，所以不做推荐。无论如何，在这一个阶段，你必须对深度学习有<strong>整体</strong>的认识。检验是否达成这一目标的方法是回答一个问题：深度学习中的训练是怎么一回事？尝试用尽可能少的专业术语进行简短的描述，思考出答案后与我的回答进行对比看看。  </p>
+<p>对于上面的问题，我的回答就是构建一个神经网络，不断输入数据与标签，其根据数据与标签之间的对应关系调整自己的参数以令输出与标签一致（只限于监督学习）。说到这里，你可能会问：“诶？那么反向传播的实现这类问题呢？”。这已经是属于 HOW 这一范畴的问题了，你如果能清楚知道这类问题的答案那当然是一件非常好的事情，不过只记得大概的描述也没关系，知道 WHAT 以后，我们就已经可以使用深度学习框架进行实战了，只不过若是想要继续发展，请一定要花时间了解神经网络的实现细节，<strong>程序员可以不了解使用的技术的细节，但搞科研的必须了解细节</strong>。说了这么多关于了解概念的经验，接下来该说下肯定有不少人关注的实战部分了，对于 IT 行业的人来说，这部分会比较轻松。    </p>
+<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><p>首先，我们先来聊点与编程有关的东西。想要进行实战，那么必须懂得 Python 基础语法，只是用 Python 如何实现在理论教程中吹了那么久的神经网络呢？先选择一个深度学习框架吧，我推荐选择 Keras 或者 Pytorch，这两个在目前是主流，而且简单易用（都 9102 年了，Tensorflow 该让位给 Keras 了）。为什么我推荐先学习使用深度学习框架而不是按照一些教程所说的先使用 Numpy 等库实现一个简单神经网络的训练呢？原因很简单，理论部分中，我已经说过在入门阶段只需对神经网络有一个<strong>整体</strong>的认识即可，实战必须与理论相结合，在理论学习中没有完全搞清楚实现细节，在实战部分通过不使用框架实现神经网络就可以弄清楚细节了吗？很难。当然，如果你很牛，在理论部分已经搞清楚细节了，例如前向/反向传播的具体过程，那么可以先使用 Numpy 等库实现一个简单神经网络。对于大多数人而言，在入门阶段，只需要掌握大概即可，以后还有很多时间了解细节呢。为什么只选择一个框架呢？未来的实战肯定不可能只使用一个框架，甚至有可能需要自己实现框架，但是，在入门阶段，一个足够了，框架隐藏了实现细节，让我们能够专注于神经网络的架构（在这里是优点），而且，在学会使用一个框架后，再学习另一个框架会事半功倍。</p>
+<p>选好框架后，快来选择一个经典的模型上车吧。以我所在的计算机视觉领域举例来说，经典的模型包括 LeNet 5、AlexNet、VGG 等，各个框架都自带了这些经典模型（Pytorch 的在 torchvision 中），先根据官方文档提供的 demo 实际训练一下模型，看一下 CNN 在图片分类上的效果（选择图片分类任务是因为目前该领域最成熟），这里提供 Pytorch 的一个<a href="https://github.com/pytorch/examples/blob/master/imagenet/README.md" rel="external nofollow noopener noreferrer" target="_blank">demo</a>。稍微了解了训练流程后，接下来便应该读使用的 demo 中创建神经网络的代码了，例如可以看 Pytorch 官方的<a href="https://github.com/pytorch/vision/blob/master/torchvision/models/vgg.py" rel="external nofollow noopener noreferrer" target="_blank">VGG模型实现代码</a>。应该如何阅读这部分的代码呢？我建议与原论文或原论文的解析文章进行对照，<strong>将模型结构图与模型代码联系起来</strong>，因为以后很有可能需要根据模型结构图与描述使用框架构建对应的模型，或者根据模型代码深入理解模型结构，强烈建议在入门阶段便开始锻炼这方面的能力，这与刚入门编程时敲很多代码以熟悉语法和编程有点相似，不同的是：在编程领域这是为了熟悉从现实抽象出来的问题与代码之间的联系，而在这里是为了熟悉模型整体架构与构建出的模型代码之间的联系。当然，急着应用深度学习到实际项目的话可以放低一点要求，知道如何修改现有模型代码的输入层与输出层就可以了。假如觉得代码太长，不够直观，那么直接输出模型结构看看（Pytorch）：   </p>
+<pre><code>import torchvision.models as models
+model = models.vgg16()
+print(model)
+</code></pre><p>Keras 也可以进行这个操作，使用 model.summary()即可。先不理会 demo 的其它部分代码，好好消化构建模型的方法，这是我觉得入门阶段最适合的方案，因为我觉得入门阶段就接触核心向的东西（深度学习比较简单，所以能在起始阶段便接触偏核心的问题，其它领域不一定喔）能避免以后可能遇到的不少弯路，<del>假如重来一遍，我也不知道这样是不是能保证一切顺利</del>。虽然我在上文当中都是以计算机视觉举例，不过相信想学习 NLP 的读者也可以从中举一反三，知道该如何通过实战进行入门。</p>
+<h1 id="下一步？"><a href="#下一步？" class="headerlink" title="下一步？"></a>下一步？</h1><p>我们直击重点的入门教程算是结束了，<del>虽然我在开头说过自己踩了不少坑，但是写完这篇文章后发现好像并没有怎么提到自己踩过的坑</del>，我知道很多人会问接下来该干什么？在这里我真的可以说一说下一步该干什么。还记得上面的实战部分并没有提到关于读取数据等方面的内容吗，在日后的实战当中，读取数据并输入神经网络其实也是一个重要的部分，除非你确定以后只需使用主流的公开数据集，不然这部分知识就是必需的。接下来你可以先尝试在自己已能成功运行的 demo 上更换负责读取数据集的代码（更换后的代码不应该使用框架提供的常见数据集的 API，如读取 Imagenet 的 API），让模型使用另一个数据集进行训练完成相同的任务（如图片分类），这部分工作可能会花上几天时间，但是完成以后你应该就能真正理解如何向神经网络中输入数据了，除此以外，你有可能会顺便了解到一些数据预处理的简单操作，在实战当中，使用的数据集与模型的原作者使用的数据集总是不同，无论如何，<strong>一定要参考原作者的数据预处理步骤</strong>，不然有可能出现很大的指标差异。    </p>
+<p>弄完了上面提到的东西，接下来真的可以说是海阔天空了，接下来的路就是无数个分叉口，入门后的你可以尝试使用神经网络做一个简单的实战项目，例如：用户上传图片，服务器返回分类结果（早已有大厂提供这个 API 了）；也可以找老师开始下一步的科研；当然也可以继续自学，只不过需要自己把握学习方向了。总之，未来就在脚下，<del>祝各位在炼丹的路上一切顺利</del>。</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            If the article is no special statement, the article is under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow noopener noreferrer" target="_blank">CC BY-NC-SA 4.0</a> License.<br>除了特殊声明，所有文章均基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow noopener noreferrer" target="_blank"> CC-BY-NC-SA 4.0</a> 协议进行授权，转载请署名。
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://viflythink.com/Sharing_experience_about_Deep_Learning/">https://viflythink.com/Sharing_experience_about_Deep_Learning/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    <div class="comment-buttons" style="text-align: center;">
+    <button class="mdl-button mdl-button--colored" id="comment-toggle-isso" style="margin-right: auto; margin-left: auto; font-size: 20px;">Isso 评论</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="mdl-button mdl-button--colored" id="comment-toggle-disqus" style="margin-right: auto; margin-left: auto; font-size: 20px;">Disqus 评论</button>
+
+    <script>
+        $(document).ready(function(){
+        var issoComment = document.getElementById("isso-comment");
+        var disqusComment = document.getElementById("disqus-comment");
+        var issoButton = document.getElementById("comment-toggle-isso");
+        var disqusButton = document.getElementById("comment-toggle-disqus");
+        disqusComment.style.display = "none";
+
+        if (disqusButton != null) {
+            disqusButton.onclick = function () {
+                if (issoComment != null) {
+                    issoComment.style.display = "none";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "block";
+                }
+            };
+        }
+        if (issoButton != null) {
+            issoButton.onclick = function () {
+                if (issoComment != null) {
+                    issoComment.style.display = "block";
+                }
+                if (disqusComment != null) {
+                    disqusComment.style.display = "none";
+                }
+            };
+        }
+        });
+    </script>
+</div>
+
+<div style="text-align: center;">
+请注意，Isso 并不回复通知哦（Disqus 是可以的）
+</div>
+
+<!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://viflythink.com/Sharing_experience_about_Deep_Learning/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://viflythink.com/Sharing_experience_about_Deep_Learning/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//vifly.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+<!-- 使用 Isso -->
+<div id="isso-comment">
+    <script data-isso="https://comments.viflythink.com/isso/" data-isso-css="true" data-isso-lang="zh_CN" data-isso-reply-to-self="true" data-isso-require-author="true" data-isso-require-email="false" data-isso-avatar="true" src="https://comments.viflythink.com/isso/js/embed.min.js"></script>
+        
+        <section id="isso-thread"></section>
+</div>
+<style>
+    #isso-comment {
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/Try_Arch_Linux/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/Install_Matomo(Piwik)_on_Debian/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Vifly's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        viflythink@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="email" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/04/">四月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/02/">二月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/07/">七月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">2</span></a>
+            </li></ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">layers</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gpg" title="我的公钥">
+                
+                    <i class="material-icons sidebar-material-icons">lock</i>
+                
+                我的公钥
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/about" title="关于">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">contacts</i>
+                
+                友链
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">13</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank" rel="external nofollow noopener noreferrer">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/viflythink" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/vifly" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+        <a href="https://t.me/viflythink" target="_blank" rel="external nofollow noopener noreferrer">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-telegram">
+                <span class="visuallyhidden">Telegram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Vifly 的博客
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+<script id="dsq-count-scr" src="//vifly.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 2019;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
