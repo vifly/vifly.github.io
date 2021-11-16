@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Vifly 的博客</title>
+    <link>https://vifly.github.io/page/</link>
+    <description>Recent content in Pages on Vifly 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vifly.github.io/page/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPG key</title>
+      <link>https://vifly.github.io/gpg/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/gpg/</guid>
+      <description>如果你想与我进行足够安全的通信，那么可以</description>
+    </item>
+    
+    <item>
+      <title>Service</title>
+      <link>https://vifly.github.io/service/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/service/</guid>
+      <description>目前，除了博客以外，我还有一些公共可用的</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://vifly.github.io/about/</link>
+      <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/about/</guid>
+      <description>About me Hello, world! 我是谁呢？这个问题并不是那么容易</description>
+    </item>
+    
+    <item>
+      <title>Archives</title>
+      <link>https://vifly.github.io/archives/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>https://vifly.github.io/links/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/links/</guid>
+      <description>由于截止到 3.5.0 版本为止，Stack 主题尚未</description>
+    </item>
+    
+    <item>
+      <title>Tags</title>
+      <link>https://vifly.github.io/tags/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://vifly.github.io/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/search/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

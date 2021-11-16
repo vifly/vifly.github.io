@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用 Vercel 与 OneDrive 自建完全免费且可以高速访问的软件源'><title>使用 Vercel 与 OneDrive 自建软件源</title>
+
+<link rel='canonical' href='https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='使用 Vercel 与 OneDrive 自建软件源'>
+<meta property='og:description' content='使用 Vercel 与 OneDrive 自建完全免费且可以高速访问的软件源'>
+<meta property='og:url' content='https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/'>
+<meta property='og:site_name' content='Vifly 的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='折腾' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='CI' /><meta property='article:published_time' content='2021-09-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-11-12T00:00:00&#43;00:00'/><meta property='og:image' content='https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg' />
+<meta name="twitter:title" content="使用 Vercel 与 OneDrive 自建软件源">
+<meta name="twitter:description" content="使用 Vercel 与 OneDrive 自建完全免费且可以高速访问的软件源"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg' />
+    <link rel="shortcut icon" href="images/favicon.png" />
+<meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+
+<meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+
+
+<script type="text/javascript">
+  var _paq = window._paq || [];
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.viflythink.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+ 
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/">
+                <img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/show_hu3a92ba18b985a44b13d2086fb5d2cd73_887024_800x0_resize_q75_box.jpg"
+                        srcset="/Use_Vercel_and_OneDrive_to_setup_your_repo/show_hu3a92ba18b985a44b13d2086fb5d2cd73_887024_800x0_resize_q75_box.jpg 800w, /Use_Vercel_and_OneDrive_to_setup_your_repo/show_hu3a92ba18b985a44b13d2086fb5d2cd73_887024_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="393" 
+                        loading="lazy"
+                        alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/">使用 Vercel 与 OneDrive 自建软件源</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        使用 Vercel 与 OneDrive 自建完全免费且可以高速访问的软件源
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2021 年 09 月 04 日</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    10 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p><em>2021.11.12.更新：增加了关于 GPG 签名的说明。</em></p>
+<p>大家好，又是本鸽子久违的博客更新。之前的<a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR"  target="_blank" rel="noopener"
+    >《GitHub Actions 打造 AUR 打包下载一条龙服务》</a>已经折腾出了完全白嫖的编译机，可好景不长，当我的机器数量变多后，我发现在每台机器上运行脚本下载软件包的确有点麻烦，与其自己写一个脚本下载软件包，还不如直接自建一个软件源呢。经过一番研究后，我盯上了 OneDrive 与 Vercel 这两个可以免费使用的服务，通过它们实现了自建一个完全免费而且在国内外都可高速访问的软件源。</p>
+<p>本文是对<a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR"  target="_blank" rel="noopener"
+    >《GitHub Actions 打造 AUR 打包下载一条龙服务》</a>的扩展，如果你还没有读过该博文，请先读完它再回来阅读本文。通过前文与本文，你可以在没有服务器，不花一分钱的情况下搭建一个基于 OneDrive 的高速自建软件仓库，体验到白嫖与折腾 Linux 的双重快乐。</p>
+<p>为了得到一个公开的软件仓库，只是把软件包构建出来并放到 GitHub Release 是不够的，没有软件包数据库，软件包管理器可不知道如何获取这些软件包，更不用提校验与安装等等。生成软件包数据库只需要一行 <code>repo-add ./reponame.db.tar.gz *.tar.zst</code>，然后把它们都放到 GitHub Release 这样的免费存储后端就可以解决分发问题了，实际上有一个 <a class="link" href="https://github.com/Brx86/repo"  target="_blank" rel="noopener"
+    >arch-build 的 fork</a> 就是这样做的。当然，我对其还是不够满意，通过 fastgit 等 GitHub 反代服务的确可以加速 GitHub Release 的下载速度，但还是不够稳定；还有一个更重要的原因，我不仅想要自建 Arch 软件源，也想要自建 Debian 软件源，而 GitHub Release 的路径不够灵活，无法构造像 yourrepo.com/debian/pool/main/n/nginx/ 这样的 URL，没法满足自建 Debian 软件源的需求。所以嘛，只能自己再造一个轮子了。</p>
+<p>在看下文之前，不妨先打开<a class="link" href="https://archrepo.viflythink.com/"  target="_blank" rel="noopener"
+    >我的自建仓库</a>页面查看最终效果，如果想使用我的自建软件源，需要先执行以下指令导入 GPG 公钥：</p>
+<pre tabindex="0"><code>wget -O /tmp/vifly-repo.key 'https://share.viflythink.com/arch-repo.key' &amp;&amp; sudo pacman-key --add /tmp/vifly-repo.key
+sudo pacman-key --lsign-key viflythink@gmail.com
+</code></pre><p>然后在 /etc/pacman.conf 末尾添加下面几行后执行 pacman -Syu：</p>
+<pre tabindex="0"><code>[vifly]
+Server = https://archrepo.viflythink.com
+</code></pre><p>尽管本文最终提供的成品目前只用在 Arch 自建源上，但对脚本稍加修改后也可以用来自建其它 Linux 发行版的软件仓库。</p>
+<h1 id="上传到-onedrive">上传到 OneDrive</h1>
+<p>之前配置的 GitHub Actions 已经可以把软件包上传到 Release 上，现在只需要对原来的配置文件稍加改造就可以让 GitHub Actions 把软件包也上传到 OneDrive，为了尽量不重复造轮子，在这里我选择了 Rclone 进行上传，它提供了非常完善的文件传输功能，例如上传或下载时遇到文件内容相同的情况会自动跳过。</p>
+<h2 id="在-azure-创建应用">在 Azure 创建应用</h2>
+<p>根据 <a class="link" href="https://rclone.org/onedrive/#getting-your-own-client-id-and-key"  target="_blank" rel="noopener"
+    >Rclone 的官方文档</a>操作即可，以下给出图文操作步骤。尽管 Rclone 官方认为这是可选的，但在 Vercel 部署直链下载应用时也需要在 Azure 创建应用获取 Token，所以便把相关步骤放这里了，另外基于权限最小化的原则，这里我们创建的是一个拥有读写权限的应用，而在 Vercel 部署时则是创建一个具有只读权限的应用，两个应用用在不同的地方，这样可有效提升安全性。</p>
+<p>打开 <a class="link" href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade"  target="_blank" rel="noopener"
+    >Azure 的应用管理页面</a>，点击 New registration。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 243; 
+			flex-basis: 584px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png" data-size="1914x786">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png"
+			width="1914"
+			height="786"
+			
+			loading="lazy"
+			alt="Azure 应用列表">
+	</a>
+	
+	<figcaption>Azure 应用列表</figcaption>
+	
+</figure></p>
+<p>在打开的界面中输入应用的名字（这里我用了 rclone 这个名字），Supported account types 这一项选择 Accounts in any orGitHub Actionsnizational directory，在 Redirect URI (optional) 这一项选择 Web 并在右边的输入框里输入 http://localhost:53682/ 这一网址。完成后点击 Register。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 216; 
+			flex-basis: 520px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png" data-size="1904x878">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png"
+			width="1904"
+			height="878"
+			
+			loading="lazy"
+			alt="Azure 注册应用">
+	</a>
+	
+	<figcaption>Azure 注册应用</figcaption>
+	
+</figure></p>
+<p>此时应用已经注册完成，记录下 Application (client) ID 的值，这就是下文会用到的 client id。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 218; 
+			flex-basis: 525px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png" data-size="1918x876">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png"
+			width="1918"
+			height="876"
+			
+			loading="lazy"
+			alt="Azure 获取 client id">
+	</a>
+	
+	<figcaption>Azure 获取 client id</figcaption>
+	
+</figure></p>
+<p>点击左侧菜单的 Certificates &amp; secrets，然后点击 New client secret，在 Description 一栏随便填点什么，把 Expires（过期时间）设为最长的 24 months（两年后记得更新 client secret），点击 Add。最后记录下新增的 client secret 的值（在图中标注的 Value）。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 213; 
+			flex-basis: 513px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png" data-size="1918x897">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png"
+			width="1918"
+			height="897"
+			
+			loading="lazy"
+			alt="Azure 获取 client secret">
+	</a>
+	
+	<figcaption>Azure 获取 client secret</figcaption>
+	
+</figure></p>
+<p>到此为止就完成了。有些同学可能会感到奇怪：Rclone 文档中不是还有第 4 与第 5 步设置权限吗？根据我的实测，这两步并没有必要执行，所以这里不会附上这两步操作的示意图。</p>
+<h2 id="获取-token">获取 Token</h2>
+<p>在本地安装 Rclone（<code>pacman -S rclone</code>），运行 rclone config 进入交互式配置流程，接着<a class="link" href="https://rclone.org/onedrive"  target="_blank" rel="noopener"
+    >一步步地按照提示操作</a>，当程序询问 Microsoft App Client Id 和 Microsoft App Client Secret 时，填入上一小节中记录的对应值。</p>
+<p>完成配置后 Rclone 会把配置数据存放在 ~/.config/rclone/rclone.conf，使用 <code>cat ~/.config/rclone/rclone.conf</code> 查看。如下所示，下文需要复制对应的值时只需要把等号右边的东西按原样复制粘贴就行了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-INI" data-lang="INI"><span class="k">[xxx]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">onedrive</span>
+<span class="na">client_id</span> <span class="o">=</span> <span class="s">xxx</span>
+<span class="na">client_secret</span> <span class="o">=</span> <span class="s">xxx</span>
+<span class="na">region</span> <span class="o">=</span> <span class="s">global</span>
+<span class="na">drive_type</span> <span class="o">=</span> <span class="s">personal</span>
+<span class="na">token</span> <span class="o">=</span> <span class="s">{&#34;access_token&#34;:&#34;xxx&#34;,&#34;token_type&#34;:&#34;Bearer&#34;,&#34;refresh_token&#34;:&#34;xxx&#34;,&#34;expiry&#34;:&#34;xxx&#34;}</span>
+<span class="na">drive_id</span> <span class="o">=</span> <span class="s">xxx</span>
+</code></pre></div><p><em>PS：一点安全提醒，在我们的用例中，client id 与 client secret 都可以公开，但 token 是绝对不能公开的。</em></p>
+<h2 id="配置-github-actions">配置 GitHub Actions</h2>
+<p>首先 fork <a class="link" href="https://github.com/vifly/arch-build"  target="_blank" rel="noopener"
+    >arch-build 仓库</a>，如果你在之前已经使用了它，记得同步到最新版本。与前文所给的例子相比，现在的 workflow 文件（.github/workflows/build.yml）多了 uploadToOneDrive 这一个 job，而用到的 action 需要填入近十个参数，参数量的确很多，接下来让我介绍一下该如何填写这些参数。</p>
+<p>${{ secrets.xxx }} 这样的变量都是需要在 GitHub 的项目配置中的 Secrets 一栏设置的私密变量，打开项目的 Settings，找到下图所示的界面，然后点击 New repository secret，并填入 RCLONE_ONEDRIVE_CLIENT_ID、RCLONE_ONEDRIVE_CLIENT_SECRET、RCLONE_ONEDRIVE_TOKEN、RCLONE_ONEDRIVE_DRIVE_ID 这四个变量的值（从上一小节的 rclone.conf 中获得）。具体的操作也可参考 <a class="link" href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository"  target="_blank" rel="noopener"
+    >GitHub 官方文档</a>。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 206; 
+			flex-basis: 496px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png" data-size="1868x903">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png"
+			width="1868"
+			height="903"
+			
+			loading="lazy"
+			alt="GitHub Actions 添加私密变量">
+	</a>
+	
+	<figcaption>GitHub Actions 添加私密变量</figcaption>
+	
+</figure></p>
+<p>接着回来修改 workflow 文件，RCLONE_ONEDRIVE_REGION 与 RCLONE_ONEDRIVE_DRIVE_TYPE 也是按 rclone.conf 的值填写；而 dest_path 是 OneDrive 上传的目的地路径（如果该路径不存在，Rclone 会自动创建），以 Linux 文件路径的形式填写即可，不建议使用根路径，因为接下来将会把这个路径下的所有东西公开，各位肯定不希望别人打开你的软件仓库页面时还看到其它乱七八糟的文件；repo_name 是你的自建软件仓库的名字，<a class="link" href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Custom_local_repository"  target="_blank" rel="noopener"
+    >它用于 repo-add 的参数</a>。</p>
+<p>为了安全，建议为自己的软件源添加 GPG 签名，不签名的话，pacman.conf 中的仓库配置需要加上 <code>SigLevel = Never</code> 禁用签名校验才能使用。如果你想为自己的软件源添加 GPG 签名的话，建议先生成一个单独的 GPG 密钥对（不要设置密码），而不是使用原有的密钥对，并导出私钥：</p>
+<pre tabindex="0"><code>gpg --gen-key
+gpg --armor --export-secret-keys your_keyid &gt; private.key
+</code></pre><p>回到 GitHub 的项目配置新增 Secrets，Name 为 gpg_private_key，Value 则是导出的私钥内容。最后在 workflow 文件的 uploadToOneDrive job 的参数加上 gpg-privatekey: ${{ secrets.gpg_private_key }}（即 dest_path、repo_name 等配置所在的位置）。现在得到的软件源将具有 GPG 签名，需要按以下步骤导入公钥才能使用：</p>
+<pre tabindex="0"><code>gpg --armor --export your_keyid &gt; public.key
+sudo pacman-key --add public.key
+sudo pacman-key --lsign-key your_keyid
+</code></pre><p>为了节省存储空间，这个 job 只会在 OneDrive 存储最新版本的软件包，不像 Arch 官方软件仓库那样还提供了归档。如果你对使用 Rclone 同步到 OneDrive 或构建软件包数据库的细节感兴趣，那么可以查看 <a class="link" href="https://github.com/vifly/arch-build/blob/master/create-db-and-upload-action/entrypoint.sh"  target="_blank" rel="noopener"
+    >entrypoint.sh</a> 脚本了解细节，不到三十行便完成了这些工作（其实是因为我把复杂的逻辑用 Python 实现了）。</p>
+<h1 id="在-vercel-部署直链下载应用">在 Vercel 部署直链下载应用</h1>
+<p>上面我们已经把软件包成功放到了 OneDrive 中，OneDrive 本身也有分享功能，可是它的分享链接地址没有任何的规律，Pacman 可不知道一个软件包对应的下载地址与 OneDrive 分享地址的联系，它只认 yourrepo.com/package 这样的下载地址（Apt 等包管理器认的 URL 更复杂，但依然有明显的规律），所以我们需要一个应用来实现链接的转换，这就是直链下载应用要干的事情。</p>
+<p>GitHub 上已经有不少 onedrive index 项目实现 OneDrive 的直链下载，我嫌它们提供的功能太多了（没忍住自造轮子的冲动），所以也用 Python 造了一个非常简陋的应用 <a class="link" href="https://github.com/vifly/urepo"  target="_blank" rel="noopener"
+    >urepo</a>，支持在 Vercel 上部署，也支持直接在 VPS 上部署，它和 Rclone 一样采用了微软官方提供的 API 实现提取文件下载链接的功能。下文将使用 urepo 实现直链下载，如果你之前已经部署了其它的 onedrive index 应用，那参照下文继续用原来的应用也是可以的。</p>
+<h2 id="获取访问令牌">获取访问令牌</h2>
+<p>既然 urepo 和 Rclone 一样采用了微软官方提供的 API，那么它同样也要像使用 Rclone 那样获取访问令牌。回到上面的“在 Azure 创建应用”这一小节，按同样的步骤再创建一个应用，只是这次的 Redirect URI (optional) 应输入 http://localhost/ ，完成后得到 client id 与 client secret。</p>
+<p>与上面依靠 Rclone 获取 Token 不同的是，这次则是使用一个脚本获取 Token，它不会像 Rclone 那样申请写入权限。下载我写好的<a class="link" href="https://github.com/vifly/urepo/blob/main/client-tools/get_deploy_config.py"  target="_blank" rel="noopener"
+    >获取 Token 脚本</a>与<a class="link" href="https://github.com/vifly/urepo/blob/main/client-tools/config.py.example"  target="_blank" rel="noopener"
+    >配置示例</a>，并确保已经安装了 Python 的 Requests 库（<code>pacman -S python-requests</code>），然后把配置示例（config.py.example）重命名为 config.py，并填入 CLITENT_ID 与 CLITENT_SECRET。</p>
+<p>运行脚本：</p>
+<pre tabindex="0"><code>cd downloadpath
+python3 get_deploy_config.py
+</code></pre><p>根据提示操作，最后得到 code 与 refresh_token。此时我们已经获得 client id、client secret、code、refresh_token 这四项配置。至于下文中需要用到的 path，那就是在“配置 GitHub Actions”这一小节中的 dest_path。</p>
+<h2 id="部署到-vercel">部署到 Vercel</h2>
+<p><a class="link" href="https://vercel.com/"  target="_blank" rel="noopener"
+    >Vercel</a> 是一个免费的应用部署平台，主要用来测试和部署 Serverless 应用，通过它，我们可以零成本地部署直链下载应用。Vercel 提供了两种部署方式，从下面两种方式任选其一执行即可。</p>
+<h3 id="打开链接部署推荐">打开链接部署（推荐）</h3>
+<p>注册或登录你的 Vercel 账号，然后打开我创建的<a class="link" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvifly%2Furepo&amp;env=code,path,client_secret,client_id,refresh_token"  target="_blank" rel="noopener"
+    >部署链接</a>，会出现如下界面，在 GitHub、GitLab、Bitbucket 这三个 Git 平台中选择一个进行连接，Vercel 会把 urepo 仓库复制到连接的平台上。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 134; 
+			flex-basis: 323px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png" data-size="1204x893">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png"
+			width="1204"
+			height="893"
+			
+			loading="lazy"
+			alt="Vercel 导入仓库">
+	</a>
+	
+	<figcaption>Vercel 导入仓库</figcaption>
+	
+</figure></p>
+<p>接下来的 Create a Team 只要点击 Skip 跳过就行，然后就是环境变量的设置，urepo 会首先尝试从环境变量中读取这些私密信息，无法找到对应的信息时才会去读取项目根目录下的 auth.json 获取配置，与把访问令牌写在配置文件相比，利用环境变量配置可以避免自己不小心把私密信息公开，根据上文填写这五个环境变量后就完成部署了。</p>
+<h3 id="从本地上传部署">从本地上传部署</h3>
+<p>本方法需要安装 NodeJS 相关的工具链，我不太想和这些工具打交道，但 Vercel 本来是一个部署前端应用的平台，所以官方的客户端使用 JS 编写是很正常的事情，如果不想安装这些软件，那可以使用上面的部署方法。</p>
+<p>首先安装 Yarn 或其它 NodeJS 包管理器：<code>pacman -S yarn</code>，由于 JS 应用总是喜欢在用户的家目录乱丢东西，所以为了让 Yarn 遵循<a class="link" href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html"  target="_blank" rel="noopener"
+    > XDG 目录规范</a>，我们可以执行 <code>yarn config set prefix ~/.local</code>。然后执行下面的指令全局安装 vercel 应用，这会把它安装到你的家目录（~/.local/bin，记得让你的 $PATH 包含这个路径）：</p>
+<pre tabindex="0"><code>yarn global add vercel
+</code></pre><p>安装完成后执行下面的指令进行登录，在打开的浏览器窗口注册或登录你的 Vercel 账号并进行验证：</p>
+<pre tabindex="0"><code>vercel login
+</code></pre><p>下载 urepo 源码：</p>
+<pre tabindex="0"><code>git clone git@github.com:vifly/urepo.git
+</code></pre><p>把 urepo 根目录下的 auth.json.example 重命名为 auth.json，然后把对应的配置填入里面。或者，也可以在上传部署后到 Vercel 的项目面板中设置 code、path、client_secret、client_id、refresh_token 这五个环境变量。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 137; 
+			flex-basis: 328px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png" data-size="1236x902">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png"
+			width="1236"
+			height="902"
+			
+			loading="lazy"
+			alt="Vercel 设置环境变量">
+	</a>
+	
+	<figcaption>Vercel 设置环境变量</figcaption>
+	
+</figure></p>
+<p>最后就是上传部署：</p>
+<pre tabindex="0"><code>cd urepo
+vercel .
+</code></pre><h2 id="使用自己的域名可选">使用自己的域名（可选）</h2>
+<p>尽管 Vercel 会为部署的应用分配一个二级域名（xxx.vercel.app），但自建源使用自己的域名无疑是一个更好的选择。根据<a class="link" href="https://vercel.com/docs/custom-domains#subdomains"  target="_blank" rel="noopener"
+    >官方文档</a>，首先需要打开项目的域名管理界面，添加自己想使用的域名。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 151; 
+			flex-basis: 362px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png" data-size="1319x873">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png"
+			width="1319"
+			height="873"
+			
+			loading="lazy"
+			alt="Vercel 添加域名">
+	</a>
+	
+	<figcaption>Vercel 添加域名</figcaption>
+	
+</figure></p>
+<p>假设各位和我一样使用了自己的子域名，那么在自己的 DNS 解析服务提供商管理面板添加一条 CNAME 解析记录即可，我使用的是 cloudflare，还需要把代理状态设为“仅限 DNS”以确保不会使用 cloudflare 的反代。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 715; 
+			flex-basis: 1717px"
+	>
+	<a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png" data-size="1102x154">
+		<img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png"
+			width="1102"
+			height="154"
+			
+			loading="lazy"
+			alt="在 cloudflare 设置指向 Vercel 的 CNAME">
+	</a>
+	
+	<figcaption>在 cloudflare 设置指向 Vercel 的 CNAME</figcaption>
+	
+</figure></p>
+<h1 id="有待改进的地方">有待改进的地方</h1>
+<p>尽管这一流程已经能工作了，但有些地方还是可以再改进一下的。<del>首先，目前并没有数字签名，添加这一自建软件源时需要禁用对此的签名校验，在乎安全性的同学可能会对此表示不爽，所以日后有必要加上对软件包签名的支持。其次，urepo 应该无需修改就可以用于分发其它发行版的软件包与数据库（它的本质就是一个简陋的 onedrive index），但前面的 GitHub Actions 只支持 Arch，我未来肯定会加上对 Debian/Ubuntu 的支持，具体什么时候搞定这个，就要看我什么时候有需求了，对其它发行版的支持也是同样的😂</del>。目前已支持 GPG 签名，也新增了 <a class="link" href="https://github.com/vifly/debian-build"  target="_blank" rel="noopener"
+    >debian-build</a> 用于构建 deb 软件包。</p>
+<p>另外，我编写的 urepo 与 GitHub Actions 脚本的报错信息并不够用户友好，由于大量采用了 Python 进行编写，假如出现错误的话对于没学过 Python 的同学来说可能难以根据输出的错误信息解决问题。这个问题也是留待日后解决。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%8A%98%E8%85%BE/">折腾</a>
+        
+            <a href="/tags/Linux/">Linux</a>
+        
+            <a href="/tags/CI/">CI</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on 2021 年 11 月 12 日
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/Use_GitHubActions_to_build_AUR/">
+        
+        
+            <div class="article-image">
+                <img src="/Use_GitHubActions_to_build_AUR/show.dade81dbe0ba1ba523070d5a28de0ce8_hu3e4196b515918c37e47fce1bd97e68c0_760288_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-2t6B2&#43;C6G6UjBw1aKN4M6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GitHub Actions 打造 AUR 打包下载一条龙服务</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/KDE_to_Windows10/">
+        
+        
+            <div class="article-image">
+                <img src="/KDE_to_Windows10/show.a7fb8d2542e84dd78df8e20e8d6bb395_hua1e96627c79bb7cd39936a6d63fa6003_596890_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-p/uNJULoTdeN&#43;OIOjWuzlQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">将 KDE 改造为 Windows 10</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Try_Arch_Linux/">
+        
+        
+            <div class="article-image">
+                <img src="/Try_Arch_Linux/show.92c30b3f3d563c87f51888e113416e36_hubfb0eb0e288deb4ca723092859008c14_673819_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-ksMLPz1WPIf1GIjhE0FuNg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从 Debian 迁移到 Arch Linux</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Install_Matomo_on_Debian/">
+        
+        
+            <div class="article-image">
+                <img src="/Install_Matomo_on_Debian/show.12d541662ae371ff8aa4bc189a019143_hu237d0d0f8f01f491cebef0f12a3b29f0_514050_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-EtVBZirjcf&#43;KpLwYmgGRQw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Debian 安装 Matomo (Piwik) 开源统计分析服务</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/Use_GithubPages_and_Hexo_to_build_blog_advanced/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2021 Vifly 的博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#上传到-onedrive">上传到 OneDrive</a>
+      <ol>
+        <li><a href="#在-azure-创建应用">在 Azure 创建应用</a></li>
+        <li><a href="#获取-token">获取 Token</a></li>
+        <li><a href="#配置-github-actions">配置 GitHub Actions</a></li>
+      </ol>
+    </li>
+    <li><a href="#在-vercel-部署直链下载应用">在 Vercel 部署直链下载应用</a>
+      <ol>
+        <li><a href="#获取访问令牌">获取访问令牌</a></li>
+        <li><a href="#部署到-vercel">部署到 Vercel</a>
+          <ol>
+            <li><a href="#打开链接部署推荐">打开链接部署（推荐）</a></li>
+            <li><a href="#从本地上传部署">从本地上传部署</a></li>
+          </ol>
+        </li>
+        <li><a href="#使用自己的域名可选">使用自己的域名（可选）</a></li>
+      </ol>
+    </li>
+    <li><a href="#有待改进的地方">有待改进的地方</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在 Debian VPS 上搭建 Matomo 进行网站访客分析'><title>Debian 安装 Matomo (Piwik) 开源统计分析服务</title>
+
+<link rel='canonical' href='https://vifly.github.io/Install_Matomo_on_Debian/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Debian 安装 Matomo (Piwik) 开源统计分析服务'>
+<meta property='og:description' content='在 Debian VPS 上搭建 Matomo 进行网站访客分析'>
+<meta property='og:url' content='https://vifly.github.io/Install_Matomo_on_Debian/'>
+<meta property='og:site_name' content='Vifly 的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='折腾' /><meta property='article:tag' content='网站相关' /><meta property='article:published_time' content='2019-08-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-08-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://vifly.github.io/Install_Matomo_on_Debian/show.jpg' />
+<meta name="twitter:title" content="Debian 安装 Matomo (Piwik) 开源统计分析服务">
+<meta name="twitter:description" content="在 Debian VPS 上搭建 Matomo 进行网站访客分析"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://vifly.github.io/Install_Matomo_on_Debian/show.jpg' />
+    <link rel="shortcut icon" href="images/favicon.png" />
+<meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+
+<meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+
+
+<script type="text/javascript">
+  var _paq = window._paq || [];
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.viflythink.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+ 
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Install_Matomo_on_Debian/">
+                <img src="/Install_Matomo_on_Debian/show_hu237d0d0f8f01f491cebef0f12a3b29f0_514050_800x0_resize_q75_box.jpg"
+                        srcset="/Install_Matomo_on_Debian/show_hu237d0d0f8f01f491cebef0f12a3b29f0_514050_800x0_resize_q75_box.jpg 800w, /Install_Matomo_on_Debian/show_hu237d0d0f8f01f491cebef0f12a3b29f0_514050_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="419" 
+                        loading="lazy"
+                        alt="Featured image of post Debian 安装 Matomo (Piwik) 开源统计分析服务" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/Install_Matomo_on_Debian/">Debian 安装 Matomo (Piwik) 开源统计分析服务</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        在 Debian VPS 上搭建 Matomo 进行网站访客分析
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2019 年 08 月 18 日</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h1 id="前言">前言</h1>
+<p>之前我在<a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/#%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90"  target="_blank" rel="noopener"
+    >使用Github Pages和Hexo搭建个人博客(进阶篇)</a>这一篇博文中已经提到了不考虑使用大型公司提供的网站统计分析服务了，只不过网站统计分析服务还是有必要的，至少能看到有多少人浏览过自己的网站。之所以不采用商业公司提供的分析服务是因为这等于助纣为虐，帮助这些公司建立更精准的用户画像，这些公司可以利用遍布于大半个互联网的自家的跟踪代码对读者进行浏览痕迹的跟踪，从而建立精准的用户画像，我无法接受这种侵犯用户隐私的行为，所以只能考虑自己搭建统计分析服务了。在 Google 上搜了一下后决定采用 Matomo（原名为 Piwik）这个开源的网站统计分析服务。本文主要参考了<a class="link" href="https://my.oschina.net/u/3944788/blog/2874366"  target="_blank" rel="noopener"
+    >在Debian 9上安装Matomo Analytics</a>这一个教程，只不过很不巧的是目前 Debain 10 已经发布，这篇教程里的 php7.0 已经过时，但是没关系，下文中提供的安装 php 的指令并没有指定版本，所以对于 Debian 9/10 的用户都是可行的。</p>
+<h1 id="需求">需求</h1>
+<p>1.基本的 Linux 终端操作经验<br>
+2.一个安装了 Debian 9/10 的服务器（VPS），理论上来说 Ubuntu 18 也可以（并没有实测过）<br>
+3.一个属于自己的域名，并且已经将其 DNS 解析指向自己的服务器</p>
+<h1 id="操作">操作</h1>
+<p>先安装必须的库：</p>
+<pre><code>sudo apt install unzip apt-transport-https curl wget dirmngr php php-fpm php-curl php-gd php-cli php-mysql php-xml php-mbstring    
+</code></pre>
+<p>安装 MySQL 的替代品 MariaDB，这里必须提到的一点是，从 Debian9 开始，<a class="link" href="https://mariadb.org/debian-9-released-mariadb-mysql-variant/"  target="_blank" rel="noopener"
+    >软件包仓库中的 MySQL 实际上已经全被 MariaDB 取代了</a>：</p>
+<pre><code>sudo apt install mariadb-server     
+</code></pre>
+<p>运行 mysql_secure_installation 脚本以改进 MariaDB 安装的安全性：</p>
+<pre><code>sudo mysql_secure_installation  
+</code></pre>
+<p>作为数据库 root 用户登录到 MariaDB（注意，必须使用 root 权限才可以作为数据库 root 用户登录到 MariaDB，数据库的 root 用户与系统中的 root 用户不是同一个东西）：</p>
+<pre><code>sudo mysql -u root -p   
+</code></pre>
+<p>假如没有一个用于 Matomo 的数据库用户的话，先执行以下指令新建数据库用户，localhost 意味这个用户只可以本地登录（<em>PS：记得将username和password替换为自己准备设置的用户名和密码，下同</em>）：</p>
+<pre><code>CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';     
+</code></pre>
+<p>创建后请记住用户名和密码。<br>
+创建一个新的 MariaDB 数据库并授权：</p>
+<pre><code>CREATE DATABASE db_name;     
+GRANT ALL ON db_name.* TO 'username' IDENTIFIED BY 'password';       
+FLUSH PRIVILEGES;        
+quit;     
+</code></pre>
+<p>安装 nginx：</p>
+<pre><code>sudo apt install -y nginx       
+</code></pre>
+<p>新建 Nginx 配置文件：</p>
+<pre><code>sudo nano /etc/nginx/sites-available/matomo     
+</code></pre>
+<p>在其中填入（将 your_domain 替换为你的域名，例如 stats.viflythink.com，fastcgi_pass 的内容请根据自己的版本进行填写，你可以通过 ls /run/php/ 看到对应的 sock 文件）：</p>
+<pre><code>server {
+  listen 80;
+  server_name your_domain;
+  root /var/www/html/matomo;
+  location / {
+    try_files $uri /index.php$is_args$args;
+  }
+  location ~ \.php$ {
+    try_files $uri =404;
+    include fastcgi_params;
+    fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME   $document_root$fastcgi_script_name;
+  }
+}
+</code></pre>
+<p>通过建立软链接将刚写好的配置文件对应的网站设置为可访问的：</p>
+<pre><code>sudo ln -s /etc/nginx/sites-available/matomo /etc/nginx/sites-enabled/     
+</code></pre>
+<p>测试配置：</p>
+<pre><code>sudo nginx -t
+</code></pre>
+<p>创建 matomo 目录：</p>
+<pre><code>sudo mkdir -p /var/www/html/matomo  
+</code></pre>
+<p>下载和解压 matomo：</p>
+<pre><code>cd /var/www/html/matomo   
+wget https://builds.piwik.org/piwik.zip
+unzip piwik.zip
+rm piwik.zip
+mv piwik/* .
+rmdir piwik
+</code></pre>
+<p>更改该目录的所有权，确保访问者可以访问这些页面文件：</p>
+<pre><code>sudo chown -R www-data:www-data /var/www/html/matomo
+</code></pre>
+<p>重新加载 Nginx 以让配置生效：</p>
+<pre><code>sudo systemctl reload nginx.service
+</code></pre>
+<p>接下来使用浏览器打开 Nginx 配置文件中填写的域名，按照指引完成 matomo 的安装。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%8A%98%E8%85%BE/">折腾</a>
+        
+            <a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/Use_GithubPages_and_Hexo_to_build_blog_advanced/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/Use_GithubPages_and_Hexo_to_build_blog/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用 Github Pages 和 Hexo 搭建个人博客</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Try_Arch_Linux/">
+        
+        
+            <div class="article-image">
+                <img src="/Try_Arch_Linux/show.92c30b3f3d563c87f51888e113416e36_hubfb0eb0e288deb4ca723092859008c14_673819_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-ksMLPz1WPIf1GIjhE0FuNg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从 Debian 迁移到 Arch Linux</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/">
+        
+        
+            <div class="article-image">
+                <img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/show.4727fcbd0f8b4125beaaa4d84d498fb5_hu3a92ba18b985a44b13d2086fb5d2cd73_887024_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-Ryf8vQ&#43;LQSW&#43;qqTYTUmPtQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用 Vercel 与 OneDrive 自建软件源</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Use_GitHubActions_to_build_AUR/">
+        
+        
+            <div class="article-image">
+                <img src="/Use_GitHubActions_to_build_AUR/show.dade81dbe0ba1ba523070d5a28de0ce8_hu3e4196b515918c37e47fce1bd97e68c0_760288_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-2t6B2&#43;C6G6UjBw1aKN4M6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GitHub Actions 打造 AUR 打包下载一条龙服务</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2021 Vifly 的博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#需求">需求</a></li>
+    <li><a href="#操作">操作</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

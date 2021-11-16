@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO'><title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</title>
+
+<link rel='canonical' href='https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)'>
+<meta property='og:description' content='对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO'>
+<meta property='og:url' content='https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/'>
+<meta property='og:site_name' content='Vifly 的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='折腾' /><meta property='article:tag' content='网站相关' /><meta property='article:tag' content='Hexo' /><meta property='article:tag' content='SEO' /><meta property='article:published_time' content='2019-07-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-11-09T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)">
+<meta name="twitter:description" content="对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO">
+    <link rel="shortcut icon" href="images/favicon.png" />
+<meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+
+<meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+
+
+<script type="text/javascript">
+  var _paq = window._paq || [];
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.viflythink.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+ 
+
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/Use_GithubPages_and_Hexo_to_build_blog_advanced/">使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        对使用 Material 主题的博客进行个性化定制，如添加 RSS，评论区，随机显示标语（slogan）等功能，进行 SEO
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2019 年 07 月 15 日</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    9 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p><em>2019.8.18.更新：增加了如何搭建自己的统计分析服务的说明。</em><br>
+<em>2019.9.13.更新：增加了更多的 SEO 内容，对一些内容进行修改。</em><br>
+<em>2019.11.9.更新：增加了 Material 主题添加随机标语（slogan）的方法。</em><br>
+在<a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog"  target="_blank" rel="noopener"
+    >上一篇博文</a>当中我已经说完了使用 GitHub Pages 和 Hexo 搭建博客的基础操作了，只是这个刚搭建好的博客还缺了不少经常能在别人的博客上看到的东西，例如 RSS 订阅，评论区等功能。同时，不知道各位有没有发现一个问题，在搜索引擎当中搜索自己的站点时，搜索引擎返回的结果中并不会出现你的站点。本篇教程将会说明如何解决这些问题，如果还有更多的问题，请在评论区留言。</p>
+<h1 id="额外的功能与服务">额外的功能与服务</h1>
+<p><em>下面提到的这些功能与自己使用的 Hexo 主题相关，存在某些主题并没有提供某项功能的可能性</em></p>
+<h2 id="rss-订阅">RSS 订阅</h2>
+<p>想要提供 RSS 订阅这个功能，各位需要查看自己使用的 Hexo 主题的文档进行操作，以我使用的 Material 主题为例，<a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md"  target="_blank" rel="noopener"
+    >官方文档</a>简单地说明了一下，其实就是在安装了<a class="link" href="https://github.com/hexojs/hexo-generator-feed"  target="_blank" rel="noopener"
+    > hexo-generator-feed </a>插件后，修改 Material 主题下的配置文件（_config.yml）中的 rss:的值：</p>
+<pre><code>url:
+    rss: atom.xml
+</code></pre>
+<p>按照这样配置的话，你的博客的 RSS 订阅地址就是 <a class="link" href="https://%e4%bd%a0%e7%9a%84%e5%8d%9a%e5%ae%a2%e5%9f%9f%e5%90%8d/atom.xml"  target="_blank" rel="noopener"
+    >https://你的博客域名/atom.xml</a>，例如我的博客的 RSS 订阅地址就是 <a class="link" href="https://vifly.github.io/atom.xml"  target="_blank" rel="noopener"
+    >https://vifly.github.io/atom.xml</a>。</p>
+<h2 id="评论区">评论区</h2>
+<p>依然使用 Material 主题举例子，<a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md"  target="_blank" rel="noopener"
+    >官方文档</a>也说明了如何设置评论系统，为了能让读者畅所欲言，我否决了全部的国内评论系统，同时为了不翻墙的读者的体验以及匿名评论的需求，我最后选择了 Material 主题提供的 <a class="link" href="https://disqus.com/"  target="_blank" rel="noopener"
+    >Disqus</a> 加自建 <a class="link" href="https://posativ.org/isso/docs/"  target="_blank" rel="noopener"
+    >Isso</a> 评论系统（这里要感谢 <a class="link" href="https://alynx.one"  target="_blank" rel="noopener"
+    >Alynx Zhou</a> 提供的多评论系统前端代码，话说周老师不去当前端工程师是不是太浪费了鸭≧▽≦）。</p>
+<h2 id="数据统计与分析">数据统计与分析</h2>
+<p>继续贴<a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md"  target="_blank" rel="noopener"
+    >官方文档</a>。基于对读者隐私的考虑，我直接排除了百度和 CNZZ 的分析系统，至于 Google 分析，考虑到谷歌近年来的名声与未翻墙用户的体验，最终也决定不予采用，那么就只剩下一条路了，自己搭建分析系统。<del>这个暂时也咕咕咕了，若是能成功搭建的话，再写一篇博文进行叙述。</del> 目前已经成功使用 Matemo 搭建了自己的网站统计分析服务，具体操作请看<a class="link" href="https://viflythink.com/Install_matomo_on_debian/"  target="_blank" rel="noopener"
+    > Debian 安装 Matomo (Piwik) 开源统计分析服务</a>。</p>
+<h1 id="搜索引擎优化seo">搜索引擎优化（SEO）</h1>
+<p>假如你在搜索引擎中输入 site:xxxxx.github.io（自己的博客网址） 后发现没有出现自己的网站，那么请赶快看一下下面的“提交网站站点地图”小节。</p>
+<h2 id="验证网站所有权">验证网站所有权</h2>
+<p>为了便于以后在各个搜索引擎当中管理和查看我们的博客，我强烈建议在各个搜索引擎验证网站所有权，完成这一步后即可使用站长工具查看数据了，而且这也是完成后面某些步骤的必要前提。假如你将自己的域名（指的是 *.github.io 以外的域名）用作博客的域名，那么便可以通过添加 DNS 记录的方式验证所有权（<em>PS：每家搜索引擎对这个验证方法有不同的称呼，谷歌称为“域名提供商”，而 Bing 称为“手动向 DNS 添加 CNAME 记录”</em>），不采用下面提到的方法了。</p>
+<h3 id="google">Google</h3>
+<p>前往 Google 搜索的<a class="link" href="https://search.google.com/search-console/ownership"  target="_blank" rel="noopener"
+    >控制台</a>添加自己的博客地址即可，Google 提供了几种验证方式:<br>
+<figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 85; 
+			flex-basis: 204px"
+	>
+	<a href="/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png" data-size="627x735">
+		<img src="/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png"
+			width="627"
+			height="735"
+			
+			loading="lazy"
+			alt="Google 的网站所有权验证">
+	</a>
+	
+	<figcaption>Google 的网站所有权验证</figcaption>
+	
+</figure>  <br>
+对于 Material 主题，请使用 HTML 标记或 Google 分析（假如你的博客使用了 Google 分析）进行验证，具体操作只需看<a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/intro-zh-cn.md"  target="_blank" rel="noopener"
+    >官方文档</a>。</p>
+<h3 id="bing必应">Bing（必应）</h3>
+<p>前往 Bing 的<a class="link" href="https://www.bing.com/toolbox/webmaster/"  target="_blank" rel="noopener"
+    >网站管理员工具</a>进行验证。很不幸的是，Material 主题官方并没有提供 Bing 的站点所有权验证，那只能自己动手修改源代码了，经过一番查找，终于找到了用于在 HTML 页面当中标记所有权的部分，其代码位于 themes/material/layout/_partial/head.ejs 中，CTRL+F 查找“site_verification”发现在约 142 行的位置就是我们要找的代码，在下方照葫芦画瓢地加上：</p>
+<pre><code>&lt;% if(theme.head.site_verification.bing) { %&gt;&lt;meta name=&quot;msvalidate.01&quot; content=&quot;&lt;%= theme.head.site_verification.bing %&gt;&quot; /&gt;&lt;% } %&gt;
+</code></pre>
+<p><strong>注意，我感觉这里的 meta name 不一定对于每个人都适用，请观察一下 Bing 提供的 HTML 代码后再修改 head.ejs。</strong><br>
+<figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 130; 
+			flex-basis: 312px"
+	>
+	<a href="/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png" data-size="1023x785">
+		<img src="/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png"
+			width="1023"
+			height="785"
+			
+			loading="lazy"
+			alt="Bing 的网站所有权验证">
+	</a>
+	
+	<figcaption>Bing 的网站所有权验证</figcaption>
+	
+</figure>
+在复制了“&lt;meta name=&ldquo;msvalidate.01&rdquo; content=&ldquo;xxxxxxxxxx&rdquo; /&gt;”中的 xxxxxxxxxx 对应的值后，在主题的_config.yml 中进行修改：</p>
+<pre><code>site_verification:
+    bing: xxxxxxxxxx
+    google: 
+    baidu:
+</code></pre>
+<h2 id="提交网站站点地图">提交网站站点地图</h2>
+<p>这一步就是告诉搜索引擎你的网站有哪些链接，提交后搜索引擎就会自动顺着站点地图中的链接爬取你的站点内容了，若是没有这一步，在搜索引擎当中直接搜索自己的博客地址是没有任何结果的。要完成这一步骤，需要在博客目录下输入以下指令安装<a class="link" href="https://github.com/hexojs/hexo-generator-sitemap"  target="_blank" rel="noopener"
+    > hexo-generator-sitemap </a>插件：</p>
+<pre><code>npm install hexo-generator-sitemap --save
+</code></pre>
+<p>这个插件默认站点地图生成路径为 <a class="link" href="https://%e4%bd%a0%e7%9a%84%e5%8d%9a%e5%ae%a2%e5%9f%9f%e5%90%8d/sitemap.xml"  target="_blank" rel="noopener"
+    >https://你的博客域名/sitemap.xml</a>，在使用 hexo g 重新生成网址内容后，将此网址提交到各个搜索引擎就可以了，以 Google 为例子，只需要发送 <a class="link" href="http://www.google.com/ping?sitemap=https://"  target="_blank" rel="noopener"
+    >http://www.google.com/ping?sitemap=https://</a>你的博客域名/sitemap.xml 这个网络请求即可，也可以在<a class="link" href="https://search.google.com/search-console/"  target="_blank" rel="noopener"
+    >Google 搜索控制台</a>中的 sitemaps（站点地图）一栏提交自己的站点地图。而 Bing 则是需要在其 Web 面板中添加 sitemap。</p>
+<h2 id="提交网页地址收录新页面">提交网页地址（收录新页面）</h2>
+<p>虽然搜索引擎会自动顺着站点地图爬取网页内容，但是我就是想让它赶快收录刚发布的文章（因为不知道这个这个自动流程需要多少时间），这种时候该怎么办呢？我从<a class="link" href="http://www.guxiaobei.com/submit-your-content-of-google.html"  target="_blank" rel="noopener"
+    >“SEO 技巧！如何最快时间让 Google 收录你的页面”</a>中了解到了如何让 Google 及时收录新发布的博文，然而 Google 的控制台页面已经进行了改版，经过一番搜索，在<a class="link" href="https://support.google.com/webmasters/answer/9012289"  target="_blank" rel="noopener"
+    > Google 官方的帮助文档</a>找到了新的提交新页面的方法，打开<a class="link" href="https://www.google.com/webmasters/tools"  target="_blank" rel="noopener"
+    >https://www.google.com/webmasters/tools</a>，转到网址检查，输入你的新页面的网址，这就可以及时提交新的网页了。</p>
+<p><figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 187; 
+			flex-basis: 448px"
+	>
+	<a href="/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png" data-size="1414x756">
+		<img src="/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png"
+			width="1414"
+			height="756"
+			
+			loading="lazy"
+			alt="网址检查">
+	</a>
+	
+	<figcaption>网址检查</figcaption>
+	
+</figure></p>
+<h2 id="seo-进阶">SEO 进阶</h2>
+<p>为了让搜索引擎更好地爬取我们的网页，还需要使用一些技巧。这一部分主要参考了 <a class="link" href="https://hoxis.github.io/Hexo&#43;Next%20SEO%E4%BC%98%E5%8C%96.html"  target="_blank" rel="noopener"
+    >Hexo 博客 Next 主题 SEO 优化方法</a>这一博文，虽然 Material 主题与 Next 主题不同，不过有不少地方还是共通的。</p>
+<h3 id="修改文章链接地址">修改文章链接地址</h3>
+<p>Hexo 默认的文章链接形式为 domain/year/month/day/postname，这种四级 url 形式对于搜索引擎而言并不友好，我们可以修改为 domain/postname 这种形式。打开 blog 根目录下的_config.yml（下面统称为<strong>站点配置文件</strong>），找到 permalink 部分，将 permalink: :year/:month/:day/:title/改为 permalink: :title.html。</p>
+<pre><code>#permalink: :year/:month/:day/:title/
+permalink: :title.html  
+</code></pre>
+<h3 id="出站链接添加-nofollow-标签">出站链接添加 nofollow 标签</h3>
+<p>博文中总是会引用其它的文章，为了不让搜索引擎跳转到其它的网站，专注于我们的网页，我们需要为这些站外链接设置 nofollow 标签，可以通过安装<a class="link" href="https://github.com/liuzc/hexo-autonofollow"  target="_blank" rel="noopener"
+    > hexo-autonofollow </a>自动完成这一个步骤。</p>
+<pre><code>npm install hexo-autonofollow --save
+</code></pre>
+<p>然后在<strong>站点配置文件</strong>中添加（更多配置请看 GitHub 页面）：</p>
+<pre><code>nofollow:
+    enable: true
+</code></pre>
+<h3 id="添加文章描述">添加文章描述</h3>
+<p>由于在 Material 主题中，文章的 tags 等于 keywords，所以无需再添加关键字了。不过我们可以为每篇博文添加描述，添加方法与添加 tags 等相似，在博客文章 markdown 文件开头添加 description：</p>
+<pre><code>---
+title: 标题
+date: year-month-day xx:xx:xx
+tags: [tag01,tag02]
+description: 你的博文描述
+---
+</code></pre>
+<h1 id="个性化">个性化</h1>
+<h2 id="启用自己的域名">启用自己的域名</h2>
+<p>千篇一律的 xxxxxxx.github.io 总是让人觉得厌烦，说到个性化，怎么能缺少使用自己喜欢的域名作为博客网址这一项呢？使用自定义的域名更有可能让人记住你的博客，而且只要不是前往 GoDaddy 这种价格偏高的网站购买域名，一个普通的 com 顶级域名每年也只需花费 10 美刀左右就可以拥有。在这么多的域名服务商当中，我选择了国外的<a class="link" href="namecheap.com" > namecheap</a>，主要的好处就是以下几点：</p>
+<ol>
+<li>价格便宜（从网站名字就可以看出来了）</li>
+<li>老牌商家，服务可靠。别看这个网站的页面长得不好看，而且价格也比较便宜，但这个网站真的是老牌服务商，我并没有找到它坑客户的案例，基本可以放心。</li>
+<li>提供免费的 WhoisGuard 服务，保护你的隐私。</li>
+<li>不用备案，选择国外的域名服务商的话都能享受到这点。</li>
+</ol>
+<h3 id="自定义的域名与-github-page-的绑定">自定义的域名与 GitHub Page 的绑定</h3>
+<p>买好了域名，接下来要做的事就是让我们的域名能够指向自己的博客啦。这个操作流程十分简单，只需前往自己的域名服务商的控制面板，然后参考这条<a class="link" href="https://www.zhihu.com/question/31377141/answer/87541858"  target="_blank" rel="noopener"
+    >知乎回答</a>进行操作，只需在域名解析当中添加两条 CNAME 记录让域名（以我的域名为例就是 viflythink.com 和 <a class="link" href="http://www.viflythink.com"  target="_blank" rel="noopener"
+    >www.viflythink.com</a> ）指向 xxxxxx.github.io，大概就是下面这样： <br>
+<figure 
+	
+		class="gallery-image" 
+		style="
+			flex-grow: 358; 
+			flex-basis: 861px"
+	>
+	<a href="/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png" data-size="621x173">
+		<img src="/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png"
+			width="621"
+			height="173"
+			
+			loading="lazy"
+			alt="设置DNS解析">
+	</a>
+	
+	<figcaption>设置DNS解析</figcaption>
+	
+</figure><br>
+然后在 source 目录下新建一个叫 CNAME 的文本文件，里面填入你的域名（如 viflythink.com），与不少网上的操作不同，我们这里并不需要绑定 GitHub 的 IP，因为有时候 IP 地址会变化，所以绑定 xxxxxx.github.io 会更好。</p>
+<h3 id="启用-https-加密">启用 HTTPS 加密</h3>
+<p>为了保证读者的隐私，防止 ISP 的广告植入，稍微提高自己的网站在搜索引擎中的权重，我们需要为自己的域名启用 HTTPS 加密，当你成功启用 HTTPS 加密后读者访问你的网站时就会看到浏览器上出现一个绿色小锁头了，整个步骤也不难，这里参考了<a class="link" href="https://tzhou2018.github.io/2018/04/%E4%B8%BAGitHub-Pages%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%B9%B6%E6%B7%BB%E5%8A%A0SSL-%E5%BC%80%E5%90%AFHTTPS%E5%BC%BA%E5%88%B6/"  target="_blank" rel="noopener"
+    >为 GitHub Pages 自定义域名并添加SSL-开启https强制</a>这一篇博文，使用 cloudflare 提供的免费服务，这里必须提醒一句，使用 cloudflare 的 <em>Universal SSL</em> 并不意味着全程加密，这个服务其实是通过 cloudflare 自己的服务器进行中转，读者到 cloudflare 的服务器这一段路是加密的，而 cloudflare 到 GitHub 的这一段并没有加密，另外，我在部署后出现“重定向次数过多”的错误，将 cloudflare 的加密由 Flexible 转为默认的 FULL 后就可以了，暂不知道原因。</p>
+<h2 id="material-主题的进阶设置">Material 主题的进阶设置</h2>
+<h3 id="material-主题实现随机显示标语slogan">Material 主题实现随机显示标语（slogan）</h3>
+<p>是否觉得仅仅一句标语（格言）不足以说明什么呢？我想要在博客首页的标语更能表达我自己，使用随机显示的标语是一个很好的主意，这样就可以使用多个名言警句了，但是 Google 了一番后并没有找到为 Material 主题设置随机标语的方案，那么只能自己动手了（<del>在改源码的道路上越走越远</del>）。这里主要参考了萌狼的<a class="link" href="https://blog.yoitsu.moe/pelican/new_yoitsu_birth_notes.html"  target="_blank" rel="noopener"
+    >新约伊兹的萌狼乡手札诞生全过程伪实录</a>里的“实现动态格言”部分，由于我不懂前端，所以最后只能做到在每次刷新网页后显示随机的标语，而不能动态刷新。这里记录下我的折腾过程，欢迎前端大佬帮忙改进。<br>
+首先找到 Material 主题负责显示标语的代码，其路径是 themes/material/layout/_partial/daily_pic.ejs，可以看到相关代码：</p>
+<pre><code>&lt;div class=&quot;mdl-card__media mdl-color-text--grey-50&quot; style=&quot;background-image:url(&lt;%= url_for(theme.img.daily_pic) %&gt;)&quot;&gt;
+    &lt;p class=&quot;index-top-block-slogan&quot;&gt;&lt;a href=&quot;&lt;%= theme.url.daily_pic %&gt;&quot;&gt;
+        &lt;% if(theme.uiux.slogan) { %&gt;
+            &lt;% if(Array.isArray(theme.uiux.slogan)) { %&gt;
+                &lt;%- theme.uiux.slogan.join('&lt;br&gt;') %&gt;
+            &lt;% } else { %&gt;
+                &lt;%- theme.uiux.slogan %&gt;
+            &lt;% } %&gt;
+        &lt;% } %&gt;
+    &lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>这部分最后会被转换为 HTML 文本，然而我们需要每次加载时都能显示不同的标语，该怎么办呢？答案是使用 document.addEventListener() 设置一个监听器，加载多个标语后随机选择一个显示，这就是我写的代码的思路，当然，由于我是一个前端小白，所以借鉴了萌狼的代码，期间遇到了“$ is not defined”的错误，按照查到的<a class="link" href="https://stackoverflow.com/questions/10779148/javascript-jquery-is-not-defined-function-error"  target="_blank" rel="noopener"
+    > stackoverflow 上的回答</a>成功解决了（说的简单，其实为了读懂相关的代码花了不少时间），最后写出的能用的代码如下（使用下面的代码替换上面贴出的代码）：</p>
+<pre><code>&lt;div class=&quot;mdl-card__media mdl-color-text--grey-50&quot; style=&quot;background-image:url(&lt;%= url_for(theme.img.daily_pic) %&gt;)&quot;&gt;
+    &lt;p id=&quot;myslogan&quot; class=&quot;index-top-block-slogan&quot;&gt;&lt;a href=&quot;&lt;%= theme.url.daily_pic %&gt;&quot;&gt;
+        无法加载 gists 上的标语
+    &lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- 动态显示标语 --&gt;
+&lt;script src=&quot;js/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+        document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
+                jQuery.getJSON( &quot;https://api.github.com/gists/7a04e2188185ddb19cbd19d8217b9400&quot;, function(data) {
+                        slogans = JSON.parse(data.files[&quot;slogans.json&quot;].content);
+                        randomSlogan = slogans[ Math.floor( Math.random() * slogans.length ) ];
+                        jQuery(&quot;#myslogan&quot;).html(randomSlogan.content);
+                });
+        });
+        
+&lt;/script&gt;
+</code></pre>
+<p>可以看出，使用了 jQuery 来解析 json 文件和提取标语内容，也用来更改页面中的标语，用 myslogan 这个 ID 标记标语所在区域。另外，想要使用这个代码的话，需要在<a class="link" href="https://gist.github.com/"  target="_blank" rel="noopener"
+    > gist </a>上创建一个 json 文件，其格式类似于这样（与萌狼不同的是，我的代码并没有显示名言作者，所以这里的 json 文件并不需要填写 author）：</p>
+<pre><code>[
+    {
+        &quot;content&quot;:&quot;example1&quot;
+    },
+    {
+        &quot;content&quot;:&quot;example2&quot;
+    },
+]
+</code></pre>
+<p>然后将得到的类似于<a class="link" href="https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400"  target="_blank" rel="noopener"
+    >https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400</a>这样的网址里的&quot;gist.github.com&quot;替换为&quot;api.github.com/gists&quot;，再用这个替换后的网址替换上面代码中的 gist 网址。完成后就能实现打开首页时随机显示标语了。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%8A%98%E8%85%BE/">折腾</a>
+        
+            <a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a>
+        
+            <a href="/tags/Hexo/">Hexo</a>
+        
+            <a href="/tags/SEO/">SEO</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on 2019 年 11 月 09 日
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/Use_GithubPages_and_Hexo_to_build_blog/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用 Github Pages 和 Hexo 搭建个人博客</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Install_Matomo_on_Debian/">
+        
+        
+            <div class="article-image">
+                <img src="/Install_Matomo_on_Debian/show.12d541662ae371ff8aa4bc189a019143_hu237d0d0f8f01f491cebef0f12a3b29f0_514050_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-EtVBZirjcf&#43;KpLwYmgGRQw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Debian 安装 Matomo (Piwik) 开源统计分析服务</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Try_Arch_Linux/">
+        
+        
+            <div class="article-image">
+                <img src="/Try_Arch_Linux/show.92c30b3f3d563c87f51888e113416e36_hubfb0eb0e288deb4ca723092859008c14_673819_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-ksMLPz1WPIf1GIjhE0FuNg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从 Debian 迁移到 Arch Linux</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Use_Vercel_and_OneDrive_to_setup_your_repo/">
+        
+        
+            <div class="article-image">
+                <img src="/Use_Vercel_and_OneDrive_to_setup_your_repo/show.4727fcbd0f8b4125beaaa4d84d498fb5_hu3a92ba18b985a44b13d2086fb5d2cd73_887024_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-Ryf8vQ&#43;LQSW&#43;qqTYTUmPtQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用 Vercel 与 OneDrive 自建软件源</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/Use_GitHubActions_to_build_AUR/">
+        
+        
+            <div class="article-image">
+                <img src="/Use_GitHubActions_to_build_AUR/show.dade81dbe0ba1ba523070d5a28de0ce8_hu3e4196b515918c37e47fce1bd97e68c0_760288_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-2t6B2&#43;C6G6UjBw1aKN4M6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GitHub Actions 打造 AUR 打包下载一条龙服务</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2021 Vifly 的博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#额外的功能与服务">额外的功能与服务</a>
+      <ol>
+        <li><a href="#rss-订阅">RSS 订阅</a></li>
+        <li><a href="#评论区">评论区</a></li>
+        <li><a href="#数据统计与分析">数据统计与分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#搜索引擎优化seo">搜索引擎优化（SEO）</a>
+      <ol>
+        <li><a href="#验证网站所有权">验证网站所有权</a>
+          <ol>
+            <li><a href="#google">Google</a></li>
+            <li><a href="#bing必应">Bing（必应）</a></li>
+          </ol>
+        </li>
+        <li><a href="#提交网站站点地图">提交网站站点地图</a></li>
+        <li><a href="#提交网页地址收录新页面">提交网页地址（收录新页面）</a></li>
+        <li><a href="#seo-进阶">SEO 进阶</a>
+          <ol>
+            <li><a href="#修改文章链接地址">修改文章链接地址</a></li>
+            <li><a href="#出站链接添加-nofollow-标签">出站链接添加 nofollow 标签</a></li>
+            <li><a href="#添加文章描述">添加文章描述</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#个性化">个性化</a>
+      <ol>
+        <li><a href="#启用自己的域名">启用自己的域名</a>
+          <ol>
+            <li><a href="#自定义的域名与-github-page-的绑定">自定义的域名与 GitHub Page 的绑定</a></li>
+            <li><a href="#启用-https-加密">启用 HTTPS 加密</a></li>
+          </ol>
+        </li>
+        <li><a href="#material-主题的进阶设置">Material 主题的进阶设置</a>
+          <ol>
+            <li><a href="#material-主题实现随机显示标语slogan">Material 主题实现随机显示标语（slogan）</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

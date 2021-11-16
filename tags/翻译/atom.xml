@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>翻译 on Vifly 的博客</title>
+    <link>https://vifly.github.io/tags/%E7%BF%BB%E8%AF%91/</link>
+    <description>Recent content in 翻译 on Vifly 的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 14 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://vifly.github.io/tags/%E7%BF%BB%E8%AF%91/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【译】椭圆曲线密码介绍</title>
+      <link>https://vifly.github.io/translate_elliptic_curve_cryptography_explained/</link>
+      <pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://vifly.github.io/translate_elliptic_curve_cryptography_explained/</guid>
+      <description>前段时间我看到了一篇标题为 Elliptic Curve Cryptography Explained 的既通</description>
+    </item>
+    
+  </channel>
+</rss>

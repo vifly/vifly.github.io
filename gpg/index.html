@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='如果你想与我进行足够安全的通信，那么可以'><title>GPG key</title>
+
+<link rel='canonical' href='https://vifly.github.io/gpg/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='GPG key'>
+<meta property='og:description' content='如果你想与我进行足够安全的通信，那么可以'>
+<meta property='og:url' content='https://vifly.github.io/gpg/'>
+<meta property='og:site_name' content='Vifly 的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:published_time' content='2019-05-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-05-28T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="GPG key">
+<meta name="twitter:description" content="如果你想与我进行足够安全的通信，那么可以">
+    <link rel="shortcut icon" href="images/favicon.png" />
+<meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+
+<meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+
+
+<script type="text/javascript">
+  var _paq = window._paq || [];
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.viflythink.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+ 
+
+    </head>
+    <body class="
+    article-page 
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        on-phone--column extended
+    
+">
+    
+        <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu139cde8ab2a45f6f8ca9b1d680d35535_828870_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+            
+        
+        
+        <h1 class="site-name"><a href="/">Vifly 的博客</a></h1>
+        <h2 class="site-description">千里之行，始于足下</h2><ol class="social-menu">
+                
+                    <li>
+                        <a 
+                            href='mailto:viflythink@gmail.com'
+                            target="_blank"
+                            title="Email"
+                        >
+                            
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="3" y="5" width="18" height="14" rx="2" />
+  <polyline points="3 7 12 13 21 7" />
+</svg> 
+
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a 
+                            href='https://github.com/vifly'
+                            target="_blank"
+                            title="GitHub"
+                        >
+                            
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a 
+                            href='https://viflythink.com/atom.xml'
+                            target="_blank"
+                            title="RSS"
+                        >
+                            
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+</svg>
+
+
+
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a 
+                            href='https://t.me/viflythink'
+                            target="_blank"
+                            title="Telegram"
+                        >
+                            
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+</svg> 
+
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a 
+                            href='https://twitter.com/viflythink'
+                            target="_blank"
+                            title="Twitter"
+                        >
+                            
+                            
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                            
+                        </a>
+                    </li>
+                
+            </ol></header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' target="_blank">
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>Tags</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/service/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />
+</svg> 
+
+                
+                <span>Service</span>
+            </a>
+        </li>
+        
+        
+
+        <li  class='current' >
+            <a href='/gpg/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-key" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="8" cy="15" r="4" />
+  <line x1="10.85" y1="12.15" x2="19" y2="4" />
+  <line x1="18" y1="5" x2="20" y2="7" />
+  <line x1="15" y1="8" x2="17" y2="10" />
+</svg> 
+
+                
+                <span>GPG key</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-friends" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="7" cy="5" r="2" />
+  <path d="M5 22v-5l-1 -1v-4a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4l-1 1v5" />
+  <circle cx="17" cy="5" r="2" />
+  <path d="M15 22v-4h-2l2 -6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1l2 6h-2v4" />
+</svg> 
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </ol>
+</aside>
+
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/gpg/">GPG key</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2019 年 05 月 28 日</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>如果你想与我进行足够安全的通信，那么可以使用 GPG 加密信息，以下是我的 GPG 公钥：</p>
+<pre tabindex="0"><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+UzAPHqqpBQYXhL5Q+q4=
+=9QKZ
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre><p>将上面以<code>-----BEGIN PGP PUBLIC KEY BLOCK-----</code>作为开头，以<code>-----END PGP PUBLIC KEY BLOCK-----</code>作为结尾的文本保存到文本文件中，然后使用 <code>gpg --import public.txt</code> （假设你把这段文本保存到 public.txt）导入我的公钥，或者你也可以直接使用 <code>gpg --recv-keys 0xE5751ED9F1C8DA6D</code> 从服务器上接收并导入公钥。在导入公钥后，请核对密钥指纹：</p>
+<p>C30B BEC9 0F62 18D9 5820 3BD7 E575 1ED9 F1C8 DA6D</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2021 Vifly 的博客
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
