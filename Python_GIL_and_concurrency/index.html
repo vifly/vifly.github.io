@@ -1,542 +1,309 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='对 Python GIL 的解析，也对 Python 的并发编程手段进行说明'><title>Python GIL 和并发编程</title>
-
-<link rel='canonical' href='https://vifly.github.io/Python_GIL_and_concurrency/'>
-
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Python GIL 和并发编程'>
-<meta property='og:description' content='对 Python GIL 的解析，也对 Python 的并发编程手段进行说明'>
-<meta property='og:url' content='https://vifly.github.io/Python_GIL_and_concurrency/'>
-<meta property='og:site_name' content='Vifly 的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2021-05-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-08T00:00:00&#43;00:00'/><meta property='og:image' content='https://vifly.github.io/Python_GIL_and_concurrency/show.jpg' />
-<meta name="twitter:title" content="Python GIL 和并发编程">
-<meta name="twitter:description" content="对 Python GIL 的解析，也对 Python 的并发编程手段进行说明"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://vifly.github.io/Python_GIL_and_concurrency/show.jpg' />
-    <link rel="shortcut icon" href="images/favicon.png" />
-<meta name="google-site-verification" content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
-
-<meta name="msvalidate.01" content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
-
-
-<script type="text/javascript">
-  var _paq = window._paq || [];
-   
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//stats.viflythink.com/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-
- 
-
-    </head>
-    <body class="
-    article-page has-toc
-">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex 
-    
-        extended
-    
-">
-    
-        <div id="article-toolbar">
-            <a href="/" class="back-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="15 6 9 12 15 18" />
-</svg>
-
-
-
-                <span>Back</span>
-            </a>
-        </div>
-    
+<!doctype html><html lang=zh-cn>
+<head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="对 Python GIL 的解析，也对 Python 的并发编程手段进行说明"><title>Python GIL 和并发编程</title>
+<link rel=canonical href=https://vifly.github.io/Python_GIL_and_concurrency/>
+<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Python GIL 和并发编程">
+<meta property="og:description" content="对 Python GIL 的解析，也对 Python 的并发编程手段进行说明">
+<meta property="og:url" content="https://vifly.github.io/Python_GIL_and_concurrency/">
+<meta property="og:site_name" content="Vifly 的博客">
+<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="Python"><meta property="article:published_time" content="2021-05-08T00:00:00+00:00"><meta property="article:modified_time" content="2021-05-08T00:00:00+00:00"><meta property="og:image" content="https://vifly.github.io/Python_GIL_and_concurrency/show.jpg">
+<meta name=twitter:title content="Python GIL 和并发编程">
+<meta name=twitter:description content="对 Python GIL 的解析，也对 Python 的并发编程手段进行说明"><meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://vifly.github.io/Python_GIL_and_concurrency/show.jpg">
+<link rel="shortcut icon" href=images/favicon.png>
+<meta name=google-site-verification content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
+<meta name=msvalidate.01 content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
+<script type=text/javascript>var _paq=window._paq||[];_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="//stats.viflythink.com/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','1']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.type='text/javascript',a.async=!0,a.defer=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body class="article-page has-toc">
+<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
+<div class="container main-container flex
+extended">
+<div id=article-toolbar>
+<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
+<span>Back</span>
+</a>
+</div>
 <main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/Python_GIL_and_concurrency/">
-                <img src="/Python_GIL_and_concurrency/show_hub685971fcaff719029f241cd147356bf_356637_800x0_resize_q75_box.jpg"
-                        srcset="/Python_GIL_and_concurrency/show_hub685971fcaff719029f241cd147356bf_356637_800x0_resize_q75_box.jpg 800w, /Python_GIL_and_concurrency/show_hub685971fcaff719029f241cd147356bf_356637_1600x0_resize_q75_box.jpg 1600w"
-                        width="800" 
-                        height="450" 
-                        loading="lazy"
-                        alt="Featured image of post Python GIL 和并发编程" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-
-    <h2 class="article-title">
-        <a href="/Python_GIL_and_concurrency/">Python GIL 和并发编程</a>
-    </h2>
-
-    
-    <h3 class="article-subtitle">
-        对 Python GIL 的解析，也对 Python 的并发编程手段进行说明
-    </h3>
-    
-
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">2021 年 05 月 08 日</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    9 minute read
-                </time>
-            </div>
-        
-    </footer>
-    
+<article class="has-image main-article">
+<header class=article-header>
+<div class=article-image>
+<a href=/Python_GIL_and_concurrency/>
+<img src=/Python_GIL_and_concurrency/show_hub685971fcaff719029f241cd147356bf_356637_800x0_resize_q75_box.jpg srcset="/Python_GIL_and_concurrency/show_hub685971fcaff719029f241cd147356bf_356637_800x0_resize_q75_box.jpg 800w, /Python_GIL_and_concurrency/show_hub685971fcaff719029f241cd147356bf_356637_1600x0_resize_q75_box.jpg 1600w" width=800 height=450 loading=lazy alt="Featured image of post Python GIL 和并发编程">
+</a>
+</div>
+<div class=article-details>
+<h2 class=article-title>
+<a href=/Python_GIL_and_concurrency/>Python GIL 和并发编程</a>
+</h2>
+<h3 class=article-subtitle>
+对 Python GIL 的解析，也对 Python 的并发编程手段进行说明
+</h3>
+<footer class=article-time>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>2021 年 05 月 08 日</time>
+</div>
+<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>
+9 minute read
+</time>
+</div>
+</footer>
 </div>
 </header>
-
-    <section class="article-content">
-    <p>各位读者好，又是本鸽子久违的更新。最近在应聘后端开发岗位的过程中为了应对面试官各种奇怪的问题，特意整理了自己为 Python 并发编程所做的笔记，一看内容已经足够填满一篇博文了，那就作为新的一篇博文发布吧。</p>
-<p>由于并发（concurrency）与并行（parallelism）这两个词的意义总是纠缠不清，以至于有时会看到“Python 不支持并发”这样让我哭笑不得的说法，所以先明确一下在本文中这两个词的定义：根据<a class="link" href="https://laike9m.com/blog/huan-zai-yi-huo-bing-fa-he-bing-xing,61/"  target="_blank" rel="noopener"
-    >还在疑惑并发和并行？</a>的说明，我们把并行定义为<strong>同时</strong>有多个单位工作，这指的是运行时的<strong>状态</strong>，而并发则是一种<strong>程序结构设计</strong>，能够实现<strong>一段时间</strong>内执行逻辑上存在区别的多个操作。在应用程序层面，并发是并行的必要条件。</p>
-<h1 id="python-的-gil">Python 的 GIL</h1>
+<section class=article-content>
+<p>各位读者好，又是本鸽子久违的更新。最近在应聘后端开发岗位的过程中为了应对面试官各种奇怪的问题，特意整理了自己为 Python 并发编程所做的笔记，一看内容已经足够填满一篇博文了，那就作为新的一篇博文发布吧。</p>
+<p>由于并发（concurrency）与并行（parallelism）这两个词的意义总是纠缠不清，以至于有时会看到“Python 不支持并发”这样让我哭笑不得的说法，所以先明确一下在本文中这两个词的定义：根据<a class=link href=https://laike9m.com/blog/huan-zai-yi-huo-bing-fa-he-bing-xing,61/ target=_blank rel=noopener>还在疑惑并发和并行？</a>的说明，我们把并行定义为<strong>同时</strong>有多个单位工作，这指的是运行时的<strong>状态</strong>，而并发则是一种<strong>程序结构设计</strong>，能够实现<strong>一段时间</strong>内执行逻辑上存在区别的多个操作。在应用程序层面，并发是并行的必要条件。</p>
+<h1 id=python-的-gil>Python 的 GIL</h1>
 <p>说起 Python 的并发，那么总是绕不开 GIL（全局解释器锁）这个东西，这就是导致我们采用的很多种并发手段无法实现并行的罪魁祸首，要注意的是并不是说所有并发手段都无法实现并行，例如多进程就可以。为了破解 Python 的并行难题，下面就让我们先解析一下这个让无数 Python 开发者怨声载道的 GIL。</p>
-<h2 id="gil-是什么">GIL 是什么</h2>
-<p>全局解释器锁（Global Interpreter Lock），顾名思义是一种锁，与我们平常在多线程环境下用到的锁不同，GIL 确保的是在同一时刻，在一个 Python 解释器中只有<strong>一个线程</strong>能够处于执行状态。回想一下我们写的 Python 代码是如何被执行的：在不考虑优化的情况下，Python 解释器一行一行地读取我们写的代码，然后把代码翻译为机器指令（准确来说是 bytecode）执行。GIL 就是对这个解释器上了一把锁，让它在任何时刻都只能执行一条指令。对于 GIL 的实现细节，可以在阅读完本文后参阅 <a class="link" href="https://cyrusin.github.io/2016/04/27/python-gil-implementaion/"  target="_blank" rel="noopener"
-    >GIL 的实现细节</a>一文加深理解。</p>
+<h2 id=gil-是什么>GIL 是什么</h2>
+<p>全局解释器锁（Global Interpreter Lock），顾名思义是一种锁，与我们平常在多线程环境下用到的锁不同，GIL 确保的是在同一时刻，在一个 Python 解释器中只有<strong>一个线程</strong>能够处于执行状态。回想一下我们写的 Python 代码是如何被执行的：在不考虑优化的情况下，Python 解释器一行一行地读取我们写的代码，然后把代码翻译为机器指令（准确来说是 bytecode）执行。GIL 就是对这个解释器上了一把锁，让它在任何时刻都只能执行一条指令。对于 GIL 的实现细节，可以在阅读完本文后参阅 <a class=link href=https://cyrusin.github.io/2016/04/27/python-gil-implementaion/ target=_blank rel=noopener>GIL 的实现细节</a>一文加深理解。</p>
 <p>需要注意的是，GIL 仅存在于 Python 官方的 CPython 实现和 PyPy 中，使用其它语言实现的 Python 解释器（如 Jython）并不存在这个限制，所以本文涉及 GIL 时所指的 Python 都是 CPython 实现。</p>
-<h2 id="为什么需要-gil">为什么需要 GIL</h2>
+<h2 id=为什么需要-gil>为什么需要 GIL</h2>
 <p>对于其它的主流语言（C/C++ 和 Java 等），它们并不会阻止在同一时刻多个线程的存在，为什么 Python 这么特殊，非要给解释器上一个锁，令我们写的多线程代码没法并行呢。</p>
-<p>不少人会回答这是为了解决 Python 的内存管理问题而引入 GIL。且慢，GIL 和内存管理有什么关系？准确来说 GIL 和内存管理中的<a class="link" href="https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29"  target="_blank" rel="noopener"
-    >垃圾回收</a>（Garbage Collection，简称 gc）有关，假如你只学过 C 语言，那你可能在刚开始写 Python 时感到有点疑惑：为什么大家的代码在创建新对象后都不手动销毁，不会内存泄漏吗。然后你知道了 Python 有 gc，可以自动帮你回收不用的内存，像 Java、Go 等语言也有 gc，所以大家都不担心自己忘记销毁对象。可为什么其它具有 gc 的语言不存在 GIL 呢？这个问题可以从 Python 的起源获得一部分解答，Python 本身可以说是一个为了好玩而产生的项目，所以采用简单的方式实现 gc 是一个很合理的选择，这个简单的方式就是引用计数（学过 C++ 的同学是否觉得这个名词很熟悉）。<em>经热心群友提醒，Python 的 gc 实现不只是简单的引用计数，还用到了<a class="link" href="https://devguide.python.org/garbage_collector/#optimization-generations"  target="_blank" rel="noopener"
-    >分代 gc</a> 作为优化手段，该 gc 实现并不是线程安全的</em>。Python 中的所有东西都是对象，每个对象都有一个引用计数值，当一个对象的引用计数归零时（代表已经没有任何地方用到这个对象了），Python 就会销毁对象并回收对应的内存，以此实现自动管理内存。你可以通过以下方式查看对象的引用计数：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">a</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<p>不少人会回答这是为了解决 Python 的内存管理问题而引入 GIL。且慢，GIL 和内存管理有什么关系？准确来说 GIL 和内存管理中的<a class=link href=https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29 target=_blank rel=noopener>垃圾回收</a>（Garbage Collection，简称 gc）有关，假如你只学过 C 语言，那你可能在刚开始写 Python 时感到有点疑惑：为什么大家的代码在创建新对象后都不手动销毁，不会内存泄漏吗。然后你知道了 Python 有 gc，可以自动帮你回收不用的内存，像 Java、Go 等语言也有 gc，所以大家都不担心自己忘记销毁对象。可为什么其它具有 gc 的语言不存在 GIL 呢？这个问题可以从 Python 的起源获得一部分解答，Python 本身可以说是一个为了好玩而产生的项目，所以采用简单的方式实现 gc 是一个很合理的选择，这个简单的方式就是引用计数（学过 C++ 的同学是否觉得这个名词很熟悉）。<em>经热心群友提醒，Python 的 gc 实现不只是简单的引用计数，还用到了<a class=link href=https://devguide.python.org/garbage_collector/#optimization-generations target=_blank rel=noopener>分代 gc</a> 作为优化手段，该 gc 实现并不是线程安全的</em>。Python 中的所有东西都是对象，每个对象都有一个引用计数值，当一个对象的引用计数归零时（代表已经没有任何地方用到这个对象了），Python 就会销毁对象并回收对应的内存，以此实现自动管理内存。你可以通过以下方式查看对象的引用计数：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>sys</span>
+<span class=n>a</span> <span class=o>=</span> <span class=p>[]</span>
+<span class=n>b</span> <span class=o>=</span> <span class=n>a</span>
+<span class=n>sys</span><span class=o>.</span><span class=n>getrefcount</span><span class=p>(</span><span class=n>a</span><span class=p>)</span>
 </code></pre></div><p>上文说到了引用计数对于 gc 的作用，接下来有个重要的问题：我们该如何确保在多线程环境下对象的引用计数是正确的呢？对并发有点了解的人肯定会回答，这就是一个竞态冲突问题，每次读写线程间共享的对象的引用计数前上锁就行了。的确，这样可以解决上述问题，但是，这可能导致死锁，此外频繁获取与释放锁会带来严重的性能问题，所以 Python 官方没有采用这个方案，而是采用了 GIL（主角登场了）。GIL 的思路很简单：与其对多个对象上锁，不如只对解释器上一个锁，有效避免上多个锁的问题。对于 Python 官方来说，既然已经采用了简单的方法实现 gc，那也采用简单的方法解决引用计数的竞态冲突问题是很合理的，当然，代价就是 Python 的多线程无法实现并行。</p>
 <p>在当年来说，使用 GIL 并没有什么问题，可是当 Python 逐渐被用于后端开发后，不少开发者都开始抱怨 GIL，而且正好 Python3 带来了一堆不兼容 Python2 的改变，为什么此时不干掉 GIL 呢？</p>
-<p>去除 GIL 有很多种办法，例如更改 gc 的实现，使其不再依赖引用计数，或者采用其它解决引用计数的竞态冲突问题的方案，等等。可惜的是，这些方案要么太难以实现，要么会降低单线程应用和多线程 I/O 密集型应用的性能，所以<a class="link" href="https://www.artima.com/weblogs/viewpost.jsp?thread=214235"  target="_blank" rel="noopener"
-    >移除 GIL 并不简单</a>。</p>
+<p>去除 GIL 有很多种办法，例如更改 gc 的实现，使其不再依赖引用计数，或者采用其它解决引用计数的竞态冲突问题的方案，等等。可惜的是，这些方案要么太难以实现，要么会降低单线程应用和多线程 I/O 密集型应用的性能，所以<a class=link href="https://www.artima.com/weblogs/viewpost.jsp?thread=214235" target=_blank rel=noopener>移除 GIL 并不简单</a>。</p>
 <p>除此以外，还有一个原因，那就是我们提到 Python 的优点时经常列举的一点：Python 可以轻易集成使用 C/C++ 语言编写的库，它们极大丰富了 Python 的生态，调用这些库时也不用担心性能问题。虽然这些 C 库铸就了 Python 的辉煌，但也存在一个问题：这些 C 库本身不一定是线程安全的，在多线程环境下可能会出现各种奇怪的问题，这点应该不少用 C 语言写过应用的人都深有体会，要想兼容这些线程不安全的 C 库，GIL 是最简单（也许是唯一）的方案。</p>
-<h2 id="python-的多线程真的没用吗">Python 的多线程真的没用吗</h2>
+<h2 id=python-的多线程真的没用吗>Python 的多线程真的没用吗</h2>
 <p>虽然大家都在吐槽 Python 的多线程约等于单线程，但其实在某些情况下 Python 的多线程依然是有用的。首先我们需要区分 I/O 密集型应用与计算密集型应用这两种情况，前者经常等待 I/O 操作，例如读写数据库，上传/下载文件，后者在运行时会消耗掉所有分配给它的 CPU 资源进行计算，例如图像处理。</p>
 <p>对于计算密集型应用来说，Python 的多线程反倒是一个累赘：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>time</span>
+<span class=kn>from</span> <span class=nn>threading</span> <span class=kn>import</span> <span class=n>Thread</span>
 
-<span class="n">COUNT</span> <span class="o">=</span> <span class="mi">50000000</span>
+<span class=n>COUNT</span> <span class=o>=</span> <span class=mi>50000000</span>
 
-<span class="k">def</span> <span class="nf">countdown</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class=k>def</span> <span class=nf>countdown</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+    <span class=k>while</span> <span class=n>n</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>:</span>
+        <span class=n>n</span> <span class=o>-=</span> <span class=mi>1</span>
 
-<span class="n">t1</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">countdown</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">COUNT</span><span class="o">//</span><span class="mi">2</span><span class="p">,))</span>
-<span class="n">t2</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">countdown</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">COUNT</span><span class="o">//</span><span class="mi">2</span><span class="p">,))</span>
+<span class=n>t1</span> <span class=o>=</span> <span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>countdown</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=n>COUNT</span><span class=o>//</span><span class=mi>2</span><span class=p>,))</span>
+<span class=n>t2</span> <span class=o>=</span> <span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>countdown</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=n>COUNT</span><span class=o>//</span><span class=mi>2</span><span class=p>,))</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">t1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<span class="n">t2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-<span class="n">t2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class=n>start</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
+<span class=n>t1</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+<span class=n>t2</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+<span class=n>t1</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+<span class=n>t2</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+<span class=n>end</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">time</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>end</span> <span class=o>-</span> <span class=n>start</span><span class=p>)</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>time</span>
 
-<span class="n">COUNT</span> <span class="o">=</span> <span class="mi">50000000</span>
+<span class=n>COUNT</span> <span class=o>=</span> <span class=mi>50000000</span>
 
-<span class="k">def</span> <span class="nf">countdown</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class=k>def</span> <span class=nf>countdown</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+    <span class=k>while</span> <span class=n>n</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>:</span>
+        <span class=n>n</span> <span class=o>-=</span> <span class=mi>1</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">countdown</span><span class="p">(</span><span class="n">COUNT</span><span class="p">)</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class=n>start</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
+<span class=n>countdown</span><span class=p>(</span><span class=n>COUNT</span><span class=p>)</span>
+<span class=n>end</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>end</span> <span class=o>-</span> <span class=n>start</span><span class=p>)</span>
 </code></pre></div><p>实际运行后会发现上面的多线程版本居然比单线程要慢一点，原因就是多线程不能并行，与单线程相比，多线程版本中线程间的上下文切换还浪费了一些时间。</p>
 <p>那么 I/O 密集型应用的情况呢（使用 time.sleep 模拟 I/O 操作）：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>time</span>
+<span class=kn>from</span> <span class=nn>threading</span> <span class=kn>import</span> <span class=n>Thread</span>
 
 
-<span class="k">def</span> <span class="nf">fake_io</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class=k>def</span> <span class=nf>fake_io</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+    <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=n>n</span><span class=p>)</span>
 
-<span class="n">t1</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">fake_io</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))</span>
-<span class="n">t2</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">fake_io</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))</span>
+<span class=n>t1</span> <span class=o>=</span> <span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>fake_io</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=mi>2</span><span class=p>,))</span>
+<span class=n>t2</span> <span class=o>=</span> <span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>fake_io</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=mi>2</span><span class=p>,))</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">t1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<span class="n">t2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-<span class="n">t2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class=n>start</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
+<span class=n>t1</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+<span class=n>t2</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+<span class=n>t1</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+<span class=n>t2</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+<span class=n>end</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">time</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>end</span> <span class=o>-</span> <span class=n>start</span><span class=p>)</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>time</span>
 
 
-<span class="k">def</span> <span class="nf">fake_io</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class=k>def</span> <span class=nf>fake_io</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+    <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=n>n</span><span class=p>)</span>
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">fake_io</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">fake_io</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class=n>start</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
+<span class=n>fake_io</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+<span class=n>fake_io</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+<span class=n>end</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>end</span> <span class=o>-</span> <span class=n>start</span><span class=p>)</span>
 </code></pre></div><p>这回多线程版本大获全胜，仅用了约2秒结束运行，而单线程版本用了约4秒。</p>
 <p>看到这里，有些同学可能有点奇怪，为什么此时多线程看上去像是没有 GIL 那样以并行状态运行，只用了2秒就结束。其实这里并没有并行，Python 始终只使用了一个 CPU 核心，只是 Python 对 I/O 操作做了一个优化：当进行 I/O 或 time.sleep 这样会阻塞当前线程的操作前会主动释放 GIL，自己等待导致阻塞的任务完成，由于 GIL 被释放所以其它的线程能够运行，完成后该线程再获取 GIL。这个优化并不能实现并行，因为在同一时刻依然只有一个单位在工作，但得益于它，Python 的 I/O 密集型应用在多线程下的表现要比单线程好。所以，Python 的多线程并不是完全没用的。</p>
-<h2 id="为什么依然需要线程锁">为什么依然需要线程锁</h2>
+<h2 id=为什么依然需要线程锁>为什么依然需要线程锁</h2>
 <p>当我第一次知道 Python 的 GIL 对多线程的影响后，就产生了一个挥之不去的问题：既然都有 GIL 了，为什么多线程编程还需要上线程锁呢？现在想来，我应该是被相关文章里的“Python 多线程约等于单线程”这个说法给误导了：既然等于单线程，那就不需要用于多线程的线程锁吧？本质上来说，这属于对定义不够了解所产生的问题。从运行时的状态来说，即使采用了多线程编程，Python 在同一时刻也的确只有一个线程在运行，可是这并不代表我们可以忽略线程安全问题。如果对 GIL 和线程锁的定义和作用有足够的了解，那么就不会存在这个问题，显然，假如有了 GIL 后在多线程环境下可以不用线程锁，那 GIL 就必须提供与线程锁相同的功能。从这点出发，上文已经提到，GIL 是作用于解释器的，确保同一时刻只能存在一个线程，而线程锁作用于多线程编程里的临界区，或者说是对应代码里的共享数据，确保不会发生竞态冲突。前者并不能实现后者的功能，举个多线程下的例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">threading</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>threading</span>
 
-<span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class=n>n</span> <span class=o>=</span> <span class=mi>0</span>
 
-<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">n</span>
-    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class=k>def</span> <span class=nf>foo</span><span class=p>():</span>
+    <span class=k>global</span> <span class=n>n</span>
+    <span class=n>n</span> <span class=o>+=</span> <span class=mi>1</span>
 
-<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
-    <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class=n>threads</span> <span class=o>=</span> <span class=p>[]</span>
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>100</span><span class=p>):</span>
+    <span class=n>t</span> <span class=o>=</span> <span class=n>threading</span><span class=o>.</span><span class=n>Thread</span><span class=p>(</span><span class=n>target</span><span class=o>=</span><span class=n>foo</span><span class=p>)</span>
+    <span class=n>threads</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>t</span><span class=p>)</span>
 
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class=k>for</span> <span class=n>t</span> <span class=ow>in</span> <span class=n>threads</span><span class=p>:</span>
+    <span class=n>t</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
 
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class=k>for</span> <span class=n>t</span> <span class=ow>in</span> <span class=n>threads</span><span class=p>:</span>
+    <span class=n>t</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</code></pre></div><p>有时候这段没有使用线程锁的代码不一定能输出100这个值，具体原因就是 GIL 并不保证执行完成一个线程里的操作后才切换到另一线程，也就是说不加线程锁可能会出现：线程 A 读取了变量 n（假设此时是 10），线程 B 读取变量 n（此时是 10），线程 B 修改了变量 n（n = 10 + 1），线程 A 修改变量 n（n = <strong>10</strong> + 1）。此时线程 A 对变量 n 的修改会导致错误的结果（它修改的是过时的值）。这与其它语言中的线程安全问题是相似的，<a class="link" href="https://opensource.com/article/17/4/grok-gil"  target="_blank" rel="noopener"
-    >Grok the GIL: How to write fast and thread-safe Python</a> 一文从原子操作的角度解释了为什么 Python 依然需要线程锁。</p>
+<span class=nb>print</span><span class=p>(</span><span class=n>n</span><span class=p>)</span>
+</code></pre></div><p>有时候这段没有使用线程锁的代码不一定能输出100这个值，具体原因就是 GIL 并不保证执行完成一个线程里的操作后才切换到另一线程，也就是说不加线程锁可能会出现：线程 A 读取了变量 n（假设此时是 10），线程 B 读取变量 n（此时是 10），线程 B 修改了变量 n（n = 10 + 1），线程 A 修改变量 n（n = <strong>10</strong> + 1）。此时线程 A 对变量 n 的修改会导致错误的结果（它修改的是过时的值）。这与其它语言中的线程安全问题是相似的，<a class=link href=https://opensource.com/article/17/4/grok-gil target=_blank rel=noopener>Grok the GIL: How to write fast and thread-safe Python</a> 一文从原子操作的角度解释了为什么 Python 依然需要线程锁。</p>
 <p>尽管仍然需要线程锁，但是 GIL 还是为 Python 多线程编程带来了一个好处：无需像其它语言那样考虑锁的颗粒度，上粗颗粒度的锁并没有任何问题，只需确保上线程锁的那部分代码不存在 I/O 等会释放 GIL 的操作，不然的话会导致性能下降，原因是：在当前线程进行 I/O 时，GIL 被自动释放，一般情况下会自动切换到另一线程，但是如果此时线程锁未被释放，那将导致另一线程无法进入临界区，不得不等待持有线程锁的线程完成 I/O。</p>
-<h1 id="如何实现并发">如何实现并发</h1>
+<h1 id=如何实现并发>如何实现并发</h1>
 <p>在存在 GIL 的情况下，该如何实现并发编程并且让 Python 能在同样的时间内处理更多的事情呢？大致有以下几种思路。</p>
-<h2 id="多线程协程">多线程/协程</h2>
-<p>之所以把多线程和协程放在一起，是因为这两者都无法实现并行。<a class="link" href="https://en.wikipedia.org/wiki/Coroutine"  target="_blank" rel="noopener"
-    >协程（Coroutine）</a>也是在遇到 I/O 等阻塞操作时主动让出 CPU 的控制权让其它协程能够运行，思路都是让 CPU 单核不要浪费时间在等待阻塞操作上，只不过与多线程相比协程的花销更小，现在越来越多的强调性能的 Python 框架开始采用协程，如 <a class="link" href="https://fastapi.tiangolo.com/"  target="_blank" rel="noopener"
-    >FastAPI</a>、<a class="link" href="https://github.com/encode/httpx"  target="_blank" rel="noopener"
-    >HTTPX</a> 等。历史上 Python 存在多种实现协程的方式，如 Gevent、yield 等，现在 Python 官方推荐的是通过 <a class="link" href="https://docs.python.org/zh-cn/3/library/asyncio-task.html"  target="_blank" rel="noopener"
-    >async/await</a> 关键字实现。这两者都适合在 I/O 密集型应用中使用。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<h2 id=多线程协程>多线程/协程</h2>
+<p>之所以把多线程和协程放在一起，是因为这两者都无法实现并行。<a class=link href=https://en.wikipedia.org/wiki/Coroutine target=_blank rel=noopener>协程（Coroutine）</a>也是在遇到 I/O 等阻塞操作时主动让出 CPU 的控制权让其它协程能够运行，思路都是让 CPU 单核不要浪费时间在等待阻塞操作上，只不过与多线程相比协程的花销更小，现在越来越多的强调性能的 Python 框架开始采用协程，如 <a class=link href=https://fastapi.tiangolo.com/ target=_blank rel=noopener>FastAPI</a>、<a class=link href=https://github.com/encode/httpx target=_blank rel=noopener>HTTPX</a> 等。历史上 Python 存在多种实现协程的方式，如 Gevent、yield 等，现在 Python 官方推荐的是通过 <a class=link href=https://docs.python.org/zh-cn/3/library/asyncio-task.html target=_blank rel=noopener>async/await</a> 关键字实现。这两者都适合在 I/O 密集型应用中使用。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>asyncio</span>
+<span class=kn>import</span> <span class=nn>time</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">say_after</span><span class="p">(</span><span class="n">delay</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">what</span><span class="p">)</span>
+<span class=k>async</span> <span class=k>def</span> <span class=nf>say_after</span><span class=p>(</span><span class=n>delay</span><span class=p>,</span> <span class=n>what</span><span class=p>):</span>
+    <span class=k>await</span> <span class=n>asyncio</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=n>delay</span><span class=p>)</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>what</span><span class=p>)</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">task1</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
-        <span class="n">say_after</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">))</span>
+<span class=k>async</span> <span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+    <span class=n>task1</span> <span class=o>=</span> <span class=n>asyncio</span><span class=o>.</span><span class=n>create_task</span><span class=p>(</span>
+        <span class=n>say_after</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;hello&#39;</span><span class=p>))</span>
 
-    <span class="n">task2</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
-        <span class="n">say_after</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">))</span>
+    <span class=n>task2</span> <span class=o>=</span> <span class=n>asyncio</span><span class=o>.</span><span class=n>create_task</span><span class=p>(</span>
+        <span class=n>say_after</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=s1>&#39;world&#39;</span><span class=p>))</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;started at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;started at </span><span class=si>{</span><span class=n>time</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s1>&#39;</span><span class=si>%X</span><span class=s1>&#39;</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+    <span class=n>start</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
 
-    <span class="k">await</span> <span class="n">task1</span>
-    <span class="k">await</span> <span class="n">task2</span>
+    <span class=k>await</span> <span class=n>task1</span>
+    <span class=k>await</span> <span class=n>task2</span>
     
-    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;finished at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time taken in seconds -&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+    <span class=n>end</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>time</span><span class=p>()</span>
+    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;finished at </span><span class=si>{</span><span class=n>time</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s1>&#39;</span><span class=si>%X</span><span class=s1>&#39;</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Time taken in seconds -&#39;</span><span class=p>,</span> <span class=n>end</span> <span class=o>-</span> <span class=n>start</span><span class=p>)</span>
 
-<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
-</code></pre></div><h2 id="多进程">多进程</h2>
+<span class=n>asyncio</span><span class=o>.</span><span class=n>run</span><span class=p>(</span><span class=n>main</span><span class=p>())</span>
+</code></pre></div><h2 id=多进程>多进程</h2>
 <p>这是能让 Python 实现并行的一个方案，原因是 GIL 是针对单个解释器的，既然如此，多开几个解释器不就能同时运行多个工作了吗。当然，考虑到进程上下文切换的代价要比线程大，这个方案比较适合计算密集型应用。</p>
-<p>Python 内置的 <a class="link" href="https://docs.python.org/zh-cn/3/library/multiprocessing.html"  target="_blank" rel="noopener"
-    >multiprocessing 库</a>提供了对应的支持。值得一提的是，<a class="link" href="https://m.douban.com/book/subject/26337939/"  target="_blank" rel="noopener"
-    >《七周七并发模型》</a>的第三章“函数式编程”中提到 Clojure 语言提供了 pmap 函数实现对 map 的并行化，Python 通过进程池也可做到这点：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">multiprocessing</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<p>Python 内置的 <a class=link href=https://docs.python.org/zh-cn/3/library/multiprocessing.html target=_blank rel=noopener>multiprocessing 库</a>提供了对应的支持。值得一提的是，<a class=link href=https://m.douban.com/book/subject/26337939/ target=_blank rel=noopener>《七周七并发模型》</a>的第三章“函数式编程”中提到 Clojure 语言提供了 pmap 函数实现对 map 的并行化，Python 通过进程池也可做到这点：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>multiprocessing</span>
+<span class=kn>from</span> <span class=nn>multiprocessing</span> <span class=kn>import</span> <span class=n>Pool</span>
 
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+    <span class=k>return</span> <span class=n>x</span> <span class=o>*</span> <span class=n>x</span>
 
-<span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
-</code></pre></div><h2 id="用-c-语言重写耗时的代码">用 C 语言重写耗时的代码</h2>
-<p>最后的杀手锏，嫌弃多进程消耗资源大又想并行怎么办，答案就是把相关代码<a class="link" href="https://docs.python.org/zh-cn/3/extending/extending.html"  target="_blank" rel="noopener"
-    >用 C 语言重写</a>。C 库中的代码并不受 GIL 限制，而且一般来说 C 语言编写的代码执行速度要比 Python 快不少，还可以充分利用 CPU 的并行能力（如 SIMD），像 <a class="link" href="https://numpy.org/"  target="_blank" rel="noopener"
-    >NumPy</a> 这种科学计算库就是很好的例子。虽然性能很诱人，但是用 C 语言重写其实是一个非常麻烦的事情，没有足够技术力的情况下最好不要考虑这个方案。</p>
-<h1 id="结语">结语</h1>
+<span class=k>with</span> <span class=n>Pool</span><span class=p>(</span><span class=n>multiprocessing</span><span class=o>.</span><span class=n>cpu_count</span><span class=p>())</span> <span class=k>as</span> <span class=n>p</span><span class=p>:</span>
+    <span class=nb>print</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=n>f</span><span class=p>,</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]))</span>
+</code></pre></div><h2 id=用-c-语言重写耗时的代码>用 C 语言重写耗时的代码</h2>
+<p>最后的杀手锏，嫌弃多进程消耗资源大又想并行怎么办，答案就是把相关代码<a class=link href=https://docs.python.org/zh-cn/3/extending/extending.html target=_blank rel=noopener>用 C 语言重写</a>。C 库中的代码并不受 GIL 限制，而且一般来说 C 语言编写的代码执行速度要比 Python 快不少，还可以充分利用 CPU 的并行能力（如 SIMD），像 <a class=link href=https://numpy.org/ target=_blank rel=noopener>NumPy</a> 这种科学计算库就是很好的例子。虽然性能很诱人，但是用 C 语言重写其实是一个非常麻烦的事情，没有足够技术力的情况下最好不要考虑这个方案。</p>
+<h1 id=结语>结语</h1>
 <p>Python 的 GIL 给想要实现并行的程序员带来了一定的挑战，同时由于 Python 作为解释型语言的先天劣势，其性能在面对短时间内高流量的情况时有些无力，当然，虽说如此，不少能人还是探索了相当多的解决方案，使得 Python 的性能不至于太差，让 Python 在后端开发中依旧占据一席之地。</p>
 <p>当然，如果你实在受不了 GIL，还可以考虑使用其它语言的 Python 实现，只是，是否能使用 C 库和不同实现的细节差异所带来的坑使得并没有什么人选择这样做，改用其它语言的后端框架也是一种选择。当对高性能有所要求时，不要为难自己，换一门语言海阔天空。</p>
-
 </section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/Python/">Python</a>
-        
-    </section>
-
-
-    
-    <section class="article-copyright">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-</svg>
-
-
-
-        <span>Licensed under CC BY-NC-SA 4.0</span>
-    </section>
-    </footer>
-
-
-    
-</article>
-
-    <aside class="related-contents--wrapper">
-    
-    
-</aside>
-
-     
-    
-        
-    <div class="disqus-container">
-    
-</div>
-
-<style>
-    .disqus-container {
-        background-color: var(--card-background);
-        border-radius: var(--card-border-radius);
-        box-shadow: var(--shadow-l1);
-        padding: var(--card-padding);
-    }
-</style>
-
-<script>
-    window.addEventListener('onColorSchemeChange', (e) => {
-        if (DISQUS) {
-            DISQUS.reset({
-                reload: true
-            });
-        }
-    })
-</script>
-
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2019 - 
-        
-        2021 Vifly 的博客
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.5.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-    </section>
+<footer class=article-footer>
+<section class=article-tags>
+<a href=/tags/Python/>Python</a>
+</section>
+<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span>
+</section>
 </footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
-            >
-
-            </main>
-    
-        <aside class="sidebar right-sidebar sticky">
-            <section class="widget archives">
-                <div class="widget-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-                </div>
-                <h2 class="widget-title section-title">Table of contents</h2>
-                
-                <div class="widget--toc">
-                    <nav id="TableOfContents">
-  <ol>
-    <li><a href="#python-的-gil">Python 的 GIL</a>
-      <ol>
-        <li><a href="#gil-是什么">GIL 是什么</a></li>
-        <li><a href="#为什么需要-gil">为什么需要 GIL</a></li>
-        <li><a href="#python-的多线程真的没用吗">Python 的多线程真的没用吗</a></li>
-        <li><a href="#为什么依然需要线程锁">为什么依然需要线程锁</a></li>
-      </ol>
-    </li>
-    <li><a href="#如何实现并发">如何实现并发</a>
-      <ol>
-        <li><a href="#多线程协程">多线程/协程</a></li>
-        <li><a href="#多进程">多进程</a></li>
-        <li><a href="#用-c-语言重写耗时的代码">用 C 语言重写耗时的代码</a></li>
-      </ol>
-    </li>
-    <li><a href="#结语">结语</a></li>
-  </ol>
+</article>
+<aside class=related-contents--wrapper>
+</aside>
+<div class=disqus-container>
+</div>
+<style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style>
+<script>window.addEventListener('onColorSchemeChange',a=>{DISQUS&&DISQUS.reset({reload:!0})})</script>
+<footer class=site-footer>
+<section class=copyright>
+&copy;
+2019 -
+2021 Vifly 的博客
+</section>
+<section class=powerby>
+Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
+Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
+</section>
+</footer>
+<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
+<div class=pswp__bg></div>
+<div class=pswp__scroll-wrap>
+<div class=pswp__container>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+<div class=pswp__item></div>
+</div>
+<div class="pswp__ui pswp__ui--hidden">
+<div class=pswp__top-bar>
+<div class=pswp__counter></div>
+<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+<div class=pswp__preloader>
+<div class=pswp__preloader__icn>
+<div class=pswp__preloader__cut>
+<div class=pswp__preloader__donut></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+<div class=pswp__share-tooltip></div>
+</div>
+<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+</button>
+<div class=pswp__caption>
+<div class=pswp__caption__center></div>
+</div>
+</div>
+</div>
+</div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE=" crossorigin=anonymous>
+</main>
+<aside class="sidebar right-sidebar sticky">
+<section class="widget archives">
+<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+</div>
+<h2 class="widget-title section-title">Table of contents</h2>
+<div class=widget--toc>
+<nav id=TableOfContents>
+<ol>
+<li><a href=#python-的-gil>Python 的 GIL</a>
+<ol>
+<li><a href=#gil-是什么>GIL 是什么</a></li>
+<li><a href=#为什么需要-gil>为什么需要 GIL</a></li>
+<li><a href=#python-的多线程真的没用吗>Python 的多线程真的没用吗</a></li>
+<li><a href=#为什么依然需要线程锁>为什么依然需要线程锁</a></li>
+</ol>
+</li>
+<li><a href=#如何实现并发>如何实现并发</a>
+<ol>
+<li><a href=#多线程协程>多线程/协程</a></li>
+<li><a href=#多进程>多进程</a></li>
+<li><a href=#用-c-语言重写耗时的代码>用 C 语言重写耗时的代码</a></li>
+</ol>
+</li>
+<li><a href=#结语>结语</a></li>
+</ol>
 </nav>
-                </div>
-            </section>
-        </aside>
-    
-
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
-                defer="false"
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
+</div>
+</section>
+</aside>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
+</body>
 </html>
