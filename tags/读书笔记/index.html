@@ -27,7 +27,9 @@
 <img src=/img/avatar_hu139cde8ab2a45f6f8ca9b1d680d35535_828870_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
 </figure>
 <h1 class=site-name><a href=/>Vifly 的博客</a></h1>
-<h2 class=site-description>千里之行，始于足下</h2><ol class=social-menu>
+<script>fetch('https://api.github.com/gists/7a04e2188185ddb19cbd19d8217b9400').then(a=>{if(a.ok)return a.json();throw new Error('Unable to fetch gist slogans.')}).then(a=>JSON.parse(a.files["slogans.json"].content)).then(a=>a[Math.floor(Math.random()*a.length)].content).then(a=>{a.length>10?document.getElementById("slogan").innerHTML="<h2 id='slogan' class='site-description-long'>"+a+"</h2>":document.getElementById("slogan").innerHTML="<h2 id='slogan' class='site-description'>"+a+"</h2>"})</script>
+<h2 id=slogan class=site-description> </h2>
+<ol class=social-menu>
 <li>
 <a href=mailto:viflythink@gmail.com target=_blank title=Email><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
 </a>
