@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vifly 的博客</title><link>https://vifly.github.io/</link><description>Recent content on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 21 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://vifly.github.io/atom.xml" rel="self" type="application/rss+xml"/><item><title>从 Material 主题迁移到 Stack 主题</title><link>https://vifly.github.io/Migrate_from_Material_to_Stack/</link><pubDate>Sun, 21 Nov 2021 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Migrate_from_Material_to_Stack/</guid><description>&lt;img src="https://vifly.github.io/Migrate_from_Material_to_Stack/show.jpg" alt="Featured image of post 从 Material 主题迁移到 Stack 主题" />&lt;p>在用了近三年的 Material 主题后，我终于决定更换博客主题了。尽管当初在我开始写博客时，Material 主题已经不维护了，但我暂时没找到更符合自己需求的主题，于是便一直用到了现在。当然，那时的我已经有将来会更换主题的预感了，而如今这一只脚终于落地，给博客换上了看上去更现代的 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vifly 的博客</title><link>https://viflythink.com/</link><description>Recent content on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 21 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/atom.xml" rel="self" type="application/rss+xml"/><item><title>从 Material 主题迁移到 Stack 主题</title><link>https://viflythink.com/Migrate_from_Material_to_Stack/</link><pubDate>Sun, 21 Nov 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Migrate_from_Material_to_Stack/</guid><description>&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/show.jpg" alt="Featured image of post 从 Material 主题迁移到 Stack 主题" />&lt;p>在用了近三年的 Material 主题后，我终于决定更换博客主题了。尽管当初在我开始写博客时，Material 主题已经不维护了，但我暂时没找到更符合自己需求的主题，于是便一直用到了现在。当然，那时的我已经有将来会更换主题的预感了，而如今这一只脚终于落地，给博客换上了看上去更现代的 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >Stack 主题&lt;/a>，也从 Hexo 迁移到了 Hugo，于是写下本文说明一下相关的经过（&lt;del>又能水一篇博文了&lt;/del>）。&lt;/p>
 &lt;h1 id="为什么要换主题">为什么要换主题&lt;/h1>
 &lt;p>先列举一下旧方案的不足吧。Material 主题并不差，设计风格符合我的胃口，而且提供了我所需要的功能，但用了这么久，由于各种原因令我想更换博客主题：&lt;/p>
@@ -51,8 +51,8 @@ style="
 flex-grow: 199;
 flex-basis: 479px"
 >
-&lt;a href="https://vifly.github.io/Migrate_from_Material_to_Stack/material_blog_homepage.png" data-size="1877x940">
-&lt;img src="https://vifly.github.io/Migrate_from_Material_to_Stack/material_blog_homepage.png"
+&lt;a href="https://viflythink.com/Migrate_from_Material_to_Stack/material_blog_homepage.png" data-size="1877x940">
+&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/material_blog_homepage.png"
 width="1877"
 height="940"
 loading="lazy"
@@ -66,8 +66,8 @@ style="
 flex-grow: 209;
 flex-basis: 502px"
 >
-&lt;a href="https://vifly.github.io/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg" data-size="1886x900">
-&lt;img src="https://vifly.github.io/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg"
+&lt;a href="https://viflythink.com/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg" data-size="1886x900">
+&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg"
 width="1886"
 height="900"
 loading="lazy"
@@ -81,7 +81,7 @@ alt="使用 Stack 主题的博客主页">
 &lt;p>另外，有一个读者无法察觉但我能明显感知到的变化：迁移后的博客构建速度变快了。这大概是 Hugo 的优化比 Hexo 好导致的，不过并不能完全怪罪 Hexo，因为这也与我之前用的 Material 主题许久不更新，没有用上 Hexo 的用于加快构建速度的新特性有关。总之目前的构建速度终于让我感到舒服了，能够快速看到改动效果这一点在修改主题样式时十分有用。&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
 &lt;p>我有时会开玩笑说：“写博客哪有写博客主题有意思”，包括这次迁移在内，看着刚开始时一个标准的模板被改造成了自己想要的样子的确很有意思，但我认为开设博客的目的更应该是写一些自己觉得有价值的内容，博客的外观与设计的确很重要，体现了博主的品位与喜好，但世界上并不缺少能展示自己品位的方法，写博客却是少有的通过文字阐述观点、分享知识与经历的行为，所以我会尽量不让与网站相关的博文占到总博文数的一半，而是尽量让博客涉及更多领域的内容，这也是我为本博客所设立的一个目标。&lt;/p>
-&lt;p>最后，希望本次愉快的博客迁移能激励我提高一些更新博客的频率（咕咕咕）。最近来说，我也有了一些新想法，考虑到不是所有的新想法都有必要写一篇博文来说明，未来我可能会在其它平台（Twitter、Telegram 频道等）或另一个自建站点记录与说明这些东西，也可能会考虑建立公开 Wiki 知识库这样的站点来分享自己的知识，总之这些都是目前只存在于脑海中的想法，这些任务就交给未来的自己了。本篇水文到此结束，谢谢有耐心读到最后的读者。&lt;/p></description></item><item><title>2021 中科大信息安全大赛题解</title><link>https://vifly.github.io/Hackergame_2021_writeups/</link><pubDate>Sun, 31 Oct 2021 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Hackergame_2021_writeups/</guid><description>&lt;img src="https://vifly.github.io/Hackergame_2021_writeups/show.jpg" alt="Featured image of post 2021 中科大信息安全大赛题解" />&lt;p>这是我第二次参加 Hackergame 了，今年依然玩的很开心，感受到了来自不同领域的考验，更开心的是与&lt;a class="link" href="https://viflythink.com/Hackergame_2020_writeups/" target="_blank" rel="noopener"
+&lt;p>最后，希望本次愉快的博客迁移能激励我提高一些更新博客的频率（咕咕咕）。最近来说，我也有了一些新想法，考虑到不是所有的新想法都有必要写一篇博文来说明，未来我可能会在其它平台（Twitter、Telegram 频道等）或另一个自建站点记录与说明这些东西，也可能会考虑建立公开 Wiki 知识库这样的站点来分享自己的知识，总之这些都是目前只存在于脑海中的想法，这些任务就交给未来的自己了。本篇水文到此结束，谢谢有耐心读到最后的读者。&lt;/p></description></item><item><title>2021 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2021_writeups/</link><pubDate>Sun, 31 Oct 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Hackergame_2021_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/show.jpg" alt="Featured image of post 2021 中科大信息安全大赛题解" />&lt;p>这是我第二次参加 Hackergame 了，今年依然玩的很开心，感受到了来自不同领域的考验，更开心的是与&lt;a class="link" href="https://viflythink.com/Hackergame_2020_writeups/" target="_blank" rel="noopener"
 >上一年&lt;/a>的 800 分相比，今年拿到了 1150 分，有所进步😂。虽然我做出来的题并不多，而且有些简单的题目没解决，但还是写一篇博文提供题解吧。希望本篇博文能够帮到想参加 Hackergame 的各位小伙伴。&lt;/p>
 &lt;h1 id="签到">签到&lt;/h1>
 &lt;p>与上一年的签到题相比，今年连脑筋急转弯都不需要了，每次点 Next 时间都会 +1s（唐突玩梗），我们只要把时间翻到本届大赛的举办日期即可，也就是说需要计算出 1970 年 1 月 1 日与 2021 年 CTF 大赛的时间差（用秒表示）。这里随便选取一个符合 2021 年 CTF 大赛时间范围的时间，然后使用 Python 计算：&lt;/p>
@@ -97,8 +97,8 @@ style="
 flex-grow: 160;
 flex-basis: 384px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2021_writeups/get_2021_qiandao_flag.png" data-size="1432x894">
-&lt;img src="https://vifly.github.io/Hackergame_2021_writeups/get_2021_qiandao_flag.png"
+&lt;a href="https://viflythink.com/Hackergame_2021_writeups/get_2021_qiandao_flag.png" data-size="1432x894">
+&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_2021_qiandao_flag.png"
 width="1432"
 height="894"
 loading="lazy"
@@ -154,8 +154,8 @@ style="
 flex-grow: 121;
 flex-basis: 291px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2021_writeups/get_GraphQL_schema.png" data-size="759x624">
-&lt;img src="https://vifly.github.io/Hackergame_2021_writeups/get_GraphQL_schema.png"
+&lt;a href="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_schema.png" data-size="759x624">
+&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_schema.png"
 width="759"
 height="624"
 loading="lazy"
@@ -171,8 +171,8 @@ style="
 flex-grow: 302;
 flex-basis: 725px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2021_writeups/get_GraphQL_flag.png" data-size="837x277">
-&lt;img src="https://vifly.github.io/Hackergame_2021_writeups/get_GraphQL_flag.png"
+&lt;a href="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_flag.png" data-size="837x277">
+&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_flag.png"
 width="837"
 height="277"
 loading="lazy"
@@ -189,8 +189,8 @@ style="
 flex-grow: 181;
 flex-basis: 436px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2021_writeups/query_when_enable_introspection.png" data-size="587x323">
-&lt;img src="https://vifly.github.io/Hackergame_2021_writeups/query_when_enable_introspection.png"
+&lt;a href="https://viflythink.com/Hackergame_2021_writeups/query_when_enable_introspection.png" data-size="587x323">
+&lt;img src="https://viflythink.com/Hackergame_2021_writeups/query_when_enable_introspection.png"
 width="587"
 height="323"
 loading="lazy"
@@ -235,8 +235,8 @@ style="
 flex-grow: 169;
 flex-basis: 405px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2021_writeups/cybercook_level0_flag.png" data-size="1537x909">
-&lt;img src="https://vifly.github.io/Hackergame_2021_writeups/cybercook_level0_flag.png"
+&lt;a href="https://viflythink.com/Hackergame_2021_writeups/cybercook_level0_flag.png" data-size="1537x909">
+&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level0_flag.png"
 width="1537"
 height="909"
 loading="lazy"
@@ -259,8 +259,8 @@ style="
 flex-grow: 157;
 flex-basis: 378px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2021_writeups/cybercook_level1_flag.png" data-size="1427x905">
-&lt;img src="https://vifly.github.io/Hackergame_2021_writeups/cybercook_level1_flag.png"
+&lt;a href="https://viflythink.com/Hackergame_2021_writeups/cybercook_level1_flag.png" data-size="1427x905">
+&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level1_flag.png"
 width="1427"
 height="905"
 loading="lazy"
@@ -278,7 +278,7 @@ alt="Level 1 flag">
 &lt;p>“Easy RSA”，看到题目说“你还获得了构造 p 和 q 的方式”，我还以为今年终于能解决一道 math 类的题目，可惜自己的数理基础太差，连怎么计算 p 都没想到，只能明年继续努力了。&lt;/p>
 &lt;p>“FLAG 助力大红包”，还以为需要在应用层以下的协议栈当中寻找伪造 IP 的办法，没想到反代服务器存在 X-Forwarded-For 欺骗漏洞，可以很轻松地伪造 IP，这也提醒我以后在涉及 IP 识别的代码中不要信任 X-Forwarded-For 头标。&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
-&lt;p>今年的中科大信息安全大赛依然很好玩，就算没解决题目，很多题目的描述看了以后都让我发出了笑声。虽然做出来的题目不多，但面对每道题目都绞尽脑汁寻找解题方法时的感觉非常美妙。今年也是我第一次做出来一小道 binary 类题目，当然，我在这方面的基础还是不够，只能多学习点东西，在明年的 Hackergame 尝试再进一步。&lt;/p></description></item><item><title>使用 Vercel 与 OneDrive 自建软件源</title><link>https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/</link><pubDate>Sat, 04 Sep 2021 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/</guid><description>&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg" alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" />&lt;p>&lt;em>2021.11.12.更新：增加了关于 GPG 签名的说明。&lt;/em>&lt;/p>
+&lt;p>今年的中科大信息安全大赛依然很好玩，就算没解决题目，很多题目的描述看了以后都让我发出了笑声。虽然做出来的题目不多，但面对每道题目都绞尽脑汁寻找解题方法时的感觉非常美妙。今年也是我第一次做出来一小道 binary 类题目，当然，我在这方面的基础还是不够，只能多学习点东西，在明年的 Hackergame 尝试再进一步。&lt;/p></description></item><item><title>使用 Vercel 与 OneDrive 自建软件源</title><link>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</link><pubDate>Sat, 04 Sep 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</guid><description>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg" alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" />&lt;p>&lt;em>2021.11.12.更新：增加了关于 GPG 签名的说明。&lt;/em>&lt;/p>
 &lt;p>大家好，又是本鸽子久违的博客更新。之前的&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
 >《GitHub Actions 打造 AUR 打包下载一条龙服务》&lt;/a>已经折腾出了完全白嫖的编译机，可好景不长，当我的机器数量变多后，我发现在每台机器上运行脚本下载软件包的确有点麻烦，与其自己写一个脚本下载软件包，还不如直接自建一个软件源呢。经过一番研究后，我盯上了 OneDrive 与 Vercel 这两个可以免费使用的服务，通过它们实现了自建一个完全免费而且在国内外都可高速访问的软件源。&lt;/p>
 &lt;p>本文是对&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
@@ -306,8 +306,8 @@ style="
 flex-grow: 243;
 flex-basis: 584px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png" data-size="1914x786">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png" data-size="1914x786">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png"
 width="1914"
 height="786"
 loading="lazy"
@@ -322,8 +322,8 @@ style="
 flex-grow: 216;
 flex-basis: 520px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png" data-size="1904x878">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png" data-size="1904x878">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png"
 width="1904"
 height="878"
 loading="lazy"
@@ -338,8 +338,8 @@ style="
 flex-grow: 218;
 flex-basis: 525px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png" data-size="1918x876">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png" data-size="1918x876">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png"
 width="1918"
 height="876"
 loading="lazy"
@@ -354,8 +354,8 @@ style="
 flex-grow: 213;
 flex-basis: 513px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png" data-size="1918x897">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png" data-size="1918x897">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png"
 width="1918"
 height="897"
 loading="lazy"
@@ -388,8 +388,8 @@ style="
 flex-grow: 206;
 flex-basis: 496px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png" data-size="1868x903">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png" data-size="1868x903">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png"
 width="1868"
 height="903"
 loading="lazy"
@@ -433,8 +433,8 @@ style="
 flex-grow: 134;
 flex-basis: 323px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png" data-size="1204x893">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png" data-size="1204x893">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png"
 width="1204"
 height="893"
 loading="lazy"
@@ -459,8 +459,8 @@ style="
 flex-grow: 137;
 flex-basis: 328px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png" data-size="1236x902">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png" data-size="1236x902">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png"
 width="1236"
 height="902"
 loading="lazy"
@@ -480,8 +480,8 @@ style="
 flex-grow: 151;
 flex-basis: 362px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png" data-size="1319x873">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png" data-size="1319x873">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png"
 width="1319"
 height="873"
 loading="lazy"
@@ -496,8 +496,8 @@ style="
 flex-grow: 715;
 flex-basis: 1717px"
 >
-&lt;a href="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png" data-size="1102x154">
-&lt;img src="https://vifly.github.io/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png"
+&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png" data-size="1102x154">
+&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png"
 width="1102"
 height="154"
 loading="lazy"
@@ -508,7 +508,7 @@ alt="在 cloudflare 设置指向 Vercel 的 CNAME">
 &lt;h1 id="有待改进的地方">有待改进的地方&lt;/h1>
 &lt;p>尽管这一流程已经能工作了，但有些地方还是可以再改进一下的。&lt;del>首先，目前并没有数字签名，添加这一自建软件源时需要禁用对此的签名校验，在乎安全性的同学可能会对此表示不爽，所以日后有必要加上对软件包签名的支持。其次，urepo 应该无需修改就可以用于分发其它发行版的软件包与数据库（它的本质就是一个简陋的 onedrive index），但前面的 GitHub Actions 只支持 Arch，我未来肯定会加上对 Debian/Ubuntu 的支持，具体什么时候搞定这个，就要看我什么时候有需求了，对其它发行版的支持也是同样的😂&lt;/del>。目前已支持 GPG 签名，也新增了 &lt;a class="link" href="https://github.com/vifly/debian-build" target="_blank" rel="noopener"
 >debian-build&lt;/a> 用于构建 deb 软件包。&lt;/p>
-&lt;p>另外，我编写的 urepo 与 GitHub Actions 脚本的报错信息并不够用户友好，由于大量采用了 Python 进行编写，假如出现错误的话对于没学过 Python 的同学来说可能难以根据输出的错误信息解决问题。这个问题也是留待日后解决。&lt;/p></description></item><item><title>Python GIL 和并发编程</title><link>https://vifly.github.io/Python_GIL_and_concurrency/</link><pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Python_GIL_and_concurrency/</guid><description>&lt;img src="https://vifly.github.io/Python_GIL_and_concurrency/show.jpg" alt="Featured image of post Python GIL 和并发编程" />&lt;p>各位读者好，又是本鸽子久违的更新。最近在应聘后端开发岗位的过程中为了应对面试官各种奇怪的问题，特意整理了自己为 Python 并发编程所做的笔记，一看内容已经足够填满一篇博文了，那就作为新的一篇博文发布吧。&lt;/p>
+&lt;p>另外，我编写的 urepo 与 GitHub Actions 脚本的报错信息并不够用户友好，由于大量采用了 Python 进行编写，假如出现错误的话对于没学过 Python 的同学来说可能难以根据输出的错误信息解决问题。这个问题也是留待日后解决。&lt;/p></description></item><item><title>Python GIL 和并发编程</title><link>https://viflythink.com/Python_GIL_and_concurrency/</link><pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Python_GIL_and_concurrency/</guid><description>&lt;img src="https://viflythink.com/Python_GIL_and_concurrency/show.jpg" alt="Featured image of post Python GIL 和并发编程" />&lt;p>各位读者好，又是本鸽子久违的更新。最近在应聘后端开发岗位的过程中为了应对面试官各种奇怪的问题，特意整理了自己为 Python 并发编程所做的笔记，一看内容已经足够填满一篇博文了，那就作为新的一篇博文发布吧。&lt;/p>
 &lt;p>由于并发（concurrency）与并行（parallelism）这两个词的意义总是纠缠不清，以至于有时会看到“Python 不支持并发”这样让我哭笑不得的说法，所以先明确一下在本文中这两个词的定义：根据&lt;a class="link" href="https://laike9m.com/blog/huan-zai-yi-huo-bing-fa-he-bing-xing,61/" target="_blank" rel="noopener"
 >还在疑惑并发和并行？&lt;/a>的说明，我们把并行定义为&lt;strong>同时&lt;/strong>有多个单位工作，这指的是运行时的&lt;strong>状态&lt;/strong>，而并发则是一种&lt;strong>程序结构设计&lt;/strong>，能够实现&lt;strong>一段时间&lt;/strong>内执行逻辑上存在区别的多个操作。在应用程序层面，并发是并行的必要条件。&lt;/p>
 &lt;h1 id="python-的-gil">Python 的 GIL&lt;/h1>
@@ -645,7 +645,7 @@ alt="在 cloudflare 设置指向 Vercel 的 CNAME">
 >NumPy&lt;/a> 这种科学计算库就是很好的例子。虽然性能很诱人，但是用 C 语言重写其实是一个非常麻烦的事情，没有足够技术力的情况下最好不要考虑这个方案。&lt;/p>
 &lt;h1 id="结语">结语&lt;/h1>
 &lt;p>Python 的 GIL 给想要实现并行的程序员带来了一定的挑战，同时由于 Python 作为解释型语言的先天劣势，其性能在面对短时间内高流量的情况时有些无力，当然，虽说如此，不少能人还是探索了相当多的解决方案，使得 Python 的性能不至于太差，让 Python 在后端开发中依旧占据一席之地。&lt;/p>
-&lt;p>当然，如果你实在受不了 GIL，还可以考虑使用其它语言的 Python 实现，只是，是否能使用 C 库和不同实现的细节差异所带来的坑使得并没有什么人选择这样做，改用其它语言的后端框架也是一种选择。当对高性能有所要求时，不要为难自己，换一门语言海阔天空。&lt;/p></description></item><item><title>中科大信息安全大赛初体验</title><link>https://vifly.github.io/Hackergame_2020_writeups/</link><pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Hackergame_2020_writeups/</guid><description>&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/show.jpg" alt="Featured image of post 中科大信息安全大赛初体验" />&lt;p>半年以来的第一篇新博文！九月底的时候放弃考研，然后尝试的秋招都凉了，处于颓废期的博主正好看到第七届中科大信息安全大赛（Hackergame 2020）即将举办，于是便去参加这个 CTF 比赛转换心情。作为一个非信安专业的学生，这是我第一次参加信息安全大赛，虽然之前也看过往年中科大信息安全大赛的题解，但自己真正参与时才发现自己与专业人士的差距。专业 CTF 选手轻松占据了排行榜前列，不过本菜鸡也玩的很开心，打完比赛后不得不说比赛的题目设置都相当有趣，对信安有点兴趣的人来这个比赛玩玩保证不会后悔。&lt;/p>
+&lt;p>当然，如果你实在受不了 GIL，还可以考虑使用其它语言的 Python 实现，只是，是否能使用 C 库和不同实现的细节差异所带来的坑使得并没有什么人选择这样做，改用其它语言的后端框架也是一种选择。当对高性能有所要求时，不要为难自己，换一门语言海阔天空。&lt;/p></description></item><item><title>中科大信息安全大赛初体验</title><link>https://viflythink.com/Hackergame_2020_writeups/</link><pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate><guid>https://viflythink.com/Hackergame_2020_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/show.jpg" alt="Featured image of post 中科大信息安全大赛初体验" />&lt;p>半年以来的第一篇新博文！九月底的时候放弃考研，然后尝试的秋招都凉了，处于颓废期的博主正好看到第七届中科大信息安全大赛（Hackergame 2020）即将举办，于是便去参加这个 CTF 比赛转换心情。作为一个非信安专业的学生，这是我第一次参加信息安全大赛，虽然之前也看过往年中科大信息安全大赛的题解，但自己真正参与时才发现自己与专业人士的差距。专业 CTF 选手轻松占据了排行榜前列，不过本菜鸡也玩的很开心，打完比赛后不得不说比赛的题目设置都相当有趣，对信安有点兴趣的人来这个比赛玩玩保证不会后悔。&lt;/p>
 &lt;p>很菜的只拿到了 800 分，但下面还是写一下成功解决的题目的题解吧。&lt;/p>
 &lt;h1 id="签到">签到&lt;/h1>
 &lt;p>为了鼓励参与而设置的送分题，既然是 Web 类的题目那先在浏览器按 F12 打开开发者工具准没错，随便拉一下，点击提取，果然不能拿到 flag，不过看到浏览器发送了一个 GET 请求，其中的参数 number 就是刚才拉到的数字。&lt;/p>
@@ -655,8 +655,8 @@ style="
 flex-grow: 186;
 flex-basis: 446px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2020_writeups/try_qiandao.png" data-size="1725x927">
-&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/try_qiandao.png"
+&lt;a href="https://viflythink.com/Hackergame_2020_writeups/try_qiandao.png" data-size="1725x927">
+&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_qiandao.png"
 width="1725"
 height="927"
 loading="lazy"
@@ -671,8 +671,8 @@ style="
 flex-grow: 190;
 flex-basis: 456px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2020_writeups/get_qiandao_flag.png" data-size="1723x905">
-&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/get_qiandao_flag.png"
+&lt;a href="https://viflythink.com/Hackergame_2020_writeups/get_qiandao_flag.png" data-size="1723x905">
+&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_qiandao_flag.png"
 width="1723"
 height="905"
 loading="lazy"
@@ -699,8 +699,8 @@ style="
 flex-grow: 208;
 flex-basis: 500px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2020_writeups/try_2048.png" data-size="1920x920">
-&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/try_2048.png"
+&lt;a href="https://viflythink.com/Hackergame_2020_writeups/try_2048.png" data-size="1920x920">
+&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_2048.png"
 width="1920"
 height="920"
 loading="lazy"
@@ -715,8 +715,8 @@ style="
 flex-grow: 113;
 flex-basis: 272px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2020_writeups/2048_source_code.png" data-size="709x624">
-&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/2048_source_code.png"
+&lt;a href="https://viflythink.com/Hackergame_2020_writeups/2048_source_code.png" data-size="709x624">
+&lt;img src="https://viflythink.com/Hackergame_2020_writeups/2048_source_code.png"
 width="709"
 height="624"
 loading="lazy"
@@ -731,8 +731,8 @@ style="
 flex-grow: 529;
 flex-basis: 1269px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2020_writeups/get_fruit.png" data-size="656x124">
-&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/get_fruit.png"
+&lt;a href="https://viflythink.com/Hackergame_2020_writeups/get_fruit.png" data-size="656x124">
+&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_fruit.png"
 width="656"
 height="124"
 loading="lazy"
@@ -753,8 +753,8 @@ style="
 flex-grow: 159;
 flex-basis: 382px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2020_writeups/bills_txt.png" data-size="962x604">
-&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/bills_txt.png"
+&lt;a href="https://viflythink.com/Hackergame_2020_writeups/bills_txt.png" data-size="962x604">
+&lt;img src="https://viflythink.com/Hackergame_2020_writeups/bills_txt.png"
 width="962"
 height="604"
 loading="lazy"
@@ -796,8 +796,8 @@ style="
 flex-grow: 112;
 flex-basis: 269px"
 >
-&lt;a href="https://vifly.github.io/Hackergame_2020_writeups/get_bank_flag.png" data-size="997x887">
-&lt;img src="https://vifly.github.io/Hackergame_2020_writeups/get_bank_flag.png"
+&lt;a href="https://viflythink.com/Hackergame_2020_writeups/get_bank_flag.png" data-size="997x887">
+&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_bank_flag.png"
 width="997"
 height="887"
 loading="lazy"
@@ -820,7 +820,7 @@ alt="成功获取狗狗银行的 flag">
 &lt;h1 id="总结">总结&lt;/h1>
 &lt;p>谢谢中科大信息安全大赛，让我体验到了久违的解决问题的乐趣，我已经很久没体会过躺在床上时依然在思考比赛题目的感觉了，这次比赛成功做到了这点，对我来说这就足够了。名次并不重要，重要的是解题的乐趣。&lt;/p>
 &lt;p>如果明年还有中科大信息安全大赛，那我肯定会参加，当然，与今年没什么准备就仓促上阵不同，至少我会先看下 &lt;a class="link" href="https://ctf-wiki.github.io/ctf-wiki/" target="_blank" rel="noopener"
->CTF Wiki&lt;/a> 再来解题，争取更好的名次。也强烈安利各位还没参加过 CTF 的童鞋尝试一下中科大的信息安全大赛，并不需要多少专业技能也可解题，既可以体会到这种充满乐趣的过程，顺便还能学到一点冷门的东西。&lt;/p></description></item><item><title>GitHub Actions 打造 AUR 打包下载一条龙服务</title><link>https://vifly.github.io/Use_GitHubActions_to_build_AUR/</link><pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Use_GitHubActions_to_build_AUR/</guid><description>&lt;img src="https://vifly.github.io/Use_GitHubActions_to_build_AUR/show.png" alt="Featured image of post GitHub Actions 打造 AUR 打包下载一条龙服务" />&lt;p>&lt;em>2021.2.2.更新：受 &lt;a class="link" href="https://www.aloxaf.com/2020/06/build_aur_with_github_actions/" target="_blank" rel="noopener"
+>CTF Wiki&lt;/a> 再来解题，争取更好的名次。也强烈安利各位还没参加过 CTF 的童鞋尝试一下中科大的信息安全大赛，并不需要多少专业技能也可解题，既可以体会到这种充满乐趣的过程，顺便还能学到一点冷门的东西。&lt;/p></description></item><item><title>GitHub Actions 打造 AUR 打包下载一条龙服务</title><link>https://viflythink.com/Use_GitHubActions_to_build_AUR/</link><pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_GitHubActions_to_build_AUR/</guid><description>&lt;img src="https://viflythink.com/Use_GitHubActions_to_build_AUR/show.png" alt="Featured image of post GitHub Actions 打造 AUR 打包下载一条龙服务" />&lt;p>&lt;em>2021.2.2.更新：受 &lt;a class="link" href="https://www.aloxaf.com/2020/06/build_aur_with_github_actions/" target="_blank" rel="noopener"
 >Aloxaf 的博文&lt;/a>启发新增使用自己的 PKGBUILD 进行构建的说明。&lt;/em>&lt;/p>
 &lt;p>尽管目前博主我还在考研，但最近还是经不住折腾 Arch 的诱惑，抽空对使用 Arch 以来一直觉得体验不够好的安装 AUR 软件包流程进行改造，最终的结果就是搭建了这一个自动化的 AUR 编译打包下载安装一条龙服务，并写下本文向各位安利。要问为什么我想折腾这个东西，当然是因为使用 AUR 助手安装 AUR 的软件包存在如下缺点：&lt;/p>
 &lt;ol>
@@ -963,8 +963,8 @@ style="
 flex-grow: 229;
 flex-basis: 551px"
 >
-&lt;a href="https://vifly.github.io/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png" data-size="1918x835">
-&lt;img src="https://vifly.github.io/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png"
+&lt;a href="https://viflythink.com/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png" data-size="1918x835">
+&lt;img src="https://viflythink.com/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png"
 width="1918"
 height="835"
 loading="lazy"
@@ -973,7 +973,7 @@ alt="创建 Cloudflare Workers 应用">
 &lt;figcaption>创建 Cloudflare Workers 应用&lt;/figcaption>
 &lt;/figure>&lt;/p>
 &lt;p>注意，页面中间的域名是 Cloudflare Workers 分配给你的一个专属子域名（形如 xxx.xxx.workers.dev），复制这个域名并用它替换左侧代码中的两处域名，完成修改后点击 Save and Deploy 保存并部署，这样我们就得到了一个可以反代网络资源的应用了。&lt;/p>
-&lt;p>最后，还记得在上一小节中被忽略的 ProxyURL 配置项吗，这里各位只需填入刚刚得到的 xxx.xxx.workers.dev 域名就可以了，脚本会使用这个反代域名高速下载 GitHub Releases 的软件包。&lt;/p></description></item><item><title>永恒才是你的敌人——《永久记录》读后感</title><link>https://vifly.github.io/Permanent_Record/</link><pubDate>Fri, 28 Feb 2020 17:11:57 +0000</pubDate><guid>https://vifly.github.io/Permanent_Record/</guid><description>&lt;img src="https://vifly.github.io/Permanent_Record/show.jpg" alt="Featured image of post 永恒才是你的敌人——《永久记录》读后感" />&lt;p>我在博客的简介中说过这个博客会记录我的折腾与感想，不过到目前为止，本博客的归档里全都是技术折腾类的文章。对于我来说，写折腾记录是一件比写论述文章轻松的事情，后者需要具有明确的写作目的与结构安排，而且通用性更广，而前者则不需要管这么多。虽说如此，我早就想写论述类文章了，毕竟能看到自己的想法以一种规整的形式出现在屏幕前是一种让人十分满足的事情。在好不容易战胜长期宅在家导致的拖延症后，我终于提笔写下了本博客的第一篇论述类文章（笑）。这里顺带说一下，本文标题化用自本人最喜欢的 RPG &lt;a class="link" href="https://store.steampowered.com/app/466300/Planescape_Torment_Enhanced_Edition/" target="_blank" rel="noopener"
+&lt;p>最后，还记得在上一小节中被忽略的 ProxyURL 配置项吗，这里各位只需填入刚刚得到的 xxx.xxx.workers.dev 域名就可以了，脚本会使用这个反代域名高速下载 GitHub Releases 的软件包。&lt;/p></description></item><item><title>永恒才是你的敌人——《永久记录》读后感</title><link>https://viflythink.com/Permanent_Record/</link><pubDate>Fri, 28 Feb 2020 17:11:57 +0000</pubDate><guid>https://viflythink.com/Permanent_Record/</guid><description>&lt;img src="https://viflythink.com/Permanent_Record/show.jpg" alt="Featured image of post 永恒才是你的敌人——《永久记录》读后感" />&lt;p>我在博客的简介中说过这个博客会记录我的折腾与感想，不过到目前为止，本博客的归档里全都是技术折腾类的文章。对于我来说，写折腾记录是一件比写论述文章轻松的事情，后者需要具有明确的写作目的与结构安排，而且通用性更广，而前者则不需要管这么多。虽说如此，我早就想写论述类文章了，毕竟能看到自己的想法以一种规整的形式出现在屏幕前是一种让人十分满足的事情。在好不容易战胜长期宅在家导致的拖延症后，我终于提笔写下了本博客的第一篇论述类文章（笑）。这里顺带说一下，本文标题化用自本人最喜欢的 RPG &lt;a class="link" href="https://store.steampowered.com/app/466300/Planescape_Torment_Enhanced_Edition/" target="_blank" rel="noopener"
 >《异域镇魂曲》&lt;/a>中的一句话，原话是「时间不是你的敌人，永恒才是」。 &lt;br>
 虽然之前已经得知《永久记录》出版了，不过在这漫长的假期中，我才想到去阅读它。对我来说，这本书里的内容并不算新鲜，但对于很多我接触到的人来说，隐私是个很奇怪的问题，每次我想解释清楚时总发现三言两语是不足够的，既然如此，我就在此借《永久记录》来谈谈我对隐私的看法吧，废话就到此了，下面正式进入正文。&lt;/p>
 &lt;p>不知道各位是否记得 2013 年的“棱镜门”事件呢，这与今天要说到的《永久记录》有着密切的联系。前段时间，“棱镜计划”等大型监视项目的揭露者斯诺登出版了这本名为《永久记录》的回忆录（由于内地出版社愚蠢地阉割了书中内容，&lt;a class="link" href="https://twitter.com/Snowden/status/1226906278817124364" target="_blank" rel="noopener"
@@ -1046,7 +1046,7 @@ alt="创建 Cloudflare Workers 应用">
 &lt;li>
 &lt;p>美国这个国家已变成买新机器取代故障机器比找专家修理来得便宜，而且一定比自己去找零件设法修理来得便宜。单凭这项事实，便几乎保证会出现科技暴政，助纣为虐的不是科技本身，而是每天使用却不了解机器的所有人。&lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>将 KDE 改造为 Windows 10</title><link>https://vifly.github.io/KDE_to_Windows10/</link><pubDate>Wed, 01 Jan 2020 10:08:32 +0000</pubDate><guid>https://vifly.github.io/KDE_to_Windows10/</guid><description>&lt;img src="https://vifly.github.io/KDE_to_Windows10/show.jpg" alt="Featured image of post 将 KDE 改造为 Windows 10" />&lt;p>2020 年已然到来，一些博主已经发表了年度总结，总结了不少经验，我想了想，觉得自己好像没什么可以总结的经验，只好写一篇最近的 KDE 折腾记录给各位读者当新年礼物了。想必有不少刚开始使用 Linux 的新手总想着美化自己的桌面吧，我在开始使用 KDE 后也想着折腾美化，随便搜索了一下美化教程后发现不少都是将 KDE 改造为 Mac 风格的，之前听闻 KDE 粉说过“你可以将 KDE 捏成任何形状”，然而很多人都是将它捏成 Mac 的样子，那么，能把 KDE 捏成 win10 的形状吗？我决定挑战一下这个问题，当然，在这里我要承认这有点标题党的嫌疑，我只是想将我认为 win10 做得好的部分转嫁到 KDE 上，并不是将 KDE 完全变为 win10 的样子，后者是一件费力不讨好的事情，而且，在经过一波折腾后，我发现有些细节还暂时无法做到像 win10 那样优秀，只能寄希望于未来了。另外，本文只适用于 Arch，我尚未在其它发行版进行测试。&lt;/p>
+&lt;/ol></description></item><item><title>将 KDE 改造为 Windows 10</title><link>https://viflythink.com/KDE_to_Windows10/</link><pubDate>Wed, 01 Jan 2020 10:08:32 +0000</pubDate><guid>https://viflythink.com/KDE_to_Windows10/</guid><description>&lt;img src="https://viflythink.com/KDE_to_Windows10/show.jpg" alt="Featured image of post 将 KDE 改造为 Windows 10" />&lt;p>2020 年已然到来，一些博主已经发表了年度总结，总结了不少经验，我想了想，觉得自己好像没什么可以总结的经验，只好写一篇最近的 KDE 折腾记录给各位读者当新年礼物了。想必有不少刚开始使用 Linux 的新手总想着美化自己的桌面吧，我在开始使用 KDE 后也想着折腾美化，随便搜索了一下美化教程后发现不少都是将 KDE 改造为 Mac 风格的，之前听闻 KDE 粉说过“你可以将 KDE 捏成任何形状”，然而很多人都是将它捏成 Mac 的样子，那么，能把 KDE 捏成 win10 的形状吗？我决定挑战一下这个问题，当然，在这里我要承认这有点标题党的嫌疑，我只是想将我认为 win10 做得好的部分转嫁到 KDE 上，并不是将 KDE 完全变为 win10 的样子，后者是一件费力不讨好的事情，而且，在经过一波折腾后，我发现有些细节还暂时无法做到像 win10 那样优秀，只能寄希望于未来了。另外，本文只适用于 Arch，我尚未在其它发行版进行测试。&lt;/p>
 &lt;p>先上一张图片看看改造后的效果（图中标注了下文用到的名词所指代的东西）：&lt;/p>
 &lt;p>&lt;figure
 class="gallery-image"
@@ -1054,8 +1054,8 @@ style="
 flex-grow: 177;
 flex-basis: 426px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/my_kde_desktop.png" data-size="1920x1080">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/my_kde_desktop.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/my_kde_desktop.png" data-size="1920x1080">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/my_kde_desktop.png"
 width="1920"
 height="1080"
 loading="lazy"
@@ -1072,8 +1072,8 @@ style="
 flex-grow: 3840;
 flex-basis: 9216px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/my_bottom.png" data-size="1920x50">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/my_bottom.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/my_bottom.png" data-size="1920x50">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/my_bottom.png"
 width="1920"
 height="50"
 loading="lazy"
@@ -1090,8 +1090,8 @@ style="
 flex-grow: 32;
 flex-basis: 78px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/install_widget.png" data-size="288x880">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/install_widget.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/install_widget.png" data-size="288x880">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/install_widget.png"
 width="288"
 height="880"
 loading="lazy"
@@ -1106,8 +1106,8 @@ style="
 flex-grow: 827;
 flex-basis: 1986px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_start_menu.png" data-size="1920x232">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_start_menu.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_start_menu.png" data-size="1920x232">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_start_menu.png"
 width="1920"
 height="232"
 loading="lazy"
@@ -1122,8 +1122,8 @@ style="
 flex-grow: 128;
 flex-basis: 307px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_tiled_menu_shortcut.png" data-size="1040x811">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_tiled_menu_shortcut.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_tiled_menu_shortcut.png" data-size="1040x811">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_tiled_menu_shortcut.png"
 width="1040"
 height="811"
 loading="lazy"
@@ -1140,8 +1140,8 @@ style="
 flex-grow: 104;
 flex-basis: 251px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_alpha_black.png" data-size="636x607">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_alpha_black.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_alpha_black.png" data-size="636x607">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_alpha_black.png"
 width="636"
 height="607"
 loading="lazy"
@@ -1156,8 +1156,8 @@ style="
 flex-grow: 140;
 flex-basis: 336px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_breeze_style.png" data-size="1025x732">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_breeze_style.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_breeze_style.png" data-size="1025x732">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_style.png"
 width="1025"
 height="732"
 loading="lazy"
@@ -1171,8 +1171,8 @@ style="
 flex-grow: 126;
 flex-basis: 303px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_breeze_transparency.png" data-size="583x461">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_breeze_transparency.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_breeze_transparency.png" data-size="583x461">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_transparency.png"
 width="583"
 height="461"
 loading="lazy"
@@ -1188,8 +1188,8 @@ style="
 flex-grow: 768;
 flex-basis: 1843px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_task_manager.png" data-size="1920x250">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_task_manager.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_task_manager.png" data-size="1920x250">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_manager.png"
 width="1920"
 height="250"
 loading="lazy"
@@ -1217,8 +1217,8 @@ style="
 flex-grow: 145;
 flex-basis: 349px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_breeze10.png" data-size="1096x752">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_breeze10.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_breeze10.png" data-size="1096x752">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze10.png"
 width="1096"
 height="752"
 loading="lazy"
@@ -1235,8 +1235,8 @@ style="
 flex-grow: 135;
 flex-basis: 325px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/breeze_dolphin.png" data-size="890x656">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/breeze_dolphin.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/breeze_dolphin.png" data-size="890x656">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/breeze_dolphin.png"
 width="890"
 height="656"
 loading="lazy"
@@ -1250,8 +1250,8 @@ style="
 flex-grow: 135;
 flex-basis: 326px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/canta_light_dolphin.png" data-size="890x655">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/canta_light_dolphin.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/canta_light_dolphin.png" data-size="890x655">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/canta_light_dolphin.png"
 width="890"
 height="655"
 loading="lazy"
@@ -1271,8 +1271,8 @@ style="
 flex-grow: 144;
 flex-basis: 347px"
 >
-&lt;a href="https://vifly.github.io/KDE_to_Windows10/set_task_switch.png" data-size="1093x754">
-&lt;img src="https://vifly.github.io/KDE_to_Windows10/set_task_switch.png"
+&lt;a href="https://viflythink.com/KDE_to_Windows10/set_task_switch.png" data-size="1093x754">
+&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_switch.png"
 width="1093"
 height="754"
 loading="lazy"
@@ -1283,7 +1283,7 @@ alt="设置任务切换器">
 &lt;p>我并不喜欢每次点击关机按钮后都要进行确认，而是希望像 win10 那样直接关机，这也是稍微修改系统设置即可做到的事情，打开系统设置，在侧栏点击“开机和关机”，然后点击“桌面会话”，在“常规”处取消勾选“确认注销”。&lt;/p>
 &lt;p>差点忘了还有一个细节问题：桌面右上角的按钮好像没什么用，如何隐藏它呢。只需在桌面单击鼠标右键，点击“配置桌面”，再点击侧栏的“调整”，取消勾选“显示桌面工具箱”并点击确定即可。&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
-&lt;p>经过这么多的折腾后，我总算是大概了解 KDE 了，“你可以将 KDE 捏成任何形状”毕竟只是一句用来吹嘘的话，除非动手改源代码，否则可自定义的部分总是有极限的，例如，在完成上述改造后，我对图标任务管理器并不完全满意，因为其显示的程序图标还是偏大，导致图标之间的间距不足，无法模拟 win10 底部栏的美观大方的感觉，当然，还有其它地方的间距设置也不尽人意，这些都难以通过安装主题等手段进行改造。当然，我个人认为没必要为此下结论说开源项目都处于美工下线的状态，其实无论是 KDE，亦或是 Gnome，它们的整体外观水平已经是与 Windows、Mac 这些商业公司开发的系统持平了，Linux 用户同样能有不差的桌面体验，KDE 等桌面所欠缺的只是一些审美细节，由于我也不懂设计，这里就不多说了。如果有兴趣的话，还可以多翻翻系统设置里的选项，其中包含了大量与桌面相关的自定义选项，这已经提供了非常大的改造空间。最后，在新的一年里，祝各位折腾愉快。&lt;/p></description></item><item><title>【译】椭圆曲线密码介绍</title><link>https://vifly.github.io/translate_elliptic_curve_cryptography_explained/</link><pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate><guid>https://vifly.github.io/translate_elliptic_curve_cryptography_explained/</guid><description>&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/show.jpg" alt="Featured image of post 【译】椭圆曲线密码介绍" />&lt;p>前段时间我看到了一篇标题为 Elliptic Curve Cryptography Explained 的既通俗易懂又较为全面的介绍椭圆曲线密码的英语博文，可以说是非常优秀的一篇科普文了。看到目前在中文互联网上介绍非对称加密算法中的 RSA 加密算法的高质量文章有很多，而介绍同样属于非对称加密算法的椭圆曲线密码的高质量文章并不多，所以我将该文章翻译为中文并在我的博客上发表。原文链接是 &lt;a class="link" href="https://fangpenlin.com/posts/2019/10/07/elliptic-curve-cryptography-explained/" target="_blank" rel="noopener"
+&lt;p>经过这么多的折腾后，我总算是大概了解 KDE 了，“你可以将 KDE 捏成任何形状”毕竟只是一句用来吹嘘的话，除非动手改源代码，否则可自定义的部分总是有极限的，例如，在完成上述改造后，我对图标任务管理器并不完全满意，因为其显示的程序图标还是偏大，导致图标之间的间距不足，无法模拟 win10 底部栏的美观大方的感觉，当然，还有其它地方的间距设置也不尽人意，这些都难以通过安装主题等手段进行改造。当然，我个人认为没必要为此下结论说开源项目都处于美工下线的状态，其实无论是 KDE，亦或是 Gnome，它们的整体外观水平已经是与 Windows、Mac 这些商业公司开发的系统持平了，Linux 用户同样能有不差的桌面体验，KDE 等桌面所欠缺的只是一些审美细节，由于我也不懂设计，这里就不多说了。如果有兴趣的话，还可以多翻翻系统设置里的选项，其中包含了大量与桌面相关的自定义选项，这已经提供了非常大的改造空间。最后，在新的一年里，祝各位折腾愉快。&lt;/p></description></item><item><title>【译】椭圆曲线密码介绍</title><link>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</link><pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</guid><description>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/show.jpg" alt="Featured image of post 【译】椭圆曲线密码介绍" />&lt;p>前段时间我看到了一篇标题为 Elliptic Curve Cryptography Explained 的既通俗易懂又较为全面的介绍椭圆曲线密码的英语博文，可以说是非常优秀的一篇科普文了。看到目前在中文互联网上介绍非对称加密算法中的 RSA 加密算法的高质量文章有很多，而介绍同样属于非对称加密算法的椭圆曲线密码的高质量文章并不多，所以我将该文章翻译为中文并在我的博客上发表。原文链接是 &lt;a class="link" href="https://fangpenlin.com/posts/2019/10/07/elliptic-curve-cryptography-explained/" target="_blank" rel="noopener"
 >https://fangpenlin.com/posts/2019/10/07/elliptic-curve-cryptography-explained/&lt;/a> ，已获得原作者授权翻译。由于作者仅要求我注明原文链接，所以&lt;strong>这篇译文的文字部分依然按本博客的默认授权协议 CC-BY-NC-SA 4.0 进行授权&lt;/strong>。对于普通读者而言，这篇文章基本不需要数学知识就可以理解，当然，还是需要了解一些对称加密和非对称加密的基础概念的，为了便于读者理解，我还在一些地方添加了译者注。下面，我们便开始对椭圆曲线密码的介绍吧。&lt;/p>
 &lt;p>最近，我正在学习椭圆曲线密码（Elliptic Curve Cryptography）的工作原理（译者注：为了少打点字，下文统一使用 ECC 这一缩写指代椭圆曲线密码）。我在互联网上搜索相关内容，发现了很多解释它的文章和视频。其中大多数仅涵盖了 ECC 中的一部分内容，有一些跳过了许多关于你如何能从这处到达另一处的关键步骤。最后，我找不到真正的能以直观的方式从头到尾解释它的文章。考虑到这一点，我想写一篇解释 ECC 的文章，其内容从基础知识到密钥交换，加密和解密。&lt;/p>
 &lt;p>为了绘制本文所需要的曲线，且了解 ECC 的运作方式，我写了两个 Jupyter Notebook 用于使用 Python 进行曲线绘制和计算，用到的绘图库是 &lt;a class="link" href="https://matplotlib.org/" target="_blank" rel="noopener"
@@ -1297,8 +1297,8 @@ style="
 flex-grow: 128;
 flex-basis: 309px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png" data-size="2304x1788">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png" data-size="2304x1788">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png"
 width="2304"
 height="1788"
 loading="lazy"
@@ -1315,8 +1315,8 @@ style="
 flex-grow: 285;
 flex-basis: 685px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif" data-size="500x175">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif" data-size="500x175">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif"
 width="500"
 height="175"
 loading="lazy"
@@ -1333,8 +1333,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1349,8 +1349,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1365,8 +1365,8 @@ style="
 flex-grow: 234;
 flex-basis: 563px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/star-war.gif" data-size="500x213">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/star-war.gif"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-war.gif" data-size="500x213">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-war.gif"
 width="500"
 height="213"
 loading="lazy"
@@ -1381,8 +1381,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1398,8 +1398,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1415,8 +1415,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1431,8 +1431,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1458,8 +1458,8 @@ style="
 flex-grow: 177;
 flex-basis: 424px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/star-trek.gif" data-size="471x266">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/star-trek.gif"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek.gif" data-size="471x266">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek.gif"
 width="471"
 height="266"
 loading="lazy"
@@ -1479,8 +1479,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1495,8 +1495,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1519,8 +1519,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1535,8 +1535,8 @@ style="
 flex-grow: 149;
 flex-basis: 358px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png" data-size="927x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png" data-size="927x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png"
 width="927"
 height="621"
 loading="lazy"
@@ -1588,8 +1588,8 @@ style="
 flex-grow: 141;
 flex-basis: 340px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/ecdh-jump.png" data-size="803x566">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/ecdh-jump.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-jump.png" data-size="803x566">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-jump.png"
 width="803"
 height="566"
 loading="lazy"
@@ -1607,8 +1607,8 @@ style="
 flex-grow: 188;
 flex-basis: 453px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png" data-size="803x425">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png" data-size="803x425">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png"
 width="803"
 height="425"
 loading="lazy"
@@ -1627,8 +1627,8 @@ style="
 flex-grow: 130;
 flex-basis: 313px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png" data-size="803x614">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png" data-size="803x614">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png"
 width="803"
 height="614"
 loading="lazy"
@@ -1654,8 +1654,8 @@ style="
 flex-grow: 148;
 flex-basis: 356px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png" data-size="922x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png" data-size="922x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png"
 width="922"
 height="621"
 loading="lazy"
@@ -1675,8 +1675,8 @@ style="
 flex-grow: 150;
 flex-basis: 360px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png" data-size="937x623">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png" data-size="937x623">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png"
 width="937"
 height="623"
 loading="lazy"
@@ -1694,8 +1694,8 @@ style="
 flex-grow: 128;
 flex-basis: 308px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png" data-size="1358x1056">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png" data-size="1358x1056">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png"
 width="1358"
 height="1056"
 loading="lazy"
@@ -1711,8 +1711,8 @@ style="
 flex-grow: 150;
 flex-basis: 362px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png" data-size="937x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png" data-size="937x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png"
 width="937"
 height="621"
 loading="lazy"
@@ -1727,8 +1727,8 @@ style="
 flex-grow: 147;
 flex-basis: 355px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png" data-size="922x623">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png" data-size="922x623">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png"
 width="922"
 height="623"
 loading="lazy"
@@ -1743,8 +1743,8 @@ style="
 flex-grow: 148;
 flex-basis: 356px"
 >
-&lt;a href="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png" data-size="922x621">
-&lt;img src="https://vifly.github.io/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png"
+&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png" data-size="922x621">
+&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png"
 width="922"
 height="621"
 loading="lazy"
@@ -1758,7 +1758,7 @@ alt="elliptic-curve-on-field-a-plus-bc">
 &lt;span class="p">(&lt;/span>&lt;span class="n">a_b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b_c&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>(Point(p=19, x=14, y=16), Point(p=19, x=14, y=16))
 &lt;/code>&lt;/pre>&lt;p>现在你可能会问，在有限域上如何对一个点进行自加操作？是的，对一个点进行自加操作也是遵循与实数域相同的规则，即用有限域上的切线连接第三点。正如我们已经展示的它如何处理实数一样，我们不想在这里重复一遍，或者说实际上是因为我很懒😅。&lt;/p>
-&lt;p>最后，由于有限域仅在整数上进行运算，所以我们不会损失任何精度。这令它更适合用于密码学。&lt;/p></description></item><item><title>从 Debian 迁移到 Arch Linux</title><link>https://vifly.github.io/Try_Arch_Linux/</link><pubDate>Sun, 03 Nov 2019 14:34:27 +0000</pubDate><guid>https://vifly.github.io/Try_Arch_Linux/</guid><description>&lt;img src="https://vifly.github.io/Try_Arch_Linux/show.jpg" alt="Featured image of post 从 Debian 迁移到 Arch Linux" />&lt;p>在用了将近两年的 Debian 后，我打算尝试另一个与 Debian 存在较大差别的发行版，做了一番比较后（&lt;del>并没有&lt;/del>）选择了相比 Debian 激进许多（经常需要滚包）的 Arch Linux。其实我在刚开始使用 Debian 时便听说过 Arch Linux 了，这都要归功于活跃的&lt;a class="link" href="https://www.archlinuxcn.org/" target="_blank" rel="noopener"
+&lt;p>最后，由于有限域仅在整数上进行运算，所以我们不会损失任何精度。这令它更适合用于密码学。&lt;/p></description></item><item><title>从 Debian 迁移到 Arch Linux</title><link>https://viflythink.com/Try_Arch_Linux/</link><pubDate>Sun, 03 Nov 2019 14:34:27 +0000</pubDate><guid>https://viflythink.com/Try_Arch_Linux/</guid><description>&lt;img src="https://viflythink.com/Try_Arch_Linux/show.jpg" alt="Featured image of post 从 Debian 迁移到 Arch Linux" />&lt;p>在用了将近两年的 Debian 后，我打算尝试另一个与 Debian 存在较大差别的发行版，做了一番比较后（&lt;del>并没有&lt;/del>）选择了相比 Debian 激进许多（经常需要滚包）的 Arch Linux。其实我在刚开始使用 Debian 时便听说过 Arch Linux 了，这都要归功于活跃的&lt;a class="link" href="https://www.archlinuxcn.org/" target="_blank" rel="noopener"
 > Arch Linux 中文社区&lt;/a>，里面的人整天忙着安利 Arch Linux（&lt;del>传教&lt;/del>），而且，&lt;a class="link" href="https://wiki.archlinux.org/index.php/Main_page_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="noopener"
 > Arch Linux 的 Wiki &lt;/a>也是非常优秀的文档，我在 Debian 上遇到问题时也会参考 Arch Linux 的 Wiki，久而久之，便产生了尝试 Arch Linux 的想法，此外，对于现在的我而言，&lt;a class="link" href="https://wiki.archlinux.org/index.php/Arch_Linux_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29#%E5%8E%9F%E5%88%99" target="_blank" rel="noopener"
 >Arch Linux 的哲学&lt;/a>也非常有意思，其中提到：&lt;/p>
@@ -1800,8 +1800,8 @@ style="
 flex-grow: 145;
 flex-basis: 350px"
 >
-&lt;a href="https://vifly.github.io/Try_Arch_Linux/set_kde_proxy.png" data-size="1074x736">
-&lt;img src="https://vifly.github.io/Try_Arch_Linux/set_kde_proxy.png"
+&lt;a href="https://viflythink.com/Try_Arch_Linux/set_kde_proxy.png" data-size="1074x736">
+&lt;img src="https://viflythink.com/Try_Arch_Linux/set_kde_proxy.png"
 width="1074"
 height="736"
 loading="lazy"
@@ -1858,8 +1858,8 @@ style="
 flex-grow: 83;
 flex-basis: 199px"
 >
-&lt;a href="https://vifly.github.io/Try_Arch_Linux/set_fcitx_1.png" data-size="683x820">
-&lt;img src="https://vifly.github.io/Try_Arch_Linux/set_fcitx_1.png"
+&lt;a href="https://viflythink.com/Try_Arch_Linux/set_fcitx_1.png" data-size="683x820">
+&lt;img src="https://viflythink.com/Try_Arch_Linux/set_fcitx_1.png"
 width="683"
 height="820"
 loading="lazy"
@@ -1873,8 +1873,8 @@ style="
 flex-grow: 83;
 flex-basis: 200px"
 >
-&lt;a href="https://vifly.github.io/Try_Arch_Linux/set_fcitx_2.png" data-size="681x816">
-&lt;img src="https://vifly.github.io/Try_Arch_Linux/set_fcitx_2.png"
+&lt;a href="https://viflythink.com/Try_Arch_Linux/set_fcitx_2.png" data-size="681x816">
+&lt;img src="https://viflythink.com/Try_Arch_Linux/set_fcitx_2.png"
 width="681"
 height="816"
 loading="lazy"
@@ -1896,8 +1896,8 @@ style="
 flex-grow: 130;
 flex-basis: 312px"
 >
-&lt;a href="https://vifly.github.io/Try_Arch_Linux/rhythmbox_plugin.png" data-size="778x598">
-&lt;img src="https://vifly.github.io/Try_Arch_Linux/rhythmbox_plugin.png"
+&lt;a href="https://viflythink.com/Try_Arch_Linux/rhythmbox_plugin.png" data-size="778x598">
+&lt;img src="https://viflythink.com/Try_Arch_Linux/rhythmbox_plugin.png"
 width="778"
 height="598"
 loading="lazy"
@@ -1924,8 +1924,8 @@ style="
 flex-grow: 184;
 flex-basis: 441px"
 >
-&lt;a href="https://vifly.github.io/Try_Arch_Linux/vs_code.png" data-size="1920x1043">
-&lt;img src="https://vifly.github.io/Try_Arch_Linux/vs_code.png"
+&lt;a href="https://viflythink.com/Try_Arch_Linux/vs_code.png" data-size="1920x1043">
+&lt;img src="https://viflythink.com/Try_Arch_Linux/vs_code.png"
 width="1920"
 height="1043"
 loading="lazy"
@@ -1952,7 +1952,7 @@ alt="VS Code 图">
 &lt;p>假如你没有用过 VirtualBox，那么这里提醒一句，拖放文件和共享粘贴板等功能需要在运行中的虚拟机窗口上方点击“设备”-&amp;gt;“安装增强功能”才可使用。&lt;/p>
 &lt;h1 id="后记">后记&lt;/h1>
 &lt;p>得益于我对软件的通用性的要求，可以说是无痛从 Debian 迁移到了 Arch Linux，不少软件只需简单地复制粘贴配置文件即可（前提是已经有配置文件了），而且 Arch Linux 的系统安装过程也并不像我之前想象的那样复杂。折腾完这堆东西后最大的感触就是之前折腾积累的东西（如相关知识与配置）并没有浪费，若是没有相关的积累，面对安装 Arch Linux 以及安装完成后做什么这些问题恐怕会一头雾水，浪费不少时间，从节约时间的角度来说，编程随想所说的&lt;a class="link" href="https://program-think.blogspot.com/2013/10/personal-it-infrastructure.html" target="_blank" rel="noopener"
->重视个人 IT 基础设施的改善&lt;/a>是很有道理的。总之，安装好 Arch Linux 的我就像是一个刚得到新玩具的小孩子，正迫不及待地想要探索这个新玩具的有趣之处，更多有趣的软件留待日后补充好了。&lt;/p></description></item><item><title>致刚入门深度学习的我——作为过来人的一点经验分享</title><link>https://vifly.github.io/Sharing_experience_about_Deep_Learning/</link><pubDate>Fri, 04 Oct 2019 22:44:08 +0000</pubDate><guid>https://vifly.github.io/Sharing_experience_about_Deep_Learning/</guid><description>&lt;img src="https://vifly.github.io/Sharing_experience_about_Deep_Learning/show.jpg" alt="Featured image of post 致刚入门深度学习的我——作为过来人的一点经验分享" />&lt;p>前几天突然有了一个很有趣的想法，假如能与一年前刚入门深度学习的我进行交流，那么此时的我会有什么经验想分享给过去的我呢？想到入门深度学习以来踩的各种坑以及经历过的迷茫，我决定写一篇文章，从过来人（入门一年？）的角度说一下对新手的一些建议。由于我的水平有限，所以文章肯定会有遗漏与错误之处，望各位大佬轻拍。&lt;/p>
+>重视个人 IT 基础设施的改善&lt;/a>是很有道理的。总之，安装好 Arch Linux 的我就像是一个刚得到新玩具的小孩子，正迫不及待地想要探索这个新玩具的有趣之处，更多有趣的软件留待日后补充好了。&lt;/p></description></item><item><title>致刚入门深度学习的我——作为过来人的一点经验分享</title><link>https://viflythink.com/Sharing_experience_about_Deep_Learning/</link><pubDate>Fri, 04 Oct 2019 22:44:08 +0000</pubDate><guid>https://viflythink.com/Sharing_experience_about_Deep_Learning/</guid><description>&lt;img src="https://viflythink.com/Sharing_experience_about_Deep_Learning/show.jpg" alt="Featured image of post 致刚入门深度学习的我——作为过来人的一点经验分享" />&lt;p>前几天突然有了一个很有趣的想法，假如能与一年前刚入门深度学习的我进行交流，那么此时的我会有什么经验想分享给过去的我呢？想到入门深度学习以来踩的各种坑以及经历过的迷茫，我决定写一篇文章，从过来人（入门一年？）的角度说一下对新手的一些建议。由于我的水平有限，所以文章肯定会有遗漏与错误之处，望各位大佬轻拍。&lt;/p>
 &lt;h1 id="常见问题解答faq">常见问题解答（FAQ）&lt;/h1>
 &lt;ol>
 &lt;li>
@@ -1985,7 +1985,7 @@ alt="VS Code 图">
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Keras 也可以进行这个操作，使用 model.summary()即可。先不理会 demo 的其它部分代码，好好消化构建模型的方法，这是我觉得入门阶段最适合的方案，因为我觉得入门阶段就接触核心向的东西（深度学习比较简单，所以能在起始阶段便接触偏核心的问题，其它领域不一定喔）能避免以后可能遇到的不少弯路，&lt;del>假如重来一遍，我也不知道这样是不是能保证一切顺利&lt;/del>。虽然我在上文当中都是以计算机视觉举例，不过相信想学习 NLP 的读者也可以从中举一反三，知道该如何通过实战进行入门。&lt;/p>
 &lt;h1 id="下一步">下一步？&lt;/h1>
 &lt;p>我们直击重点的入门教程算是结束了，&lt;del>虽然我在开头说过自己踩了不少坑，但是写完这篇文章后发现好像并没有怎么提到自己踩过的坑&lt;/del>，我知道很多人会问接下来该干什么？在这里我真的可以说一说下一步该干什么。还记得上面的实战部分并没有提到关于读取数据等方面的内容吗，在日后的实战当中，读取数据并输入神经网络其实也是一个重要的部分，除非你确定以后只需使用主流的公开数据集，不然这部分知识就是必需的。接下来你可以先尝试在自己已能成功运行的 demo 上更换负责读取数据集的代码（更换后的代码不应该使用框架提供的常见数据集的 API，如读取 Imagenet 的 API），让模型使用另一个数据集进行训练完成相同的任务（如图片分类），这部分工作可能会花上几天时间，但是完成以后你应该就能真正理解如何向神经网络中输入数据了，除此以外，你有可能会顺便了解到一些数据预处理的简单操作，在实战当中，使用的数据集与模型的原作者使用的数据集总是不同，无论如何，&lt;strong>一定要参考原作者的数据预处理步骤&lt;/strong>，不然有可能出现很大的指标差异。&lt;/p>
-&lt;p>弄完了上面提到的东西，接下来真的可以说是海阔天空了，接下来的路就是无数个分叉口，入门后的你可以尝试使用神经网络做一个简单的实战项目，例如：用户上传图片，服务器返回分类结果（早已有大厂提供这个 API 了）；也可以找老师开始下一步的科研；当然也可以继续自学，只不过需要自己把握学习方向了。总之，未来就在脚下，&lt;del>祝各位在炼丹的路上一切顺利&lt;/del>。&lt;/p></description></item><item><title>Debian 安装 Matomo (Piwik) 开源统计分析服务</title><link>https://vifly.github.io/Install_Matomo_on_Debian/</link><pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Install_Matomo_on_Debian/</guid><description>&lt;img src="https://vifly.github.io/Install_Matomo_on_Debian/show.jpg" alt="Featured image of post Debian 安装 Matomo (Piwik) 开源统计分析服务" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>弄完了上面提到的东西，接下来真的可以说是海阔天空了，接下来的路就是无数个分叉口，入门后的你可以尝试使用神经网络做一个简单的实战项目，例如：用户上传图片，服务器返回分类结果（早已有大厂提供这个 API 了）；也可以找老师开始下一步的科研；当然也可以继续自学，只不过需要自己把握学习方向了。总之，未来就在脚下，&lt;del>祝各位在炼丹的路上一切顺利&lt;/del>。&lt;/p></description></item><item><title>Debian 安装 Matomo (Piwik) 开源统计分析服务</title><link>https://viflythink.com/Install_Matomo_on_Debian/</link><pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Install_Matomo_on_Debian/</guid><description>&lt;img src="https://viflythink.com/Install_Matomo_on_Debian/show.jpg" alt="Featured image of post Debian 安装 Matomo (Piwik) 开源统计分析服务" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>之前我在&lt;a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/#%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90" target="_blank" rel="noopener"
 >使用Github Pages和Hexo搭建个人博客(进阶篇)&lt;/a>这一篇博文中已经提到了不考虑使用大型公司提供的网站统计分析服务了，只不过网站统计分析服务还是有必要的，至少能看到有多少人浏览过自己的网站。之所以不采用商业公司提供的分析服务是因为这等于助纣为虐，帮助这些公司建立更精准的用户画像，这些公司可以利用遍布于大半个互联网的自家的跟踪代码对读者进行浏览痕迹的跟踪，从而建立精准的用户画像，我无法接受这种侵犯用户隐私的行为，所以只能考虑自己搭建统计分析服务了。在 Google 上搜了一下后决定采用 Matomo（原名为 Piwik）这个开源的网站统计分析服务。本文主要参考了&lt;a class="link" href="https://my.oschina.net/u/3944788/blog/2874366" target="_blank" rel="noopener"
 >在Debian 9上安装Matomo Analytics&lt;/a>这一个教程，只不过很不巧的是目前 Debain 10 已经发布，这篇教程里的 php7.0 已经过时，但是没关系，下文中提供的安装 php 的指令并没有指定版本，所以对于 Debian 9/10 的用户都是可行的。&lt;/p>
@@ -2063,7 +2063,7 @@ rmdir piwik
 &lt;p>重新加载 Nginx 以让配置生效：&lt;/p>
 &lt;pre>&lt;code>sudo systemctl reload nginx.service
 &lt;/code>&lt;/pre>
-&lt;p>接下来使用浏览器打开 Nginx 配置文件中填写的域名，按照指引完成 matomo 的安装。&lt;/p></description></item><item><title>作为大学生的我如何申请外币信用卡并用于境外支付</title><link>https://vifly.github.io/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</link><pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate><guid>https://vifly.github.io/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</guid><description>&lt;img src="https://vifly.github.io/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/show.png" alt="Featured image of post 作为大学生的我如何申请外币信用卡并用于境外支付" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>接下来使用浏览器打开 Nginx 配置文件中填写的域名，按照指引完成 matomo 的安装。&lt;/p></description></item><item><title>作为大学生的我如何申请外币信用卡并用于境外支付</title><link>https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</link><pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/</guid><description>&lt;img src="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/show.png" alt="Featured image of post 作为大学生的我如何申请外币信用卡并用于境外支付" />&lt;h1 id="前言">前言&lt;/h1>
 &lt;p>之前在购买 VPS 和域名时发现很多国外商家只支持 VISA，MASTERCARD 这两家的信用卡或者 PayPal，虽然国区 PayPal 可以绑定银联的借记卡/信用卡，但是除了这些以外我还有在 Google Play 购物的需求，未来也会有更多的境外支付的需要，目前我已经忍受不了每次去 Google Play 购物时都要先去淘宝买个礼品卡这个操作了，所以决定采用一个一劳永逸的办法：办理一张外币信用卡（准确来说是走非银联结算通道的信用卡）。我原本以为作为大学生办理一张外币信用卡会比较麻烦，不过想到之前在少数派看过《&lt;a class="link" href="https://sspai.com/post/38960" target="_blank" rel="noopener"
 >给普通大学生的境外支付指南&lt;/a>》和《&lt;a class="link" href="https://sspai.com/post/45933" target="_blank" rel="noopener"
 >学生党 Google Play 剁手经验分享&lt;/a>》，所以决定照此进行尝试。&lt;em>PS：本文都是我的个人经验分享，不一定完全有效，同时也可能具有时效性，仅作参考。&lt;/em>&lt;/p>
@@ -2092,8 +2092,8 @@ style="
 flex-grow: 58;
 flex-basis: 140px"
 >
-&lt;a href="https://vifly.github.io/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/payment_method.jpg" data-size="1071x1834">
-&lt;img src="https://vifly.github.io/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/payment_method.jpg"
+&lt;a href="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/payment_method.jpg" data-size="1071x1834">
+&lt;img src="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/payment_method.jpg"
 width="1071"
 height="1834"
 loading="lazy"
@@ -2108,8 +2108,8 @@ style="
 flex-grow: 57;
 flex-basis: 138px"
 >
-&lt;a href="https://vifly.github.io/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/add_card.jpg" data-size="1059x1835">
-&lt;img src="https://vifly.github.io/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/add_card.jpg"
+&lt;a href="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/add_card.jpg" data-size="1059x1835">
+&lt;img src="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/add_card.jpg"
 width="1059"
 height="1835"
 loading="lazy"
@@ -2124,7 +2124,7 @@ alt="添加信用卡或借记卡">
 2.请善用 Google Play 中的心愿单功能，不急着买但想买的东西可放入心愿单中，等待打折，在黑色星期五的时候，很多 App 都会有幅度非常大的折扣。 &lt;br>
 3.外币信用卡建议设置自动购汇还款，一般在银行 App 中可设置此项，能免去每月手动购汇还款的麻烦，而且不用担心自己忘了还款。&lt;br>
 4.&lt;strong>记得还款&lt;/strong>，各家银行的最后还款期限不尽相同，在每个月的最后还款期限前请确认一下自己是否已还款。&lt;br>
-5.再次强调，&lt;strong>请注意用卡安全&lt;/strong>，信用卡背面的信息不要随便泄漏给别人。&lt;/p></description></item><item><title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</title><link>https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/</link><pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/</guid><description>&lt;p>&lt;em>2019.8.18.更新：增加了如何搭建自己的统计分析服务的说明。&lt;/em>&lt;br>
+5.再次强调，&lt;strong>请注意用卡安全&lt;/strong>，信用卡背面的信息不要随便泄漏给别人。&lt;/p></description></item><item><title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</title><link>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</link><pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</guid><description>&lt;p>&lt;em>2019.8.18.更新：增加了如何搭建自己的统计分析服务的说明。&lt;/em>&lt;br>
 &lt;em>2019.9.13.更新：增加了更多的 SEO 内容，对一些内容进行修改。&lt;/em>&lt;br>
 &lt;em>2019.11.9.更新：增加了 Material 主题添加随机标语（slogan）的方法。&lt;/em>&lt;br>
 在&lt;a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog" target="_blank" rel="noopener"
@@ -2164,8 +2164,8 @@ style="
 flex-grow: 85;
 flex-basis: 204px"
 >
-&lt;a href="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png" data-size="627x735">
-&lt;img src="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png"
+&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png" data-size="627x735">
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png"
 width="627"
 height="735"
 loading="lazy"
@@ -2187,8 +2187,8 @@ style="
 flex-grow: 130;
 flex-basis: 312px"
 >
-&lt;a href="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png" data-size="1023x785">
-&lt;img src="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png"
+&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png" data-size="1023x785">
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png"
 width="1023"
 height="785"
 loading="lazy"
@@ -2222,8 +2222,8 @@ style="
 flex-grow: 187;
 flex-basis: 448px"
 >
-&lt;a href="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png" data-size="1414x756">
-&lt;img src="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png"
+&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png" data-size="1414x756">
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png"
 width="1414"
 height="756"
 loading="lazy"
@@ -2276,8 +2276,8 @@ style="
 flex-grow: 358;
 flex-basis: 861px"
 >
-&lt;a href="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png" data-size="621x173">
-&lt;img src="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png"
+&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png" data-size="621x173">
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png"
 width="621"
 height="173"
 loading="lazy"
@@ -2337,7 +2337,7 @@ jQuery(&amp;quot;#myslogan&amp;quot;).html(randomSlogan.content);
 ]
 &lt;/code>&lt;/pre>
 &lt;p>然后将得到的类似于&lt;a class="link" href="https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400" target="_blank" rel="noopener"
->https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400&lt;/a>这样的网址里的&amp;quot;gist.github.com&amp;quot;替换为&amp;quot;api.github.com/gists&amp;quot;，再用这个替换后的网址替换上面代码中的 gist 网址。完成后就能实现打开首页时随机显示标语了。&lt;/p></description></item><item><title>使用 Github Pages 和 Hexo 搭建个人博客</title><link>https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
+>https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400&lt;/a>这样的网址里的&amp;quot;gist.github.com&amp;quot;替换为&amp;quot;api.github.com/gists&amp;quot;，再用这个替换后的网址替换上面代码中的 gist 网址。完成后就能实现打开首页时随机显示标语了。&lt;/p></description></item><item><title>使用 Github Pages 和 Hexo 搭建个人博客</title><link>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
 &lt;h2 id="github-pages是什么">Github Pages是什么&lt;/h2>
 &lt;p>先看看维基百科的说法:&lt;/p>
 &lt;blockquote>
@@ -2446,8 +2446,8 @@ style="
 flex-grow: 215;
 flex-basis: 518px"
 >
-&lt;a href="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png" data-size="868x402">
-&lt;img src="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png"
+&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png" data-size="868x402">
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png"
 width="868"
 height="402"
 loading="lazy"
@@ -2463,8 +2463,8 @@ style="
 flex-grow: 126;
 flex-basis: 303px"
 >
-&lt;a href="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png" data-size="780x616">
-&lt;img src="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png"
+&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png" data-size="780x616">
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png"
 width="780"
 height="616"
 loading="lazy"
@@ -2487,8 +2487,8 @@ style="
 flex-grow: 230;
 flex-basis: 552px"
 >
-&lt;a href="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png" data-size="1066x463">
-&lt;img src="https://vifly.github.io/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png"
+&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png" data-size="1066x463">
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png"
 width="1066"
 height="463"
 loading="lazy"
