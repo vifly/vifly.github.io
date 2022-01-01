@@ -873,7 +873,8 @@ alt="成功获取狗狗银行的 flag">
 >env&lt;/a> 对象用来设置环境变量，这个对象存在一个非常有趣的应用场景：如果你的 step 需要使用不宜公开的 Token，那你可以&lt;a class="link" href="https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets" target="_blank" rel="noopener"
 >在项目设置中设置该 Token&lt;/a>，然后在 env 对象中使用 super_secret: $ 将这个 Token 设为一个环境变量，并在自己的 step 中读取该环境变量以取得 Token，这样就能避免在 workflow 文件中硬编码 Token。当你再次看到 $ 这样的变量时，你就应该明白这是一个私密变量，是不能公开的。&lt;/p>
 &lt;h1 id="开始构造打包工作流">开始构造打包工作流&lt;/h1>
-&lt;p>经过上文的介绍，各位应该对 GitHub Actions 有了一定的了解，接下来就让我们开始白嫖 GitHub Actions 吧。为了白嫖，我们需要先创建一个新的 GitHub 仓库，然后有两种方法创建 GitHub Actions 配置文件，第一种方案是在这个仓库创建 .github/workflows 文件夹，在这个文件夹下新建一个 YAML 文件（完整路径示例：.github/workflows/build.yml）；第二种方案是在仓库的 Action 页面按照指引随便新建一个。完成这个步骤后就可以根据下面的指导在 YAML 文件中配置 GitHub Actions 了，不想看详细配置过程的话可以跳到下方直接抄配置。&lt;/p>
+&lt;p>经过上文的介绍，各位应该对 GitHub Actions 有了一定的了解，接下来就让我们开始白嫖 GitHub Actions 吧。注意，本节中的说明均与最新版本的 &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
+>arch-build&lt;/a> 存在差异，仅用作描述思路，想要抄作业的请直接跳到“最终成品与配置”一节。&lt;/p>
 &lt;h2 id="自动编译-aur-的软件包">自动编译 AUR 的软件包&lt;/h2>
 &lt;p>一般而言，我们都是在 Arch Linux 上构建 AUR 上的软件包，但是上文提到的 runs-on 对象可以填入的系统并不包括 Arch，那该怎么办呢？答案是使用基于 Arch 的容器，在容器内构建。这里要感谢 &lt;a class="link" href="https://github.com/Qv2ray/Qv2ray" target="_blank" rel="noopener"
 >Qv2ray&lt;/a> 的一位开发者 &lt;a class="link" href="https://www.ducksoft.site/" target="_blank" rel="noopener"
@@ -924,16 +925,23 @@ alt="成功获取狗狗银行的 flag">
 &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
 &lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">repo-name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ matrix.repos }}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>与之前的 workflow 不同，我们先创建了 repos 数组，并在其中填入需要构建的软件名。如果不把 fail-fast 设置为 false，在并行 job 中出现一个运行失败的 job 时会导致其它的 job 被终止。另外，使用 build-aur-action 时我们没有直接输入 repo-name，而是以 $ 的形式输入，数组中的变量会自动应用到对应的 job 中。&lt;/p>
-&lt;h1 id="使用自己的-pkgbuild可选">使用自己的 PKGBUILD（可选）&lt;/h1>
+&lt;h2 id="使用自己的-pkgbuild可选">使用自己的 PKGBUILD（可选）&lt;/h2>
 &lt;p>上述版本已经很完美了，不过还存在一个问题：我需要的某个软件包虽然在 AUR 中存在，但对应的 PKGBUILD 写的太烂了/无法构建成功，此时我写了一个 PKGBUILD，希望能白嫖 GitHub Actions 进行构建，该怎么办呢。这个需求也是早有人想到了，只需使用 &lt;a class="link" href="https://github.com/edlanglois/pkgbuild-action" target="_blank" rel="noopener"
 >pkgbuild-action&lt;/a> 就可解决，它还可以解决打的包还依赖了其它的 AUR 包的问题。为此，我们需要再添加一个 job，checkout 目前仓库获取 PKGBUILD，然后使用 pkgbuild-action 进行构建，需要的 pkgdir 参数就是 PKGBUILD 所在的路径（父文件夹），最后依然是使用 release-action 根据 pkgbuild-action 返回的构建产物路径将其上传到 GitHub Releases。&lt;/p>
-&lt;h1 id="最终成品">最终成品&lt;/h1>
+&lt;h1 id="最终成品与配置">最终成品与配置&lt;/h1>
 &lt;p>最终版的 workflow 可以在&lt;a class="link" href="https://github.com/vifly/arch-build/blob/master/.github/workflows/build.yml" target="_blank" rel="noopener"
 >这&lt;/a>查看，只需 fork &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
 >arch-build&lt;/a>，然后按下面的说明修改一下 workflow 文件即可食用。注意，经过一段时间的改进，最终版的配置已与上文存在一定区别，其中的 uploadToOneDrive 是&lt;a class="link" href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo" target="_blank" rel="noopener"
 >《使用 Vercel 与 OneDrive 自建软件源》&lt;/a>中所需的 job，如果你不需要建立一个可公共访问的软件源请删掉它。&lt;/p>
-&lt;p>如果只是需要构建上传 AUR 包，那只需修改 buildAUR 这个 job 中的内容，根据自己的需要修改其 matrix 内的软件包名，buildNonAUR 的内容则可以删掉；如果想使用自己的 PKGBUILD 进行构建，那还需要修改 buildNonAUR 这个 job，依然需要修改其 matrix 内的软件包名，另外还需要在仓库的根目录下新建以软件包名命名的文件夹，在其中存放对应的 PKGBUILD 文件和其它构建过程中所需的资源文件。&lt;/p>
-&lt;p>到此为止，借助 GitHub Actions，我们拥有了一个 24 小时可用的编译机以及公开的软件包存储库，解决了本文开始提到的第二与第三点问题。这些都是全自动且免费的，为了更好的体验，下文将介绍如何让安装软件包也实现自动化。&lt;/p>
+&lt;p>如果只是需要构建上传 AUR 包，那只需修改 buildAUR 这个 job 中的内容，根据自己的需要修改其 matrix 内的软件包名，buildNonAUR 的内容则可以删掉。&lt;/p>
+&lt;p>如果想使用自己的 PKGBUILD 进行构建，那还需要修改 buildNonAUR 这个 job，依然需要修改其 matrix 内的软件包名，另外还需要在仓库的根目录下新建以软件包名命名的文件夹，在其中存放对应的 PKGBUILD 文件和其它构建过程中所需的资源文件。经过我的修改后的 pkgbuild-action 还支持一个新功能：如果想构建的软件包依赖某个 AUR 软件包而你不想使用 AUR 上的 PKGBUILD，那么你可以新建一个子文件夹，在其中放入自己的 PKGBUILD。结构如下所示：&lt;/p>
+&lt;pre tabindex="0">&lt;code>├── foo
+│   ├── PKGBUILD
+│   └── bar (dependences of foo)
+│   ├── PKGBUILD
+│   └── baz (dependences of bar)
+│   └── PKGBUILD
+&lt;/code>&lt;/pre>&lt;p>到此为止，借助 GitHub Actions，我们拥有了一个 24 小时可用的编译机以及公开的软件包存储库，解决了本文开始提到的第二与第三点问题。这些都是全自动且免费的，为了更好的体验，下文将介绍如何让安装软件包也实现自动化。&lt;/p>
 &lt;h1 id="简单的自动更新仓库">简单的自动更新仓库&lt;/h1>
 &lt;p>打开浏览器，从 Releases 页面下载软件包，然后执行 pacman -U xxx.pkg.tar.zst 安装软件包，这些操作实在太麻烦了，为何不建立一个软件源，令每次执行 pacman -Syu 时自动安装最新版本的软件呢。自建软件源听上去十分高大上，但其实只是建立一个本地软件源并不难，&lt;a class="link" href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
 >Arch WiKi 几段文字&lt;/a>便说明白了，当然，如果想建立一个在线的公用软件源会麻烦一些，所以这里只说明如何建立一个自动更新的本地软件源。想要建立公用软件源的话请跳过下文，阅读我的新博文&lt;a class="link" href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo" target="_blank" rel="noopener"
