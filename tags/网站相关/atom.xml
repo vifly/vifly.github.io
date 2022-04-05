@@ -1,1 +1,483 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>网站相关 on Vifly 的博客</title><link>https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</link><description>Recent content in 网站相关 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 21 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/atom.xml" rel="self" type="application/rss+xml"/><item><title>从 Material 主题迁移到 Stack 主题</title><link>https://viflythink.com/Migrate_from_Material_to_Stack/</link><pubDate>Sun, 21 Nov 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Migrate_from_Material_to_Stack/</guid><description>在用了近三年的 Material 主题后，我终于决定更换博</description></item><item><title>Debian 安装 Matomo (Piwik) 开源统计分析服务</title><link>https://viflythink.com/Install_Matomo_on_Debian/</link><pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Install_Matomo_on_Debian/</guid><description>前言 之前我在使用Github Pages和</description></item><item><title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</title><link>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</link><pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</guid><description>2019.8.18.更新：增加了如何搭建</description></item><item><title>使用 Github Pages 和 Hexo 搭建个人博客</title><link>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</guid><description>简介 Github Pages是什么 先看看维基百科的说</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>网站相关 on Vifly 的博客</title><link>https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</link><description>Recent content in 网站相关 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 21 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/atom.xml" rel="self" type="application/rss+xml"/><item><title>从 Material 主题迁移到 Stack 主题</title><link>https://viflythink.com/Migrate_from_Material_to_Stack/</link><pubDate>Sun, 21 Nov 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Migrate_from_Material_to_Stack/</guid><description>&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/show.jpg" alt="Featured image of post 从 Material 主题迁移到 Stack 主题" />&lt;p>在用了近三年的 Material 主题后，我终于决定更换博客主题了。尽管当初在我开始写博客时，Material 主题已经不维护了，但我暂时没找到更符合自己需求的主题，于是便一直用到了现在。当然，那时的我已经有将来会更换主题的预感了，而如今这一只脚终于落地，给博客换上了看上去更现代的 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+>Stack 主题&lt;/a>，也从 Hexo 迁移到了 Hugo，于是写下本文说明一下相关的经过（&lt;del>又能水一篇博文了&lt;/del>）。&lt;/p>
+&lt;h1 id="为什么要换主题">为什么要换主题&lt;/h1>
+&lt;p>先列举一下旧方案的不足吧。Material 主题并不差，设计风格符合我的胃口，而且提供了我所需要的功能，但用了这么久，由于各种原因令我想更换博客主题：&lt;/p>
+&lt;ol>
+&lt;li>Material 主题已经不再维护，这是最核心的一个问题，考虑到前端圈在兼容性方面的“良好”名声，我毫不怀疑哪天 NodeJS 或 Hexo 一个更新就会令我的博客没法构建&lt;/li>
+&lt;li>感觉当年的 Material Design 有点跟不上时代了（喜新厌旧），另外展开侧边栏时的动画给我的感觉有点慢，令我不禁怀疑在 PC 端模拟 Android 端 Material Design App 的必要性&lt;/li>
+&lt;li>友链界面的卡片有一点问题，当描述较长时会出现文字溢出的问题，原本打算咬咬牙修一下 CSS 的，但想到迟早要换博客主题，不如赶快换了主题再处理友链界面&lt;/li>
+&lt;/ol>
+&lt;p>另外，还是由于偏主观的对前端工具链的不信任，我不想再用 Hexo 了，切换到使用自己更熟悉的语言写的静态站点生成器至少能确保在出现问题时我可以尝试自己动手修一修，所以 Python 写的 Pelican 和 Go 写的 Hugo 对我来说都是不错的选择（&lt;em>PS：为什么还没人用 Rust 造一个强大的静态站点生成器&lt;/em>）。&lt;/p>
+&lt;h1 id="迁移过程">迁移过程&lt;/h1>
+&lt;p>先根据 &lt;a class="link" href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener"
+>Hugo 官方的 Quick Start&lt;/a> 下载 Stack 主题并建了一个简单的站点，然后一步步把博客原有的配置迁移过去。&lt;/p>
+&lt;p>其中比较费时间且烦琐的步骤包含把 Stack 主题提供的示例配置从 YAML 改为了 &lt;a class="link" href="https://github.com/vifly/blog/blob/main/config.toml" target="_blank" rel="noopener"
+>TOML 文件&lt;/a>（非必要，个人偏好原因）；以及更改文章源码的结构：原本我是把所有的 Markdown 文件放在一个文件夹下，文章配图放到另外的文件夹，现在由于 Stack 主题的要求我给每篇博文新建了文件夹并把配图移动到对应博文所在的文件夹。&lt;/p>
+&lt;p>由于不是新建博客而是迁移博客，所以我还处理了 URL 相关的问题，确保原来的 URL 不变。在迁移前，我的 Markdown 文件都是像 Python_GIL_and_concurrency.md 这样首字母与专有名词大写，下划线用于分割单词的格式，Hexo 生成的博文 URL 与文件名相同；迁移后，每篇博文都放到单独的文件夹，具体存放结构可在&lt;a class="link" href="https://github.com/vifly/blog/tree/main/content/post" target="_blank" rel="noopener"
+>此&lt;/a>查看，按照 Stack 主题给的示例所生成的博文 URL 则是 viflythink.com/&amp;lt;文章标题&amp;gt;/ 的格式，我经过谷歌后按照 &lt;a class="link" href="https://gohugo.io/content-management/urls/" target="_blank" rel="noopener"
+>Hugo 文档&lt;/a>设定了新的 URL 生成规则：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">permalinks&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/:filename/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">page&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/:slug/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样就会用文件夹的名字而不是用文章标题来生成 URL，当然，这还不够，生成的 URL 虽然用的是文件夹的名字，但全都转为了小写字母，然后找到&lt;a class="link" href="https://www.jvt.me/posts/2019/11/10/hugo-case-sensitive-urls/" target="_blank" rel="noopener"
+>这篇文章&lt;/a>让 Hugo 生成大小写敏感的 URL：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">disablePathToLower&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>除了博文的 URL 外，还需要处理 RSS 订阅地址，原来的 RSS 地址是 viflythink.com/atom.xml ，可 Stack 默认产生 viflythink.com/index.xml 作为 RSS 地址，于是我又谷歌找到了 &lt;a class="link" href="https://discourse.gohugo.io/t/how-can-i-change-the-rss-url/118" target="_blank" rel="noopener"
+>Hugo 论坛的讨论&lt;/a>，据此修改了设置：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">outputFormats&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">RSS&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">mediatype&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;application/rss&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">baseName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;atom&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>除了让 URL 保持不变外，我还设法把原本对 Material 主题修改的代码也迁移了过来。这里不得不提到 Hugo 的 &lt;a class="link" href="https://gohugo.io/hugo-modules/theme-components/" target="_blank" rel="noopener"
+>Theme Components&lt;/a>，通过它我可以在站点根目录下建立同样结构的目录以覆盖主题的部分内容，也就是说不用直接对主题的源代码动手了，接下来的修改都是靠这个特性完成的，具体可参考 &lt;a class="link" href="https://docs.stack.jimmycai.com/zh/modify-theme/" target="_blank" rel="noopener"
+>Stack 的修改主题章节&lt;/a>。&lt;/p>
+&lt;p>与 Material 主题相同，Stack 没有提供 Isso 评论系统，新建 &lt;a class="link" href="https://github.com/vifly/blog/blob/main/layouts/partials/comments/provider/isso.html" target="_blank" rel="noopener"
+>layouts/partials/comments/provider/isso.html&lt;/a> 并按 &lt;a class="link" href="https://posativ.org/isso/docs/configuration/client/" target="_blank" rel="noopener"
+>Isso 文档&lt;/a>的说明把内容复制粘贴进去就能添加对 Isso 的支持了（别忘了修改站点配置文件）。&lt;/p>
+&lt;p>还有验证网站所有权与插入 Matomo 统计代码都是通过新建与修改 &lt;a class="link" href="https://github.com/vifly/blog/blob/main/layouts/partials/head/custom.html" target="_blank" rel="noopener"
+>layouts/partials/head/custom.html&lt;/a> 完成的。设置 CNAME 让 viflythink.com 指向 vifly.github.io 则是新建 &lt;a class="link" href="https://github.com/vifly/blog/blob/main/static/CNAME" target="_blank" rel="noopener"
+>/static/CNAME&lt;/a>来完成（来源：&lt;a class="link" href="https://gohugo.io/hosting-and-deployment/hosting-on-github/#use-a-custom-domain" target="_blank" rel="noopener"
+>Hugo 文档&lt;/a>）。&lt;/p>
+&lt;p>我还想把随机标语也迁移到 Stack 上，这就需要覆盖主题原本的文件了。把 themes/hugo-theme-stack/layouts/partials/sidebar/left.html 复制为 &lt;a class="link" href="https://github.com/vifly/blog/blob/main/layouts/partials/sidebar/left.html" target="_blank" rel="noopener"
+>layouts/partials/sidebar/left.html&lt;/a>，然后对 &lt;code>&amp;lt;h2 class=&amp;quot;site-description&amp;quot;&amp;gt;{{ .Site.Params.sidebar.subtitle }}&amp;lt;/h2&amp;gt;&lt;/code> 进行修改，具体的修改可看我的代码，如何在 Gist 存放标语内容则请看我的旧博文&lt;a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/" target="_blank" rel="noopener"
+>《使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)》&lt;/a>中的“Material 主题实现随机显示标语（slogan）”一节。&lt;em>PS：翻阅旧博文后发现自己的前端技术也有所进步了，当年只会用一下 jQuery，而现在直接用 Vanilla JS 的 fetch 就完成了相同的任务&lt;/em>。为了让修改后的侧边栏看上去更好，我还微调了一下样式，具体可看 &lt;a class="link" href="https://github.com/vifly/blog/tree/main/assets/scss/partials" target="_blank" rel="noopener"
+>assets/scss/partials&lt;/a> 下的内容。&lt;/p>
+&lt;p>最后，我还把博客的构建从本地搬到了 GitHub Actions 上，当我把修改的 Markdown 文件推送到 GitHub 后博客就会自动更新，再也不用在本地构建好后再推送到 GitHub Page 所在的仓库了。&lt;/p>
+&lt;p>总的来说，迁移过程可说是十分平滑，没有踩到任何大坑就把博客迁移到 Stack 主题了，甚至没花多少时间就把对 Material 主题的修改也搬了过来。&lt;/p>
+&lt;h1 id="新变化">新变化&lt;/h1>
+&lt;p>既然把博客主题换了，那肯定要对比一下迁移前后的外观。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/material_blog_homepage.png"
+width="1877"
+height="940"
+loading="lazy"
+alt="使用 Material 主题的博客主页"
+class="gallery-image"
+data-flex-grow="199"
+data-flex-basis="479px"
+>&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg"
+width="1886"
+height="900"
+loading="lazy"
+alt="使用 Stack 主题的博客主页"
+class="gallery-image"
+data-flex-grow="209"
+data-flex-basis="502px"
+>&lt;/p>
+&lt;p>Stack 主题是典型的三栏式布局，右侧栏包括了常用的跳转链接与搜索功能，而 Material 则是单栏，侧边栏需要点击按钮才会出现。至于在主页上的博文呈现，两者都是卡片风格，同样是由上到下的图片 -&amp;gt; 标题 -&amp;gt; 文章摘要这样组成的布局。可以看出两者给人的感受有所区别，迁移到 Stack 主题后我博客的风格更柔和多彩了，这得益于圆角的使用与主题配色的区别，当然，也与我在迁移后给文章配上精心挑选的图片有关，之前的文章图片都是由 Material 自动生成的，虽然也挺好看，体现了 Material Design 的简洁风格，但看久了后总会觉得千篇一律。&lt;/p>
+&lt;p>除了外观上的变化，细心的读者可能会发现，在迁移后，我的博客左侧栏多了 &lt;a class="link" href="https://viflythink.com/service/" target="_blank" rel="noopener"
+>Service&lt;/a> 这一个链接，这是我新增的一个页面，用于列举出目前我提供的服务，当提供的服务有改动时，该页面也会有所说明。&lt;/p>
+&lt;p>另外，有一个读者无法察觉但我能明显感知到的变化：迁移后的博客构建速度变快了。这大概是 Hugo 的优化比 Hexo 好导致的，不过并不能完全怪罪 Hexo，因为这也与我之前用的 Material 主题许久不更新，没有用上 Hexo 的用于加快构建速度的新特性有关。总之目前的构建速度终于让我感到舒服了，能够快速看到改动效果这一点在修改主题样式时十分有用。&lt;/p>
+&lt;h1 id="总结">总结&lt;/h1>
+&lt;p>我有时会开玩笑说：“写博客哪有写博客主题有意思”，包括这次迁移在内，看着刚开始时一个标准的模板被改造成了自己想要的样子的确很有意思，但我认为开设博客的目的更应该是写一些自己觉得有价值的内容，博客的外观与设计的确很重要，体现了博主的品位与喜好，但世界上并不缺少能展示自己品位的方法，写博客却是少有的通过文字阐述观点、分享知识与经历的行为，所以我会尽量不让与网站相关的博文占到总博文数的一半，而是尽量让博客涉及更多领域的内容，这也是我为本博客所设立的一个目标。&lt;/p>
+&lt;p>最后，希望本次愉快的博客迁移能激励我提高一些更新博客的频率（咕咕咕）。最近来说，我也有了一些新想法，考虑到不是所有的新想法都有必要写一篇博文来说明，未来我可能会在其它平台（Twitter、Telegram 频道等）或另一个自建站点记录与说明这些东西，也可能会考虑建立公开 Wiki 知识库这样的站点来分享自己的知识，总之这些都是目前只存在于脑海中的想法，这些任务就交给未来的自己了。本篇水文到此结束，谢谢有耐心读到最后的读者。&lt;/p></description></item><item><title>Debian 安装 Matomo (Piwik) 开源统计分析服务</title><link>https://viflythink.com/Install_Matomo_on_Debian/</link><pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Install_Matomo_on_Debian/</guid><description>&lt;img src="https://viflythink.com/Install_Matomo_on_Debian/show.jpg" alt="Featured image of post Debian 安装 Matomo (Piwik) 开源统计分析服务" />&lt;h1 id="前言">前言&lt;/h1>
+&lt;p>之前我在&lt;a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/#%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90" target="_blank" rel="noopener"
+>使用Github Pages和Hexo搭建个人博客(进阶篇)&lt;/a>这一篇博文中已经提到了不考虑使用大型公司提供的网站统计分析服务了，只不过网站统计分析服务还是有必要的，至少能看到有多少人浏览过自己的网站。之所以不采用商业公司提供的分析服务是因为这等于助纣为虐，帮助这些公司建立更精准的用户画像，这些公司可以利用遍布于大半个互联网的自家的跟踪代码对读者进行浏览痕迹的跟踪，从而建立精准的用户画像，我无法接受这种侵犯用户隐私的行为，所以只能考虑自己搭建统计分析服务了。在 Google 上搜了一下后决定采用 Matomo（原名为 Piwik）这个开源的网站统计分析服务。本文主要参考了&lt;a class="link" href="https://my.oschina.net/u/3944788/blog/2874366" target="_blank" rel="noopener"
+>在Debian 9上安装Matomo Analytics&lt;/a>这一个教程，只不过很不巧的是目前 Debain 10 已经发布，这篇教程里的 php7.0 已经过时，但是没关系，下文中提供的安装 php 的指令并没有指定版本，所以对于 Debian 9/10 的用户都是可行的。&lt;/p>
+&lt;h1 id="需求">需求&lt;/h1>
+&lt;p>1.基本的 Linux 终端操作经验&lt;br>
+2.一个安装了 Debian 9/10 的服务器（VPS），理论上来说 Ubuntu 18 也可以（并没有实测过）&lt;br>
+3.一个属于自己的域名，并且已经将其 DNS 解析指向自己的服务器&lt;/p>
+&lt;h1 id="操作">操作&lt;/h1>
+&lt;p>先安装必须的库：&lt;/p>
+&lt;pre>&lt;code>sudo apt install unzip apt-transport-https curl wget dirmngr php php-fpm php-curl php-gd php-cli php-mysql php-xml php-mbstring
+&lt;/code>&lt;/pre>
+&lt;p>安装 MySQL 的替代品 MariaDB，这里必须提到的一点是，从 Debian9 开始，&lt;a class="link" href="https://mariadb.org/debian-9-released-mariadb-mysql-variant/" target="_blank" rel="noopener"
+>软件包仓库中的 MySQL 实际上已经全被 MariaDB 取代了&lt;/a>：&lt;/p>
+&lt;pre>&lt;code>sudo apt install mariadb-server
+&lt;/code>&lt;/pre>
+&lt;p>运行 mysql_secure_installation 脚本以改进 MariaDB 安装的安全性：&lt;/p>
+&lt;pre>&lt;code>sudo mysql_secure_installation
+&lt;/code>&lt;/pre>
+&lt;p>作为数据库 root 用户登录到 MariaDB（注意，必须使用 root 权限才可以作为数据库 root 用户登录到 MariaDB，数据库的 root 用户与系统中的 root 用户不是同一个东西）：&lt;/p>
+&lt;pre>&lt;code>sudo mysql -u root -p
+&lt;/code>&lt;/pre>
+&lt;p>假如没有一个用于 Matomo 的数据库用户的话，先执行以下指令新建数据库用户，localhost 意味这个用户只可以本地登录（&lt;em>PS：记得将username和password替换为自己准备设置的用户名和密码，下同&lt;/em>）：&lt;/p>
+&lt;pre>&lt;code>CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+&lt;/code>&lt;/pre>
+&lt;p>创建后请记住用户名和密码。&lt;br>
+创建一个新的 MariaDB 数据库并授权：&lt;/p>
+&lt;pre>&lt;code>CREATE DATABASE db_name;
+GRANT ALL ON db_name.* TO 'username' IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
+quit;
+&lt;/code>&lt;/pre>
+&lt;p>安装 nginx：&lt;/p>
+&lt;pre>&lt;code>sudo apt install -y nginx
+&lt;/code>&lt;/pre>
+&lt;p>新建 Nginx 配置文件：&lt;/p>
+&lt;pre>&lt;code>sudo nano /etc/nginx/sites-available/matomo
+&lt;/code>&lt;/pre>
+&lt;p>在其中填入（将 your_domain 替换为你的域名，例如 stats.viflythink.com，fastcgi_pass 的内容请根据自己的版本进行填写，你可以通过 ls /run/php/ 看到对应的 sock 文件）：&lt;/p>
+&lt;pre>&lt;code>server {
+listen 80;
+server_name your_domain;
+root /var/www/html/matomo;
+location / {
+try_files $uri /index.php$is_args$args;
+}
+location ~ \.php$ {
+try_files $uri =404;
+include fastcgi_params;
+fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+fastcgi_index index.php;
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+}
+}
+&lt;/code>&lt;/pre>
+&lt;p>通过建立软链接将刚写好的配置文件对应的网站设置为可访问的：&lt;/p>
+&lt;pre>&lt;code>sudo ln -s /etc/nginx/sites-available/matomo /etc/nginx/sites-enabled/
+&lt;/code>&lt;/pre>
+&lt;p>测试配置：&lt;/p>
+&lt;pre>&lt;code>sudo nginx -t
+&lt;/code>&lt;/pre>
+&lt;p>创建 matomo 目录：&lt;/p>
+&lt;pre>&lt;code>sudo mkdir -p /var/www/html/matomo
+&lt;/code>&lt;/pre>
+&lt;p>下载和解压 matomo：&lt;/p>
+&lt;pre>&lt;code>cd /var/www/html/matomo
+wget https://builds.piwik.org/piwik.zip
+unzip piwik.zip
+rm piwik.zip
+mv piwik/* .
+rmdir piwik
+&lt;/code>&lt;/pre>
+&lt;p>更改该目录的所有权，确保访问者可以访问这些页面文件：&lt;/p>
+&lt;pre>&lt;code>sudo chown -R www-data:www-data /var/www/html/matomo
+&lt;/code>&lt;/pre>
+&lt;p>重新加载 Nginx 以让配置生效：&lt;/p>
+&lt;pre>&lt;code>sudo systemctl reload nginx.service
+&lt;/code>&lt;/pre>
+&lt;p>接下来使用浏览器打开 Nginx 配置文件中填写的域名，按照指引完成 matomo 的安装。&lt;/p></description></item><item><title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</title><link>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</link><pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/</guid><description>&lt;p>&lt;em>2019.8.18.更新：增加了如何搭建自己的统计分析服务的说明。&lt;/em>&lt;br>
+&lt;em>2019.9.13.更新：增加了更多的 SEO 内容，对一些内容进行修改。&lt;/em>&lt;br>
+&lt;em>2019.11.9.更新：增加了 Material 主题添加随机标语（slogan）的方法。&lt;/em>&lt;br>
+在&lt;a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog" target="_blank" rel="noopener"
+>上一篇博文&lt;/a>当中我已经说完了使用 GitHub Pages 和 Hexo 搭建博客的基础操作了，只是这个刚搭建好的博客还缺了不少经常能在别人的博客上看到的东西，例如 RSS 订阅，评论区等功能。同时，不知道各位有没有发现一个问题，在搜索引擎当中搜索自己的站点时，搜索引擎返回的结果中并不会出现你的站点。本篇教程将会说明如何解决这些问题，如果还有更多的问题，请在评论区留言。&lt;/p>
+&lt;h1 id="额外的功能与服务">额外的功能与服务&lt;/h1>
+&lt;p>&lt;em>下面提到的这些功能与自己使用的 Hexo 主题相关，存在某些主题并没有提供某项功能的可能性&lt;/em>&lt;/p>
+&lt;h2 id="rss-订阅">RSS 订阅&lt;/h2>
+&lt;p>想要提供 RSS 订阅这个功能，各位需要查看自己使用的 Hexo 主题的文档进行操作，以我使用的 Material 主题为例，&lt;a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" target="_blank" rel="noopener"
+>官方文档&lt;/a>简单地说明了一下，其实就是在安装了&lt;a class="link" href="https://github.com/hexojs/hexo-generator-feed" target="_blank" rel="noopener"
+> hexo-generator-feed &lt;/a>插件后，修改 Material 主题下的配置文件（_config.yml）中的 rss:的值：&lt;/p>
+&lt;pre>&lt;code>url:
+rss: atom.xml
+&lt;/code>&lt;/pre>
+&lt;p>按照这样配置的话，你的博客的 RSS 订阅地址就是 &lt;a class="link" href="https://%e4%bd%a0%e7%9a%84%e5%8d%9a%e5%ae%a2%e5%9f%9f%e5%90%8d/atom.xml" target="_blank" rel="noopener"
+>https://你的博客域名/atom.xml&lt;/a>，例如我的博客的 RSS 订阅地址就是 &lt;a class="link" href="https://vifly.github.io/atom.xml" target="_blank" rel="noopener"
+>https://vifly.github.io/atom.xml&lt;/a>。&lt;/p>
+&lt;h2 id="评论区">评论区&lt;/h2>
+&lt;p>依然使用 Material 主题举例子，&lt;a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" target="_blank" rel="noopener"
+>官方文档&lt;/a>也说明了如何设置评论系统，为了能让读者畅所欲言，我否决了全部的国内评论系统，同时为了不翻墙的读者的体验以及匿名评论的需求，我最后选择了 Material 主题提供的 &lt;a class="link" href="https://disqus.com/" target="_blank" rel="noopener"
+>Disqus&lt;/a> 加自建 &lt;a class="link" href="https://posativ.org/isso/docs/" target="_blank" rel="noopener"
+>Isso&lt;/a> 评论系统（这里要感谢 &lt;a class="link" href="https://alynx.one" target="_blank" rel="noopener"
+>Alynx Zhou&lt;/a> 提供的多评论系统前端代码，话说周老师不去当前端工程师是不是太浪费了鸭≧▽≦）。&lt;/p>
+&lt;h2 id="数据统计与分析">数据统计与分析&lt;/h2>
+&lt;p>继续贴&lt;a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/services-zh-cn.md" target="_blank" rel="noopener"
+>官方文档&lt;/a>。基于对读者隐私的考虑，我直接排除了百度和 CNZZ 的分析系统，至于 Google 分析，考虑到谷歌近年来的名声与未翻墙用户的体验，最终也决定不予采用，那么就只剩下一条路了，自己搭建分析系统。&lt;del>这个暂时也咕咕咕了，若是能成功搭建的话，再写一篇博文进行叙述。&lt;/del> 目前已经成功使用 Matemo 搭建了自己的网站统计分析服务，具体操作请看&lt;a class="link" href="https://viflythink.com/Install_matomo_on_debian/" target="_blank" rel="noopener"
+> Debian 安装 Matomo (Piwik) 开源统计分析服务&lt;/a>。&lt;/p>
+&lt;h1 id="搜索引擎优化seo">搜索引擎优化（SEO）&lt;/h1>
+&lt;p>假如你在搜索引擎中输入 site:xxxxx.github.io（自己的博客网址） 后发现没有出现自己的网站，那么请赶快看一下下面的“提交网站站点地图”小节。&lt;/p>
+&lt;h2 id="验证网站所有权">验证网站所有权&lt;/h2>
+&lt;p>为了便于以后在各个搜索引擎当中管理和查看我们的博客，我强烈建议在各个搜索引擎验证网站所有权，完成这一步后即可使用站长工具查看数据了，而且这也是完成后面某些步骤的必要前提。假如你将自己的域名（指的是 *.github.io 以外的域名）用作博客的域名，那么便可以通过添加 DNS 记录的方式验证所有权（&lt;em>PS：每家搜索引擎对这个验证方法有不同的称呼，谷歌称为“域名提供商”，而 Bing 称为“手动向 DNS 添加 CNAME 记录”&lt;/em>），不采用下面提到的方法了。&lt;/p>
+&lt;h3 id="google">Google&lt;/h3>
+&lt;p>前往 Google 搜索的&lt;a class="link" href="https://search.google.com/search-console/ownership" target="_blank" rel="noopener"
+>控制台&lt;/a>添加自己的博客地址即可，Google 提供了几种验证方式:&lt;br>
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png"
+width="627"
+height="735"
+loading="lazy"
+alt="Google 的网站所有权验证"
+class="gallery-image"
+data-flex-grow="85"
+data-flex-basis="204px"
+> &lt;br>
+对于 Material 主题，请使用 HTML 标记或 Google 分析（假如你的博客使用了 Google 分析）进行验证，具体操作只需看&lt;a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/intro-zh-cn.md" target="_blank" rel="noopener"
+>官方文档&lt;/a>。&lt;/p>
+&lt;h3 id="bing必应">Bing（必应）&lt;/h3>
+&lt;p>前往 Bing 的&lt;a class="link" href="https://www.bing.com/toolbox/webmaster/" target="_blank" rel="noopener"
+>网站管理员工具&lt;/a>进行验证。很不幸的是，Material 主题官方并没有提供 Bing 的站点所有权验证，那只能自己动手修改源代码了，经过一番查找，终于找到了用于在 HTML 页面当中标记所有权的部分，其代码位于 themes/material/layout/_partial/head.ejs 中，CTRL+F 查找“site_verification”发现在约 142 行的位置就是我们要找的代码，在下方照葫芦画瓢地加上：&lt;/p>
+&lt;pre>&lt;code>&amp;lt;% if(theme.head.site_verification.bing) { %&amp;gt;&amp;lt;meta name=&amp;quot;msvalidate.01&amp;quot; content=&amp;quot;&amp;lt;%= theme.head.site_verification.bing %&amp;gt;&amp;quot; /&amp;gt;&amp;lt;% } %&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>&lt;strong>注意，我感觉这里的 meta name 不一定对于每个人都适用，请观察一下 Bing 提供的 HTML 代码后再修改 head.ejs。&lt;/strong>&lt;br>
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png"
+width="1023"
+height="785"
+loading="lazy"
+alt="Bing 的网站所有权验证"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+>
+在复制了“&amp;lt;meta name=&amp;ldquo;msvalidate.01&amp;rdquo; content=&amp;ldquo;xxxxxxxxxx&amp;rdquo; /&amp;gt;”中的 xxxxxxxxxx 对应的值后，在主题的_config.yml 中进行修改：&lt;/p>
+&lt;pre>&lt;code>site_verification:
+bing: xxxxxxxxxx
+google:
+baidu:
+&lt;/code>&lt;/pre>
+&lt;h2 id="提交网站站点地图">提交网站站点地图&lt;/h2>
+&lt;p>这一步就是告诉搜索引擎你的网站有哪些链接，提交后搜索引擎就会自动顺着站点地图中的链接爬取你的站点内容了，若是没有这一步，在搜索引擎当中直接搜索自己的博客地址是没有任何结果的。要完成这一步骤，需要在博客目录下输入以下指令安装&lt;a class="link" href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="noopener"
+> hexo-generator-sitemap &lt;/a>插件：&lt;/p>
+&lt;pre>&lt;code>npm install hexo-generator-sitemap --save
+&lt;/code>&lt;/pre>
+&lt;p>这个插件默认站点地图生成路径为 &lt;a class="link" href="https://%e4%bd%a0%e7%9a%84%e5%8d%9a%e5%ae%a2%e5%9f%9f%e5%90%8d/sitemap.xml" target="_blank" rel="noopener"
+>https://你的博客域名/sitemap.xml&lt;/a>，在使用 hexo g 重新生成网址内容后，将此网址提交到各个搜索引擎就可以了，以 Google 为例子，只需要发送 &lt;a class="link" href="http://www.google.com/ping?sitemap=https://" target="_blank" rel="noopener"
+>http://www.google.com/ping?sitemap=https://&lt;/a>你的博客域名/sitemap.xml 这个网络请求即可，也可以在&lt;a class="link" href="https://search.google.com/search-console/" target="_blank" rel="noopener"
+>Google 搜索控制台&lt;/a>中的 sitemaps（站点地图）一栏提交自己的站点地图。而 Bing 则是需要在其 Web 面板中添加 sitemap。&lt;/p>
+&lt;h2 id="提交网页地址收录新页面">提交网页地址（收录新页面）&lt;/h2>
+&lt;p>虽然搜索引擎会自动顺着站点地图爬取网页内容，但是我就是想让它赶快收录刚发布的文章（因为不知道这个这个自动流程需要多少时间），这种时候该怎么办呢？我从&lt;a class="link" href="http://www.guxiaobei.com/submit-your-content-of-google.html" target="_blank" rel="noopener"
+>“SEO 技巧！如何最快时间让 Google 收录你的页面”&lt;/a>中了解到了如何让 Google 及时收录新发布的博文，然而 Google 的控制台页面已经进行了改版，经过一番搜索，在&lt;a class="link" href="https://support.google.com/webmasters/answer/9012289" target="_blank" rel="noopener"
+> Google 官方的帮助文档&lt;/a>找到了新的提交新页面的方法，打开&lt;a class="link" href="https://www.google.com/webmasters/tools" target="_blank" rel="noopener"
+>https://www.google.com/webmasters/tools&lt;/a>，转到网址检查，输入你的新页面的网址，这就可以及时提交新的网页了。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png"
+width="1414"
+height="756"
+loading="lazy"
+alt="网址检查"
+class="gallery-image"
+data-flex-grow="187"
+data-flex-basis="448px"
+>&lt;/p>
+&lt;h2 id="seo-进阶">SEO 进阶&lt;/h2>
+&lt;p>为了让搜索引擎更好地爬取我们的网页，还需要使用一些技巧。这一部分主要参考了 &lt;a class="link" href="https://hoxis.github.io/Hexo&amp;#43;Next%20SEO%E4%BC%98%E5%8C%96.html" target="_blank" rel="noopener"
+>Hexo 博客 Next 主题 SEO 优化方法&lt;/a>这一博文，虽然 Material 主题与 Next 主题不同，不过有不少地方还是共通的。&lt;/p>
+&lt;h3 id="修改文章链接地址">修改文章链接地址&lt;/h3>
+&lt;p>Hexo 默认的文章链接形式为 domain/year/month/day/postname，这种四级 url 形式对于搜索引擎而言并不友好，我们可以修改为 domain/postname 这种形式。打开 blog 根目录下的_config.yml（下面统称为&lt;strong>站点配置文件&lt;/strong>），找到 permalink 部分，将 permalink: :year/:month/:day/:title/改为 permalink: :title.html。&lt;/p>
+&lt;pre>&lt;code>#permalink: :year/:month/:day/:title/
+permalink: :title.html
+&lt;/code>&lt;/pre>
+&lt;h3 id="出站链接添加-nofollow-标签">出站链接添加 nofollow 标签&lt;/h3>
+&lt;p>博文中总是会引用其它的文章，为了不让搜索引擎跳转到其它的网站，专注于我们的网页，我们需要为这些站外链接设置 nofollow 标签，可以通过安装&lt;a class="link" href="https://github.com/liuzc/hexo-autonofollow" target="_blank" rel="noopener"
+> hexo-autonofollow &lt;/a>自动完成这一个步骤。&lt;/p>
+&lt;pre>&lt;code>npm install hexo-autonofollow --save
+&lt;/code>&lt;/pre>
+&lt;p>然后在&lt;strong>站点配置文件&lt;/strong>中添加（更多配置请看 GitHub 页面）：&lt;/p>
+&lt;pre>&lt;code>nofollow:
+enable: true
+&lt;/code>&lt;/pre>
+&lt;h3 id="添加文章描述">添加文章描述&lt;/h3>
+&lt;p>由于在 Material 主题中，文章的 tags 等于 keywords，所以无需再添加关键字了。不过我们可以为每篇博文添加描述，添加方法与添加 tags 等相似，在博客文章 markdown 文件开头添加 description：&lt;/p>
+&lt;pre>&lt;code>---
+title: 标题
+date: year-month-day xx:xx:xx
+tags: [tag01,tag02]
+description: 你的博文描述
+---
+&lt;/code>&lt;/pre>
+&lt;h1 id="个性化">个性化&lt;/h1>
+&lt;h2 id="启用自己的域名">启用自己的域名&lt;/h2>
+&lt;p>千篇一律的 xxxxxxx.github.io 总是让人觉得厌烦，说到个性化，怎么能缺少使用自己喜欢的域名作为博客网址这一项呢？使用自定义的域名更有可能让人记住你的博客，而且只要不是前往 GoDaddy 这种价格偏高的网站购买域名，一个普通的 com 顶级域名每年也只需花费 10 美刀左右就可以拥有。在这么多的域名服务商当中，我选择了国外的&lt;a class="link" href="namecheap.com" > namecheap&lt;/a>，主要的好处就是以下几点：&lt;/p>
+&lt;ol>
+&lt;li>价格便宜（从网站名字就可以看出来了）&lt;/li>
+&lt;li>老牌商家，服务可靠。别看这个网站的页面长得不好看，而且价格也比较便宜，但这个网站真的是老牌服务商，我并没有找到它坑客户的案例，基本可以放心。&lt;/li>
+&lt;li>提供免费的 WhoisGuard 服务，保护你的隐私。&lt;/li>
+&lt;li>不用备案，选择国外的域名服务商的话都能享受到这点。&lt;/li>
+&lt;/ol>
+&lt;h3 id="自定义的域名与-github-page-的绑定">自定义的域名与 GitHub Page 的绑定&lt;/h3>
+&lt;p>买好了域名，接下来要做的事就是让我们的域名能够指向自己的博客啦。这个操作流程十分简单，只需前往自己的域名服务商的控制面板，然后参考这条&lt;a class="link" href="https://www.zhihu.com/question/31377141/answer/87541858" target="_blank" rel="noopener"
+>知乎回答&lt;/a>进行操作，只需在域名解析当中添加两条 CNAME 记录让域名（以我的域名为例就是 viflythink.com 和 &lt;a class="link" href="https://www.viflythink.com" target="_blank" rel="noopener"
+>www.viflythink.com&lt;/a> ）指向 xxxxxx.github.io，大概就是下面这样： &lt;br>
+&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png"
+width="621"
+height="173"
+loading="lazy"
+alt="设置DNS解析"
+class="gallery-image"
+data-flex-grow="358"
+data-flex-basis="861px"
+>&lt;br>
+然后在 source 目录下新建一个叫 CNAME 的文本文件，里面填入你的域名（如 viflythink.com），与不少网上的操作不同，我们这里并不需要绑定 GitHub 的 IP，因为有时候 IP 地址会变化，所以绑定 xxxxxx.github.io 会更好。&lt;/p>
+&lt;h3 id="启用-https-加密">启用 HTTPS 加密&lt;/h3>
+&lt;p>为了保证读者的隐私，防止 ISP 的广告植入，稍微提高自己的网站在搜索引擎中的权重，我们需要为自己的域名启用 HTTPS 加密，当你成功启用 HTTPS 加密后读者访问你的网站时就会看到浏览器上出现一个绿色小锁头了，整个步骤也不难，这里参考了&lt;a class="link" href="https://tzhou2018.github.io/2018/04/%E4%B8%BAGitHub-Pages%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%B9%B6%E6%B7%BB%E5%8A%A0SSL-%E5%BC%80%E5%90%AFHTTPS%E5%BC%BA%E5%88%B6/" target="_blank" rel="noopener"
+>为 GitHub Pages 自定义域名并添加SSL-开启https强制&lt;/a>这一篇博文，使用 cloudflare 提供的免费服务，这里必须提醒一句，使用 cloudflare 的 &lt;em>Universal SSL&lt;/em> 并不意味着全程加密，这个服务其实是通过 cloudflare 自己的服务器进行中转，读者到 cloudflare 的服务器这一段路是加密的，而 cloudflare 到 GitHub 的这一段并没有加密，另外，我在部署后出现“重定向次数过多”的错误，将 cloudflare 的加密由 Flexible 转为默认的 FULL 后就可以了，暂不知道原因。&lt;/p>
+&lt;h2 id="material-主题的进阶设置">Material 主题的进阶设置&lt;/h2>
+&lt;h3 id="material-主题实现随机显示标语slogan">Material 主题实现随机显示标语（slogan）&lt;/h3>
+&lt;p>是否觉得仅仅一句标语（格言）不足以说明什么呢？我想要在博客首页的标语更能表达我自己，使用随机显示的标语是一个很好的主意，这样就可以使用多个名言警句了，但是 Google 了一番后并没有找到为 Material 主题设置随机标语的方案，那么只能自己动手了（&lt;del>在改源码的道路上越走越远&lt;/del>）。这里主要参考了萌狼的&lt;a class="link" href="https://blog.yoitsu.moe/pelican/new_yoitsu_birth_notes.html" target="_blank" rel="noopener"
+>新约伊兹的萌狼乡手札诞生全过程伪实录&lt;/a>里的“实现动态格言”部分，由于我不懂前端，所以最后只能做到在每次刷新网页后显示随机的标语，而不能动态刷新。这里记录下我的折腾过程，欢迎前端大佬帮忙改进。&lt;br>
+首先找到 Material 主题负责显示标语的代码，其路径是 themes/material/layout/_partial/daily_pic.ejs，可以看到相关代码：&lt;/p>
+&lt;pre>&lt;code>&amp;lt;div class=&amp;quot;mdl-card__media mdl-color-text--grey-50&amp;quot; style=&amp;quot;background-image:url(&amp;lt;%= url_for(theme.img.daily_pic) %&amp;gt;)&amp;quot;&amp;gt;
+&amp;lt;p class=&amp;quot;index-top-block-slogan&amp;quot;&amp;gt;&amp;lt;a href=&amp;quot;&amp;lt;%= theme.url.daily_pic %&amp;gt;&amp;quot;&amp;gt;
+&amp;lt;% if(theme.uiux.slogan) { %&amp;gt;
+&amp;lt;% if(Array.isArray(theme.uiux.slogan)) { %&amp;gt;
+&amp;lt;%- theme.uiux.slogan.join('&amp;lt;br&amp;gt;') %&amp;gt;
+&amp;lt;% } else { %&amp;gt;
+&amp;lt;%- theme.uiux.slogan %&amp;gt;
+&amp;lt;% } %&amp;gt;
+&amp;lt;% } %&amp;gt;
+&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>这部分最后会被转换为 HTML 文本，然而我们需要每次加载时都能显示不同的标语，该怎么办呢？答案是使用 document.addEventListener() 设置一个监听器，加载多个标语后随机选择一个显示，这就是我写的代码的思路，当然，由于我是一个前端小白，所以借鉴了萌狼的代码，期间遇到了“$ is not defined”的错误，按照查到的&lt;a class="link" href="https://stackoverflow.com/questions/10779148/javascript-jquery-is-not-defined-function-error" target="_blank" rel="noopener"
+> stackoverflow 上的回答&lt;/a>成功解决了（说的简单，其实为了读懂相关的代码花了不少时间），最后写出的能用的代码如下（使用下面的代码替换上面贴出的代码）：&lt;/p>
+&lt;pre>&lt;code>&amp;lt;div class=&amp;quot;mdl-card__media mdl-color-text--grey-50&amp;quot; style=&amp;quot;background-image:url(&amp;lt;%= url_for(theme.img.daily_pic) %&amp;gt;)&amp;quot;&amp;gt;
+&amp;lt;p id=&amp;quot;myslogan&amp;quot; class=&amp;quot;index-top-block-slogan&amp;quot;&amp;gt;&amp;lt;a href=&amp;quot;&amp;lt;%= theme.url.daily_pic %&amp;gt;&amp;quot;&amp;gt;
+无法加载 gists 上的标语
+&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;!-- 动态显示标语 --&amp;gt;
+&amp;lt;script src=&amp;quot;js/jquery.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+document.addEventListener(&amp;quot;DOMContentLoaded&amp;quot;, function() {
+jQuery.getJSON( &amp;quot;https://api.github.com/gists/7a04e2188185ddb19cbd19d8217b9400&amp;quot;, function(data) {
+slogans = JSON.parse(data.files[&amp;quot;slogans.json&amp;quot;].content);
+randomSlogan = slogans[ Math.floor( Math.random() * slogans.length ) ];
+jQuery(&amp;quot;#myslogan&amp;quot;).html(randomSlogan.content);
+});
+});
+&amp;lt;/script&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>可以看出，使用了 jQuery 来解析 json 文件和提取标语内容，也用来更改页面中的标语，用 myslogan 这个 ID 标记标语所在区域。另外，想要使用这个代码的话，需要在&lt;a class="link" href="https://gist.github.com/" target="_blank" rel="noopener"
+> gist &lt;/a>上创建一个 json 文件，其格式类似于这样（与萌狼不同的是，我的代码并没有显示名言作者，所以这里的 json 文件并不需要填写 author）：&lt;/p>
+&lt;pre>&lt;code>[
+{
+&amp;quot;content&amp;quot;:&amp;quot;example1&amp;quot;
+},
+{
+&amp;quot;content&amp;quot;:&amp;quot;example2&amp;quot;
+},
+]
+&lt;/code>&lt;/pre>
+&lt;p>然后将得到的类似于&lt;a class="link" href="https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400" target="_blank" rel="noopener"
+>https://gist.github.com/7a04e2188185ddb19cbd19d8217b9400&lt;/a>这样的网址里的&amp;quot;gist.github.com&amp;quot;替换为&amp;quot;api.github.com/gists&amp;quot;，再用这个替换后的网址替换上面代码中的 gist 网址。完成后就能实现打开首页时随机显示标语了。&lt;/p></description></item><item><title>使用 Github Pages 和 Hexo 搭建个人博客</title><link>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/</guid><description>&lt;h1 id="简介">简介&lt;/h1>
+&lt;h2 id="github-pages是什么">Github Pages是什么&lt;/h2>
+&lt;p>先看看维基百科的说法:&lt;/p>
+&lt;blockquote>
+&lt;p>GitHub Pages是GitHub提供的一个网页寄存服务，于2008年推出。可以用于存放静态网页，包括博客、项目文档甚至整本书。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;a class="link" href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="noopener"
+>阮一峰的这篇文章&lt;/a>的说法更为简短：&lt;/p>
+&lt;blockquote>
+&lt;p>github Pages可以被认为是用户编写的、托管在github上的静态网页。&lt;/p>
+&lt;/blockquote>
+&lt;p>根据维基百科的介绍，我们可以得知 Github Pages 可用来存放博客，而且是免费且无限存储容量的，只不过它只支持静态网页，也就是说无法使用 WordPress 等工具建站。&lt;/p>
+&lt;h2 id="hexo是什么">Hexo是什么&lt;/h2>
+&lt;p>先上一个官方的介绍：&lt;/p>
+&lt;blockquote>
+&lt;p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。&lt;/p>
+&lt;/blockquote>
+&lt;p>从官方介绍中我们可以得知&lt;strong>Hexo 是用来生成静态网页的&lt;/strong>。
+由于 Github Pages 上只能发布静态网页，所以我们需要找到一个生成静态网页的软件来让我们能快速发布博文，Hexo 就是其中的一个。github 官方是推荐使用 Jekyll 来生成和发布的，然而 Hexo 有许多好看的主题，为此我选择了 Hexo。&lt;/p>
+&lt;h1 id="本地搭建">本地搭建&lt;/h1>
+&lt;h2 id="安装与运行">安装与运行&lt;/h2>
+&lt;p>Windows 下请自行下载安装 nodejs 与 git，Linux 请根据自己所使用的发行版安装 nodejs，npm，git。&lt;br>
+安装好后输入以下指令安装 hexo-cli（g 参数代表全局，请无视运行过程中出现的错误）：&lt;/p>
+&lt;pre>&lt;code>npm install hexo-cli -g
+&lt;/code>&lt;/pre>
+&lt;p>然后在博客目录下输入以下指令：&lt;/p>
+&lt;pre>&lt;code>npm install hexo --save
+&lt;/code>&lt;/pre>
+&lt;p>完成后可输入 hexo -v 验证是否安装成功。&lt;br>
+接着输入以下指令进行初始化：&lt;/p>
+&lt;pre>&lt;code>hexo init
+&lt;/code>&lt;/pre>
+&lt;p>然后输入以下指令安装依赖：&lt;/p>
+&lt;pre>&lt;code>npm install
+&lt;/code>&lt;/pre>
+&lt;p>搞定后就可以运行一下测试效果了，生成静态网页：&lt;/p>
+&lt;pre>&lt;code>hexo g
+&lt;/code>&lt;/pre>
+&lt;p>运行本地服务器：&lt;/p>
+&lt;pre>&lt;code>hexo s
+&lt;/code>&lt;/pre>
+&lt;p>根据输出信息使用浏览器打开&lt;a class="link" href="http://localhost:4000" target="_blank" rel="noopener"
+>http://localhost:4000&lt;/a>，即可看到效果&lt;/p>
+&lt;h2 id="写文章">写文章&lt;/h2>
+&lt;p>可以使用命令行或手动创建方法新建博文。
+使用命令行：&lt;/p>
+&lt;pre>&lt;code>hexo new &amp;lt;title&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>手动创建：在博客根目录下 source -&amp;gt; _posts 新建以 .md 为后缀的文件。&lt;/p>
+&lt;h1 id="主题选择">主题选择&lt;/h1>
+&lt;p>就我个人而言，查看技术类博文时总是看到写博文的博主使用了 Next 主题，虽然很简洁，但我总感觉过度简单了，在 16：9 的屏幕上左右两侧的空白太多了。经过一番查找，我选择了在集成服务和美观程度上成功打动了我的 Material 主题。&lt;/p>
+&lt;h2 id="使用material主题后运行报错">使用Material主题后运行报错&lt;/h2>
+&lt;p>使用 Material 主题后，运行 hexo s 后打开网页报错：&lt;/p>
+&lt;pre tabindex="0">&lt;code>Unhandled rejection TypeError: /home/blog/themes/Material/layout/layout.ejs:3
+1| &amp;lt;!DOCTYPE html&amp;gt;
+2| &amp;lt;html style=&amp;#34;display: none;&amp;#34; &amp;lt;% if(config.language !== null) { %&amp;gt;lang=&amp;#34;&amp;lt;%- config.language.substring(0,2) %&amp;gt;&amp;#34;&amp;lt;% } %&amp;gt;&amp;gt;
+&amp;gt;&amp;gt; 3| &amp;lt;%- partial(&amp;#39;_partial/head&amp;#39;) %&amp;gt;
+4|
+5| &amp;lt;% if(page.layout === &amp;#39;gallery&amp;#39;) { %&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>在官方仓库的 issues 中找到了&lt;a class="link" href="https://github.com/viosey/hexo-theme-Material/issues/686" target="_blank" rel="noopener"
+>解决方法&lt;/a>，需要对 layout/_widget/dnsprefetch.ejs 进行修改：&lt;br>
+将&lt;/p>
+&lt;pre>&lt;code>&amp;lt;% } else if(theme.comment.use.startsWith(&amp;quot;disqus&amp;quot;)) { %&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>改为&lt;/p>
+&lt;pre>&lt;code>&amp;lt;% } else if(theme.comment.use &amp;amp;&amp;amp; theme.comment.use.startsWith(&amp;quot;disqus&amp;quot;)) { %&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;h1 id="配置">配置&lt;/h1>
+&lt;h2 id="站点配置">站点配置&lt;/h2>
+&lt;p>首先打开 blog 根目录下的_config.yml（下面统称为&lt;strong>站点配置文件&lt;/strong>），按照以下示例进行修改：&lt;/p>
+&lt;pre>&lt;code>title: 你的站点名称
+author: 你的名字
+language: zh-CN
+&lt;/code>&lt;/pre>
+&lt;p>注意冒号后必须有空格，如果你不喜欢默认主题的话，可自行寻找 Hexo 主题，按照对应的主题的说明文档进行安装，记得修改 theme 内容：&lt;/p>
+&lt;pre>&lt;code>theme: 新主题名字
+&lt;/code>&lt;/pre>
+&lt;h2 id="material主题配置">Material主题配置&lt;/h2>
+&lt;p>这里按照&lt;a class="link" href="https://github.com/neko-dev/Material-theme-docs/" target="_blank" rel="noopener"
+>Material主题官方文档&lt;/a>配置即可，选择 Material 主题的一个重要原因就是这个主题提供了很多对第三方服务的支持（前端小白的福音），所以看看有什么需要的第三方服务吧（RSS，评论区，访问统计等等）,可以参考我写的&lt;a class="link" href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced" target="_blank" rel="noopener"
+>进阶篇&lt;/a>。&lt;/p>
+&lt;h2 id="material主题文档的一个小坑">Material主题文档的一个小坑&lt;/h2>
+&lt;p>在配置过程中遇到了一个问题，不知道如何在侧边栏添加独立页面的入口（比如关于，友链之类的），添加后点击入口却无法进入对应的页面，官方文档说明如下：&lt;/p>
+&lt;blockquote>
+&lt;p>link 的参数为相对路径，对应 hexo 目录下的 source 文件夹内的相应文件夹。&lt;/p>
+&lt;/blockquote>
+&lt;p>然而我已经按照说明创建了文件夹，为什么还是不行呢？最后在&lt;a class="link" href="https://github.com/viosey/hexo-theme-Material/wiki/%E5%88%9B%E5%BB%BA%E3%80%8C%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E3%80%8D%E9%A1%B5%E9%9D%A2" target="_blank" rel="noopener"
+>这个页面&lt;/a>找到了解决方法，以创建关于页面为例：&lt;br>
+在 source 文件夹下创建 about 文件夹，新建一个 index.md 文件，写下（其中 layout 的值不可修改）：&lt;/p>
+&lt;pre>&lt;code>---
+title: about
+date:
+layout: about
+---
+&lt;/code>&lt;/pre>
+&lt;p>&lt;em>假如是创建友链页面的话，记得还要按照“添加数据”这个步骤进行操作。&lt;/em>
+总结一下，其实是官方文档没有提到需要创建 index.md 这一点坑了我，我还一直以为是我对文档的理解有误呢。&lt;/p>
+&lt;h1 id="部署到github-pages">部署到Github Pages&lt;/h1>
+&lt;h2 id="github上的准备">Github上的准备&lt;/h2>
+&lt;p>这部分参考知乎专栏上的&lt;a class="link" href="https://zhuanlan.zhihu.com/p/35668237" target="_blank" rel="noopener"
+>超详细Hexo+Github博客搭建小白教程&lt;/a>，打开&lt;a class="link" href="https://github.com" target="_blank" rel="noopener"
+>github&lt;/a>并登录你的帐号，如果你还没在 github 帐号中添加 ssh key，请参考&lt;a class="link" href="https://gist.github.com/yisibl/8019693" target="_blank" rel="noopener"
+>这篇文章&lt;/a>进行添加。接着点击右上角的个人头像，再点击 Your repositories：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png"
+width="868"
+height="402"
+loading="lazy"
+alt="进入项目页面"
+class="gallery-image"
+data-flex-grow="215"
+data-flex-basis="518px"
+>&lt;/p>
+&lt;p>点击右侧的 New 新建项目。当然，你也可以直接点击&lt;a class="link" href="https://github.com/new" target="_blank" rel="noopener"
+>这个链接&lt;/a>新建项目。输入自己的项目名字，后面一定要加.github.io 后缀，README 初始化也要勾上。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png"
+width="780"
+height="616"
+loading="lazy"
+alt="新建项目"
+class="gallery-image"
+data-flex-grow="126"
+data-flex-basis="303px"
+>&lt;/p>
+&lt;p>创建好项目后，点击 Settings，向下拉到最后有个 GitHub Pages，点击 Choose a theme 选择一个主题。然后等一会儿就可看到页面了。&lt;/p>
+&lt;h2 id="正式部署到github-pages">正式部署到Github Pages&lt;/h2>
+&lt;p>打开&lt;strong>站点配置文件&lt;/strong>，按以下示例进行修改：&lt;/p>
+&lt;pre>&lt;code>deploy:
+type: git
+repository: 你的github项目地址
+branch: master
+&lt;/code>&lt;/pre>
+&lt;p>repository 填写的应是类似于 &lt;a class="link" href="mailto:git@github.com" >git@github.com&lt;/a>:vifly/viflyblog.github.io.git 这样的 ssh 地址。假如你不知道地址，那么可以打开你在 github 上的这个项目，点击右侧的 Clone or download，就会出现所需的地址：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png"
+width="1066"
+height="463"
+loading="lazy"
+alt="查看项目ssh地址"
+class="gallery-image"
+data-flex-grow="230"
+data-flex-basis="552px"
+>&lt;/p>
+&lt;p>最后，发布到 Github Pages：&lt;/p>
+&lt;pre>&lt;code>hexo d
+&lt;/code>&lt;/pre>
+&lt;p>假如一直卡住的话，可中断后加上 -debug 参数再次运行这个部署指令，查看哪里出现问题。&lt;/p></description></item></channel></rss>

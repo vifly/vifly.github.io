@@ -1,1 +1,216 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Vifly 的博客</title><link>https://viflythink.com/page/</link><description>Recent content in Pages on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/page/atom.xml" rel="self" type="application/rss+xml"/><item><title>GPG key</title><link>https://viflythink.com/gpg/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/gpg/</guid><description>2022.2.25.更新：更新了我的公钥</description></item><item><title>Service</title><link>https://viflythink.com/service/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/service/</guid><description>目前，除了博客以外，我还有一些公共可用的</description></item><item><title>About</title><link>https://viflythink.com/about/</link><pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/about/</guid><description>About me Hello, world! 我是谁呢？这个问题并不是那么容易</description></item><item><title>Archives</title><link>https://viflythink.com/archives/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/archives/</guid><description/></item><item><title>Links</title><link>https://viflythink.com/links/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/links/</guid><description>由于截止到 3.5.0 版本为止，Stack 主题尚未</description></item><item><title>Tags</title><link>https://viflythink.com/tags/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/tags/</guid><description/></item><item><title>Search</title><link>https://viflythink.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://viflythink.com/search/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Vifly 的博客</title><link>https://viflythink.com/page/</link><description>Recent content in Pages on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/page/atom.xml" rel="self" type="application/rss+xml"/><item><title>GPG key</title><link>https://viflythink.com/gpg/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/gpg/</guid><description>&lt;p>&lt;em>2022.2.25.更新：更新了我的公钥，旧公钥已不再使用。&lt;/em>&lt;/p>
+&lt;p>如果你想与我进行足够安全的通信，那么可以使用 GPG 加密信息，以下是我的 GPG 公钥：&lt;/p>
+&lt;pre tabindex="0">&lt;code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+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
+Q9jbTWanOkjFlitDSmg=
+=qWTW
+-----END PGP PUBLIC KEY BLOCK-----
+&lt;/code>&lt;/pre>&lt;p>将上面以&lt;code>-----BEGIN PGP PUBLIC KEY BLOCK-----&lt;/code>作为开头，以&lt;code>-----END PGP PUBLIC KEY BLOCK-----&lt;/code>作为结尾的文本保存到文本文件中，然后使用 &lt;code>gpg --import public.txt&lt;/code> （假设你把这段文本保存到 public.txt）导入我的公钥。在导入公钥后，请核对密钥指纹：&lt;/p>
+&lt;p>7629 42D8 8B9D CF46 5B06 5498 C4C3 D145 FC74 3104&lt;/p></description></item><item><title>Service</title><link>https://viflythink.com/service/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/service/</guid><description>&lt;p>目前，除了博客以外，我还有一些公共可用的服务，本页面用于列出这些服务并配上相应的说明。&lt;/p>
+&lt;h1 id="arch-软件源">Arch 软件源&lt;/h1>
+&lt;p>&lt;a class="link" href="https://archrepo.viflythink.com" target="_blank" rel="noopener"
+>https://archrepo.viflythink.com&lt;/a>&lt;/p>
+&lt;p>这是我自用的 Arch 软件源，国内外均可高速访问，里面主要包含根据 AUR 的 PKGBUILD 进行打包的软件，质量没有足够的保证，有相关的问题可以在 &lt;a class="link" href="https://github.com/vifly/arch-build/issues" target="_blank" rel="noopener"
+>GitHub Issues&lt;/a> 中提出。&lt;/p>
+&lt;h2 id="使用方法">使用方法&lt;/h2>
+&lt;p>首先导入并信任我的签名公钥，如果将来有一天软件包签名失效的话，那有可能是我更换了签名用的密钥，重新执行以下步骤就可以解决：&lt;/p>
+&lt;pre tabindex="0">&lt;code>wget -O /tmp/vifly-repo.key &amp;#39;https://share.viflythink.com/arch-repo.key&amp;#39; &amp;amp;&amp;amp; sudo pacman-key --add /tmp/vifly-repo.key
+sudo pacman-key --lsign-key viflythink@gmail.com
+&lt;/code>&lt;/pre>&lt;p>接着就是像添加 archlinuxcn 等第三方软件源一样在 /etc/pacman.conf 末尾添加下面几行：&lt;/p>
+&lt;pre tabindex="0">&lt;code>[vifly]
+Server = https://archrepo.viflythink.com
+&lt;/code>&lt;/pre>&lt;h1 id="debian-软件源">Debian 软件源&lt;/h1>
+&lt;p>&lt;a class="link" href="https://debianrepo.viflythink.com" target="_blank" rel="noopener"
+>https://debianrepo.viflythink.com&lt;/a>&lt;/p>
+&lt;p>除了 Arch 软件源外，我还有为 Debian 准备的软件源，同样是国内外均可高速访问，其中包含 fcitx5 百万肥猫词典（中文维基百科包含的词语）、萌娘百科词典等桌面用户所需的软件包，未来也会添加在服务器使用的软件。如有问题可在 &lt;a class="link" href="https://github.com/vifly/debian-build/issues" target="_blank" rel="noopener"
+>GitHub Issues&lt;/a> 提出。注意，本软件源目前只确保在最新的 Debian 稳定版（stable）可用，如果你使用旧稳定版/测试版/不稳定版 Debian，那么请自行解决报错。&lt;/p>
+&lt;h2 id="使用方法-1">使用方法&lt;/h2>
+&lt;p>与使用其它第三方软件源相同，首先导入签名公钥。由于 apt-key 会在 Debian 12 被废弃，所以这里不使用 apt-key 导入公钥。&lt;/p>
+&lt;pre tabindex="0">&lt;code>wget -qO - &amp;#39;https://share.viflythink.com/debian-repo.key&amp;#39; | gpg --dearmor | sudo tee /usr/share/keyrings/vifly-keyring.gpg &amp;amp;&amp;gt; /dev/null
+&lt;/code>&lt;/pre>&lt;p>接着在 sources.list.d 添加软件源，记得把 bullseye（对应 Debian 11）改为最新的稳定版系统代号（codename）。&lt;/p>
+&lt;pre tabindex="0">&lt;code>echo &amp;#39;deb [signed-by=/usr/share/keyrings/vifly-keyring.gpg] https://debianrepo.viflythink.com/ bullseye main&amp;#39; | sudo tee /etc/apt/sources.list.d/vifly.list
+&lt;/code>&lt;/pre>&lt;h1 id="文件分享">文件分享&lt;/h1>
+&lt;p>&lt;a class="link" href="https://share.viflythink.com" target="_blank" rel="noopener"
+>https://share.viflythink.com&lt;/a>&lt;/p>
+&lt;p>还有一个存在感较低的文件分享服务，目前仅用于分发上面所需的签名公钥。&lt;/p>
+&lt;p>其中的文件都存放在我的服务器上。&lt;/p></description></item><item><title>About</title><link>https://viflythink.com/about/</link><pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/about/</guid><description>&lt;h1 id="about-me">About me&lt;/h1>
+&lt;p>Hello, world! &lt;br>
+我是谁呢？这个问题并不是那么容易回答，如果是从现实角度来说，我是一个普通的大学生，喜欢折腾技术与阅读，值得一提的就是目前在学习深度学习（&lt;del>炼丹&lt;/del>）。 &lt;br>
+但是，这短短几句话不足以说明我是谁，我还有很多东西没说，最起码，我应该说清楚我喜欢什么与讨厌什么：&lt;/p>
+&lt;p>&lt;strong>喜欢的东西：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>开源/自由软件（FOSS）&lt;/li>
+&lt;li>能带来改变的思想与文字&lt;/li>
+&lt;li>能与他人理性沟通的平台与机会&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>讨厌的东西：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>封闭的环境&lt;/li>
+&lt;li>无处不在的权威&lt;/li>
+&lt;li>懒惰&lt;/li>
+&lt;/ol>
+&lt;p>在这里我想要解释一下为什么我讨厌懒惰，根据《少有人走的路：心智成熟的旅程》中所说的内容，懒惰是一种原罪，阻止人们寻求真相，阻止人们改变自我等等。而从我喜欢的东西可以看出，我是一个喜欢包容开放的环境的人，懒惰无疑会带来固执与封闭等等这些对开放社会（环境）有害的东西，而且，人们总是难以意识到自己的懒惰（包括我自己），所以我必须声明我讨厌懒惰，给予懒惰足够的重视。&lt;/p>
+&lt;p>想要更直观地了解我的立场？可以看看我在&lt;a class="link" href="https://www.politiscales.net/zh_CN/" target="_blank" rel="noopener"
+> PolitiScale 在线政治测试&lt;/a>上的测试结果（仅供参考）：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/about/my_politi.jpg"
+width="628"
+height="841"
+loading="lazy"
+alt="政治测试结果"
+class="gallery-image"
+data-flex-grow="74"
+data-flex-basis="179px"
+>&lt;/p>
+&lt;p>目前，在政治立场上对我影响较大的应该就是&lt;a class="link" href="https://program-think.blogspot.com/" target="_blank" rel="noopener"
+>编程随想&lt;/a>了（从我选择的 ID 就可以看出这一点）。因为同样想说些什么，所以我开通了博客。要问本博客的主题是什么？我只能说博客偏向技术主题，当然，还有其它东西，偏向技术主题是因为作为程序猿的我同样相信技术能够改变世界，不过，仅仅拥有技术是不够的，还有很多方面需要考虑，所以博客上也会有一些我的感想与论述。&lt;/p>
+&lt;p>最后，路还很长，有话慢慢说。欢迎各位与我交流，我的邮箱是 &lt;a class="link" href="mailto:viflythink@gmail.com" >viflythink@gmail.com&lt;/a>，你也可以通过&lt;a class="link" href="https://t.me/viflythink" target="_blank" rel="noopener"
+> Telegram &lt;/a>联系我，或者使用&lt;a class="link" href="https://twitter.com/viflythink" target="_blank" rel="noopener"
+> Twitter &lt;/a>（较少使用）私信我。&lt;/p>
+&lt;h1 id="交换友链">交换友链&lt;/h1>
+&lt;p>欢迎各位与我交换博客友链，想要交换友链的话，可以通过上面的联系方式联系我，或者直接在任意博文下留言，以下是一些可能用到的信息：&lt;/p>
+&lt;p>博客简述：Vifly 的自留地，既包括技术折腾记录，也有对于各种东西的感想。&lt;br>
+头像：https://viflythink.com/img/avatar.png&lt;/p></description></item><item><title>Archives</title><link>https://viflythink.com/archives/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/archives/</guid><description/></item><item><title>Links</title><link>https://viflythink.com/links/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/links/</guid><description>&lt;p>由于截止到 3.5.0 版本为止，&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/pull/375" target="_blank" rel="noopener"
+>Stack 主题尚未支持友链界面&lt;/a>，所以目前先简单地在这里存放一下友链。&lt;/p>
+&lt;h1 id="编程随想单向友链">编程随想（单向友链）&lt;/h1>
+&lt;p>&lt;a class="link" href="https://program-think.blogspot.com" target="_blank" rel="noopener"
+>https://program-think.blogspot.com&lt;/a>&lt;/p>
+&lt;p>翻墙之后必须要看的博客，没有之一！&lt;/p>
+&lt;h1 id="broca-phenol">Broca-Phenol&lt;/h1>
+&lt;p>&lt;a class="link" href="https://phenol-phthalein.info" target="_blank" rel="noopener"
+>https://phenol-phthalein.info&lt;/a>&lt;/p>
+&lt;p>坎坷之路，终抵群星，偶像黄昏，长眠之处。&lt;/p>
+&lt;h1 id="bennythink">bennythink&lt;/h1>
+&lt;p>&lt;a class="link" href="https://dmesg.app" target="_blank" rel="noopener"
+>https://dmesg.app&lt;/a>&lt;/p>
+&lt;p>谦和之中见卓越&lt;/p>
+&lt;h1 id="约伊兹的萌狼乡手札">约伊兹的萌狼乡手札&lt;/h1>
+&lt;p>&lt;a class="link" href="https://blog.yoitsu.moe" target="_blank" rel="noopener"
+>https://blog.yoitsu.moe&lt;/a>&lt;/p>
+&lt;p>一位高产的博主，写了很多与 Arch Linux、个人隐私相关的博文，是坚定的自由软件支持者&lt;/p>
+&lt;h1 id="fiveyellowmice">FiveYellowMice&lt;/h1>
+&lt;p>&lt;a class="link" href="https://fiveyellowmice.com" target="_blank" rel="noopener"
+>https://fiveyellowmice.com&lt;/a>&lt;/p>
+&lt;p>我想到的并写下的任何东西。相信开放和自由。&lt;/p>
+&lt;h1 id="alynx-zhou">Alynx Zhou&lt;/h1>
+&lt;p>&lt;a class="link" href="https://sh.alynx.one" target="_blank" rel="noopener"
+>https://sh.alynx.one&lt;/a>&lt;/p>
+&lt;p>「全ての存在は滅びるようにデザインされている」同是 Arch CN 社区成员，由于使用 Gnome 而遭到迫害（笑）&lt;/p>
+&lt;h1 id="cs-slayer">CS Slayer&lt;/h1>
+&lt;p>&lt;a class="link" href="https://www.csslayer.info" target="_blank" rel="noopener"
+>https://www.csslayer.info&lt;/a>&lt;/p>
+&lt;p>囧脸、计科杀手、老 K，是 Fcitx 的核心开发者&lt;/p>
+&lt;h1 id="初等記憶體ariel-axionl">初等記憶體（Ariel AxionL）&lt;/h1>
+&lt;p>&lt;a class="link" href="https://axionl.me" target="_blank" rel="noopener"
+>https://axionl.me&lt;/a>&lt;/p>
+&lt;p>「一個你知道的地方，和一個沒有酒的故事 ｜ 言文」Arch CN 社区成员，一般被称为艾雨寒老师，一个文艺青年&lt;/p>
+&lt;h1 id="千玄子">千玄子&lt;/h1>
+&lt;p>&lt;a class="link" href="https://zjuyk.site" target="_blank" rel="noopener"
+>https://zjuyk.site&lt;/a>&lt;/p>
+&lt;p>「纸上得来终觉浅，绝知此事要躬行」美男子（请给我打钱，谢谢）&lt;/p>
+&lt;h1 id="依云">依云&lt;/h1>
+&lt;p>&lt;a class="link" href="https://blog.lilydjwg.me/" target="_blank" rel="noopener"
+>https://blog.lilydjwg.me/&lt;/a>&lt;/p>
+&lt;p>Arch CN 社区管理员之一，是有名的百合仙子！有许多 Linux、Vim 相关的博文&lt;/p></description></item><item><title>Tags</title><link>https://viflythink.com/tags/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/tags/</guid><description/></item><item><title>Search</title><link>https://viflythink.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://viflythink.com/search/</guid><description/></item></channel></rss>

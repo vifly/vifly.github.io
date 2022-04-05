@@ -1,305 +1,54 @@
-<!doctype html><html lang=zh-cn>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="第八届中科大信息安全大赛（Hackergame 2021）的经历与题解"><title>2021 中科大信息安全大赛题解</title>
-<link rel=canonical href=https://viflythink.com/Hackergame_2021_writeups/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="2021 中科大信息安全大赛题解">
-<meta property="og:description" content="第八届中科大信息安全大赛（Hackergame 2021）的经历与题解">
-<meta property="og:url" content="https://viflythink.com/Hackergame_2021_writeups/">
-<meta property="og:site_name" content="Vifly 的博客">
-<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="信息安全"><meta property="article:published_time" content="2021-10-31T00:00:00+00:00"><meta property="article:modified_time" content="2021-10-31T00:00:00+00:00"><meta property="og:image" content="https://viflythink.com/Hackergame_2021_writeups/show.jpg">
-<meta name=twitter:title content="2021 中科大信息安全大赛题解">
-<meta name=twitter:description content="第八届中科大信息安全大赛（Hackergame 2021）的经历与题解"><meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://viflythink.com/Hackergame_2021_writeups/show.jpg">
-<link rel="shortcut icon" href=img/favicon.png>
-<meta name=google-site-verification content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
-<meta name=msvalidate.01 content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>Back</span>
-</a>
-</div>
-<main class="main full-width">
-<article class="has-image main-article">
-<header class=article-header>
-<div class=article-image>
-<a href=/Hackergame_2021_writeups/>
-<img src=/Hackergame_2021_writeups/show_hued1753f52dabbdb4ad30a094c50ac508_1372538_800x0_resize_q75_box.jpg srcset="/Hackergame_2021_writeups/show_hued1753f52dabbdb4ad30a094c50ac508_1372538_800x0_resize_q75_box.jpg 800w, /Hackergame_2021_writeups/show_hued1753f52dabbdb4ad30a094c50ac508_1372538_1600x0_resize_q75_box.jpg 1600w" width=800 height=357 loading=lazy alt="Featured image of post 2021 中科大信息安全大赛题解">
-</a>
-</div>
-<div class=article-details>
-<h2 class=article-title>
-<a href=/Hackergame_2021_writeups/>2021 中科大信息安全大赛题解</a>
-</h2>
-<h3 class=article-subtitle>
-第八届中科大信息安全大赛（Hackergame 2021）的经历与题解
-</h3>
-<footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>2021 年 10 月 31 日</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-9 minute read
-</time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<p>这是我第二次参加 Hackergame 了，今年依然玩的很开心，感受到了来自不同领域的考验，更开心的是与<a class=link href=https://viflythink.com/Hackergame_2020_writeups/ target=_blank rel=noopener>上一年</a>的 800 分相比，今年拿到了 1150 分，有所进步😂。虽然我做出来的题并不多，而且有些简单的题目没解决，但还是写一篇博文提供题解吧。希望本篇博文能够帮到想参加 Hackergame 的各位小伙伴。</p>
-<h1 id=签到>签到</h1>
-<p>与上一年的签到题相比，今年连脑筋急转弯都不需要了，每次点 Next 时间都会 +1s（唐突玩梗），我们只要把时间翻到本届大赛的举办日期即可，也就是说需要计算出 1970 年 1 月 1 日与 2021 年 CTF 大赛的时间差（用秒表示）。这里随便选取一个符合 2021 年 CTF 大赛时间范围的时间，然后使用 Python 计算：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=kn>import</span> <span class=nn>datetime</span>
-
-<span class=n>today</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>datetime</span><span class=p>(</span><span class=mi>2021</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>25</span><span class=p>)</span>
-<span class=n>begin</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>datetime</span><span class=p>(</span><span class=mi>1970</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
-
-<span class=n>delta</span> <span class=o>=</span> <span class=n>today</span> <span class=o>-</span> <span class=n>begin</span>
-<span class=nb>print</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>delta</span><span class=o>.</span><span class=n>total_seconds</span><span class=p>()))</span>
-</code></pre></div><p>由于可选的范围较大，所以代码不考虑时区且日期只精确到日，最后得到 1635120000 这个数字，那么访问 http://202.38.93.111:10000/?page=1635120000 就可以得到 flag 了。</p>
-<p><figure class=gallery-image style=flex-grow:160;flex-basis:384px>
-<a href=/Hackergame_2021_writeups/get_2021_qiandao_flag.png data-size=1432x894>
-<img src=/Hackergame_2021_writeups/get_2021_qiandao_flag.png width=1432 height=894 loading=lazy alt="成功获取签到题的 flag">
-</a>
-<figcaption>成功获取签到题的 flag</figcaption>
-</figure></p>
-<h1 id=进制十六参上>进制十六——参上</h1>
-<p>X 同学不会退出 Vim 着实让我笑了（<a class=link href=https://devhumor.com/content/uploads/images/June2018/vim.jpg target=_blank rel=noopener>知名勒索软件</a>），只不过这题虽说标题含有十六进制，但主要考验的是参赛者对 ASCII 码的了解。看到图片中的数字时很容易就会猜测这是不是 ASCII 码，通过 <code>man ascii</code> 查十六进制表进行对比，发现前面的几个数字与图片右侧开头的字母完全能对上，那么接下来就简单了。先找到 flag 的开头，查表得“flag{”对应的十六进制 ASCII 码是 66 6C 61 67 7B，而末尾的“}”对应的是 7D，把图中属于这部分的数字手打出来，然后用 Python 进行转换即可，这里我直接抄 <a class=link href=https://stackoverflow.com/a/49400923 target=_blank rel=noopener>stackoverflow 上的回答</a>：</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=n>s</span> <span class=o>=</span> <span class=s2>&#34;66 6C 61 67 7B 59 30 55 5F 53 48 30 55 31 44 5F 6B 6E 30 77 5F 48 30 57 5F 74 30 5F 43 30 6E 76 33 72 74 5F 48 45 58 5F 74 6F 5F 54 65 78 54 7D&#34;</span>
-<span class=n>l</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=nb>map</span><span class=p>(</span><span class=k>lambda</span> <span class=n>x</span><span class=p>:</span> <span class=nb>int</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=mi>16</span><span class=p>),</span> <span class=n>s</span><span class=o>.</span><span class=n>split</span><span class=p>()))</span>
-<span class=nb>print</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=nb>map</span><span class=p>(</span><span class=nb>chr</span><span class=p>,</span> <span class=n>l</span><span class=p>)))</span>
-</code></pre></div><h1 id=猫咪问答-pro-max>猫咪问答 Pro Max</h1>
-<p>与上一年的猫咪问答++一样，都是考验参赛者的信息搜索能力，我依然是采用了部分问题搜寻答案，另一些问题用脚本暴力破解的方案（脚本都没怎么改）。</p>
-<p>第一小题有点意思，题目提到信息安全俱乐部的域名（sec.ustc.edu.cn）已经无法访问，如何找到现在已经无法访问的网页上的资源呢？答案当然是网页快照，这里我选择了 <a class=link href=https://web.archive.org target=_blank rel=noopener>Wayback Machine</a>，其记录的<a class=link href=https://web.archive.org/web/20170515053637/http://sec.ustc.edu.cn/doku.php/codes target=_blank rel=noopener>社团章程页面</a>正文第一句话就是“本章程在 2015 年 5 月 4 日，经会员代表大会审议通过。”，所以答案是 20150504。</p>
-<p><em>PS：对于中国大陆的网民来说，想看的文章 404 是一个家常便饭的事情，感谢 Wayback Machine 等提供网页快照的组织，他们让互联网的记忆不再转瞬即逝，避免了互联网内容的永久消失，运营这些服务所耗费的资源是巨大的，如果你有能力的话，可以考虑<a class=link href=https://archive.org/donate target=_blank rel=noopener>向 Wayback Machine 捐款</a>以支持他们继续运营下去。</em></p>
-<p>第三小题可以通过搜索“中国科学技术大学 Linux 用户协会 西区活动室”这些关键词找到对应的<a class=link href=https://news.ustclug.org/2016/06/new-activity-room-in-west-library/ target=_blank rel=noopener>新闻稿</a>，其中就有现场照片，翻看图片得到 Development Team of Library 这个答案。</p>
-<p>第五小题又是一个愚人节玩笑，谷歌找到对应的 <a class=link href=https://datatracker.ietf.org/doc/html/rfc8962 target=_blank rel=noopener>RFC</a>，在 Table of Contents 中看到存在 Reporting Offenses 这一章节，跳到该章节看到“Send all your reports of possible violations and all tips about wrongdoing to /dev/null.”这一句话提供了答案，所以本题的答案是 /dev/null。</p>
-<p>剩下的题目就是靠<a class=link href=https://gist.github.com/vifly/d98bae07c3fffdbd44a908152afb1b75#file-cat_answers_pro_max-py target=_blank rel=noopener>脚本</a>解决了。</p>
-<h1 id=卖瓜>卖瓜</h1>
-<p>不知道是不是每一届 Hackergame 的 Web 类都会有一道题目涉及数值运算。6 斤与 9 斤的瓜在放整数个的情况下是不可能凑够 20 斤的，我一开始以为这题需要想办法弄出浮点数，但经过了多次尝试后发现这题需要利用数值溢出来解决。随意尝试输入一个很大的数字，可以发现当输入的数值超过一定范围时正数会溢出变为负数。试了好一会后发现添加 5944674407370955162 个 9 斤的瓜后会导致记录变为 -1838162554790060032 斤，我们的目标是 20 斤，-1838162554790060032 加 20 正好是 9 的倍数，(-1838162554790060032 + 20) / 9 得到 -204240283865562228 这个数字，这个数并不会导致溢出，也就是说先加 5944674407370955162 个 9 斤的瓜，然后再加 204240283865562228 个 9 斤的瓜就可以凑够 20 斤了。前面进行尝试时顺便写了个<a class=link href=https://gist.github.com/vifly/d98bae07c3fffdbd44a908152afb1b75#file-sell_lemon-py target=_blank rel=noopener>脚本</a>，于是最后用它提交并获得了 flag。</p>
-<h1 id=amnesia>Amnesia</h1>
-<h2 id=轻度失忆>轻度失忆</h2>
-<p>这是我第一次成功解决了一道 binary 类的题目！尽管只是完成了第一小题，但依然觉得非常开心。在轻度失忆的情况下，.data 和 .rodata 段会被清除，要知道这两个段是什么东西呢，就需要对 ELF 格式有所了解。一般来说，Linux 下我们编译后得到的产物都是 ELF 格式的，例如 <code>file /bin/bash</code> 会告诉我们 bash 是一个 x86 体系架构的 ELF 格式的可执行文件，ELF 要求把编译产物的不同部分放到不同的分段（section，不是 segment），具体有哪些分段，它们分别存放什么，<a class=link href=https://wiki.osdev.org/ELF#File_Structure target=_blank rel=noopener>OSDev Wiki</a> 提供了一个表格进行说明。从表格可以得知 .data 段用来存放已初始化的全局变量等数据，而 .rodata 段用来存放不变的数据。既然这两个段会被清空，那么我们就不能把含有 “Hello, world!” 的字符串放到这些地方，在这里不得不说到 C 语言的一个麻烦点：C 语言中并不存在真正的字符串，所谓的字符串本质上是字符指针或字符数组。使用字符指针的话，在初始化时该指针会指向包含“Hello, world!”的只读数据（在 .rodata 段），所以字符指针不能用在这里，只能采用字符数组进行储存。同时也不能把该字符串放到函数外作为全局变量。另外，为了防止 printf("%s", s); 中的 %s 被清除，这里使用 putchar 函数把字符一个个输出。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-C data-lang=C><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;</span><span class=cp>
-</span><span class=cp></span>
-<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
-<span class=p>{</span>
-    <span class=kt>char</span> <span class=n>s</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;Hello, world!&#34;</span><span class=p>;</span>
-    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=mi>13</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
-        <span class=n>putchar</span><span class=p>(</span><span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>]);</span>
-    <span class=p>}</span>
-
-    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div><p>在编译完成后可以通过 <code>objdump -s -j .rodata hello_world</code> 与 <code>objdump -s -j .data hello_world</code> 检查 .data 和 .rodata 段是否还存在数据（自行替换文件名）。</p>
-<h1 id=图之上的信息>图之上的信息</h1>
-<p>GraphQL 是一种新颖的接口设计方案，也是我目前还不了解的一个玩意，只不过我根据题目位置和分值推测这道题目的难度应该较低，抱着试一试的心态用谷歌搜寻了 GraphQL 的常见安全问题，然后发现<a class=link href=https://blog.yeswehack.com/yeswerhackers/how-exploit-graphql-endpoint-bug-bounty/ target=_blank rel=noopener>这篇博文</a>，还以为需要多动手试验几次，可没想到用文章里推荐的 <a class=link href=https://github.com/swisskyrepo/GraphQLmap target=_blank rel=noopener>GraphQLmap</a> 就直接扒出了整个接口可用的字段（需要先靠浏览器 F12 找到接口地址和其它信息）。</p>
-<p><figure class=gallery-image style=flex-grow:121;flex-basis:291px>
-<a href=/Hackergame_2021_writeups/get_GraphQL_schema.png data-size=759x624>
-<img src=/Hackergame_2021_writeups/get_GraphQL_schema.png width=759 height=624 loading=lazy alt=获取所有字段>
-</a>
-<figcaption>获取所有字段</figcaption>
-</figure></p>
-<p>知道字段后就好办了，只要没有另外的身份验证，接下来直接查询 admin 的邮箱即可。根据 <a class=link href=https://graphql.org/learn/queries/ target=_blank rel=noopener>GraphQL 官方文档</a>写出查询语句，此处需要填入参数，由于 guest 账号的 id 为 2，所以猜测 admin 的 id 为 1。在 GraphQLmap 内执行 {user(id: 1) {privateEmail}}，好了，黑客扒库成功。</p>
-<p><figure class=gallery-image style=flex-grow:302;flex-basis:725px>
-<a href=/Hackergame_2021_writeups/get_GraphQL_flag.png data-size=837x277>
-<img src=/Hackergame_2021_writeups/get_GraphQL_flag.png width=837 height=277 loading=lazy alt="成功获取图之上的信息的 flag">
-</a>
-<figcaption>成功获取图之上的信息的 flag</figcaption>
-</figure></p>
-<p><em>PS：我后来才发现服务端没禁用 <a class=link href=https://graphql.org/learn/introspection/ target=_blank rel=noopener>introspection</a>，例如我查询 users 时服务端会提示是不是想查询 user，所以其实不用 GraphQLmap，执行以下查询就可以取得所有字段了。</em></p>
-<pre tabindex=0><code>{__schema{queryType{name}mutationType{name}subscriptionType{name}types{...FullType}directives{name description locations args{...InputValue}}}}fragment FullType on __Type{kind name description fields(includeDeprecated:true){name description args{...InputValue}type{...TypeRef}isDeprecated deprecationReason}inputFields{...InputValue}interfaces{...TypeRef}enumValues(includeDeprecated:true){name description isDeprecated deprecationReason}possibleTypes{...TypeRef}}fragment InputValue on __InputValue{name description type{...TypeRef}defaultValue}fragment TypeRef on __Type{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name}}}}}}}}
-</code></pre><p><figure class=gallery-image style=flex-grow:181;flex-basis:436px>
-<a href=/Hackergame_2021_writeups/query_when_enable_introspection.png data-size=587x323>
-<img src=/Hackergame_2021_writeups/query_when_enable_introspection.png width=587 height=323 loading=lazy alt="当 introspection 被启用时的查询结果">
-</a>
-<figcaption>当 introspection 被启用时的查询结果</figcaption>
-</figure></p>
-<h1 id=加密的-u-盘>加密的 U 盘</h1>
-<p>与上一年 Hackergame 的<a class=link href=https://github.com/USTC-Hackergame/hackergame2020-writeups/blob/master/official/%E5%AE%A4%E5%8F%8B%E7%9A%84%E5%8A%A0%E5%AF%86%E7%A1%AC%E7%9B%98/README.md target=_blank rel=noopener>室友的加密硬盘</a>一样都涉及到了 LUKS，上一年的题目由于没想到冷启动攻击这种高级玩意没做出来，今年的题目相比起来就简单多了，对 LUKS 的原理有一定了解的前提下可以很快找到思路。LUKS 有一个很有趣的设计，当我们解密使用 LUKS 加密的分区时，首先会使用我们输入的密码解密位于加密分区头部的主密钥（master key），此时使用的算法在设计上故意令运算速度非常慢（LUKS1 默认的是 PBKDF2），以此给尝试暴力破解的攻击者增加时间成本，然后才会使用这个主密钥解密分区内容，而此时算法的性能就非常好（默认采用 aes-xts-plain64，使用 <code>cryptsetup luksFormat</code> 创建加密分区时可以通过 &ndash;cipher 参数指定其它算法，通过 <code>cryptsetup benchmark</code> 查看各种算法的性能指标），不会让用户觉得访问速度慢。</p>
-<p>知道了上述这一点后，我们可以想一想 day1 与 day2 这两个镜像会有什么区别，虽然 day2 的密码已经被改了，可两者之间是否有什么东西没有改变呢？答案就是主密钥没变。利用这点，我们可以从能够解密的 day1.img 中提取出主密钥，然后用主密钥解密 day2。</p>
-<p>先根据<a class=link href=https://unix.stackexchange.com/a/504234 target=_blank rel=noopener>该回答</a>把两个镜像文件附到（attach）Loop 设备，并解密挂载 day1.img：</p>
-<pre tabindex=0><code>sudo losetup -P /dev/loop1 ./day1.img
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="第八届中科大信息安全大赛（Hackergame 2021）的经历与题解"><title>2021 中科大信息安全大赛题解</title><link rel=canonical href=https://viflythink.com/Hackergame_2021_writeups/><link rel=stylesheet href=/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css><meta property="og:title" content="2021 中科大信息安全大赛题解"><meta property="og:description" content="第八届中科大信息安全大赛（Hackergame 2021）的经历与题解"><meta property="og:url" content="https://viflythink.com/Hackergame_2021_writeups/"><meta property="og:site_name" content="Vifly 的博客"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="信息安全"><meta property="article:published_time" content="2021-10-31T00:00:00+00:00"><meta property="article:modified_time" content="2021-10-31T00:00:00+00:00"><meta property="og:image" content="https://viflythink.com/Hackergame_2021_writeups/show.jpg"><meta name=twitter:title content="2021 中科大信息安全大赛题解"><meta name=twitter:description content="第八届中科大信息安全大赛（Hackergame 2021）的经历与题解"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://viflythink.com/Hackergame_2021_writeups/show.jpg"><link rel="shortcut icon" href=img/favicon.png><meta name=google-site-verification content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y"><meta name=msvalidate.01 content="D8C8D2BAD9DA419D96DA79455FC4DDBC"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu139cde8ab2a45f6f8ca9b1d680d35535_828870_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Vifly 的博客</a></h1><script>fetch("https://api.github.com/gists/7a04e2188185ddb19cbd19d8217b9400").then(e=>{if(e.ok)return e.json();throw new Error("Unable to fetch gist slogans.")}).then(e=>JSON.parse(e.files["slogans.json"].content)).then(e=>e[Math.floor(Math.random()*e.length)].content).then(e=>{document.getElementById("slogan").innerHTML="<h2 id='slogan' class='site-description'>"+e+"</h2>"})</script><h2 id=slogan class=site-description></h2></div></header><ol class=social-menu><li><a href=mailto:viflythink@gmail.com target=_blank title=Email><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></li><li><a href=https://github.com/vifly target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://viflythink.com/atom.xml target=_blank title=RSS><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="5" cy="19" r="1"/><path d="M4 4a16 16 0 0116 16"/><path d="M4 11a9 9 0 019 9"/></svg></a></li><li><a href=https://t.me/viflythink target=_blank title=Telegram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"/></svg></a></li><li><a href=https://twitter.com/viflythink target=_blank title=Twitter><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/ target=_blank><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/tags/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg><span>Tags</span></a></li><li><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>About</span></a></li><li><a href=/service/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4.0 010-9 5 4.5.0 0111 2h1a3.5 3.5.0 010 7H7"/></svg><span>Service</span></a></li><li><a href=/gpg/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-key" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="8" cy="15" r="4"/><line x1="10.85" y1="12.15" x2="19" y2="4"/><line x1="18" y1="5" x2="20" y2="7"/><line x1="15" y1="8" x2="17" y2="10"/></svg><span>GPG key</span></a></li><li><a href=/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-friends" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="7" cy="5" r="2"/><path d="M5 22v-5l-1-1v-4a1 1 0 011-1h4a1 1 0 011 1v4l-1 1v5"/><circle cx="17" cy="5" r="2"/><path d="M15 22v-4h-2l2-6a1 1 0 011-1h2a1 1 0 011 1l2 6h-2v4"/></svg><span>Links</span></a></li><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>Dark Mode</span></li></div></ol></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/Hackergame_2021_writeups/><img src=/Hackergame_2021_writeups/show_hued1753f52dabbdb4ad30a094c50ac508_1372538_800x0_resize_q75_box.jpg srcset="/Hackergame_2021_writeups/show_hued1753f52dabbdb4ad30a094c50ac508_1372538_800x0_resize_q75_box.jpg 800w, /Hackergame_2021_writeups/show_hued1753f52dabbdb4ad30a094c50ac508_1372538_1600x0_resize_q75_box.jpg 1600w" width=800 height=357 loading=lazy alt="Featured image of post 2021 中科大信息安全大赛题解"></a></div><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/Hackergame_2021_writeups/>2021 中科大信息安全大赛题解</a></h2><h3 class=article-subtitle>第八届中科大信息安全大赛（Hackergame 2021）的经历与题解</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>2021 年 10 月 31 日</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>9 minute read</time></div></footer></div></header><section class=article-content><p>这是我第二次参加 Hackergame 了，今年依然玩的很开心，感受到了来自不同领域的考验，更开心的是与<a class=link href=https://viflythink.com/Hackergame_2020_writeups/ target=_blank rel=noopener>上一年</a>的 800 分相比，今年拿到了 1150 分，有所进步😂。虽然我做出来的题并不多，而且有些简单的题目没解决，但还是写一篇博文提供题解吧。希望本篇博文能够帮到想参加 Hackergame 的各位小伙伴。</p><h1 id=签到>签到</h1><p>与上一年的签到题相比，今年连脑筋急转弯都不需要了，每次点 Next 时间都会 +1s（唐突玩梗），我们只要把时间翻到本届大赛的举办日期即可，也就是说需要计算出 1970 年 1 月 1 日与 2021 年 CTF 大赛的时间差（用秒表示）。这里随便选取一个符合 2021 年 CTF 大赛时间范围的时间，然后使用 Python 计算：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>datetime</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>today</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>datetime</span><span class=p>(</span><span class=mi>2021</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>25</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>begin</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>datetime</span><span class=p>(</span><span class=mi>1970</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>delta</span> <span class=o>=</span> <span class=n>today</span> <span class=o>-</span> <span class=n>begin</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>delta</span><span class=o>.</span><span class=n>total_seconds</span><span class=p>()))</span>
+</span></span></code></pre></div><p>由于可选的范围较大，所以代码不考虑时区且日期只精确到日，最后得到 1635120000 这个数字，那么访问 http://202.38.93.111:10000/?page=1635120000 就可以得到 flag 了。</p><p><img src=/Hackergame_2021_writeups/get_2021_qiandao_flag.png width=1432 height=894 loading=lazy alt="成功获取签到题的 flag" class=gallery-image data-flex-grow=160 data-flex-basis=384px></p><h1 id=进制十六参上>进制十六——参上</h1><p>X 同学不会退出 Vim 着实让我笑了（<a class=link href=https://devhumor.com/content/uploads/images/June2018/vim.jpg target=_blank rel=noopener>知名勒索软件</a>），只不过这题虽说标题含有十六进制，但主要考验的是参赛者对 ASCII 码的了解。看到图片中的数字时很容易就会猜测这是不是 ASCII 码，通过 <code>man ascii</code> 查十六进制表进行对比，发现前面的几个数字与图片右侧开头的字母完全能对上，那么接下来就简单了。先找到 flag 的开头，查表得“flag{”对应的十六进制 ASCII 码是 66 6C 61 67 7B，而末尾的“}”对应的是 7D，把图中属于这部分的数字手打出来，然后用 Python 进行转换即可，这里我直接抄 <a class=link href=https://stackoverflow.com/a/49400923 target=_blank rel=noopener>stackoverflow 上的回答</a>：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Python data-lang=Python><span class=line><span class=cl><span class=n>s</span> <span class=o>=</span> <span class=s2>&#34;66 6C 61 67 7B 59 30 55 5F 53 48 30 55 31 44 5F 6B 6E 30 77 5F 48 30 57 5F 74 30 5F 43 30 6E 76 33 72 74 5F 48 45 58 5F 74 6F 5F 54 65 78 54 7D&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>l</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=nb>map</span><span class=p>(</span><span class=k>lambda</span> <span class=n>x</span><span class=p>:</span> <span class=nb>int</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=mi>16</span><span class=p>),</span> <span class=n>s</span><span class=o>.</span><span class=n>split</span><span class=p>()))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=nb>map</span><span class=p>(</span><span class=nb>chr</span><span class=p>,</span> <span class=n>l</span><span class=p>)))</span>
+</span></span></code></pre></div><h1 id=猫咪问答-pro-max>猫咪问答 Pro Max</h1><p>与上一年的猫咪问答++一样，都是考验参赛者的信息搜索能力，我依然是采用了部分问题搜寻答案，另一些问题用脚本暴力破解的方案（脚本都没怎么改）。</p><p>第一小题有点意思，题目提到信息安全俱乐部的域名（sec.ustc.edu.cn）已经无法访问，如何找到现在已经无法访问的网页上的资源呢？答案当然是网页快照，这里我选择了 <a class=link href=https://web.archive.org target=_blank rel=noopener>Wayback Machine</a>，其记录的<a class=link href=https://web.archive.org/web/20170515053637/http://sec.ustc.edu.cn/doku.php/codes target=_blank rel=noopener>社团章程页面</a>正文第一句话就是“本章程在 2015 年 5 月 4 日，经会员代表大会审议通过。”，所以答案是 20150504。</p><p><em>PS：对于中国大陆的网民来说，想看的文章 404 是一个家常便饭的事情，感谢 Wayback Machine 等提供网页快照的组织，他们让互联网的记忆不再转瞬即逝，避免了互联网内容的永久消失，运营这些服务所耗费的资源是巨大的，如果你有能力的话，可以考虑<a class=link href=https://archive.org/donate target=_blank rel=noopener>向 Wayback Machine 捐款</a>以支持他们继续运营下去。</em></p><p>第三小题可以通过搜索“中国科学技术大学 Linux 用户协会 西区活动室”这些关键词找到对应的<a class=link href=https://news.ustclug.org/2016/06/new-activity-room-in-west-library/ target=_blank rel=noopener>新闻稿</a>，其中就有现场照片，翻看图片得到 Development Team of Library 这个答案。</p><p>第五小题又是一个愚人节玩笑，谷歌找到对应的 <a class=link href=https://datatracker.ietf.org/doc/html/rfc8962 target=_blank rel=noopener>RFC</a>，在 Table of Contents 中看到存在 Reporting Offenses 这一章节，跳到该章节看到“Send all your reports of possible violations and all tips about wrongdoing to /dev/null.”这一句话提供了答案，所以本题的答案是 /dev/null。</p><p>剩下的题目就是靠<a class=link href=https://gist.github.com/vifly/d98bae07c3fffdbd44a908152afb1b75#file-cat_answers_pro_max-py target=_blank rel=noopener>脚本</a>解决了。</p><h1 id=卖瓜>卖瓜</h1><p>不知道是不是每一届 Hackergame 的 Web 类都会有一道题目涉及数值运算。6 斤与 9 斤的瓜在放整数个的情况下是不可能凑够 20 斤的，我一开始以为这题需要想办法弄出浮点数，但经过了多次尝试后发现这题需要利用数值溢出来解决。随意尝试输入一个很大的数字，可以发现当输入的数值超过一定范围时正数会溢出变为负数。试了好一会后发现添加 5944674407370955162 个 9 斤的瓜后会导致记录变为 -1838162554790060032 斤，我们的目标是 20 斤，-1838162554790060032 加 20 正好是 9 的倍数，(-1838162554790060032 + 20) / 9 得到 -204240283865562228 这个数字，这个数并不会导致溢出，也就是说先加 5944674407370955162 个 9 斤的瓜，然后再加 204240283865562228 个 9 斤的瓜就可以凑够 20 斤了。前面进行尝试时顺便写了个<a class=link href=https://gist.github.com/vifly/d98bae07c3fffdbd44a908152afb1b75#file-sell_lemon-py target=_blank rel=noopener>脚本</a>，于是最后用它提交并获得了 flag。</p><h1 id=amnesia>Amnesia</h1><h2 id=轻度失忆>轻度失忆</h2><p>这是我第一次成功解决了一道 binary 类的题目！尽管只是完成了第一小题，但依然觉得非常开心。在轻度失忆的情况下，.data 和 .rodata 段会被清除，要知道这两个段是什么东西呢，就需要对 ELF 格式有所了解。一般来说，Linux 下我们编译后得到的产物都是 ELF 格式的，例如 <code>file /bin/bash</code> 会告诉我们 bash 是一个 x86 体系架构的 ELF 格式的可执行文件，ELF 要求把编译产物的不同部分放到不同的分段（section，不是 segment），具体有哪些分段，它们分别存放什么，<a class=link href=https://wiki.osdev.org/ELF#File_Structure target=_blank rel=noopener>OSDev Wiki</a> 提供了一个表格进行说明。从表格可以得知 .data 段用来存放已初始化的全局变量等数据，而 .rodata 段用来存放不变的数据。既然这两个段会被清空，那么我们就不能把含有 “Hello, world!” 的字符串放到这些地方，在这里不得不说到 C 语言的一个麻烦点：C 语言中并不存在真正的字符串，所谓的字符串本质上是字符指针或字符数组。使用字符指针的话，在初始化时该指针会指向包含“Hello, world!”的只读数据（在 .rodata 段），所以字符指针不能用在这里，只能采用字符数组进行储存。同时也不能把该字符串放到函数外作为全局变量。另外，为了防止 printf("%s", s); 中的 %s 被清除，这里使用 putchar 函数把字符一个个输出。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-C data-lang=C><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;stdio.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>char</span> <span class=n>s</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;Hello, world!&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=mi>13</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>putchar</span><span class=p>(</span><span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>在编译完成后可以通过 <code>objdump -s -j .rodata hello_world</code> 与 <code>objdump -s -j .data hello_world</code> 检查 .data 和 .rodata 段是否还存在数据（自行替换文件名）。</p><h1 id=图之上的信息>图之上的信息</h1><p>GraphQL 是一种新颖的接口设计方案，也是我目前还不了解的一个玩意，只不过我根据题目位置和分值推测这道题目的难度应该较低，抱着试一试的心态用谷歌搜寻了 GraphQL 的常见安全问题，然后发现<a class=link href=https://blog.yeswehack.com/yeswerhackers/how-exploit-graphql-endpoint-bug-bounty/ target=_blank rel=noopener>这篇博文</a>，还以为需要多动手试验几次，可没想到用文章里推荐的 <a class=link href=https://github.com/swisskyrepo/GraphQLmap target=_blank rel=noopener>GraphQLmap</a> 就直接扒出了整个接口可用的字段（需要先靠浏览器 F12 找到接口地址和其它信息）。</p><p><img src=/Hackergame_2021_writeups/get_GraphQL_schema.png width=759 height=624 loading=lazy alt=获取所有字段 class=gallery-image data-flex-grow=121 data-flex-basis=291px></p><p>知道字段后就好办了，只要没有另外的身份验证，接下来直接查询 admin 的邮箱即可。根据 <a class=link href=https://graphql.org/learn/queries/ target=_blank rel=noopener>GraphQL 官方文档</a>写出查询语句，此处需要填入参数，由于 guest 账号的 id 为 2，所以猜测 admin 的 id 为 1。在 GraphQLmap 内执行 {user(id: 1) {privateEmail}}，好了，黑客扒库成功。</p><p><img src=/Hackergame_2021_writeups/get_GraphQL_flag.png width=837 height=277 loading=lazy alt="成功获取图之上的信息的 flag" class=gallery-image data-flex-grow=302 data-flex-basis=725px></p><p><em>PS：我后来才发现服务端没禁用 <a class=link href=https://graphql.org/learn/introspection/ target=_blank rel=noopener>introspection</a>，例如我查询 users 时服务端会提示是不是想查询 user，所以其实不用 GraphQLmap，执行以下查询就可以取得所有字段了。</em></p><pre tabindex=0><code>{__schema{queryType{name}mutationType{name}subscriptionType{name}types{...FullType}directives{name description locations args{...InputValue}}}}fragment FullType on __Type{kind name description fields(includeDeprecated:true){name description args{...InputValue}type{...TypeRef}isDeprecated deprecationReason}inputFields{...InputValue}interfaces{...TypeRef}enumValues(includeDeprecated:true){name description isDeprecated deprecationReason}possibleTypes{...TypeRef}}fragment InputValue on __InputValue{name description type{...TypeRef}defaultValue}fragment TypeRef on __Type{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name}}}}}}}}
+</code></pre><p><img src=/Hackergame_2021_writeups/query_when_enable_introspection.png width=587 height=323 loading=lazy alt="当 introspection 被启用时的查询结果" class=gallery-image data-flex-grow=181 data-flex-basis=436px></p><h1 id=加密的-u-盘>加密的 U 盘</h1><p>与上一年 Hackergame 的<a class=link href=https://github.com/USTC-Hackergame/hackergame2020-writeups/blob/master/official/%E5%AE%A4%E5%8F%8B%E7%9A%84%E5%8A%A0%E5%AF%86%E7%A1%AC%E7%9B%98/README.md target=_blank rel=noopener>室友的加密硬盘</a>一样都涉及到了 LUKS，上一年的题目由于没想到冷启动攻击这种高级玩意没做出来，今年的题目相比起来就简单多了，对 LUKS 的原理有一定了解的前提下可以很快找到思路。LUKS 有一个很有趣的设计，当我们解密使用 LUKS 加密的分区时，首先会使用我们输入的密码解密位于加密分区头部的主密钥（master key），此时使用的算法在设计上故意令运算速度非常慢（LUKS1 默认的是 PBKDF2），以此给尝试暴力破解的攻击者增加时间成本，然后才会使用这个主密钥解密分区内容，而此时算法的性能就非常好（默认采用 aes-xts-plain64，使用 <code>cryptsetup luksFormat</code> 创建加密分区时可以通过 &ndash;cipher 参数指定其它算法，通过 <code>cryptsetup benchmark</code> 查看各种算法的性能指标），不会让用户觉得访问速度慢。</p><p>知道了上述这一点后，我们可以想一想 day1 与 day2 这两个镜像会有什么区别，虽然 day2 的密码已经被改了，可两者之间是否有什么东西没有改变呢？答案就是主密钥没变。利用这点，我们可以从能够解密的 day1.img 中提取出主密钥，然后用主密钥解密 day2。</p><p>先根据<a class=link href=https://unix.stackexchange.com/a/504234 target=_blank rel=noopener>该回答</a>把两个镜像文件附到（attach）Loop 设备，并解密挂载 day1.img：</p><pre tabindex=0><code>sudo losetup -P /dev/loop1 ./day1.img
 sudo losetup -P /dev/loop2 ./day2.img
 sudo cryptsetup open /dev/loop1p1 day1
 mkdir /tmp/day1
 sudo mount /dev/mapper/day1 /tmp/day1
-</code></pre><p>接下来原以为按 <a class=link href=https://access.redhat.com/solutions/1543373 target=_blank rel=noopener>RedHat 的文章</a>操作就行了，没想到 <a class=link href=https://gitlab.com/cryptsetup/cryptsetup/-/issues/453 target=_blank rel=noopener>LUKS2 不支持通过 dmsetup 获得 masterkey</a>，那么只能先用 cryptsetup 导出主密钥了：</p>
-<pre tabindex=0><code>sudo cryptsetup luksDump /dev/loop1p1 --dump-master-key
-</code></pre><p>这会警告你输出的信息很敏感，需要另外输入大写的 YES 进行确认才能继续。获得输出后复制 MK dump 里的一长串十六进制数，并用 xxd 进行转换，最后解密 day2.img：</p>
-<pre tabindex=0><code>echo &quot;be 97 db 91 5c 30 47 ce 1c 59 c5 c0 8c 75 3c 40 72 35 85 9d fe 49 c0 52 c4 f5 26 60 af 3e d4 2c ec a3 60 53 aa 96 70 4d f3 f2 ff 56 8f 49 a1 82 60 18 7c 58 d7 6a ec e8 00 c1 90 c1 88 43 f8 9a&quot; | xxd -r -p &gt; masterkey
+</code></pre><p>接下来原以为按 <a class=link href=https://access.redhat.com/solutions/1543373 target=_blank rel=noopener>RedHat 的文章</a>操作就行了，没想到 <a class=link href=https://gitlab.com/cryptsetup/cryptsetup/-/issues/453 target=_blank rel=noopener>LUKS2 不支持通过 dmsetup 获得 masterkey</a>，那么只能先用 cryptsetup 导出主密钥了：</p><pre tabindex=0><code>sudo cryptsetup luksDump /dev/loop1p1 --dump-master-key
+</code></pre><p>这会警告你输出的信息很敏感，需要另外输入大写的 YES 进行确认才能继续。获得输出后复制 MK dump 里的一长串十六进制数，并用 xxd 进行转换，最后解密 day2.img：</p><pre tabindex=0><code>echo &#34;be 97 db 91 5c 30 47 ce 1c 59 c5 c0 8c 75 3c 40 72 35 85 9d fe 49 c0 52 c4 f5 26 60 af 3e d4 2c ec a3 60 53 aa 96 70 4d f3 f2 ff 56 8f 49 a1 82 60 18 7c 58 d7 6a ec e8 00 c1 90 c1 88 43 f8 9a&#34; | xxd -r -p &gt; masterkey
 sudo cryptsetup open /dev/loop2p1 day2 --master-key-file ./masterkey
 mkdir /tmp/day2
 sudo mount /dev/mapper/day2 /tmp/day2
 cat /tmp/day2/flag.txt
-</code></pre><p>这是一种比较难以利用的破解 LUKS 的方式，需要取得已无效的密码与该密码有效时的 LUKS 分区。当然，这也提醒我们旧的加密数据最好不要随便公开，没准攻击者就靠这点破解了新的加密数据呢。</p>
-<h1 id=赛博厨房>赛博厨房</h1>
-<h2 id=level-0>Level 0</h2>
-<p>第零天的菜谱是“0,1”，而写好指令后第一天变成了“1,1”，那只能更改指令重新学习后执行。指令如下：</p>
-<pre tabindex=0><code>向右 2 步
+</code></pre><p>这是一种比较难以利用的破解 LUKS 的方式，需要取得已无效的密码与该密码有效时的 LUKS 分区。当然，这也提醒我们旧的加密数据最好不要随便公开，没准攻击者就靠这点破解了新的加密数据呢。</p><h1 id=赛博厨房>赛博厨房</h1><h2 id=level-0>Level 0</h2><p>第零天的菜谱是“0,1”，而写好指令后第一天变成了“1,1”，那只能更改指令重新学习后执行。指令如下：</p><pre tabindex=0><code>向右 2 步
 拿起 2 个物品
 向下 1 步
 向左 2 步
 放下 1 个物品
 放下 1 个物品
-</code></pre><p><figure class=gallery-image style=flex-grow:169;flex-basis:405px>
-<a href=/Hackergame_2021_writeups/cybercook_level0_flag.png data-size=1537x909>
-<img src=/Hackergame_2021_writeups/cybercook_level0_flag.png width=1537 height=909 loading=lazy alt="Level 0 flag">
-</a>
-<figcaption>Level 0 flag</figcaption>
-</figure></p>
-<h2 id=level-1>Level 1</h2>
-<p>看到菜谱包含了这么多的 0，先复制并用 Python 统计总共有多少个 0，得到 73 这个数字。</p>
-<p>接下来又是拿起物品并放下的流程了，别忘了一次只能放下一个物品，所以我们需要 73 次放下，这就需要构造一个循环语句了，如果把循环展开为 73 行“放下 1 个物品”，题目会由于行数过大而不予通过，具体指令如下（使用 goto 实现循环可真难受）：</p>
-<pre tabindex=0><code>向右 1 步
+</code></pre><p><img src=/Hackergame_2021_writeups/cybercook_level0_flag.png width=1537 height=909 loading=lazy alt="Level 0 flag" class=gallery-image data-flex-grow=169 data-flex-basis=405px></p><h2 id=level-1>Level 1</h2><p>看到菜谱包含了这么多的 0，先复制并用 Python 统计总共有多少个 0，得到 73 这个数字。</p><p>接下来又是拿起物品并放下的流程了，别忘了一次只能放下一个物品，所以我们需要 73 次放下，这就需要构造一个循环语句了，如果把循环展开为 73 行“放下 1 个物品”，题目会由于行数过大而不予通过，具体指令如下（使用 goto 实现循环可真难受）：</p><pre tabindex=0><code>向右 1 步
 拿起 73 个物品
 向下 1 步
 向左 1 步
 放下 1 个物品
 如果手上的物品大于等于 0 向上跳转 1 行
-</code></pre><p><figure class=gallery-image style=flex-grow:157;flex-basis:378px>
-<a href=/Hackergame_2021_writeups/cybercook_level1_flag.png data-size=1427x905>
-<img src=/Hackergame_2021_writeups/cybercook_level1_flag.png width=1427 height=905 loading=lazy alt="Level 1 flag">
-</a>
-<figcaption>Level 1 flag</figcaption>
-</figure></p>
-<h1 id=一些没做出来的题目>一些没做出来的题目</h1>
-<p>不知道为什么，今年与上一年类似，一些题目看似很简单，可我就是没做出来，赛后看到题解时差点吐血，原来我就只差一点点就解决了。</p>
-<p>“去吧！追寻自由的电波”，这题我已经发现 <code>ffmpeg -i radio.mp3 -af "atempo=0.5,asetrate=22050" res.mp3</code> 可以输出能让人听清楚读音的音频，而且也找到了无线电领域所使用的<a class=link href=https://zh.wikipedia.org/wiki/%E5%8C%97%E7%BA%A6%E9%9F%B3%E6%A0%87%E5%AD%97%E6%AF%8D target=_blank rel=noopener>字母表</a>，可惜就差 November 这一个字母没听出来。</p>
-<p>“透明的文件”，当我写 <a class=link href=https://github.com/vifly/rgrcat target=_blank rel=noopener>rgrcat</a> 这个项目时（咕咕咕）已经了解到了 <a class=link href=https://en.wikipedia.org/wiki/ANSI_escape_code target=_blank rel=noopener>ANSI 转义序列</a>，知道它可以让程序的输出附上颜色，所以我在每个“[”前加上了“\033”，唯一没想到的是还需要把所有空格替换为其它字符，不然会看不到输出。</p>
-<p>“Easy RSA”，看到题目说“你还获得了构造 p 和 q 的方式”，我还以为今年终于能解决一道 math 类的题目，可惜自己的数理基础太差，连怎么计算 p 都没想到，只能明年继续努力了。</p>
-<p>“FLAG 助力大红包”，还以为需要在应用层以下的协议栈当中寻找伪造 IP 的办法，没想到反代服务器存在 X-Forwarded-For 欺骗漏洞，可以很轻松地伪造 IP，这也提醒我以后在涉及 IP 识别的代码中不要信任 X-Forwarded-For 头标。</p>
-<h1 id=总结>总结</h1>
-<p>今年的中科大信息安全大赛依然很好玩，就算没解决题目，很多题目的描述看了以后都让我发出了笑声。虽然做出来的题目不多，但面对每道题目都绞尽脑汁寻找解题方法时的感觉非常美妙。今年也是我第一次做出来一小道 binary 类题目，当然，我在这方面的基础还是不够，只能多学习点东西，在明年的 Hackergame 尝试再进一步。</p>
-</section>
-<footer class=article-footer>
-<section class=article-tags>
-<a href=/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/>信息安全</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>Related contents</h2>
-<div class=related-contents>
-<div class="flex article-list--tile">
-<article class=has-image>
-<a href=/Hackergame_2020_writeups/>
-<div class=article-image>
-<img src=/Hackergame_2020_writeups/show.961f9901878e2b82abaaeb7e1f326343_hu047d013128609b76bc4f6f1998ad3a88_1069728_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy data-key data-hash="md5-lh+ZAYeOK4Krqut+HzJjQw==">
-</div>
-<div class=article-details>
-<h2 class=article-title>中科大信息安全大赛初体验</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/translate_elliptic_curve_cryptography_explained/>
-<div class=article-image>
-<img src=/translate_elliptic_curve_cryptography_explained/show.8ac351075994593ec66b34bae84b47b5_hu5601238948948f72ac070df8361310aa_232702_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy data-key data-hash="md5-isNRB1mUWT7GazS66EtHtQ==">
-</div>
-<div class=article-details>
-<h2 class=article-title>【译】椭圆曲线密码介绍</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<div id=isso-comment>
-<script data-isso=https://comments.viflythink.com/isso/ data-isso-css=true data-isso-lang=zh_CN data-isso-reply-to-self=true data-isso-require-author=true data-isso-require-email=false data-isso-max-comments-top=10 data-isso-max-comments-nested=5 data-isso-reveal-on-click=5 data-isso-avatar=true data-isso-vote=true data-isso-vote-levels data-isso-feed=false src=https://comments.viflythink.com/isso/js/embed.min.js></script>
-<section id=isso-thread></section>
-</div>
-<style>#isso-comment{background-color:#eee;padding:2pc}</style>
-<footer class=site-footer>
-<section class=copyright>
-&copy;
+</code></pre><p><img src=/Hackergame_2021_writeups/cybercook_level1_flag.png width=1427 height=905 loading=lazy alt="Level 1 flag" class=gallery-image data-flex-grow=157 data-flex-basis=378px></p><h1 id=一些没做出来的题目>一些没做出来的题目</h1><p>不知道为什么，今年与上一年类似，一些题目看似很简单，可我就是没做出来，赛后看到题解时差点吐血，原来我就只差一点点就解决了。</p><p>“去吧！追寻自由的电波”，这题我已经发现 <code>ffmpeg -i radio.mp3 -af "atempo=0.5,asetrate=22050" res.mp3</code> 可以输出能让人听清楚读音的音频，而且也找到了无线电领域所使用的<a class=link href=https://zh.wikipedia.org/wiki/%E5%8C%97%E7%BA%A6%E9%9F%B3%E6%A0%87%E5%AD%97%E6%AF%8D target=_blank rel=noopener>字母表</a>，可惜就差 November 这一个字母没听出来。</p><p>“透明的文件”，当我写 <a class=link href=https://github.com/vifly/rgrcat target=_blank rel=noopener>rgrcat</a> 这个项目时（咕咕咕）已经了解到了 <a class=link href=https://en.wikipedia.org/wiki/ANSI_escape_code target=_blank rel=noopener>ANSI 转义序列</a>，知道它可以让程序的输出附上颜色，所以我在每个“[”前加上了“\033”，唯一没想到的是还需要把所有空格替换为其它字符，不然会看不到输出。</p><p>“Easy RSA”，看到题目说“你还获得了构造 p 和 q 的方式”，我还以为今年终于能解决一道 math 类的题目，可惜自己的数理基础太差，连怎么计算 p 都没想到，只能明年继续努力了。</p><p>“FLAG 助力大红包”，还以为需要在应用层以下的协议栈当中寻找伪造 IP 的办法，没想到反代服务器存在 X-Forwarded-For 欺骗漏洞，可以很轻松地伪造 IP，这也提醒我以后在涉及 IP 识别的代码中不要信任 X-Forwarded-For 头标。</p><h1 id=总结>总结</h1><p>今年的中科大信息安全大赛依然很好玩，就算没解决题目，很多题目的描述看了以后都让我发出了笑声。虽然做出来的题目不多，但面对每道题目都绞尽脑汁寻找解题方法时的感觉非常美妙。今年也是我第一次做出来一小道 binary 类题目，当然，我在这方面的基础还是不够，只能多学习点东西，在明年的 Hackergame 尝试再进一步。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/>信息安全</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>Related contents</h2><div class=related-contents><div class="flex article-list--tile"><article class=has-image><a href=/Hackergame_2020_writeups/><div class=article-image><img src=/Hackergame_2020_writeups/show.961f9901878e2b82abaaeb7e1f326343_hu047d013128609b76bc4f6f1998ad3a88_1069728_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 中科大信息安全大赛初体验" data-hash="md5-lh+ZAYeOK4Krqut+HzJjQw=="></div><div class=article-details><h2 class=article-title>中科大信息安全大赛初体验</h2></div></a></article><article class=has-image><a href=/translate_elliptic_curve_cryptography_explained/><div class=article-image><img src=/translate_elliptic_curve_cryptography_explained/show.8ac351075994593ec66b34bae84b47b5_hu5601238948948f72ac070df8361310aa_232702_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 【译】椭圆曲线密码介绍" data-hash="md5-isNRB1mUWT7GazS66EtHtQ=="></div><div class=article-details><h2 class=article-title>【译】椭圆曲线密码介绍</h2></div></a></article></div></div></aside><div id=isso-comment><script data-isso=https://comments.viflythink.com/isso/ data-isso-css=true data-isso-lang=zh_CN data-isso-reply-to-self=true data-isso-require-author=true data-isso-require-email=false data-isso-max-comments-top=10 data-isso-max-comments-nested=5 data-isso-reveal-on-click=5 data-isso-avatar=true data-isso-vote=true data-isso-vote-levels data-isso-feed=false src=https://comments.viflythink.com/isso/js/embed.min.js></script><section id=isso-thread></section></div><style>#isso-comment{background-color:#eee;padding:2pc}</style><footer class=site-footer><section class=copyright>&copy;
 2019 -
-2022 Vifly 的博客
-</section>
-<section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 Vifly 的博客</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.11.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://viflythink.com/js/photoswipe.min.js crossorigin=anonymous defer></script><script src=https://viflythink.com/js/photoswipe-ui-default.min.js crossorigin=anonymous defer></script><link rel=stylesheet href=https://viflythink.com/css/default-skin.css crossorigin=anonymous><link rel=stylesheet href=https://viflythink.com/css/photoswipe.css crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">Table of contents</h2>
-<div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#签到>签到</a></li>
-<li><a href=#进制十六参上>进制十六——参上</a></li>
-<li><a href=#猫咪问答-pro-max>猫咪问答 Pro Max</a></li>
-<li><a href=#卖瓜>卖瓜</a></li>
-<li><a href=#amnesia>Amnesia</a>
-<ol>
-<li><a href=#轻度失忆>轻度失忆</a></li>
-</ol>
-</li>
-<li><a href=#图之上的信息>图之上的信息</a></li>
-<li><a href=#加密的-u-盘>加密的 U 盘</a></li>
-<li><a href=#赛博厨房>赛博厨房</a>
-<ol>
-<li><a href=#level-0>Level 0</a></li>
-<li><a href=#level-1>Level 1</a></li>
-</ol>
-</li>
-<li><a href=#一些没做出来的题目>一些没做出来的题目</a></li>
-<li><a href=#总结>总结</a></li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://viflythink.com/js/vibrant.min.js crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://viflythink.com/js/photoswipe.min.js crossorigin=anonymous defer></script><script src=https://viflythink.com/js/photoswipe-ui-default.min.js crossorigin=anonymous defer></script><link rel=stylesheet href=https://viflythink.com/css/default-skin.css crossorigin=anonymous><link rel=stylesheet href=https://viflythink.com/css/photoswipe.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#签到>签到</a></li><li><a href=#进制十六参上>进制十六——参上</a></li><li><a href=#猫咪问答-pro-max>猫咪问答 Pro Max</a></li><li><a href=#卖瓜>卖瓜</a></li><li><a href=#amnesia>Amnesia</a><ol><li><a href=#轻度失忆>轻度失忆</a></li></ol></li><li><a href=#图之上的信息>图之上的信息</a></li><li><a href=#加密的-u-盘>加密的 U 盘</a></li><li><a href=#赛博厨房>赛博厨房</a><ol><li><a href=#level-0>Level 0</a></li><li><a href=#level-1>Level 1</a></li></ol></li><li><a href=#一些没做出来的题目>一些没做出来的题目</a></li><li><a href=#总结>总结</a></li></ol></nav></div></section></aside></div><script src=https://viflythink.com/js/vibrant.min.js crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

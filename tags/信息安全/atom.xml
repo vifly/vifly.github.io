@@ -1,1 +1,635 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>信息安全 on Vifly 的博客</title><link>https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</link><description>Recent content in 信息安全 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 31 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/atom.xml" rel="self" type="application/rss+xml"/><item><title>2021 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2021_writeups/</link><pubDate>Sun, 31 Oct 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Hackergame_2021_writeups/</guid><description>这是我第二次参加 Hackergame 了，今年依然玩的很开心</description></item><item><title>中科大信息安全大赛初体验</title><link>https://viflythink.com/Hackergame_2020_writeups/</link><pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate><guid>https://viflythink.com/Hackergame_2020_writeups/</guid><description>半年以来的第一篇新博文！九月底的时候放弃</description></item><item><title>【译】椭圆曲线密码介绍</title><link>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</link><pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</guid><description>前段时间我看到了一篇标题为 Elliptic Curve Cryptography Explained 的既通</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>信息安全 on Vifly 的博客</title><link>https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</link><description>Recent content in 信息安全 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 31 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/atom.xml" rel="self" type="application/rss+xml"/><item><title>2021 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2021_writeups/</link><pubDate>Sun, 31 Oct 2021 00:00:00 +0000</pubDate><guid>https://viflythink.com/Hackergame_2021_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/show.jpg" alt="Featured image of post 2021 中科大信息安全大赛题解" />&lt;p>这是我第二次参加 Hackergame 了，今年依然玩的很开心，感受到了来自不同领域的考验，更开心的是与&lt;a class="link" href="https://viflythink.com/Hackergame_2020_writeups/" target="_blank" rel="noopener"
+>上一年&lt;/a>的 800 分相比，今年拿到了 1150 分，有所进步😂。虽然我做出来的题并不多，而且有些简单的题目没解决，但还是写一篇博文提供题解吧。希望本篇博文能够帮到想参加 Hackergame 的各位小伙伴。&lt;/p>
+&lt;h1 id="签到">签到&lt;/h1>
+&lt;p>与上一年的签到题相比，今年连脑筋急转弯都不需要了，每次点 Next 时间都会 +1s（唐突玩梗），我们只要把时间翻到本届大赛的举办日期即可，也就是说需要计算出 1970 年 1 月 1 日与 2021 年 CTF 大赛的时间差（用秒表示）。这里随便选取一个符合 2021 年 CTF 大赛时间范围的时间，然后使用 Python 计算：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">datetime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">today&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2021&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">begin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1970&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">delta&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">today&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">begin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delta&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">total_seconds&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于可选的范围较大，所以代码不考虑时区且日期只精确到日，最后得到 1635120000 这个数字，那么访问 http://202.38.93.111:10000/?page=1635120000 就可以得到 flag 了。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_2021_qiandao_flag.png"
+width="1432"
+height="894"
+loading="lazy"
+alt="成功获取签到题的 flag"
+class="gallery-image"
+data-flex-grow="160"
+data-flex-basis="384px"
+>&lt;/p>
+&lt;h1 id="进制十六参上">进制十六——参上&lt;/h1>
+&lt;p>X 同学不会退出 Vim 着实让我笑了（&lt;a class="link" href="https://devhumor.com/content/uploads/images/June2018/vim.jpg" target="_blank" rel="noopener"
+>知名勒索软件&lt;/a>），只不过这题虽说标题含有十六进制，但主要考验的是参赛者对 ASCII 码的了解。看到图片中的数字时很容易就会猜测这是不是 ASCII 码，通过 &lt;code>man ascii&lt;/code> 查十六进制表进行对比，发现前面的几个数字与图片右侧开头的字母完全能对上，那么接下来就简单了。先找到 flag 的开头，查表得“flag{”对应的十六进制 ASCII 码是 66 6C 61 67 7B，而末尾的“}”对应的是 7D，把图中属于这部分的数字手打出来，然后用 Python 进行转换即可，这里我直接抄 &lt;a class="link" href="https://stackoverflow.com/a/49400923" target="_blank" rel="noopener"
+>stackoverflow 上的回答&lt;/a>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;66 6C 61 67 7B 59 30 55 5F 53 48 30 55 31 44 5F 6B 6E 30 77 5F 48 30 57 5F 74 30 5F 43 30 6E 76 33 72 74 5F 48 45 58 5F 74 6F 5F 54 65 78 54 7D&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">l&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">lambda&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">chr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="猫咪问答-pro-max">猫咪问答 Pro Max&lt;/h1>
+&lt;p>与上一年的猫咪问答++一样，都是考验参赛者的信息搜索能力，我依然是采用了部分问题搜寻答案，另一些问题用脚本暴力破解的方案（脚本都没怎么改）。&lt;/p>
+&lt;p>第一小题有点意思，题目提到信息安全俱乐部的域名（sec.ustc.edu.cn）已经无法访问，如何找到现在已经无法访问的网页上的资源呢？答案当然是网页快照，这里我选择了 &lt;a class="link" href="https://web.archive.org" target="_blank" rel="noopener"
+>Wayback Machine&lt;/a>，其记录的&lt;a class="link" href="https://web.archive.org/web/20170515053637/http://sec.ustc.edu.cn/doku.php/codes" target="_blank" rel="noopener"
+>社团章程页面&lt;/a>正文第一句话就是“本章程在 2015 年 5 月 4 日，经会员代表大会审议通过。”，所以答案是 20150504。&lt;/p>
+&lt;p>&lt;em>PS：对于中国大陆的网民来说，想看的文章 404 是一个家常便饭的事情，感谢 Wayback Machine 等提供网页快照的组织，他们让互联网的记忆不再转瞬即逝，避免了互联网内容的永久消失，运营这些服务所耗费的资源是巨大的，如果你有能力的话，可以考虑&lt;a class="link" href="https://archive.org/donate" target="_blank" rel="noopener"
+>向 Wayback Machine 捐款&lt;/a>以支持他们继续运营下去。&lt;/em>&lt;/p>
+&lt;p>第三小题可以通过搜索“中国科学技术大学 Linux 用户协会 西区活动室”这些关键词找到对应的&lt;a class="link" href="https://news.ustclug.org/2016/06/new-activity-room-in-west-library/" target="_blank" rel="noopener"
+>新闻稿&lt;/a>，其中就有现场照片，翻看图片得到 Development Team of Library 这个答案。&lt;/p>
+&lt;p>第五小题又是一个愚人节玩笑，谷歌找到对应的 &lt;a class="link" href="https://datatracker.ietf.org/doc/html/rfc8962" target="_blank" rel="noopener"
+>RFC&lt;/a>，在 Table of Contents 中看到存在 Reporting Offenses 这一章节，跳到该章节看到“Send all your reports of possible violations and all tips about wrongdoing to /dev/null.”这一句话提供了答案，所以本题的答案是 /dev/null。&lt;/p>
+&lt;p>剩下的题目就是靠&lt;a class="link" href="https://gist.github.com/vifly/d98bae07c3fffdbd44a908152afb1b75#file-cat_answers_pro_max-py" target="_blank" rel="noopener"
+>脚本&lt;/a>解决了。&lt;/p>
+&lt;h1 id="卖瓜">卖瓜&lt;/h1>
+&lt;p>不知道是不是每一届 Hackergame 的 Web 类都会有一道题目涉及数值运算。6 斤与 9 斤的瓜在放整数个的情况下是不可能凑够 20 斤的，我一开始以为这题需要想办法弄出浮点数，但经过了多次尝试后发现这题需要利用数值溢出来解决。随意尝试输入一个很大的数字，可以发现当输入的数值超过一定范围时正数会溢出变为负数。试了好一会后发现添加 5944674407370955162 个 9 斤的瓜后会导致记录变为 -1838162554790060032 斤，我们的目标是 20 斤，-1838162554790060032 加 20 正好是 9 的倍数，(-1838162554790060032 + 20) / 9 得到 -204240283865562228 这个数字，这个数并不会导致溢出，也就是说先加 5944674407370955162 个 9 斤的瓜，然后再加 204240283865562228 个 9 斤的瓜就可以凑够 20 斤了。前面进行尝试时顺便写了个&lt;a class="link" href="https://gist.github.com/vifly/d98bae07c3fffdbd44a908152afb1b75#file-sell_lemon-py" target="_blank" rel="noopener"
+>脚本&lt;/a>，于是最后用它提交并获得了 flag。&lt;/p>
+&lt;h1 id="amnesia">Amnesia&lt;/h1>
+&lt;h2 id="轻度失忆">轻度失忆&lt;/h2>
+&lt;p>这是我第一次成功解决了一道 binary 类的题目！尽管只是完成了第一小题，但依然觉得非常开心。在轻度失忆的情况下，.data 和 .rodata 段会被清除，要知道这两个段是什么东西呢，就需要对 ELF 格式有所了解。一般来说，Linux 下我们编译后得到的产物都是 ELF 格式的，例如 &lt;code>file /bin/bash&lt;/code> 会告诉我们 bash 是一个 x86 体系架构的 ELF 格式的可执行文件，ELF 要求把编译产物的不同部分放到不同的分段（section，不是 segment），具体有哪些分段，它们分别存放什么，&lt;a class="link" href="https://wiki.osdev.org/ELF#File_Structure" target="_blank" rel="noopener"
+>OSDev Wiki&lt;/a> 提供了一个表格进行说明。从表格可以得知 .data 段用来存放已初始化的全局变量等数据，而 .rodata 段用来存放不变的数据。既然这两个段会被清空，那么我们就不能把含有 “Hello, world!” 的字符串放到这些地方，在这里不得不说到 C 语言的一个麻烦点：C 语言中并不存在真正的字符串，所谓的字符串本质上是字符指针或字符数组。使用字符指针的话，在初始化时该指针会指向包含“Hello, world!”的只读数据（在 .rodata 段），所以字符指针不能用在这里，只能采用字符数组进行储存。同时也不能把该字符串放到函数外作为全局变量。另外，为了防止 printf(&amp;quot;%s&amp;quot;, s); 中的 %s 被清除，这里使用 putchar 函数把字符一个个输出。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdio.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">char&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello, world!&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">13&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">putchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在编译完成后可以通过 &lt;code>objdump -s -j .rodata hello_world&lt;/code> 与 &lt;code>objdump -s -j .data hello_world&lt;/code> 检查 .data 和 .rodata 段是否还存在数据（自行替换文件名）。&lt;/p>
+&lt;h1 id="图之上的信息">图之上的信息&lt;/h1>
+&lt;p>GraphQL 是一种新颖的接口设计方案，也是我目前还不了解的一个玩意，只不过我根据题目位置和分值推测这道题目的难度应该较低，抱着试一试的心态用谷歌搜寻了 GraphQL 的常见安全问题，然后发现&lt;a class="link" href="https://blog.yeswehack.com/yeswerhackers/how-exploit-graphql-endpoint-bug-bounty/" target="_blank" rel="noopener"
+>这篇博文&lt;/a>，还以为需要多动手试验几次，可没想到用文章里推荐的 &lt;a class="link" href="https://github.com/swisskyrepo/GraphQLmap" target="_blank" rel="noopener"
+>GraphQLmap&lt;/a> 就直接扒出了整个接口可用的字段（需要先靠浏览器 F12 找到接口地址和其它信息）。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_schema.png"
+width="759"
+height="624"
+loading="lazy"
+alt="获取所有字段"
+class="gallery-image"
+data-flex-grow="121"
+data-flex-basis="291px"
+>&lt;/p>
+&lt;p>知道字段后就好办了，只要没有另外的身份验证，接下来直接查询 admin 的邮箱即可。根据 &lt;a class="link" href="https://graphql.org/learn/queries/" target="_blank" rel="noopener"
+>GraphQL 官方文档&lt;/a>写出查询语句，此处需要填入参数，由于 guest 账号的 id 为 2，所以猜测 admin 的 id 为 1。在 GraphQLmap 内执行 {user(id: 1) {privateEmail}}，好了，黑客扒库成功。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_flag.png"
+width="837"
+height="277"
+loading="lazy"
+alt="成功获取图之上的信息的 flag"
+class="gallery-image"
+data-flex-grow="302"
+data-flex-basis="725px"
+>&lt;/p>
+&lt;p>&lt;em>PS：我后来才发现服务端没禁用 &lt;a class="link" href="https://graphql.org/learn/introspection/" target="_blank" rel="noopener"
+>introspection&lt;/a>，例如我查询 users 时服务端会提示是不是想查询 user，所以其实不用 GraphQLmap，执行以下查询就可以取得所有字段了。&lt;/em>&lt;/p>
+&lt;pre tabindex="0">&lt;code>{__schema{queryType{name}mutationType{name}subscriptionType{name}types{...FullType}directives{name description locations args{...InputValue}}}}fragment FullType on __Type{kind name description fields(includeDeprecated:true){name description args{...InputValue}type{...TypeRef}isDeprecated deprecationReason}inputFields{...InputValue}interfaces{...TypeRef}enumValues(includeDeprecated:true){name description isDeprecated deprecationReason}possibleTypes{...TypeRef}}fragment InputValue on __InputValue{name description type{...TypeRef}defaultValue}fragment TypeRef on __Type{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name}}}}}}}}
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/query_when_enable_introspection.png"
+width="587"
+height="323"
+loading="lazy"
+alt="当 introspection 被启用时的查询结果"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="436px"
+>&lt;/p>
+&lt;h1 id="加密的-u-盘">加密的 U 盘&lt;/h1>
+&lt;p>与上一年 Hackergame 的&lt;a class="link" href="https://github.com/USTC-Hackergame/hackergame2020-writeups/blob/master/official/%E5%AE%A4%E5%8F%8B%E7%9A%84%E5%8A%A0%E5%AF%86%E7%A1%AC%E7%9B%98/README.md" target="_blank" rel="noopener"
+>室友的加密硬盘&lt;/a>一样都涉及到了 LUKS，上一年的题目由于没想到冷启动攻击这种高级玩意没做出来，今年的题目相比起来就简单多了，对 LUKS 的原理有一定了解的前提下可以很快找到思路。LUKS 有一个很有趣的设计，当我们解密使用 LUKS 加密的分区时，首先会使用我们输入的密码解密位于加密分区头部的主密钥（master key），此时使用的算法在设计上故意令运算速度非常慢（LUKS1 默认的是 PBKDF2），以此给尝试暴力破解的攻击者增加时间成本，然后才会使用这个主密钥解密分区内容，而此时算法的性能就非常好（默认采用 aes-xts-plain64，使用 &lt;code>cryptsetup luksFormat&lt;/code> 创建加密分区时可以通过 &amp;ndash;cipher 参数指定其它算法，通过 &lt;code>cryptsetup benchmark&lt;/code> 查看各种算法的性能指标），不会让用户觉得访问速度慢。&lt;/p>
+&lt;p>知道了上述这一点后，我们可以想一想 day1 与 day2 这两个镜像会有什么区别，虽然 day2 的密码已经被改了，可两者之间是否有什么东西没有改变呢？答案就是主密钥没变。利用这点，我们可以从能够解密的 day1.img 中提取出主密钥，然后用主密钥解密 day2。&lt;/p>
+&lt;p>先根据&lt;a class="link" href="https://unix.stackexchange.com/a/504234" target="_blank" rel="noopener"
+>该回答&lt;/a>把两个镜像文件附到（attach）Loop 设备，并解密挂载 day1.img：&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo losetup -P /dev/loop1 ./day1.img
+sudo losetup -P /dev/loop2 ./day2.img
+sudo cryptsetup open /dev/loop1p1 day1
+mkdir /tmp/day1
+sudo mount /dev/mapper/day1 /tmp/day1
+&lt;/code>&lt;/pre>&lt;p>接下来原以为按 &lt;a class="link" href="https://access.redhat.com/solutions/1543373" target="_blank" rel="noopener"
+>RedHat 的文章&lt;/a>操作就行了，没想到 &lt;a class="link" href="https://gitlab.com/cryptsetup/cryptsetup/-/issues/453" target="_blank" rel="noopener"
+>LUKS2 不支持通过 dmsetup 获得 masterkey&lt;/a>，那么只能先用 cryptsetup 导出主密钥了：&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo cryptsetup luksDump /dev/loop1p1 --dump-master-key
+&lt;/code>&lt;/pre>&lt;p>这会警告你输出的信息很敏感，需要另外输入大写的 YES 进行确认才能继续。获得输出后复制 MK dump 里的一长串十六进制数，并用 xxd 进行转换，最后解密 day2.img：&lt;/p>
+&lt;pre tabindex="0">&lt;code>echo &amp;#34;be 97 db 91 5c 30 47 ce 1c 59 c5 c0 8c 75 3c 40 72 35 85 9d fe 49 c0 52 c4 f5 26 60 af 3e d4 2c ec a3 60 53 aa 96 70 4d f3 f2 ff 56 8f 49 a1 82 60 18 7c 58 d7 6a ec e8 00 c1 90 c1 88 43 f8 9a&amp;#34; | xxd -r -p &amp;gt; masterkey
+sudo cryptsetup open /dev/loop2p1 day2 --master-key-file ./masterkey
+mkdir /tmp/day2
+sudo mount /dev/mapper/day2 /tmp/day2
+cat /tmp/day2/flag.txt
+&lt;/code>&lt;/pre>&lt;p>这是一种比较难以利用的破解 LUKS 的方式，需要取得已无效的密码与该密码有效时的 LUKS 分区。当然，这也提醒我们旧的加密数据最好不要随便公开，没准攻击者就靠这点破解了新的加密数据呢。&lt;/p>
+&lt;h1 id="赛博厨房">赛博厨房&lt;/h1>
+&lt;h2 id="level-0">Level 0&lt;/h2>
+&lt;p>第零天的菜谱是“0,1”，而写好指令后第一天变成了“1,1”，那只能更改指令重新学习后执行。指令如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>向右 2 步
+拿起 2 个物品
+向下 1 步
+向左 2 步
+放下 1 个物品
+放下 1 个物品
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level0_flag.png"
+width="1537"
+height="909"
+loading="lazy"
+alt="Level 0 flag"
+class="gallery-image"
+data-flex-grow="169"
+data-flex-basis="405px"
+>&lt;/p>
+&lt;h2 id="level-1">Level 1&lt;/h2>
+&lt;p>看到菜谱包含了这么多的 0，先复制并用 Python 统计总共有多少个 0，得到 73 这个数字。&lt;/p>
+&lt;p>接下来又是拿起物品并放下的流程了，别忘了一次只能放下一个物品，所以我们需要 73 次放下，这就需要构造一个循环语句了，如果把循环展开为 73 行“放下 1 个物品”，题目会由于行数过大而不予通过，具体指令如下（使用 goto 实现循环可真难受）：&lt;/p>
+&lt;pre tabindex="0">&lt;code>向右 1 步
+拿起 73 个物品
+向下 1 步
+向左 1 步
+放下 1 个物品
+如果手上的物品大于等于 0 向上跳转 1 行
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level1_flag.png"
+width="1427"
+height="905"
+loading="lazy"
+alt="Level 1 flag"
+class="gallery-image"
+data-flex-grow="157"
+data-flex-basis="378px"
+>&lt;/p>
+&lt;h1 id="一些没做出来的题目">一些没做出来的题目&lt;/h1>
+&lt;p>不知道为什么，今年与上一年类似，一些题目看似很简单，可我就是没做出来，赛后看到题解时差点吐血，原来我就只差一点点就解决了。&lt;/p>
+&lt;p>“去吧！追寻自由的电波”，这题我已经发现 &lt;code>ffmpeg -i radio.mp3 -af &amp;quot;atempo=0.5,asetrate=22050&amp;quot; res.mp3&lt;/code> 可以输出能让人听清楚读音的音频，而且也找到了无线电领域所使用的&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E5%8C%97%E7%BA%A6%E9%9F%B3%E6%A0%87%E5%AD%97%E6%AF%8D" target="_blank" rel="noopener"
+>字母表&lt;/a>，可惜就差 November 这一个字母没听出来。&lt;/p>
+&lt;p>“透明的文件”，当我写 &lt;a class="link" href="https://github.com/vifly/rgrcat" target="_blank" rel="noopener"
+>rgrcat&lt;/a> 这个项目时（咕咕咕）已经了解到了 &lt;a class="link" href="https://en.wikipedia.org/wiki/ANSI_escape_code" target="_blank" rel="noopener"
+>ANSI 转义序列&lt;/a>，知道它可以让程序的输出附上颜色，所以我在每个“[”前加上了“\033”，唯一没想到的是还需要把所有空格替换为其它字符，不然会看不到输出。&lt;/p>
+&lt;p>“Easy RSA”，看到题目说“你还获得了构造 p 和 q 的方式”，我还以为今年终于能解决一道 math 类的题目，可惜自己的数理基础太差，连怎么计算 p 都没想到，只能明年继续努力了。&lt;/p>
+&lt;p>“FLAG 助力大红包”，还以为需要在应用层以下的协议栈当中寻找伪造 IP 的办法，没想到反代服务器存在 X-Forwarded-For 欺骗漏洞，可以很轻松地伪造 IP，这也提醒我以后在涉及 IP 识别的代码中不要信任 X-Forwarded-For 头标。&lt;/p>
+&lt;h1 id="总结">总结&lt;/h1>
+&lt;p>今年的中科大信息安全大赛依然很好玩，就算没解决题目，很多题目的描述看了以后都让我发出了笑声。虽然做出来的题目不多，但面对每道题目都绞尽脑汁寻找解题方法时的感觉非常美妙。今年也是我第一次做出来一小道 binary 类题目，当然，我在这方面的基础还是不够，只能多学习点东西，在明年的 Hackergame 尝试再进一步。&lt;/p></description></item><item><title>中科大信息安全大赛初体验</title><link>https://viflythink.com/Hackergame_2020_writeups/</link><pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate><guid>https://viflythink.com/Hackergame_2020_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/show.jpg" alt="Featured image of post 中科大信息安全大赛初体验" />&lt;p>半年以来的第一篇新博文！九月底的时候放弃考研，然后尝试的秋招都凉了，处于颓废期的博主正好看到第七届中科大信息安全大赛（Hackergame 2020）即将举办，于是便去参加这个 CTF 比赛转换心情。作为一个非信安专业的学生，这是我第一次参加信息安全大赛，虽然之前也看过往年中科大信息安全大赛的题解，但自己真正参与时才发现自己与专业人士的差距。专业 CTF 选手轻松占据了排行榜前列，不过本菜鸡也玩的很开心，打完比赛后不得不说比赛的题目设置都相当有趣，对信安有点兴趣的人来这个比赛玩玩保证不会后悔。&lt;/p>
+&lt;p>很菜的只拿到了 800 分，但下面还是写一下成功解决的题目的题解吧。&lt;/p>
+&lt;h1 id="签到">签到&lt;/h1>
+&lt;p>为了鼓励参与而设置的送分题，既然是 Web 类的题目那先在浏览器按 F12 打开开发者工具准没错，随便拉一下，点击提取，果然不能拿到 flag，不过看到浏览器发送了一个 GET 请求，其中的参数 number 就是刚才拉到的数字。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_qiandao.png"
+width="1725"
+height="927"
+loading="lazy"
+alt="尝试获取签到题的 flag"
+class="gallery-image"
+data-flex-grow="186"
+data-flex-basis="446px"
+>&lt;/p>
+&lt;p>那么我们试试提&lt;strong>一个&lt;/strong> flag 吧。把 number 参数的值改为 1，就成功拿到签到题的 flag 了！&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_qiandao_flag.png"
+width="1723"
+height="905"
+loading="lazy"
+alt="成功获取签到题的 flag"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="456px"
+>&lt;/p>
+&lt;h1 id="猫咪问答">猫咪问答++&lt;/h1>
+&lt;p>这题很明显是考验参赛者使用搜索引擎的能力。不过嘛，看到 &lt;a class="link" href="https://github.com/ustclug/hackergame2018-writeups/blob/master/official/ustcquiz/README.md" target="_blank" rel="noopener"
+>2018 年猫咪问答题解&lt;/a>后我想到一些题目也可以靠脚本暴力尝试进行破解，第一和第四小题搜索起来都比较麻烦，所以这两题就靠&lt;a class="link" href="https://gist.github.com/vifly/751221f27ba89f670b8f2c56b96c24a7#file-cat_answers-py" target="_blank" rel="noopener"
+>脚本&lt;/a>破解好了。&lt;/p>
+&lt;p>第二小题的答案可以在&lt;a class="link" href="https://tools.ietf.org/html/rfc1149" target="_blank" rel="noopener"
+> RFC1149 文档&lt;/a>上找到，原文是“A typical MTU is 256 milligrams.”，所以答案是 256。&lt;/p>
+&lt;p>第三小题的答案可以在&lt;a class="link" href="https://news.ustclug.org/2019/09/2019-sfd-ustc/" target="_blank" rel="noopener"
+>中国科学技术大学 Linux 用户协会新闻站&lt;/a>上找到，原文提到“最后一项是李文睿同学介绍了开源游戏 Teeworlds”，所以得到 9 这个数字。&lt;/p>
+&lt;p>第五小题的答案依然可以在&lt;a class="link" href="https://news.ustclug.org/2019/12/hackergame-2019/" target="_blank" rel="noopener"
+>中国科学技术大学 Linux 用户协会新闻站&lt;/a>上找到，答案是 17098。&lt;/p>
+&lt;p>对于第一小题，我先通过粗略估计得出答案至少为 6 的结论，接着就是毫无技巧的脚本暴力破解时间，最后得出第一小题答案是 12，第四小题答案是 9。&lt;/p>
+&lt;h1 id="2048">2048&lt;/h1>
+&lt;p>非常有趣的 2048 游戏，但是，既然这是打 CTF，那这题肯定不是考验我们玩 2048 的技术，首先像签到题那样胡乱尝试直到在开发者工具看到一个 GET 请求：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_2048.png"
+width="1920"
+height="920"
+loading="lazy"
+alt="尝试游玩 2048"
+class="gallery-image"
+data-flex-grow="208"
+data-flex-basis="500px"
+>&lt;/p>
+&lt;p>看来这题想要取得 flag 就需要找到出题者喜欢的水果，虽然可以靠脚本暴力尝试所有常见的水果名，不过通过分析网页源代码我们可以找到 2048 获胜时将会发送的网络请求：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/2048_source_code.png"
+width="709"
+height="624"
+loading="lazy"
+alt="2048 的源代码分析"
+class="gallery-image"
+data-flex-grow="113"
+data-flex-basis="272px"
+>&lt;/p>
+&lt;p>好，水果名就藏在其中，只需在开发者工具的控制台里输入 (&amp;lsquo;b&amp;rsquo;+&amp;lsquo;a&amp;rsquo;+ +&amp;lsquo;a&amp;rsquo;+&amp;lsquo;a&amp;rsquo;).toLowerCase() 就能得到“banana”这个答案了（神奇的 JavaScript 语法），发送这个网络请求即可获得 flag。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_fruit.png"
+width="656"
+height="124"
+loading="lazy"
+alt="获得水果名称"
+class="gallery-image"
+data-flex-grow="529"
+data-flex-basis="1269px"
+>&lt;/p>
+&lt;h1 id="一闪而过的-flag">一闪而过的 Flag&lt;/h1>
+&lt;p>在 Windows 下双击下载的 exe 文件发现黑窗一闪而过，那么很自然的想到在 exe 文件所在的目录下按住 Shift 键并点击右键选择“在此处打开 PowerShell”，输入 ./Untitled01.exe，然后可执行文件就输出了 flag{Are_you_eyes1ght_g00D?_can_you_dIst1nguish_1iI?} 这个答案（我还以为会有其它障碍）！本题难度非常低，基本上在终端里执行过可执行文件的人都知道先尝试这样做。&lt;/p>
+&lt;h1 id="从零开始的记账工具人">从零开始的记账工具人&lt;/h1>
+&lt;p>中文大写数字转阿拉伯数字？这个需求想必很常见吧。我找到了一个能实现这个功能的 &lt;a class="link" href="https://pypi.org/project/cn2an/" target="_blank" rel="noopener"
+>Python 库&lt;/a>，接下来就是写一个&lt;a class="link" href="https://gist.github.com/vifly/751221f27ba89f670b8f2c56b96c24a7#file-bills-py" target="_blank" rel="noopener"
+>脚本&lt;/a>来帮我们进行计算了。&lt;/p>
+&lt;p>为了减少工作量（懒得写读取 xlsx 文件的代码），我用 MS Excel 导出文本文件，然后进行计算。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/bills_txt.png"
+width="962"
+height="604"
+loading="lazy"
+alt="导出的账单文件"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+>&lt;/p>
+&lt;p>写脚本时需要注意 Excel 导出的 txt 文件采用的是 GBK 编码。根据计算结果得到 flag{11118.23}。&lt;/p>
+&lt;h1 id="233-同学的-docker">233 同学的 Docker&lt;/h1>
+&lt;p>注意到题目描述里说明“写了一行命令删掉这个文件”，对 Docker 有点了解的人应该已经想到这个文件至少在某一层依然存在。&lt;/p>
+&lt;p>首先尝试&lt;a class="link" href="https://gist.github.com/dasgoll/476ecc7a057ac885f0be" target="_blank" rel="noopener"
+>使用 Docker history 回滚&lt;/a>到未删除 flag.txt 文件时的版本，执行 docker history 8b8d3c8324c7/stringtool 后输出：&lt;/p>
+&lt;pre tabindex="0">&lt;code>IMAGE CREATED CREATED BY SIZE COMMENT
+be6d023618d1 2 weeks ago /bin/sh -c #(nop) ENTRYPOINT [&amp;#34;/bin/sh&amp;#34; &amp;#34;-c… 0B
+&amp;lt;missing&amp;gt; 2 weeks ago /bin/sh -c rm /code/flag.txt 0B
+&amp;lt;missing&amp;gt; 2 weeks ago /bin/sh -c #(nop) COPY dir:c36852c2989cd5e8b… 1.19kB
+&amp;lt;missing&amp;gt; 6 weeks ago /bin/sh -c #(nop) WORKDIR /code 0B
+&amp;lt;missing&amp;gt; 6 weeks ago /bin/sh -c mkdir /code 0B
+&amp;lt;missing&amp;gt; 6 weeks ago /bin/sh -c #(nop) ENV PYTHONUNBUFFERED=1 0B
+&amp;lt;missing&amp;gt; 6 weeks ago /bin/sh -c pip3 install pipenv 37.5MB
+...
+&lt;/code>&lt;/pre>&lt;p>这里执行的 rm /code/flag.txt 就是题目所说的删掉了 flag.txt，然而除了最新的 tag 外其它层的 ID 都是 &lt;code>&amp;lt;missing&amp;gt;&lt;/code>，看来上面的教程并不适用。不过没关系，这里还有&lt;a class="link" href="https://www.pushbeta.com/2019/04/10/stripping-the-layers-how-secure-is-your-docker-image/" target="_blank" rel="noopener"
+>一篇教程教你如何寻找机密信息&lt;/a>。执行 docker save 8b8d3c8324c7/stringtool &amp;gt; out.tar 得到 dump 出来的文件。解压 out.tar，在 a39ee53cb7d2d86ef0&amp;hellip;（省略）这个文件夹下解压 layer.tar 即可得到 flag.txt。&lt;/p>
+&lt;h1 id="狗狗银行">狗狗银行&lt;/h1>
+&lt;p>不得不说这题难倒我几天了，看完规则就可以确定在&lt;strong>正常&lt;/strong>情况下我们绝对赚不到钱，想要让净资产达到两千以上只能靠寻找漏洞了。刚开始时我以为需要用到整数溢出，没想到前端还对转账数额上限进行了限制，那就靠 F12 找到网络请求刷吧。没想到虽然网页显示的净资产已经超过 2000，但还是没法取得 flag。接着我又尝试了负数，浮点数等各种奇怪的输入，都没有办法取得成果，我被题目卡住了。&lt;/p>
+&lt;p>直到两天后组委会发布公告（仅截取重要内容）：&lt;/p>
+&lt;blockquote>
+&lt;p>公告 1：本题前端计算存在浮点数导致的计算误差，数字特别极端时显示可能不正确。但后端采用大整数精确计算，只有净资产确实高于 2000 时才会给出 flag。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>公告 3：本题新增限制：每个用户最多 1000 张卡，每张卡最多 100000 条交易&amp;hellip;&amp;hellip;&lt;/p>
+&lt;/blockquote>
+&lt;p>嗯&amp;hellip;公告 1 直接说明我之前的解题思路不对，不过公告 3 倒是给了我灵感：本题需要开多张卡才能解决。那么，也许是利息计算存在误差？我先做了一个测试，得出一张储蓄卡需要至少 167 元才能获得 1 元的利息这个结论。注意到储蓄卡的规则是“利率每日 0.3%“，1 / 0.003 = 333.33，也就是说正常情况下应当存入 334 元才能获得 1 元的利息，但这里只需 167 元即可。然后让我们看看信用卡的规则：利率每日 0.5%，最低 10 元。那么在每日增加 10 元负债的情况下我们最多能从一张信用卡中拿到多少钱呢，答案是 2099 元。2099 / 167 = 12.5689，这意味着我们终于发现了发家致富的好办法，因为此时从信用卡获取的贷款居然能给我们带来比负债利息更大的收益。
+于是具体的赚钱方法就是：开一张信用卡，然后开 12 张储蓄卡，用信用卡给每张储蓄卡转帐 167 元，那么我们每日的净收益就是 12 - 10 = 2 元。不停重复上述步骤直到题目规定的上限，然后吃饭结束一天。具体代码可通过&lt;a class="link" href="https://gist.github.com/vifly/751221f27ba89f670b8f2c56b96c24a7#file-hack_bank-py" target="_blank" rel="noopener"
+> gist &lt;/a>查看。运行脚本后打开网页可看到 flag{W0W.So.R1ch.Much.Smart.52f2d579}。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_bank_flag.png"
+width="997"
+height="887"
+loading="lazy"
+alt="成功获取狗狗银行的 flag"
+class="gallery-image"
+data-flex-grow="112"
+data-flex-basis="269px"
+>&lt;/p>
+&lt;h1 id="一些没做出来的题目">一些没做出来的题目&lt;/h1>
+&lt;p>先说一说令我觉得遗憾（感觉差点就能做出来）的题目吧。看了&lt;a class="link" href="https://github.com/USTC-Hackergame/hackergame2020-writeups/" target="_blank" rel="noopener"
+>官方/非官方题解&lt;/a>后，不得不说有些题目真的只是差一点就能做出来了，请容我在这里倒下苦水。&lt;/p>
+&lt;p>“从零开始的 HTTP 链接”，我已经找到&lt;a class="link" href="https://daniel.haxx.se/blog/2014/10/25/pretending-port-zero-is-a-normal-one/" target="_blank" rel="noopener"
+>一篇文章提到 curl 可以连接零号端口&lt;/a>，然而 Arch 上的 curl 版本过高，没法做到这一点，本博主居然忘了自己可以编译一个旧版本的 curl 尝试连接，错失了这一道题。除了 curl 外，这题&lt;a class="link" href="https://github.com/USTC-Hackergame/hackergame2020-writeups/blob/master/players/mcfx/writeup.md#%E6%9D%A5%E8%87%AA%E4%B8%80%E6%95%99%E7%9A%84%E5%9B%BE%E7%89%87" target="_blank" rel="noopener"
+>也可以通过 Python 解决&lt;/a>。&lt;/p>
+&lt;p>“来自一教的图片”，作为一个学过图像处理的人士，居然没想到可以使用 &lt;a class="link" href="https://numpy.org/doc/stable/reference/generated/numpy.fft.fft2.html#numpy.fft.fft2" target="_blank" rel="noopener"
+>np.fft.fft2&lt;/a> 得到答案，真是非常惭愧啊（狗头保命）。&lt;/p>
+&lt;p>“生活在博弈树上”，虽然知道可以靠 C 语言 gets 函数的安全缺陷进行栈溢出攻击跳转到输出 flag 的位置，但是不会构造 payload，所以只能放弃这题。&lt;/p>
+&lt;p>除了上面这些让我遗憾的题目外，还有一些有趣的题目值得一提。&lt;/p>
+&lt;p>“室友的加密硬盘”，什么，居然有 512 位 AES 加密？看完题解后发现这不是重点，并不需要猜测这里的加密实现是否存在缺陷，使用冷启动攻击才是正道。这也提醒我们全盘加密并不能 100 % 确保数据不会泄露，遇到懂得在 dump 的内存中寻找密钥的攻击者还是有可能被破解的。&lt;/p>
+&lt;p>“超简易的网盘服务器”，很有趣的一点是这题与上一题产生了联动，数据放本地不安全，那么放在云端就能确保万事大吉了吗？为了解决这题我特意去研究了 Nginx 的 location 匹配规则，虽然得知针对本题的 nginx.conf 访问 php 文件可以绕过认证，但对于如何访问 private 文件夹下的 flag 还是一筹莫展，尝试了 ../../ 这样的路径，但可惜 h5ai 并没有这么容易被攻破。比赛结束后发现自己吃了没认真阅读 h5ai 源代码的亏，没想到在没认证的情况下可以通过 h5ai 的下载功能把全部文件下载。不得不说，这题成功吓到了我，让我也赶快去检查自己的 Nginx 配置，避免出现同样由于忽略匹配优先级而导致的漏洞。&lt;/p>
+&lt;h1 id="总结">总结&lt;/h1>
+&lt;p>谢谢中科大信息安全大赛，让我体验到了久违的解决问题的乐趣，我已经很久没体会过躺在床上时依然在思考比赛题目的感觉了，这次比赛成功做到了这点，对我来说这就足够了。名次并不重要，重要的是解题的乐趣。&lt;/p>
+&lt;p>如果明年还有中科大信息安全大赛，那我肯定会参加，当然，与今年没什么准备就仓促上阵不同，至少我会先看下 &lt;a class="link" href="https://ctf-wiki.github.io/ctf-wiki/" target="_blank" rel="noopener"
+>CTF Wiki&lt;/a> 再来解题，争取更好的名次。也强烈安利各位还没参加过 CTF 的童鞋尝试一下中科大的信息安全大赛，并不需要多少专业技能也可解题，既可以体会到这种充满乐趣的过程，顺便还能学到一点冷门的东西。&lt;/p></description></item><item><title>【译】椭圆曲线密码介绍</title><link>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</link><pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/translate_elliptic_curve_cryptography_explained/</guid><description>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/show.jpg" alt="Featured image of post 【译】椭圆曲线密码介绍" />&lt;p>前段时间我看到了一篇标题为 Elliptic Curve Cryptography Explained 的既通俗易懂又较为全面的介绍椭圆曲线密码的英语博文，可以说是非常优秀的一篇科普文了。看到目前在中文互联网上介绍非对称加密算法中的 RSA 加密算法的高质量文章有很多，而介绍同样属于非对称加密算法的椭圆曲线密码的高质量文章并不多，所以我将该文章翻译为中文并在我的博客上发表。原文链接是 &lt;a class="link" href="https://fangpenlin.com/posts/2019/10/07/elliptic-curve-cryptography-explained/" target="_blank" rel="noopener"
+>https://fangpenlin.com/posts/2019/10/07/elliptic-curve-cryptography-explained/&lt;/a> ，已获得原作者授权翻译。由于作者仅要求我注明原文链接，所以&lt;strong>这篇译文的文字部分依然按本博客的默认授权协议 CC-BY-NC-SA 4.0 进行授权&lt;/strong>。对于普通读者而言，这篇文章基本不需要数学知识就可以理解，当然，还是需要了解一些对称加密和非对称加密的基础概念的，为了便于读者理解，我还在一些地方添加了译者注。下面，我们便开始对椭圆曲线密码的介绍吧。&lt;/p>
+&lt;p>最近，我正在学习椭圆曲线密码（Elliptic Curve Cryptography）的工作原理（译者注：为了少打点字，下文统一使用 ECC 这一缩写指代椭圆曲线密码）。我在互联网上搜索相关内容，发现了很多解释它的文章和视频。其中大多数仅涵盖了 ECC 中的一部分内容，有一些跳过了许多关于你如何能从这处到达另一处的关键步骤。最后，我找不到真正的能以直观的方式从头到尾解释它的文章。考虑到这一点，我想写一篇解释 ECC 的文章，其内容从基础知识到密钥交换，加密和解密。&lt;/p>
+&lt;p>为了绘制本文所需要的曲线，且了解 ECC 的运作方式，我写了两个 Jupyter Notebook 用于使用 Python 进行曲线绘制和计算，用到的绘图库是 &lt;a class="link" href="https://matplotlib.org/" target="_blank" rel="noopener"
+>matplotlib&lt;/a>。另外，如果你想随意操作椭圆曲线，并自己体验一下其运作方式，那你很幸运！我&lt;a class="link" href="https://github.com/fangpenlin/elliptic-curve-explained" target="_blank" rel="noopener"
+>在 GitHub 上开源了源代码&lt;/a>，一个&lt;a class="link" href="https://github.com/fangpenlin/elliptic-curve-explained/blob/master/elliptic-curve.ipynb" target="_blank" rel="noopener"
+>适用于实数&lt;/a>，还有一个&lt;a class="link" href="https://github.com/fangpenlin/elliptic-curve-explained/blob/master/elliptic-curve-on-finite-field.ipynb" target="_blank" rel="noopener"
+>适用于有限域&lt;/a>：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png"
+width="2304"
+height="1788"
+loading="lazy"
+alt="jupyter-notebook"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="309px"
+>&lt;/p>
+&lt;p>你可以在 Jupyter Notebook 中找到大多数本文用到的图表。&lt;/p>
+&lt;p>请注意，本文并&lt;strong>不是为了说明如何安全地实现 ECC&lt;/strong>，我们在此使用的示例只是为了使你和我自己便于理解或使用（译者注：警告，除非你是专家，否则不要在软件项目中自己实现加密算法，而应当使用现有的成熟的加密算法库）。我们也不想在数学这个兔子洞挖得太深，我只想集中精力了解它的本质的运作方式。因此，我们将剔除许多数学细节，仅提供参考资料供感兴趣的读者阅读。（译者注：本文存在不少星球大战的梗）&lt;/p>
+&lt;p>现在，我们开始吧？&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif"
+width="500"
+height="175"
+loading="lazy"
+alt="star-trek-into-darkness"
+class="gallery-image"
+data-flex-grow="285"
+data-flex-basis="685px"
+>&lt;/p>
+&lt;h1 id="让我们先来玩个游戏">让我们先来玩个游戏&lt;/h1>
+&lt;p>一个椭圆曲线是由 $y^{2} = x^{3} + a x + b$ 定义的曲线。 &lt;br>
+举个例子，让 a = −3 和 b = 5，然后当你绘制这条曲线时，它看起来像这样：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>现在，让我们玩一个游戏。随机选取曲线上 x 值不相同的两个点，并用一条直线连接这两个点，这两个点我们称为 A 和 B。然后你会注意到直线在除了 A 与 B 外的第三点与曲线接触。让我们找到第三个点并将其 y 值翻转到 x 轴的另一侧（译者注：也就是说以 x 轴为对称轴，将第三个点翻转到另一侧），我们将翻转后的点称为 A + B。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-game"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>点 A + B 是 A 与 B 的和。你可以认为此过程是某种太空旅行。想象有敌人正紧跟着你的飞船。要摆脱你的敌人，你可以在航线上走直线捷径，到达航线上的另一点，一旦到达第三个点，就会迅速弹跳到路线的另一侧。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-war.gif"
+width="500"
+height="213"
+loading="lazy"
+alt="star-war"
+class="gallery-image"
+data-flex-grow="234"
+data-flex-basis="563px"
+>&lt;/p>
+&lt;p>好吧，敌人仍然跟着你，让我们再来一次。这次我们从最新的点 A + B 开始，到达另一点 C。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-game02"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>如你所见，只要新增的线不是垂直的，我们就可以通过添加新的点来重复相同的技巧，以此跳到一个新的数字。&lt;/p>
+&lt;p>随着时间的流逝，你意识到寻找一个新的弹跳落点很麻烦。为了使这个技巧更直观，更容易重复使用，现在让我们沿当前位置 P 的切线走捷径，它看起来像这样：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-2p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>考虑前面提到的两点式跳跃技巧，就像你看到点 A 和点 B 在 P 处彼此无限靠近，这实际上是相同的技巧。因此我们可以应用前面的规则，称 P 和 P 的结果之和为 P + P，即 2P。&lt;/p>
+&lt;p>同样的，我们可以再一次重复执行相同的步骤以摆脱我们的敌人，这一次，我们从 2P 开始回到起始点 P：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-3p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>对于结果，我们将它称为 P + 2P 或 3P。显然，我们可以多次这样做以到达 NP。现在，问题来了，给定点 NP 的坐标，你能找出 N 值吗？换句话说，像下图这样，我们从 P 到 NP 跳了多少次呢？&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-np"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>我可以告诉你，在上图中的 NP 点的 N 值为 13。我很容易说出来，因为我选择了这个数字。但你很难找出答案，因为没有已知的简单而又有效率的方法来计算 N 值。&lt;/p>
+&lt;p>就是这样，你已经了解了 ECC 的基础！曲线和起始点 P 是每个人都知道并同意使用的共享值，终点 NP 是你的&lt;strong>公钥&lt;/strong>，分享给任何人都是安全的。你跳了多少步，所对应的值 N 是你的&lt;strong>私钥&lt;/strong>。正如我们上面所说的，只知道 NP 和 P 的人很难推断出你的私钥，因为众所周知这是一个很难解决的问题。&lt;/p>
+&lt;blockquote>
+&lt;p>没这么快！&lt;/p>
+&lt;/blockquote>
+&lt;p>我听到你这样对我大喊。&lt;/p>
+&lt;blockquote>
+&lt;p>要到达 NP 点，并不意味着你需要进行 N 次这样的操作。如果你可以在合理的时间内完成该操作，那么我是否可以做同样的事情，即一步一步前进，直到遇到相同的点 NP，这不就确切地发现了需要走多少步了吗？&lt;/p>
+&lt;/blockquote>
+&lt;p>这是一个好问题，实际上我在网上阅读了许多文章后也产生了相同的疑问，但是我发现其中一些文章可以清楚地解释这一点。因此，接下来，我们来讨论在太空中如何真正地使你的敌人无法对你进行跟踪。&lt;/p>
+&lt;h1 id="以曲速前进">以曲速前进&lt;/h1>
+&lt;p>我们提到了用沿曲线跳跃的技巧以摆脱敌人，然而以缓慢的速度使用这个技巧是不明智的，因为它很容易被追踪。你的敌人可以简单地做同样的事情，直到他们弄清楚到达目的地需要跳跃多少次。为了真正使你无法被追踪，你需要以曲速前进。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek.gif"
+width="471"
+height="266"
+loading="lazy"
+alt="star-trek"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="424px"
+>&lt;/p>
+&lt;p>对于求和运算，或者我们在椭圆曲线上使用的技巧存在着一个有趣的特点，这个有趣的特点在于，曲线上的点与其求和运算都遵循&lt;a class="link" href="https://en.wikipedia.org/wiki/Group_%28mathematics%29" target="_blank" rel="noopener"
+>群律&lt;/a>。其主要想法是，你可以对一个组中的元素进行某些操作，在这里我们称其为“相加”，进行该操作后它们仍将留在这个组中，而且，该操作具有一些特殊的属性。其中被称为关联性（associativity）的一种特殊属性是像这样的：&lt;/p>
+&lt;p>(A + B) + C 与 A + (B + C) 是相同的&lt;/p>
+&lt;p>这个概念背后的数学证明实际上并不简单，如果你感兴趣，可以在&lt;a class="link" href="https://www.andrew.cmu.edu/user/tnayak/papers/EllipticCurves.pdf" target="_blank" rel="noopener"
+>这&lt;/a>或&lt;a class="link" href="https://math.rice.edu/~friedl/papers/AAELLIPTIC.PDF" target="_blank" rel="noopener"
+>这&lt;/a>阅读相关资料。虽然很难证明，但是当你画出曲线和直线时很容易看出这一点。让我们来看一个例子。如你所见，我们在上面已得到一个点 (A + B) + C，根据关联性，我们应该能够先执行 B + C，然后再执行 A + (B + C)（译者注：也就是说将 A 与上一步 B + C 的结果相加），并且执行这两步后应该到达相同的终点。下图是 B + C：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-bc-first"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>接下来，让我们执行 A +（B + C）：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-a-plus-bc"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>看下终点，它与（A + B）+ C 完全相同。不相信我吗？这是我编写的程序中输出的值：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">ab_c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ab&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">a_bc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">bc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">ab_c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a_bc&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>(Point(0.9531851331698311, 1.733918191357413),
+Point(0.9531851331698316, 1.7339181913574133))
+&lt;/code>&lt;/pre>&lt;p>如你所见，ab_c 与 a_bc 几乎是相同的。其中的差异是由浮点运算的舍入误差造成的。这实际上是一个&lt;strong>大&lt;/strong>问题，我们将在后面讨论这一点。&lt;/p>
+&lt;p>类似地，对于单点情况，群律允许我们以不同的顺序进行求和以到达相同的位置。这一点很关键，还记得我们如何通过 P + 2P 到达 3P 吗？现在我想告诉你 P + 3P = 4P 与 2P + 2P = 4P 是相同的。&lt;/p>
+&lt;p>首先，让我们看一下愚蠢的计算方式，即只是继续将 P 与 3P 相加。这是计算 P + 3P 的最后一步：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-p-plus-3p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>然后，让我们尝试将 2P 与自身相加，这恰好是我们之前使用的技巧：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png"
+width="927"
+height="621"
+loading="lazy"
+alt="elliptic-curve-2p-plus-2p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>看到没有？两种方式都产生了相同的结果。就这样，我们可以轻松地将一个点加倍(double)，并且进行相加操作的顺序无关紧要。我们可以通过不断对一个点进行加倍操作来“作弊”，从而快速生成我们想要的值，不再需要将其一一加起来。&lt;/p>
+&lt;p>让我们尝试通过求和到达一个更大的数字，例如 227P，我们首先将其转化为二进制数字，以便获得其两个成分的幂。其二进制表示为 11100011。换句话说，将两个值的所有幂加起来就是：
+$$2^{7}P + 2^{6}P + 2^{5}P + 2^{1}P + 2^{0}P$$ &lt;br>
+也就是：128P + 64P + 32P + 2P + P。&lt;/p>
+&lt;p>所以我们需要的操作步骤是（译者注：原作者在这里说的很简单，为了让译文更易懂，这里参考 &lt;a class="link" href="https://zhuanlan.zhihu.com/p/36326221" target="_blank" rel="noopener"
+>https://zhuanlan.zhihu.com/p/36326221&lt;/a> 添加了一点对操作步骤的补充）：&lt;/p>
+&lt;ol>
+&lt;li>将 P 与 0 相加，同时 P 加倍得到 2P&lt;/li>
+&lt;li>将 2P 与 P 相加得到 3P，同时 2P 加倍得到 4P&lt;/li>
+&lt;li>由于在二进制表示中从右到左的第三位为 0，所以不将 4P 与 3P 相加（以此类推，下面不再说明不相加的原因），只是 4P 加倍得到 8P&lt;/li>
+&lt;li>不将 8P 与 3P 相加，只是 8P 加倍得到 16P&lt;/li>
+&lt;li>不将 16P 与 3P 相加，只是 16P 加倍得到 32P&lt;/li>
+&lt;li>将 32P 与 3P 相加得到 35P，同时 32P 加倍得到 64P&lt;/li>
+&lt;li>将 64P 与 35P 相加得到 99P，同时 64P 加倍得到 128P&lt;/li>
+&lt;li>将 128P 与 99P 相加得到 227P，同时 128P 加倍得到 256P&lt;/li>
+&lt;/ol>
+&lt;p>这仅需 8 步，与 227 步相比，这种方法快得多了。此方法被称为 &lt;a class="link" href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Double-and-add" target="_blank" rel="noopener"
+>double and add&lt;/a>。它使我们可以快速地在一个椭圆曲线上跳跃以到达所需的点。在此示例中的数字 227 是很小的，我们可以在 $O(\log{}n)$ 的时间复杂度下到达我们期望的数字，就算这个数字是与宇宙中原子的数量一样大（一般而言是 $10^{82}$，约等于 $2^{275}$），此方法仍可以在 275 次 double and add 操作后完成计算。&lt;/p>
+&lt;p>现在我们知道了如何以曲速在椭圆曲线上向前跳跃，因此，我们可以轻松地向前跳跃数十亿次。虽然这个操作对我们来说很容易，但是对于攻击者而言，要准确地找出我们跳了多少次是极其困难的，此问题等价于：在给定 NP 与 P 且 N 足够大的情况下，找出 N 值。这被称为椭圆曲线离散对数问题，如果你想了解有关此主题的更多信息，可以自己去网上搜索。&lt;/p>
+&lt;h1 id="让我们在一个秘密的地方会面">让我们在一个秘密的地方会面&lt;/h1>
+&lt;p>我们之前一直在谈论如何以光速在愚蠢的椭圆曲线上跳跃，但是加密呢？别急，我们这就介绍它。在此之前，让我们首先谈下密钥交换。&lt;/p>
+&lt;p>想想看，Alice 和 Bob 正在太空旅行，他们将交换反抗军新总部的位置。突然，他们发现帝国的无人机正在尾随他们并拦截他们飞船之间的通信。为了安全地交换信息，他们同意在只有他们两个都知道的秘密坐标下会面。但是，如果敌人正在窃听，他们如何交换这个秘密坐标呢？现在，ECC 在这里为他们提供帮助。下面是 Alice 和 Bob 要做的事情：&lt;/p>
+&lt;p>Alice：&lt;/p>
+&lt;blockquote>
+&lt;p>嘿，Bob，让我们将 P 作为起始点，这是我的公钥 NP。&lt;/p>
+&lt;/blockquote>
+&lt;p>Bob：&lt;/p>
+&lt;blockquote>
+&lt;p>以 P 为起始点对我来说听起来不错，而我的公钥是 MP。&lt;/p>
+&lt;/blockquote>
+&lt;p>在这里，按照我们之前的定义，NP 是 P 经过 N 次相加运算后得到的点。同样的，MP 就是 P 经过 M 次相加运算后得到的点。&lt;/p>
+&lt;p>接下来，Alice 得到 Bob 的 MP 值，对 MP 自加 N 次：&lt;/p>
+&lt;p>$$\underbrace{MP + MP + &amp;hellip; + MP}_\text{N times} = N \times MP$$&lt;/p>
+&lt;p>对于 Bob，那就变成了取得 Alice 的公钥 NP 后将此点自加 M 次：&lt;/p>
+&lt;p>$$\underbrace{NP + NP + &amp;hellip; + NP}_\text{M times} = M \times NP$$&lt;/p>
+&lt;p>嗯，M 和 N 都很大，因为我们不希望敌人轻易地找到它。显然，上面的自加操作并不是真的一一相加，而是通过使用我们刚刚介绍的 double and add 技巧来作弊。最终，他们将会在一个只有他们知道的秘密坐标 SK 上会面：&lt;/p>
+&lt;p>SK = (N × M)P = (M × N)P&lt;/p>
+&lt;p>想想看，对于 Alice，每次跳跃的值是 P 点的 M 倍，而她跳跃了 N 次。对于 Bob 而言，每次跳跃的值是 P 点的 N 倍，而他跳跃了 M 倍。假设 Alice 一次跳跃 4 光年，而她总共跳跃了 3 次；Bob 一次跳跃 3 光年，他跳跃了 4 次。对应的运算分别是 4 × 3 与 3 × 4，它们都将在 12 这里结束：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-jump.png"
+width="803"
+height="566"
+loading="lazy"
+alt="ecdh-jump"
+class="gallery-image"
+data-flex-grow="141"
+data-flex-basis="340px"
+>&lt;/p>
+&lt;p>对于窃听者，他们需要找出 N 或 M 才能获得相同的坐标。通过一步一步运算，最终也会到达终点。但是，正如我们前面提到的，鉴于数字足够大，以致没有简单的方法可以做到这一点，因此我们可以确定只有 Alice 和 Bob 才能知道这个秘密坐标。这种密钥交换协议被称为&lt;a class="link" href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener"
+>椭圆曲线 Diffie–Hellman 密钥交换&lt;/a>。&lt;/p>
+&lt;h1 id="加密">加密&lt;/h1>
+&lt;p>现在让我们谈谈加密。Alice 想要安全地向 Bob 发送信息，他们需要首先进行我们上面刚刚提到的椭圆曲线 Diffie–Hellman 密钥交换：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png"
+width="803"
+height="425"
+loading="lazy"
+alt="ecdh-encryption-key-exchange"
+class="gallery-image"
+data-flex-grow="188"
+data-flex-basis="453px"
+>&lt;/p>
+&lt;p>这里请注意，Alice 需要能够验证公钥 MP 真的是属于 Bob 的。否则，冒名顶替者可以向 Alice 提供自己的公钥，并声称自己是 Bob，然后，Alice 将与攻击者交换共享密钥，再然后，攻击者就可以执行&lt;a class="link" href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener"
+>中间人攻击&lt;/a>。 要解决该问题，就需要另一个概念，它被称为&lt;a class="link" href="https://en.wikipedia.org/wiki/Public_key_infrastructure" target="_blank" rel="noopener"
+>公钥基础架构&lt;/a>，因为这个属于离题范围，如果你感兴趣，可以搜索相关资料。&lt;/p>
+&lt;p>由于今天我们只想专注于 ECC，所以在此假设 Alice 已经取得 MP 并不加思索地相信它来自 Bob，而 Bob 也得到了 Alice 的公钥。现在，在交换密钥之后，他们最终得到了相同的共享秘密坐标，我们可以得到 x 值作为密钥。一旦我们拥有一个共享的密钥，一切就很简单了。得到共享密钥后，我们可以在任何安全的对称加密算法中使用共享密钥 SK 对我们的机密数据进行加密（译者注：出于性能因素的考量，通常只使用 ECC 等非对称加密算法交换对称加密算法所需的共享密钥，此后的通信使用对称加密而不是非对称加密算法进行加密，在这里就是这样做的）。假设我们在这里使用 &lt;a class="link" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank" rel="noopener"
+>AES256&lt;/a>。接收者 Bob 可以使用相同的共享密钥 SK 解密经过加密的消息。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png"
+width="803"
+height="614"
+loading="lazy"
+alt="ecdh-encryption-encrypt"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="313px"
+>&lt;/p>
+&lt;p>太好了，现在即使帝国的无人机窃听了所有通信，Alice 仍可以安全地将反抗军的新总部位置分享给 Bob。同样的，Bob 可以使用相同的共享密钥 SK 加密消息，并将其发送回 Alice。&lt;/p>
+&lt;p>当 Alice 和 Bob 彼此认识时，我们知道可以使用 ECC 安全地发送消息。但是，如果在某些情况下我们想安全地向某人发送消息，但他们不知道并且可能不在乎你是谁，该怎么办？简单，我们在这举个例子，假设 Bob 已经知道 Alice 的公钥，如果 Alice 知道 Bob 的公钥 MP，她可以使用她自己的私钥 N 生成相同的共享密钥 SK，加密数据并将纯文本形式的公钥 NP 与经过加密的数据一起发送出去。一旦 Bob 收到消息，他就可以使用 NP 和他的私钥 M 创建相同的密钥 SK 并解密经过加密的数据。但是，由于信息中附带的公钥 NP 可能属于任何人，因此 Bob 将无法确认消息是来自谁的。如果 Bob 不在乎发送者是谁，Alice 也可选择为同一操作创建一个临时的新密钥对。&lt;/p>
+&lt;h1 id="浮点数的问题">浮点数的问题&lt;/h1>
+&lt;p>到目前为止，我们一直在讨论在实数范围进行计算的 ECC。我们在这里使用实数的原因是，它更易于解释和理解。在现实世界中，这实际上并不是我们进行加密的方式。使用实数会带来很多问题，我们之前展示的一个大问题就是会出现计算错误。还有另一个问题，在某些极端情况下，该数字可能会非常大，而浮点数可能无法容纳它。&lt;/p>
+&lt;p>要回答你可能会问的这个问题，我们给出的答案是在&lt;a class="link" href="https://en.wikipedia.org/wiki/Finite_field_arithmetic" target="_blank" rel="noopener"
+>有限域&lt;/a>，或者更精确地来说是在对整数 p 取模（p 为质数）的有限域上进行计算。同样的，我们也不想将兔子洞挖得太深，因此，如果你对此有兴趣，可以阅读 &lt;a class="link" href="https://andrea.corbellini.name/2015/05/23/elliptic-curve-cryptography-finite-fields-and-discrete-logarithms/" target="_blank" rel="noopener"
+>Elliptic Curve Cryptography: finite fields and discrete logarithms&lt;/a>，或者观看 &lt;a class="link" href="https://www.youtube.com/watch?v=mFVKuFZ29Fc&amp;amp;list=PLN9KZDpNfsHMd7d7PX87JGesGY_Qzyb3V&amp;amp;index=2" target="_blank" rel="noopener"
+>Trustica 的系列视频&lt;/a>及&lt;a class="link" href="https://trustica.cz/en/category/ecc/page/3/" target="_blank" rel="noopener"
+>其相关文章&lt;/a>。&lt;/p>
+&lt;p>要解释数学中的位于对整数 p 取模的有限域的椭圆曲线：&lt;/p>
+&lt;p>$$y^{2} \equiv x^{3} + a x + b\pmod{p}$$&lt;/p>
+&lt;p>先让我们取 p = 19，a = −3，b = 5，然后画出来：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png"
+width="922"
+height="621"
+loading="lazy"
+alt="elliptic-curve-on-finite-field"
+class="gallery-image"
+data-flex-grow="148"
+data-flex-basis="356px"
+>&lt;/p>
+&lt;p>这看起来似乎不太像是一条“曲线”，但这确实是在有限域上的椭圆曲线。基本上，$y^{2}\pmod{p}$ 仅在特定整数点上等于 $x^{3} + a x + b\pmod{p}$。以点(11,7)为例，对于 y：&lt;/p>
+&lt;p>$$y^{2} \equiv 7^{2} \equiv 49 \equiv 11 \pmod{19}$$&lt;/p>
+&lt;p>以及对于 x：&lt;/p>
+&lt;p>$$x^{3} + a x + b \equiv 11^{3} - 3 \times 11 + 5 \equiv 1303 \equiv 11 \pmod{19}$$&lt;/p>
+&lt;p>由于两者在被 19 相除后得到相同的余数 11，所以这确实是曲线上的一个点。&lt;/p>
+&lt;p>虽然它看起来不像是一条曲线，但它确实与在实数范围的椭圆曲线一样遵循相同的群律。让我们看一个例子，假设点 A = (3,2)，B = (5,18)，并使用相同的相加操作来计算 A + B：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png"
+width="937"
+height="623"
+loading="lazy"
+alt="elliptic-curve-on-field-a-plus-b"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>&lt;/p>
+&lt;p>是的，在有限域上的该曲线有些特殊，当一条线到达边界时，实际上可以弯曲到另一端，因为取模操作就是在绕来绕去的。这条线会碰到第三点，就像是在实数上的曲线一样。&lt;/p>
+&lt;p>在此给出我们的例子，(18,8)是我们要到达的点。然后将 y 值 8 翻转为 −8 并将其除以 19 取余，这将会得到(18,11)。 因此，A 和 B 的和为(18,11)。&lt;/p>
+&lt;p>为了让这更容易被理解，我个人非常喜欢将其以甜甜圈的形状呈现在 3D 空间中，就像 &lt;a class="link" href="https://www.youtube.com/watch?v=mFVKuFZ29Fc&amp;amp;list=PLN9KZDpNfsHMd7d7PX87JGesGY_Qzyb3V&amp;amp;index=2" target="_blank" rel="noopener"
+>Trustica 的关于 ECC 的视频系列&lt;/a>那样：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png"
+width="1358"
+height="1056"
+loading="lazy"
+alt="elliptic-curve-on-field-donut"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="308px"
+>&lt;/p>
+&lt;p>但是考虑到我正在写一篇文章，所以在此将其以简单的 2D 图像呈现出来更加容易。&lt;/p>
+&lt;p>现在，让我们向 A + B 点添加一个新点 C = (10,14)：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png"
+width="937"
+height="621"
+loading="lazy"
+alt="elliptic-curve-on-field-ab-plus-c"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="362px"
+>&lt;/p>
+&lt;p>接下来，让我们看看群律的关联性是否仍适用于有限域，这一次我们首先添加 B + C 点：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png"
+width="922"
+height="623"
+loading="lazy"
+alt="elliptic-curve-on-field-b-plus-c"
+class="gallery-image"
+data-flex-grow="147"
+data-flex-basis="355px"
+>&lt;/p>
+&lt;p>然后，我们将 A 加到 B + C 点：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png"
+width="922"
+height="621"
+loading="lazy"
+alt="elliptic-curve-on-field-a-plus-bc"
+class="gallery-image"
+data-flex-grow="148"
+data-flex-basis="356px"
+>&lt;/p>
+&lt;p>是的，它们最终都在同一个点(14,16)：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">a_b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">b_c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">a_b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b_c&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>(Point(p=19, x=14, y=16), Point(p=19, x=14, y=16))
+&lt;/code>&lt;/pre>&lt;p>现在你可能会问，在有限域上如何对一个点进行自加操作？是的，对一个点进行自加操作也是遵循与实数域相同的规则，即用有限域上的切线连接第三点。正如我们已经展示的它如何处理实数一样，我们不想在这里重复一遍，或者说实际上是因为我很懒😅。&lt;/p>
+&lt;p>最后，由于有限域仅在整数上进行运算，所以我们不会损失任何精度。这令它更适合用于密码学。&lt;/p></description></item></channel></rss>

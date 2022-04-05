@@ -1,340 +1,43 @@
-<!doctype html><html lang=zh-cn>
-<head><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="使用hexo在GitHub Pages搭建博客，安利Material主题"><title>使用 Github Pages 和 Hexo 搭建个人博客</title>
-<link rel=canonical href=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/>
-<link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="使用 Github Pages 和 Hexo 搭建个人博客">
-<meta property="og:description" content="使用hexo在GitHub Pages搭建博客，安利Material主题">
-<meta property="og:url" content="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/">
-<meta property="og:site_name" content="Vifly 的博客">
-<meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="折腾"><meta property="article:tag" content="网站相关"><meta property="article:tag" content="Hexo"><meta property="article:published_time" content="2019-04-07T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-07T00:00:00+00:00">
-<meta name=twitter:title content="使用 Github Pages 和 Hexo 搭建个人博客">
-<meta name=twitter:description content="使用hexo在GitHub Pages搭建博客，安利Material主题">
-<link rel="shortcut icon" href=img/favicon.png>
-<meta name=google-site-verification content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y">
-<meta name=msvalidate.01 content="D8C8D2BAD9DA419D96DA79455FC4DDBC">
-</head>
-<body class="article-page has-toc">
-<script>(function(){const a='StackColorScheme';localStorage.getItem(a)||localStorage.setItem(a,"auto")})()</script><script>(function(){const b='StackColorScheme',a=localStorage.getItem(b),c=window.matchMedia('(prefers-color-scheme: dark)').matches===!0;a=='dark'||a==='auto'&&c?document.documentElement.dataset.scheme='dark':document.documentElement.dataset.scheme='light'})()</script>
-<div class="container main-container flex
-extended">
-<div id=article-toolbar>
-<a href=/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg>
-<span>Back</span>
-</a>
-</div>
-<main class="main full-width">
-<article class=main-article>
-<header class=article-header>
-<div class=article-details>
-<h2 class=article-title>
-<a href=/Use_GithubPages_and_Hexo_to_build_blog/>使用 Github Pages 和 Hexo 搭建个人博客</a>
-</h2>
-<h3 class=article-subtitle>
-使用hexo在GitHub Pages搭建博客，安利Material主题
-</h3>
-<footer class=article-time>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
-<time class=article-time--published>2019 年 04 月 07 日</time>
-</div>
-<div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>
-4 minute read
-</time>
-</div>
-</footer>
-</div>
-</header>
-<section class=article-content>
-<h1 id=简介>简介</h1>
-<h2 id=github-pages是什么>Github Pages是什么</h2>
-<p>先看看维基百科的说法:</p>
-<blockquote>
-<p>GitHub Pages是GitHub提供的一个网页寄存服务，于2008年推出。可以用于存放静态网页，包括博客、项目文档甚至整本书。</p>
-</blockquote>
-<p><a class=link href=http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html target=_blank rel=noopener>阮一峰的这篇文章</a>的说法更为简短：</p>
-<blockquote>
-<p>github Pages可以被认为是用户编写的、托管在github上的静态网页。</p>
-</blockquote>
-<p>根据维基百科的介绍，我们可以得知 Github Pages 可用来存放博客，而且是免费且无限存储容量的，只不过它只支持静态网页，也就是说无法使用 WordPress 等工具建站。</p>
-<h2 id=hexo是什么>Hexo是什么</h2>
-<p>先上一个官方的介绍：</p>
-<blockquote>
-<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-</blockquote>
-<p>从官方介绍中我们可以得知<strong>Hexo 是用来生成静态网页的</strong>。
-由于 Github Pages 上只能发布静态网页，所以我们需要找到一个生成静态网页的软件来让我们能快速发布博文，Hexo 就是其中的一个。github 官方是推荐使用 Jekyll 来生成和发布的，然而 Hexo 有许多好看的主题，为此我选择了 Hexo。</p>
-<h1 id=本地搭建>本地搭建</h1>
-<h2 id=安装与运行>安装与运行</h2>
-<p>Windows 下请自行下载安装 nodejs 与 git，Linux 请根据自己所使用的发行版安装 nodejs，npm，git。<br>
-安装好后输入以下指令安装 hexo-cli（g 参数代表全局，请无视运行过程中出现的错误）：</p>
-<pre><code>npm install hexo-cli -g
-</code></pre>
-<p>然后在博客目录下输入以下指令：</p>
-<pre><code>npm install hexo --save  
-</code></pre>
-<p>完成后可输入 hexo -v 验证是否安装成功。<br>
-接着输入以下指令进行初始化：</p>
-<pre><code>hexo init
-</code></pre>
-<p>然后输入以下指令安装依赖：</p>
-<pre><code>npm install 
-</code></pre>
-<p>搞定后就可以运行一下测试效果了，生成静态网页：</p>
-<pre><code>hexo g
-</code></pre>
-<p>运行本地服务器：</p>
-<pre><code>hexo s
-</code></pre>
-<p>根据输出信息使用浏览器打开<a class=link href=http://localhost:4000 target=_blank rel=noopener>http://localhost:4000</a>，即可看到效果</p>
-<h2 id=写文章>写文章</h2>
-<p>可以使用命令行或手动创建方法新建博文。
-使用命令行：</p>
-<pre><code>hexo new &lt;title&gt;
-</code></pre>
-<p>手动创建：在博客根目录下 source -> _posts 新建以 .md 为后缀的文件。</p>
-<h1 id=主题选择>主题选择</h1>
-<p>就我个人而言，查看技术类博文时总是看到写博文的博主使用了 Next 主题，虽然很简洁，但我总感觉过度简单了，在 16：9 的屏幕上左右两侧的空白太多了。经过一番查找，我选择了在集成服务和美观程度上成功打动了我的 Material 主题。</p>
-<h2 id=使用material主题后运行报错>使用Material主题后运行报错</h2>
-<p>使用 Material 主题后，运行 hexo s 后打开网页报错：</p>
-<pre tabindex=0><code>Unhandled rejection TypeError: /home/blog/themes/Material/layout/layout.ejs:3
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="使用hexo在GitHub Pages搭建博客，安利Material主题"><title>使用 Github Pages 和 Hexo 搭建个人博客</title><link rel=canonical href=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/><link rel=stylesheet href=/scss/style.min.450926226e724574a6b936335ea06111f8aeb253d932c86cb2cc807341cd2889.css><meta property="og:title" content="使用 Github Pages 和 Hexo 搭建个人博客"><meta property="og:description" content="使用hexo在GitHub Pages搭建博客，安利Material主题"><meta property="og:url" content="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/"><meta property="og:site_name" content="Vifly 的博客"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="折腾"><meta property="article:tag" content="网站相关"><meta property="article:tag" content="Hexo"><meta property="article:published_time" content="2019-04-07T00:00:00+00:00"><meta property="article:modified_time" content="2019-04-07T00:00:00+00:00"><meta name=twitter:title content="使用 Github Pages 和 Hexo 搭建个人博客"><meta name=twitter:description content="使用hexo在GitHub Pages搭建博客，安利Material主题"><link rel="shortcut icon" href=img/favicon.png><meta name=google-site-verification content="o-widUnxdyv8T6wPC_NGLfDgKUwgv2-zMnQhKLKul3Y"><meta name=msvalidate.01 content="D8C8D2BAD9DA419D96DA79455FC4DDBC"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu139cde8ab2a45f6f8ca9b1d680d35535_828870_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Vifly 的博客</a></h1><script>fetch("https://api.github.com/gists/7a04e2188185ddb19cbd19d8217b9400").then(e=>{if(e.ok)return e.json();throw new Error("Unable to fetch gist slogans.")}).then(e=>JSON.parse(e.files["slogans.json"].content)).then(e=>e[Math.floor(Math.random()*e.length)].content).then(e=>{document.getElementById("slogan").innerHTML="<h2 id='slogan' class='site-description'>"+e+"</h2>"})</script><h2 id=slogan class=site-description></h2></div></header><ol class=social-menu><li><a href=mailto:viflythink@gmail.com target=_blank title=Email><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></a></li><li><a href=https://github.com/vifly target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://viflythink.com/atom.xml target=_blank title=RSS><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="5" cy="19" r="1"/><path d="M4 4a16 16 0 0116 16"/><path d="M4 11a9 9 0 019 9"/></svg></a></li><li><a href=https://t.me/viflythink target=_blank title=Telegram><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4"/></svg></a></li><li><a href=https://twitter.com/viflythink target=_blank title=Twitter><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/ target=_blank><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/tags/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg><span>Tags</span></a></li><li><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>About</span></a></li><li><a href=/service/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4.0 010-9 5 4.5.0 0111 2h1a3.5 3.5.0 010 7H7"/></svg><span>Service</span></a></li><li><a href=/gpg/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-key" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="8" cy="15" r="4"/><line x1="10.85" y1="12.15" x2="19" y2="4"/><line x1="18" y1="5" x2="20" y2="7"/><line x1="15" y1="8" x2="17" y2="10"/></svg><span>GPG key</span></a></li><li><a href=/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-friends" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="7" cy="5" r="2"/><path d="M5 22v-5l-1-1v-4a1 1 0 011-1h4a1 1 0 011 1v4l-1 1v5"/><circle cx="17" cy="5" r="2"/><path d="M15 22v-4h-2l2-6a1 1 0 011-1h2a1 1 0 011 1l2 6h-2v4"/></svg><span>Links</span></a></li><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>Dark Mode</span></li></div></ol></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/Use_GithubPages_and_Hexo_to_build_blog/>使用 Github Pages 和 Hexo 搭建个人博客</a></h2><h3 class=article-subtitle>使用hexo在GitHub Pages搭建博客，安利Material主题</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>2019 年 04 月 07 日</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>4 minute read</time></div></footer></div></header><section class=article-content><h1 id=简介>简介</h1><h2 id=github-pages是什么>Github Pages是什么</h2><p>先看看维基百科的说法:</p><blockquote><p>GitHub Pages是GitHub提供的一个网页寄存服务，于2008年推出。可以用于存放静态网页，包括博客、项目文档甚至整本书。</p></blockquote><p><a class=link href=http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html target=_blank rel=noopener>阮一峰的这篇文章</a>的说法更为简短：</p><blockquote><p>github Pages可以被认为是用户编写的、托管在github上的静态网页。</p></blockquote><p>根据维基百科的介绍，我们可以得知 Github Pages 可用来存放博客，而且是免费且无限存储容量的，只不过它只支持静态网页，也就是说无法使用 WordPress 等工具建站。</p><h2 id=hexo是什么>Hexo是什么</h2><p>先上一个官方的介绍：</p><blockquote><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p></blockquote><p>从官方介绍中我们可以得知<strong>Hexo 是用来生成静态网页的</strong>。
+由于 Github Pages 上只能发布静态网页，所以我们需要找到一个生成静态网页的软件来让我们能快速发布博文，Hexo 就是其中的一个。github 官方是推荐使用 Jekyll 来生成和发布的，然而 Hexo 有许多好看的主题，为此我选择了 Hexo。</p><h1 id=本地搭建>本地搭建</h1><h2 id=安装与运行>安装与运行</h2><p>Windows 下请自行下载安装 nodejs 与 git，Linux 请根据自己所使用的发行版安装 nodejs，npm，git。<br>安装好后输入以下指令安装 hexo-cli（g 参数代表全局，请无视运行过程中出现的错误）：</p><pre><code>npm install hexo-cli -g
+</code></pre><p>然后在博客目录下输入以下指令：</p><pre><code>npm install hexo --save  
+</code></pre><p>完成后可输入 hexo -v 验证是否安装成功。<br>接着输入以下指令进行初始化：</p><pre><code>hexo init
+</code></pre><p>然后输入以下指令安装依赖：</p><pre><code>npm install 
+</code></pre><p>搞定后就可以运行一下测试效果了，生成静态网页：</p><pre><code>hexo g
+</code></pre><p>运行本地服务器：</p><pre><code>hexo s
+</code></pre><p>根据输出信息使用浏览器打开<a class=link href=http://localhost:4000 target=_blank rel=noopener>http://localhost:4000</a>，即可看到效果</p><h2 id=写文章>写文章</h2><p>可以使用命令行或手动创建方法新建博文。
+使用命令行：</p><pre><code>hexo new &lt;title&gt;
+</code></pre><p>手动创建：在博客根目录下 source -> _posts 新建以 .md 为后缀的文件。</p><h1 id=主题选择>主题选择</h1><p>就我个人而言，查看技术类博文时总是看到写博文的博主使用了 Next 主题，虽然很简洁，但我总感觉过度简单了，在 16：9 的屏幕上左右两侧的空白太多了。经过一番查找，我选择了在集成服务和美观程度上成功打动了我的 Material 主题。</p><h2 id=使用material主题后运行报错>使用Material主题后运行报错</h2><p>使用 Material 主题后，运行 hexo s 后打开网页报错：</p><pre tabindex=0><code>Unhandled rejection TypeError: /home/blog/themes/Material/layout/layout.ejs:3
     1| &lt;!DOCTYPE html&gt;
-    2| &lt;html style=&quot;display: none;&quot; &lt;% if(config.language !== null) { %&gt;lang=&quot;&lt;%- config.language.substring(0,2) %&gt;&quot;&lt;% } %&gt;&gt;
- &gt;&gt; 3|     &lt;%- partial('_partial/head') %&gt;
+    2| &lt;html style=&#34;display: none;&#34; &lt;% if(config.language !== null) { %&gt;lang=&#34;&lt;%- config.language.substring(0,2) %&gt;&#34;&lt;% } %&gt;&gt;
+ &gt;&gt; 3|     &lt;%- partial(&#39;_partial/head&#39;) %&gt;
     4| 
-    5|     &lt;% if(page.layout === 'gallery') { %&gt;
-</code></pre><p>在官方仓库的 issues 中找到了<a class=link href=https://github.com/viosey/hexo-theme-Material/issues/686 target=_blank rel=noopener>解决方法</a>，需要对 layout/_widget/dnsprefetch.ejs 进行修改：<br>
-将</p>
-<pre><code>&lt;% } else if(theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt; 
-</code></pre>
-<p>改为</p>
-<pre><code>&lt;% } else if(theme.comment.use &amp;&amp; theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt;
-</code></pre>
-<h1 id=配置>配置</h1>
-<h2 id=站点配置>站点配置</h2>
-<p>首先打开 blog 根目录下的_config.yml（下面统称为<strong>站点配置文件</strong>），按照以下示例进行修改：</p>
-<pre><code>title: 你的站点名称
+    5|     &lt;% if(page.layout === &#39;gallery&#39;) { %&gt;
+</code></pre><p>在官方仓库的 issues 中找到了<a class=link href=https://github.com/viosey/hexo-theme-Material/issues/686 target=_blank rel=noopener>解决方法</a>，需要对 layout/_widget/dnsprefetch.ejs 进行修改：<br>将</p><pre><code>&lt;% } else if(theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt; 
+</code></pre><p>改为</p><pre><code>&lt;% } else if(theme.comment.use &amp;&amp; theme.comment.use.startsWith(&quot;disqus&quot;)) { %&gt;
+</code></pre><h1 id=配置>配置</h1><h2 id=站点配置>站点配置</h2><p>首先打开 blog 根目录下的_config.yml（下面统称为<strong>站点配置文件</strong>），按照以下示例进行修改：</p><pre><code>title: 你的站点名称
 author: 你的名字
 language: zh-CN
-</code></pre>
-<p>注意冒号后必须有空格，如果你不喜欢默认主题的话，可自行寻找 Hexo 主题，按照对应的主题的说明文档进行安装，记得修改 theme 内容：</p>
-<pre><code>theme: 新主题名字
-</code></pre>
-<h2 id=material主题配置>Material主题配置</h2>
-<p>这里按照<a class=link href=https://github.com/neko-dev/Material-theme-docs/ target=_blank rel=noopener>Material主题官方文档</a>配置即可，选择 Material 主题的一个重要原因就是这个主题提供了很多对第三方服务的支持（前端小白的福音），所以看看有什么需要的第三方服务吧（RSS，评论区，访问统计等等）,可以参考我写的<a class=link href=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced target=_blank rel=noopener>进阶篇</a>。</p>
-<h2 id=material主题文档的一个小坑>Material主题文档的一个小坑</h2>
-<p>在配置过程中遇到了一个问题，不知道如何在侧边栏添加独立页面的入口（比如关于，友链之类的），添加后点击入口却无法进入对应的页面，官方文档说明如下：</p>
-<blockquote>
-<p>link 的参数为相对路径，对应 hexo 目录下的 source 文件夹内的相应文件夹。</p>
-</blockquote>
-<p>然而我已经按照说明创建了文件夹，为什么还是不行呢？最后在<a class=link href=https://github.com/viosey/hexo-theme-Material/wiki/%E5%88%9B%E5%BB%BA%E3%80%8C%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E3%80%8D%E9%A1%B5%E9%9D%A2 target=_blank rel=noopener>这个页面</a>找到了解决方法，以创建关于页面为例：<br>
-在 source 文件夹下创建 about 文件夹，新建一个 index.md 文件，写下（其中 layout 的值不可修改）：</p>
-<pre><code>---
+</code></pre><p>注意冒号后必须有空格，如果你不喜欢默认主题的话，可自行寻找 Hexo 主题，按照对应的主题的说明文档进行安装，记得修改 theme 内容：</p><pre><code>theme: 新主题名字
+</code></pre><h2 id=material主题配置>Material主题配置</h2><p>这里按照<a class=link href=https://github.com/neko-dev/Material-theme-docs/ target=_blank rel=noopener>Material主题官方文档</a>配置即可，选择 Material 主题的一个重要原因就是这个主题提供了很多对第三方服务的支持（前端小白的福音），所以看看有什么需要的第三方服务吧（RSS，评论区，访问统计等等）,可以参考我写的<a class=link href=https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced target=_blank rel=noopener>进阶篇</a>。</p><h2 id=material主题文档的一个小坑>Material主题文档的一个小坑</h2><p>在配置过程中遇到了一个问题，不知道如何在侧边栏添加独立页面的入口（比如关于，友链之类的），添加后点击入口却无法进入对应的页面，官方文档说明如下：</p><blockquote><p>link 的参数为相对路径，对应 hexo 目录下的 source 文件夹内的相应文件夹。</p></blockquote><p>然而我已经按照说明创建了文件夹，为什么还是不行呢？最后在<a class=link href=https://github.com/viosey/hexo-theme-Material/wiki/%E5%88%9B%E5%BB%BA%E3%80%8C%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E3%80%8D%E9%A1%B5%E9%9D%A2 target=_blank rel=noopener>这个页面</a>找到了解决方法，以创建关于页面为例：<br>在 source 文件夹下创建 about 文件夹，新建一个 index.md 文件，写下（其中 layout 的值不可修改）：</p><pre><code>---
 title: about
 date: 
 layout: about
 ---
-</code></pre>
-<p><em>假如是创建友链页面的话，记得还要按照“添加数据”这个步骤进行操作。</em>
-总结一下，其实是官方文档没有提到需要创建 index.md 这一点坑了我，我还一直以为是我对文档的理解有误呢。</p>
-<h1 id=部署到github-pages>部署到Github Pages</h1>
-<h2 id=github上的准备>Github上的准备</h2>
-<p>这部分参考知乎专栏上的<a class=link href=https://zhuanlan.zhihu.com/p/35668237 target=_blank rel=noopener>超详细Hexo+Github博客搭建小白教程</a>，打开<a class=link href=https://github.com target=_blank rel=noopener>github</a>并登录你的帐号，如果你还没在 github 帐号中添加 ssh key，请参考<a class=link href=https://gist.github.com/yisibl/8019693 target=_blank rel=noopener>这篇文章</a>进行添加。接着点击右上角的个人头像，再点击 Your repositories：</p>
-<p><figure class=gallery-image style=flex-grow:215;flex-basis:518px>
-<a href=/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png data-size=868x402>
-<img src=/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png width=868 height=402 loading=lazy alt=进入项目页面>
-</a>
-<figcaption>进入项目页面</figcaption>
-</figure></p>
-<p>点击右侧的 New 新建项目。当然，你也可以直接点击<a class=link href=https://github.com/new target=_blank rel=noopener>这个链接</a>新建项目。输入自己的项目名字，后面一定要加.github.io 后缀，README 初始化也要勾上。</p>
-<p><figure class=gallery-image style=flex-grow:126;flex-basis:303px>
-<a href=/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png data-size=780x616>
-<img src=/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png width=780 height=616 loading=lazy alt=新建项目>
-</a>
-<figcaption>新建项目</figcaption>
-</figure></p>
-<p>创建好项目后，点击 Settings，向下拉到最后有个 GitHub Pages，点击 Choose a theme 选择一个主题。然后等一会儿就可看到页面了。</p>
-<h2 id=正式部署到github-pages>正式部署到Github Pages</h2>
-<p>打开<strong>站点配置文件</strong>，按以下示例进行修改：</p>
-<pre><code>deploy:
+</code></pre><p><em>假如是创建友链页面的话，记得还要按照“添加数据”这个步骤进行操作。</em>
+总结一下，其实是官方文档没有提到需要创建 index.md 这一点坑了我，我还一直以为是我对文档的理解有误呢。</p><h1 id=部署到github-pages>部署到Github Pages</h1><h2 id=github上的准备>Github上的准备</h2><p>这部分参考知乎专栏上的<a class=link href=https://zhuanlan.zhihu.com/p/35668237 target=_blank rel=noopener>超详细Hexo+Github博客搭建小白教程</a>，打开<a class=link href=https://github.com target=_blank rel=noopener>github</a>并登录你的帐号，如果你还没在 github 帐号中添加 ssh key，请参考<a class=link href=https://gist.github.com/yisibl/8019693 target=_blank rel=noopener>这篇文章</a>进行添加。接着点击右上角的个人头像，再点击 Your repositories：</p><p><img src=/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png width=868 height=402 loading=lazy alt=进入项目页面 class=gallery-image data-flex-grow=215 data-flex-basis=518px></p><p>点击右侧的 New 新建项目。当然，你也可以直接点击<a class=link href=https://github.com/new target=_blank rel=noopener>这个链接</a>新建项目。输入自己的项目名字，后面一定要加.github.io 后缀，README 初始化也要勾上。</p><p><img src=/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png width=780 height=616 loading=lazy alt=新建项目 class=gallery-image data-flex-grow=126 data-flex-basis=303px></p><p>创建好项目后，点击 Settings，向下拉到最后有个 GitHub Pages，点击 Choose a theme 选择一个主题。然后等一会儿就可看到页面了。</p><h2 id=正式部署到github-pages>正式部署到Github Pages</h2><p>打开<strong>站点配置文件</strong>，按以下示例进行修改：</p><pre><code>deploy:
     type: git
     repository: 你的github项目地址
     branch: master
-</code></pre>
-<p>repository 填写的应是类似于 <a class=link href=mailto:git@github.com>git@github.com</a>:vifly/viflyblog.github.io.git 这样的 ssh 地址。假如你不知道地址，那么可以打开你在 github 上的这个项目，点击右侧的 Clone or download，就会出现所需的地址：</p>
-<p><figure class=gallery-image style=flex-grow:230;flex-basis:552px>
-<a href=/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png data-size=1066x463>
-<img src=/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png width=1066 height=463 loading=lazy alt=查看项目ssh地址>
-</a>
-<figcaption>查看项目ssh地址</figcaption>
-</figure></p>
-<p>最后，发布到 Github Pages：</p>
-<pre><code>hexo d
-</code></pre>
-<p>假如一直卡住的话，可中断后加上 -debug 参数再次运行这个部署指令，查看哪里出现问题。</p>
-</section>
-<footer class=article-footer>
-<section class=article-tags>
-<a href=/tags/%E6%8A%98%E8%85%BE/>折腾</a>
+</code></pre><p>repository 填写的应是类似于 <a class=link href=mailto:git@github.com>git@github.com</a>:vifly/viflyblog.github.io.git 这样的 ssh 地址。假如你不知道地址，那么可以打开你在 github 上的这个项目，点击右侧的 Clone or download，就会出现所需的地址：</p><p><img src=/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png width=1066 height=463 loading=lazy alt=查看项目ssh地址 class=gallery-image data-flex-grow=230 data-flex-basis=552px></p><p>最后，发布到 Github Pages：</p><pre><code>hexo d
+</code></pre><p>假如一直卡住的话，可中断后加上 -debug 参数再次运行这个部署指令，查看哪里出现问题。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/%E6%8A%98%E8%85%BE/>折腾</a>
 <a href=/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/>网站相关</a>
-<a href=/tags/Hexo/>Hexo</a>
-</section>
-<section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
-<span>Licensed under CC BY-NC-SA 4.0</span>
-</section>
-</footer>
-</article>
-<aside class=related-contents--wrapper>
-<h2 class=section-title>Related contents</h2>
-<div class=related-contents>
-<div class="flex article-list--tile">
-<article>
-<a href=/Use_GithubPages_and_Hexo_to_build_blog_advanced/>
-<div class=article-details>
-<h2 class=article-title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/Install_Matomo_on_Debian/>
-<div class=article-image>
-<img src=/Install_Matomo_on_Debian/show.12d541662ae371ff8aa4bc189a019143_hu237d0d0f8f01f491cebef0f12a3b29f0_514050_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy data-key data-hash="md5-EtVBZirjcf+KpLwYmgGRQw==">
-</div>
-<div class=article-details>
-<h2 class=article-title>Debian 安装 Matomo (Piwik) 开源统计分析服务</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/Migrate_from_Material_to_Stack/>
-<div class=article-image>
-<img src=/Migrate_from_Material_to_Stack/show.07a70e83032f6bbf812192f7e5116318_hu7d264867c8d78abf58e9b67e98a77df9_254555_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy data-key data-hash="md5-B6cOgwMva7+BIZL35RFjGA==">
-</div>
-<div class=article-details>
-<h2 class=article-title>从 Material 主题迁移到 Stack 主题</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/Try_Arch_Linux/>
-<div class=article-image>
-<img src=/Try_Arch_Linux/show.92c30b3f3d563c87f51888e113416e36_hubfb0eb0e288deb4ca723092859008c14_673819_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy data-key data-hash="md5-ksMLPz1WPIf1GIjhE0FuNg==">
-</div>
-<div class=article-details>
-<h2 class=article-title>从 Debian 迁移到 Arch Linux</h2>
-</div>
-</a>
-</article>
-<article class=has-image>
-<a href=/Use_Vercel_and_OneDrive_to_setup_your_repo/>
-<div class=article-image>
-<img src=/Use_Vercel_and_OneDrive_to_setup_your_repo/show.4727fcbd0f8b4125beaaa4d84d498fb5_hu3a92ba18b985a44b13d2086fb5d2cd73_887024_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy data-key data-hash="md5-Ryf8vQ+LQSW+qqTYTUmPtQ==">
-</div>
-<div class=article-details>
-<h2 class=article-title>使用 Vercel 与 OneDrive 自建软件源</h2>
-</div>
-</a>
-</article>
-</div>
-</div>
-</aside>
-<div id=isso-comment>
-<script data-isso=https://comments.viflythink.com/isso/ data-isso-css=true data-isso-lang=zh_CN data-isso-reply-to-self=true data-isso-require-author=true data-isso-require-email=false data-isso-max-comments-top=10 data-isso-max-comments-nested=5 data-isso-reveal-on-click=5 data-isso-avatar=true data-isso-vote=true data-isso-vote-levels data-isso-feed=false src=https://comments.viflythink.com/isso/js/embed.min.js></script>
-<section id=isso-thread></section>
-</div>
-<style>#isso-comment{background-color:#eee;padding:2pc}</style>
-<footer class=site-footer>
-<section class=copyright>
-&copy;
+<a href=/tags/Hexo/>Hexo</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>Related contents</h2><div class=related-contents><div class="flex article-list--tile"><article><a href=/Use_GithubPages_and_Hexo_to_build_blog_advanced/><div class=article-details><h2 class=article-title>使用 GitHub Pages 和 Hexo 搭建个人博客(进阶篇)</h2></div></a></article><article class=has-image><a href=/Install_Matomo_on_Debian/><div class=article-image><img src=/Install_Matomo_on_Debian/show.12d541662ae371ff8aa4bc189a019143_hu237d0d0f8f01f491cebef0f12a3b29f0_514050_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post Debian 安装 Matomo (Piwik) 开源统计分析服务" data-hash="md5-EtVBZirjcf+KpLwYmgGRQw=="></div><div class=article-details><h2 class=article-title>Debian 安装 Matomo (Piwik) 开源统计分析服务</h2></div></a></article><article class=has-image><a href=/Migrate_from_Material_to_Stack/><div class=article-image><img src=/Migrate_from_Material_to_Stack/show.07a70e83032f6bbf812192f7e5116318_hu7d264867c8d78abf58e9b67e98a77df9_254555_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 从 Material 主题迁移到 Stack 主题" data-hash="md5-B6cOgwMva7+BIZL35RFjGA=="></div><div class=article-details><h2 class=article-title>从 Material 主题迁移到 Stack 主题</h2></div></a></article><article class=has-image><a href=/Try_Arch_Linux/><div class=article-image><img src=/Try_Arch_Linux/show.92c30b3f3d563c87f51888e113416e36_hubfb0eb0e288deb4ca723092859008c14_673819_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 从 Debian 迁移到 Arch Linux" data-hash="md5-ksMLPz1WPIf1GIjhE0FuNg=="></div><div class=article-details><h2 class=article-title>从 Debian 迁移到 Arch Linux</h2></div></a></article><article class=has-image><a href=/Use_Vercel_and_OneDrive_to_setup_your_repo/><div class=article-image><img src=/Use_Vercel_and_OneDrive_to_setup_your_repo/show.4727fcbd0f8b4125beaaa4d84d498fb5_hu3a92ba18b985a44b13d2086fb5d2cd73_887024_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" data-hash="md5-Ryf8vQ+LQSW+qqTYTUmPtQ=="></div><div class=article-details><h2 class=article-title>使用 Vercel 与 OneDrive 自建软件源</h2></div></a></article></div></div></aside><div id=isso-comment><script data-isso=https://comments.viflythink.com/isso/ data-isso-css=true data-isso-lang=zh_CN data-isso-reply-to-self=true data-isso-require-author=true data-isso-require-email=false data-isso-max-comments-top=10 data-isso-max-comments-nested=5 data-isso-reveal-on-click=5 data-isso-avatar=true data-isso-vote=true data-isso-vote-levels data-isso-feed=false src=https://comments.viflythink.com/isso/js/embed.min.js></script><section id=isso-thread></section></div><style>#isso-comment{background-color:#eee;padding:2pc}</style><footer class=site-footer><section class=copyright>&copy;
 2019 -
-2022 Vifly 的博客
-</section>
-<section class=powerby>
-Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> <br>
-Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.5.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a>
-</section>
-</footer>
-<div class=pswp tabindex=-1 role=dialog aria-hidden=true>
-<div class=pswp__bg></div>
-<div class=pswp__scroll-wrap>
-<div class=pswp__container>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-<div class=pswp__item></div>
-</div>
-<div class="pswp__ui pswp__ui--hidden">
-<div class=pswp__top-bar>
-<div class=pswp__counter></div>
-<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+2022 Vifly 的博客</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.11.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-<div class=pswp__preloader>
-<div class=pswp__preloader__icn>
-<div class=pswp__preloader__cut>
-<div class=pswp__preloader__donut></div>
-</div>
-</div>
-</div>
-</div>
-<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-<div class=pswp__share-tooltip></div>
-</div>
-<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-</button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-</button>
-<div class=pswp__caption>
-<div class=pswp__caption__center></div>
-</div>
-</div>
-</div>
-</div><script src=https://viflythink.com/js/photoswipe.min.js crossorigin=anonymous defer></script><script src=https://viflythink.com/js/photoswipe-ui-default.min.js crossorigin=anonymous defer></script><link rel=stylesheet href=https://viflythink.com/css/default-skin.css crossorigin=anonymous><link rel=stylesheet href=https://viflythink.com/css/photoswipe.css crossorigin=anonymous>
-</main>
-<aside class="sidebar right-sidebar sticky">
-<section class="widget archives">
-<div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
-</div>
-<h2 class="widget-title section-title">Table of contents</h2>
-<div class=widget--toc>
-<nav id=TableOfContents>
-<ol>
-<li><a href=#简介>简介</a>
-<ol>
-<li><a href=#github-pages是什么>Github Pages是什么</a></li>
-<li><a href=#hexo是什么>Hexo是什么</a></li>
-</ol>
-</li>
-<li><a href=#本地搭建>本地搭建</a>
-<ol>
-<li><a href=#安装与运行>安装与运行</a></li>
-<li><a href=#写文章>写文章</a></li>
-</ol>
-</li>
-<li><a href=#主题选择>主题选择</a>
-<ol>
-<li><a href=#使用material主题后运行报错>使用Material主题后运行报错</a></li>
-</ol>
-</li>
-<li><a href=#配置>配置</a>
-<ol>
-<li><a href=#站点配置>站点配置</a></li>
-<li><a href=#material主题配置>Material主题配置</a></li>
-<li><a href=#material主题文档的一个小坑>Material主题文档的一个小坑</a></li>
-</ol>
-</li>
-<li><a href=#部署到github-pages>部署到Github Pages</a>
-<ol>
-<li><a href=#github上的准备>Github上的准备</a></li>
-<li><a href=#正式部署到github-pages>正式部署到Github Pages</a></li>
-</ol>
-</li>
-</ol>
-</nav>
-</div>
-</section>
-</aside>
-</div>
-<script src=https://viflythink.com/js/vibrant.min.js crossorigin=anonymous defer></script><script type=text/javascript src=/ts/main.js defer></script>
-<script>(function(){const a=document.createElement('link');a.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",a.type="text/css",a.rel="stylesheet",document.head.appendChild(a)})()</script>
-</body>
-</html>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://viflythink.com/js/photoswipe.min.js crossorigin=anonymous defer></script><script src=https://viflythink.com/js/photoswipe-ui-default.min.js crossorigin=anonymous defer></script><link rel=stylesheet href=https://viflythink.com/css/default-skin.css crossorigin=anonymous><link rel=stylesheet href=https://viflythink.com/css/photoswipe.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#简介>简介</a><ol><li><a href=#github-pages是什么>Github Pages是什么</a></li><li><a href=#hexo是什么>Hexo是什么</a></li></ol></li><li><a href=#本地搭建>本地搭建</a><ol><li><a href=#安装与运行>安装与运行</a></li><li><a href=#写文章>写文章</a></li></ol></li><li><a href=#主题选择>主题选择</a><ol><li><a href=#使用material主题后运行报错>使用Material主题后运行报错</a></li></ol></li><li><a href=#配置>配置</a><ol><li><a href=#站点配置>站点配置</a></li><li><a href=#material主题配置>Material主题配置</a></li><li><a href=#material主题文档的一个小坑>Material主题文档的一个小坑</a></li></ol></li><li><a href=#部署到github-pages>部署到Github Pages</a><ol><li><a href=#github上的准备>Github上的准备</a></li><li><a href=#正式部署到github-pages>正式部署到Github Pages</a></li></ol></li></ol></nav></div></section></aside></div><script src=https://viflythink.com/js/vibrant.min.js crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

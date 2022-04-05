@@ -16,18 +16,18 @@
 &lt;p>由于不是新建博客而是迁移博客，所以我还处理了 URL 相关的问题，确保原来的 URL 不变。在迁移前，我的 Markdown 文件都是像 Python_GIL_and_concurrency.md 这样首字母与专有名词大写，下划线用于分割单词的格式，Hexo 生成的博文 URL 与文件名相同；迁移后，每篇博文都放到单独的文件夹，具体存放结构可在&lt;a class="link" href="https://github.com/vifly/blog/tree/main/content/post" target="_blank" rel="noopener"
 >此&lt;/a>查看，按照 Stack 主题给的示例所生成的博文 URL 则是 viflythink.com/&amp;lt;文章标题&amp;gt;/ 的格式，我经过谷歌后按照 &lt;a class="link" href="https://gohugo.io/content-management/urls/" target="_blank" rel="noopener"
 >Hugo 文档&lt;/a>设定了新的 URL 生成规则：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="p">[&lt;/span>&lt;span class="nx">permalinks&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/:filename/&amp;#34;&lt;/span>
-&lt;span class="nx">page&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/:slug/&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样就会用文件夹的名字而不是用文章标题来生成 URL，当然，这还不够，生成的 URL 虽然用的是文件夹的名字，但全都转为了小写字母，然后找到&lt;a class="link" href="https://www.jvt.me/posts/2019/11/10/hugo-case-sensitive-urls/" target="_blank" rel="noopener"
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">permalinks&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/:filename/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">page&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/:slug/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样就会用文件夹的名字而不是用文章标题来生成 URL，当然，这还不够，生成的 URL 虽然用的是文件夹的名字，但全都转为了小写字母，然后找到&lt;a class="link" href="https://www.jvt.me/posts/2019/11/10/hugo-case-sensitive-urls/" target="_blank" rel="noopener"
 >这篇文章&lt;/a>让 Hugo 生成大小写敏感的 URL：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="nx">disablePathToLower&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>除了博文的 URL 外，还需要处理 RSS 订阅地址，原来的 RSS 地址是 viflythink.com/atom.xml ，可 Stack 默认产生 viflythink.com/index.xml 作为 RSS 地址，于是我又谷歌找到了 &lt;a class="link" href="https://discourse.gohugo.io/t/how-can-i-change-the-rss-url/118" target="_blank" rel="noopener"
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">disablePathToLower&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>除了博文的 URL 外，还需要处理 RSS 订阅地址，原来的 RSS 地址是 viflythink.com/atom.xml ，可 Stack 默认产生 viflythink.com/index.xml 作为 RSS 地址，于是我又谷歌找到了 &lt;a class="link" href="https://discourse.gohugo.io/t/how-can-i-change-the-rss-url/118" target="_blank" rel="noopener"
 >Hugo 论坛的讨论&lt;/a>，据此修改了设置：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="p">[&lt;/span>&lt;span class="nx">outputFormats&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">RSS&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;span class="nx">mediatype&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;application/rss&amp;#34;&lt;/span>
-&lt;span class="nx">baseName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;atom&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>除了让 URL 保持不变外，我还设法把原本对 Material 主题修改的代码也迁移了过来。这里不得不提到 Hugo 的 &lt;a class="link" href="https://gohugo.io/hugo-modules/theme-components/" target="_blank" rel="noopener"
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Toml" data-lang="Toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">outputFormats&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">RSS&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">mediatype&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;application/rss&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">baseName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;atom&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>除了让 URL 保持不变外，我还设法把原本对 Material 主题修改的代码也迁移了过来。这里不得不提到 Hugo 的 &lt;a class="link" href="https://gohugo.io/hugo-modules/theme-components/" target="_blank" rel="noopener"
 >Theme Components&lt;/a>，通过它我可以在站点根目录下建立同样结构的目录以覆盖主题的部分内容，也就是说不用直接对主题的源代码动手了，接下来的修改都是靠这个特性完成的，具体可参考 &lt;a class="link" href="https://docs.stack.jimmycai.com/zh/modify-theme/" target="_blank" rel="noopener"
 >Stack 的修改主题章节&lt;/a>。&lt;/p>
 &lt;p>与 Material 主题相同，Stack 没有提供 Isso 评论系统，新建 &lt;a class="link" href="https://github.com/vifly/blog/blob/main/layouts/partials/comments/provider/isso.html" target="_blank" rel="noopener"
@@ -45,36 +45,24 @@
 &lt;p>总的来说，迁移过程可说是十分平滑，没有踩到任何大坑就把博客迁移到 Stack 主题了，甚至没花多少时间就把对 Material 主题的修改也搬了过来。&lt;/p>
 &lt;h1 id="新变化">新变化&lt;/h1>
 &lt;p>既然把博客主题换了，那肯定要对比一下迁移前后的外观。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 199;
-flex-basis: 479px"
->
-&lt;a href="https://viflythink.com/Migrate_from_Material_to_Stack/material_blog_homepage.png" data-size="1877x940">
-&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/material_blog_homepage.png"
+&lt;p>&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/material_blog_homepage.png"
 width="1877"
 height="940"
 loading="lazy"
-alt="使用 Material 主题的博客主页">
-&lt;/a>
-&lt;figcaption>使用 Material 主题的博客主页&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>&lt;figure
+alt="使用 Material 主题的博客主页"
 class="gallery-image"
-style="
-flex-grow: 209;
-flex-basis: 502px"
->
-&lt;a href="https://viflythink.com/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg" data-size="1886x900">
-&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg"
+data-flex-grow="199"
+data-flex-basis="479px"
+>&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Migrate_from_Material_to_Stack/stack_blog_homepage.jpg"
 width="1886"
 height="900"
 loading="lazy"
-alt="使用 Stack 主题的博客主页">
-&lt;/a>
-&lt;figcaption>使用 Stack 主题的博客主页&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="使用 Stack 主题的博客主页"
+class="gallery-image"
+data-flex-grow="209"
+data-flex-basis="502px"
+>&lt;/p>
 &lt;p>Stack 主题是典型的三栏式布局，右侧栏包括了常用的跳转链接与搜索功能，而 Material 则是单栏，侧边栏需要点击按钮才会出现。至于在主页上的博文呈现，两者都是卡片风格，同样是由上到下的图片 -&amp;gt; 标题 -&amp;gt; 文章摘要这样组成的布局。可以看出两者给人的感受有所区别，迁移到 Stack 主题后我博客的风格更柔和多彩了，这得益于圆角的使用与主题配色的区别，当然，也与我在迁移后给文章配上精心挑选的图片有关，之前的文章图片都是由 Material 自动生成的，虽然也挺好看，体现了 Material Design 的简洁风格，但看久了后总会觉得千篇一律。&lt;/p>
 &lt;p>除了外观上的变化，细心的读者可能会发现，在迁移后，我的博客左侧栏多了 &lt;a class="link" href="https://viflythink.com/service/" target="_blank" rel="noopener"
 >Service&lt;/a> 这一个链接，这是我新增的一个页面，用于列举出目前我提供的服务，当提供的服务有改动时，该页面也会有所说明。&lt;/p>
@@ -85,35 +73,31 @@ alt="使用 Stack 主题的博客主页">
 >上一年&lt;/a>的 800 分相比，今年拿到了 1150 分，有所进步😂。虽然我做出来的题并不多，而且有些简单的题目没解决，但还是写一篇博文提供题解吧。希望本篇博文能够帮到想参加 Hackergame 的各位小伙伴。&lt;/p>
 &lt;h1 id="签到">签到&lt;/h1>
 &lt;p>与上一年的签到题相比，今年连脑筋急转弯都不需要了，每次点 Next 时间都会 +1s（唐突玩梗），我们只要把时间翻到本届大赛的举办日期即可，也就是说需要计算出 1970 年 1 月 1 日与 2021 年 CTF 大赛的时间差（用秒表示）。这里随便选取一个符合 2021 年 CTF 大赛时间范围的时间，然后使用 Python 计算：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">datetime&lt;/span>
-&lt;span class="n">today&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2021&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">begin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1970&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">delta&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">today&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">begin&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delta&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">total_seconds&lt;/span>&lt;span class="p">()))&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于可选的范围较大，所以代码不考虑时区且日期只精确到日，最后得到 1635120000 这个数字，那么访问 http://202.38.93.111:10000/?page=1635120000 就可以得到 flag 了。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 160;
-flex-basis: 384px"
->
-&lt;a href="https://viflythink.com/Hackergame_2021_writeups/get_2021_qiandao_flag.png" data-size="1432x894">
-&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_2021_qiandao_flag.png"
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">datetime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">today&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2021&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">25&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">begin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">datetime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1970&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">delta&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">today&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">begin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delta&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">total_seconds&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于可选的范围较大，所以代码不考虑时区且日期只精确到日，最后得到 1635120000 这个数字，那么访问 http://202.38.93.111:10000/?page=1635120000 就可以得到 flag 了。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_2021_qiandao_flag.png"
 width="1432"
 height="894"
 loading="lazy"
-alt="成功获取签到题的 flag">
-&lt;/a>
-&lt;figcaption>成功获取签到题的 flag&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="成功获取签到题的 flag"
+class="gallery-image"
+data-flex-grow="160"
+data-flex-basis="384px"
+>&lt;/p>
 &lt;h1 id="进制十六参上">进制十六——参上&lt;/h1>
 &lt;p>X 同学不会退出 Vim 着实让我笑了（&lt;a class="link" href="https://devhumor.com/content/uploads/images/June2018/vim.jpg" target="_blank" rel="noopener"
 >知名勒索软件&lt;/a>），只不过这题虽说标题含有十六进制，但主要考验的是参赛者对 ASCII 码的了解。看到图片中的数字时很容易就会猜测这是不是 ASCII 码，通过 &lt;code>man ascii&lt;/code> 查十六进制表进行对比，发现前面的几个数字与图片右侧开头的字母完全能对上，那么接下来就简单了。先找到 flag 的开头，查表得“flag{”对应的十六进制 ASCII 码是 66 6C 61 67 7B，而末尾的“}”对应的是 7D，把图中属于这部分的数字手打出来，然后用 Python 进行转换即可，这里我直接抄 &lt;a class="link" href="https://stackoverflow.com/a/49400923" target="_blank" rel="noopener"
 >stackoverflow 上的回答&lt;/a>：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;66 6C 61 67 7B 59 30 55 5F 53 48 30 55 31 44 5F 6B 6E 30 77 5F 48 30 57 5F 74 30 5F 43 30 6E 76 33 72 74 5F 48 45 58 5F 74 6F 5F 54 65 78 54 7D&amp;#34;&lt;/span>
-&lt;span class="n">l&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">lambda&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">()))&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">chr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="p">)))&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="猫咪问答-pro-max">猫咪问答 Pro Max&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">s&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;66 6C 61 67 7B 59 30 55 5F 53 48 30 55 31 44 5F 6B 6E 30 77 5F 48 30 57 5F 74 30 5F 43 30 6E 76 33 72 74 5F 48 45 58 5F 74 6F 5F 54 65 78 54 7D&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">l&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">lambda&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">16&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">chr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">l&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="猫咪问答-pro-max">猫咪问答 Pro Max&lt;/h1>
 &lt;p>与上一年的猫咪问答++一样，都是考验参赛者的信息搜索能力，我依然是采用了部分问题搜寻答案，另一些问题用脚本暴力破解的方案（脚本都没怎么改）。&lt;/p>
 &lt;p>第一小题有点意思，题目提到信息安全俱乐部的域名（sec.ustc.edu.cn）已经无法访问，如何找到现在已经无法访问的网页上的资源呢？答案当然是网页快照，这里我选择了 &lt;a class="link" href="https://web.archive.org" target="_blank" rel="noopener"
 >Wayback Machine&lt;/a>，其记录的&lt;a class="link" href="https://web.archive.org/web/20170515053637/http://sec.ustc.edu.cn/doku.php/codes" target="_blank" rel="noopener"
@@ -133,71 +117,54 @@ alt="成功获取签到题的 flag">
 &lt;h2 id="轻度失忆">轻度失忆&lt;/h2>
 &lt;p>这是我第一次成功解决了一道 binary 类的题目！尽管只是完成了第一小题，但依然觉得非常开心。在轻度失忆的情况下，.data 和 .rodata 段会被清除，要知道这两个段是什么东西呢，就需要对 ELF 格式有所了解。一般来说，Linux 下我们编译后得到的产物都是 ELF 格式的，例如 &lt;code>file /bin/bash&lt;/code> 会告诉我们 bash 是一个 x86 体系架构的 ELF 格式的可执行文件，ELF 要求把编译产物的不同部分放到不同的分段（section，不是 segment），具体有哪些分段，它们分别存放什么，&lt;a class="link" href="https://wiki.osdev.org/ELF#File_Structure" target="_blank" rel="noopener"
 >OSDev Wiki&lt;/a> 提供了一个表格进行说明。从表格可以得知 .data 段用来存放已初始化的全局变量等数据，而 .rodata 段用来存放不变的数据。既然这两个段会被清空，那么我们就不能把含有 “Hello, world!” 的字符串放到这些地方，在这里不得不说到 C 语言的一个麻烦点：C 语言中并不存在真正的字符串，所谓的字符串本质上是字符指针或字符数组。使用字符指针的话，在初始化时该指针会指向包含“Hello, world!”的只读数据（在 .rodata 段），所以字符指针不能用在这里，只能采用字符数组进行储存。同时也不能把该字符串放到函数外作为全局变量。另外，为了防止 printf(&amp;quot;%s&amp;quot;, s); 中的 %s 被清除，这里使用 putchar 函数把字符一个个输出。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdio.h&amp;gt;&lt;/span>&lt;span class="cp">
-&lt;/span>&lt;span class="cp">&lt;/span>
-&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="p">{&lt;/span>
-&lt;span class="kt">char&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello, world!&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">13&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">putchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]);&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>在编译完成后可以通过 &lt;code>objdump -s -j .rodata hello_world&lt;/code> 与 &lt;code>objdump -s -j .data hello_world&lt;/code> 检查 .data 和 .rodata 段是否还存在数据（自行替换文件名）。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;stdio.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">char&lt;/span> &lt;span class="n">s&lt;/span>&lt;span class="p">[]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">&amp;#34;Hello, world!&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">13&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">putchar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">s&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在编译完成后可以通过 &lt;code>objdump -s -j .rodata hello_world&lt;/code> 与 &lt;code>objdump -s -j .data hello_world&lt;/code> 检查 .data 和 .rodata 段是否还存在数据（自行替换文件名）。&lt;/p>
 &lt;h1 id="图之上的信息">图之上的信息&lt;/h1>
 &lt;p>GraphQL 是一种新颖的接口设计方案，也是我目前还不了解的一个玩意，只不过我根据题目位置和分值推测这道题目的难度应该较低，抱着试一试的心态用谷歌搜寻了 GraphQL 的常见安全问题，然后发现&lt;a class="link" href="https://blog.yeswehack.com/yeswerhackers/how-exploit-graphql-endpoint-bug-bounty/" target="_blank" rel="noopener"
 >这篇博文&lt;/a>，还以为需要多动手试验几次，可没想到用文章里推荐的 &lt;a class="link" href="https://github.com/swisskyrepo/GraphQLmap" target="_blank" rel="noopener"
 >GraphQLmap&lt;/a> 就直接扒出了整个接口可用的字段（需要先靠浏览器 F12 找到接口地址和其它信息）。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 121;
-flex-basis: 291px"
->
-&lt;a href="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_schema.png" data-size="759x624">
-&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_schema.png"
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_schema.png"
 width="759"
 height="624"
 loading="lazy"
-alt="获取所有字段">
-&lt;/a>
-&lt;figcaption>获取所有字段&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="获取所有字段"
+class="gallery-image"
+data-flex-grow="121"
+data-flex-basis="291px"
+>&lt;/p>
 &lt;p>知道字段后就好办了，只要没有另外的身份验证，接下来直接查询 admin 的邮箱即可。根据 &lt;a class="link" href="https://graphql.org/learn/queries/" target="_blank" rel="noopener"
 >GraphQL 官方文档&lt;/a>写出查询语句，此处需要填入参数，由于 guest 账号的 id 为 2，所以猜测 admin 的 id 为 1。在 GraphQLmap 内执行 {user(id: 1) {privateEmail}}，好了，黑客扒库成功。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 302;
-flex-basis: 725px"
->
-&lt;a href="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_flag.png" data-size="837x277">
-&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_flag.png"
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/get_GraphQL_flag.png"
 width="837"
 height="277"
 loading="lazy"
-alt="成功获取图之上的信息的 flag">
-&lt;/a>
-&lt;figcaption>成功获取图之上的信息的 flag&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="成功获取图之上的信息的 flag"
+class="gallery-image"
+data-flex-grow="302"
+data-flex-basis="725px"
+>&lt;/p>
 &lt;p>&lt;em>PS：我后来才发现服务端没禁用 &lt;a class="link" href="https://graphql.org/learn/introspection/" target="_blank" rel="noopener"
 >introspection&lt;/a>，例如我查询 users 时服务端会提示是不是想查询 user，所以其实不用 GraphQLmap，执行以下查询就可以取得所有字段了。&lt;/em>&lt;/p>
 &lt;pre tabindex="0">&lt;code>{__schema{queryType{name}mutationType{name}subscriptionType{name}types{...FullType}directives{name description locations args{...InputValue}}}}fragment FullType on __Type{kind name description fields(includeDeprecated:true){name description args{...InputValue}type{...TypeRef}isDeprecated deprecationReason}inputFields{...InputValue}interfaces{...TypeRef}enumValues(includeDeprecated:true){name description isDeprecated deprecationReason}possibleTypes{...TypeRef}}fragment InputValue on __InputValue{name description type{...TypeRef}defaultValue}fragment TypeRef on __Type{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name ofType{kind name}}}}}}}}
-&lt;/code>&lt;/pre>&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 181;
-flex-basis: 436px"
->
-&lt;a href="https://viflythink.com/Hackergame_2021_writeups/query_when_enable_introspection.png" data-size="587x323">
-&lt;img src="https://viflythink.com/Hackergame_2021_writeups/query_when_enable_introspection.png"
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/query_when_enable_introspection.png"
 width="587"
 height="323"
 loading="lazy"
-alt="当 introspection 被启用时的查询结果">
-&lt;/a>
-&lt;figcaption>当 introspection 被启用时的查询结果&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="当 introspection 被启用时的查询结果"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="436px"
+>&lt;/p>
 &lt;h1 id="加密的-u-盘">加密的 U 盘&lt;/h1>
 &lt;p>与上一年 Hackergame 的&lt;a class="link" href="https://github.com/USTC-Hackergame/hackergame2020-writeups/blob/master/official/%E5%AE%A4%E5%8F%8B%E7%9A%84%E5%8A%A0%E5%AF%86%E7%A1%AC%E7%9B%98/README.md" target="_blank" rel="noopener"
 >室友的加密硬盘&lt;/a>一样都涉及到了 LUKS，上一年的题目由于没想到冷启动攻击这种高级玩意没做出来，今年的题目相比起来就简单多了，对 LUKS 的原理有一定了解的前提下可以很快找到思路。LUKS 有一个很有趣的设计，当我们解密使用 LUKS 加密的分区时，首先会使用我们输入的密码解密位于加密分区头部的主密钥（master key），此时使用的算法在设计上故意令运算速度非常慢（LUKS1 默认的是 PBKDF2），以此给尝试暴力破解的攻击者增加时间成本，然后才会使用这个主密钥解密分区内容，而此时算法的性能就非常好（默认采用 aes-xts-plain64，使用 &lt;code>cryptsetup luksFormat&lt;/code> 创建加密分区时可以通过 &amp;ndash;cipher 参数指定其它算法，通过 &lt;code>cryptsetup benchmark&lt;/code> 查看各种算法的性能指标），不会让用户觉得访问速度慢。&lt;/p>
@@ -214,7 +181,7 @@ sudo mount /dev/mapper/day1 /tmp/day1
 >LUKS2 不支持通过 dmsetup 获得 masterkey&lt;/a>，那么只能先用 cryptsetup 导出主密钥了：&lt;/p>
 &lt;pre tabindex="0">&lt;code>sudo cryptsetup luksDump /dev/loop1p1 --dump-master-key
 &lt;/code>&lt;/pre>&lt;p>这会警告你输出的信息很敏感，需要另外输入大写的 YES 进行确认才能继续。获得输出后复制 MK dump 里的一长串十六进制数，并用 xxd 进行转换，最后解密 day2.img：&lt;/p>
-&lt;pre tabindex="0">&lt;code>echo &amp;quot;be 97 db 91 5c 30 47 ce 1c 59 c5 c0 8c 75 3c 40 72 35 85 9d fe 49 c0 52 c4 f5 26 60 af 3e d4 2c ec a3 60 53 aa 96 70 4d f3 f2 ff 56 8f 49 a1 82 60 18 7c 58 d7 6a ec e8 00 c1 90 c1 88 43 f8 9a&amp;quot; | xxd -r -p &amp;gt; masterkey
+&lt;pre tabindex="0">&lt;code>echo &amp;#34;be 97 db 91 5c 30 47 ce 1c 59 c5 c0 8c 75 3c 40 72 35 85 9d fe 49 c0 52 c4 f5 26 60 af 3e d4 2c ec a3 60 53 aa 96 70 4d f3 f2 ff 56 8f 49 a1 82 60 18 7c 58 d7 6a ec e8 00 c1 90 c1 88 43 f8 9a&amp;#34; | xxd -r -p &amp;gt; masterkey
 sudo cryptsetup open /dev/loop2p1 day2 --master-key-file ./masterkey
 mkdir /tmp/day2
 sudo mount /dev/mapper/day2 /tmp/day2
@@ -229,21 +196,15 @@ cat /tmp/day2/flag.txt
 向左 2 步
 放下 1 个物品
 放下 1 个物品
-&lt;/code>&lt;/pre>&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 169;
-flex-basis: 405px"
->
-&lt;a href="https://viflythink.com/Hackergame_2021_writeups/cybercook_level0_flag.png" data-size="1537x909">
-&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level0_flag.png"
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level0_flag.png"
 width="1537"
 height="909"
 loading="lazy"
-alt="Level 0 flag">
-&lt;/a>
-&lt;figcaption>Level 0 flag&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="Level 0 flag"
+class="gallery-image"
+data-flex-grow="169"
+data-flex-basis="405px"
+>&lt;/p>
 &lt;h2 id="level-1">Level 1&lt;/h2>
 &lt;p>看到菜谱包含了这么多的 0，先复制并用 Python 统计总共有多少个 0，得到 73 这个数字。&lt;/p>
 &lt;p>接下来又是拿起物品并放下的流程了，别忘了一次只能放下一个物品，所以我们需要 73 次放下，这就需要构造一个循环语句了，如果把循环展开为 73 行“放下 1 个物品”，题目会由于行数过大而不予通过，具体指令如下（使用 goto 实现循环可真难受）：&lt;/p>
@@ -253,21 +214,15 @@ alt="Level 0 flag">
 向左 1 步
 放下 1 个物品
 如果手上的物品大于等于 0 向上跳转 1 行
-&lt;/code>&lt;/pre>&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 157;
-flex-basis: 378px"
->
-&lt;a href="https://viflythink.com/Hackergame_2021_writeups/cybercook_level1_flag.png" data-size="1427x905">
-&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level1_flag.png"
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/cybercook_level1_flag.png"
 width="1427"
 height="905"
 loading="lazy"
-alt="Level 1 flag">
-&lt;/a>
-&lt;figcaption>Level 1 flag&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="Level 1 flag"
+class="gallery-image"
+data-flex-grow="157"
+data-flex-basis="378px"
+>&lt;/p>
 &lt;h1 id="一些没做出来的题目">一些没做出来的题目&lt;/h1>
 &lt;p>不知道为什么，今年与上一年类似，一些题目看似很简单，可我就是没做出来，赛后看到题解时差点吐血，原来我就只差一点点就解决了。&lt;/p>
 &lt;p>“去吧！追寻自由的电波”，这题我已经发现 &lt;code>ffmpeg -i radio.mp3 -af &amp;quot;atempo=0.5,asetrate=22050&amp;quot; res.mp3&lt;/code> 可以输出能让人听清楚读音的音频，而且也找到了无线电领域所使用的&lt;a class="link" href="https://zh.wikipedia.org/wiki/%E5%8C%97%E7%BA%A6%E9%9F%B3%E6%A0%87%E5%AD%97%E6%AF%8D" target="_blank" rel="noopener"
@@ -287,7 +242,7 @@ alt="Level 1 flag">
 >arch-build 的 fork&lt;/a> 就是这样做的。当然，我对其还是不够满意，通过 fastgit 等 GitHub 反代服务的确可以加速 GitHub Release 的下载速度，但还是不够稳定；还有一个更重要的原因，我不仅想要自建 Arch 软件源，也想要自建 Debian 软件源，而 GitHub Release 的路径不够灵活，无法构造像 yourrepo.com/debian/pool/main/n/nginx/ 这样的 URL，没法满足自建 Debian 软件源的需求。所以嘛，只能自己再造一个轮子了。&lt;/p>
 &lt;p>在看下文之前，不妨先打开&lt;a class="link" href="https://archrepo.viflythink.com/" target="_blank" rel="noopener"
 >我的自建仓库&lt;/a>页面查看最终效果，如果想使用我的自建软件源，需要先执行以下指令导入 GPG 公钥：&lt;/p>
-&lt;pre tabindex="0">&lt;code>wget -O /tmp/vifly-repo.key 'https://share.viflythink.com/arch-repo.key' &amp;amp;&amp;amp; sudo pacman-key --add /tmp/vifly-repo.key
+&lt;pre tabindex="0">&lt;code>wget -O /tmp/vifly-repo.key &amp;#39;https://share.viflythink.com/arch-repo.key&amp;#39; &amp;amp;&amp;amp; sudo pacman-key --add /tmp/vifly-repo.key
 sudo pacman-key --lsign-key viflythink@gmail.com
 &lt;/code>&lt;/pre>&lt;p>然后在 /etc/pacman.conf 末尾添加下面几行后执行 pacman -Syu：&lt;/p>
 &lt;pre tabindex="0">&lt;code>[vifly]
@@ -300,103 +255,73 @@ Server = https://archrepo.viflythink.com
 >Rclone 的官方文档&lt;/a>操作即可，以下给出图文操作步骤。尽管 Rclone 官方认为这是可选的，但在 Vercel 部署直链下载应用时也需要在 Azure 创建应用获取 Token，所以便把相关步骤放这里了，另外基于权限最小化的原则，这里我们创建的是一个拥有读写权限的应用，而在 Vercel 部署时则是创建一个具有只读权限的应用，两个应用用在不同的地方，这样可有效提升安全性。&lt;/p>
 &lt;p>打开 &lt;a class="link" href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade" target="_blank" rel="noopener"
 >Azure 的应用管理页面&lt;/a>，点击 New registration。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 243;
-flex-basis: 584px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png" data-size="1914x786">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png"
 width="1914"
 height="786"
 loading="lazy"
-alt="Azure 应用列表">
-&lt;/a>
-&lt;figcaption>Azure 应用列表&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>在打开的界面中输入应用的名字（这里我用了 rclone 这个名字），Supported account types 这一项选择 Accounts in any orGitHub Actionsnizational directory，在 Redirect URI (optional) 这一项选择 Web 并在右边的输入框里输入 http://localhost:53682/ 这一网址。完成后点击 Register。&lt;/p>
-&lt;p>&lt;figure
+alt="Azure 应用列表"
 class="gallery-image"
-style="
-flex-grow: 216;
-flex-basis: 520px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png" data-size="1904x878">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png"
+data-flex-grow="243"
+data-flex-basis="584px"
+>&lt;/p>
+&lt;p>在打开的界面中输入应用的名字（这里我用了 rclone 这个名字），Supported account types 这一项选择 Accounts in any orGitHub Actionsnizational directory，在 Redirect URI (optional) 这一项选择 Web 并在右边的输入框里输入 http://localhost:53682/ 这一网址。完成后点击 Register。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png"
 width="1904"
 height="878"
 loading="lazy"
-alt="Azure 注册应用">
-&lt;/a>
-&lt;figcaption>Azure 注册应用&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>此时应用已经注册完成，记录下 Application (client) ID 的值，这就是下文会用到的 client id。&lt;/p>
-&lt;p>&lt;figure
+alt="Azure 注册应用"
 class="gallery-image"
-style="
-flex-grow: 218;
-flex-basis: 525px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png" data-size="1918x876">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png"
+data-flex-grow="216"
+data-flex-basis="520px"
+>&lt;/p>
+&lt;p>此时应用已经注册完成，记录下 Application (client) ID 的值，这就是下文会用到的 client id。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png"
 width="1918"
 height="876"
 loading="lazy"
-alt="Azure 获取 client id">
-&lt;/a>
-&lt;figcaption>Azure 获取 client id&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>点击左侧菜单的 Certificates &amp;amp; secrets，然后点击 New client secret，在 Description 一栏随便填点什么，把 Expires（过期时间）设为最长的 24 months（两年后记得更新 client secret），点击 Add。最后记录下新增的 client secret 的值（在图中标注的 Value）。&lt;/p>
-&lt;p>&lt;figure
+alt="Azure 获取 client id"
 class="gallery-image"
-style="
-flex-grow: 213;
-flex-basis: 513px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png" data-size="1918x897">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png"
+data-flex-grow="218"
+data-flex-basis="525px"
+>&lt;/p>
+&lt;p>点击左侧菜单的 Certificates &amp;amp; secrets，然后点击 New client secret，在 Description 一栏随便填点什么，把 Expires（过期时间）设为最长的 24 months（两年后记得更新 client secret），点击 Add。最后记录下新增的 client secret 的值（在图中标注的 Value）。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png"
 width="1918"
 height="897"
 loading="lazy"
-alt="Azure 获取 client secret">
-&lt;/a>
-&lt;figcaption>Azure 获取 client secret&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="Azure 获取 client secret"
+class="gallery-image"
+data-flex-grow="213"
+data-flex-basis="513px"
+>&lt;/p>
 &lt;p>到此为止就完成了。有些同学可能会感到奇怪：Rclone 文档中不是还有第 4 与第 5 步设置权限吗？根据我的实测，这两步并没有必要执行，所以这里不会附上这两步操作的示意图。&lt;/p>
 &lt;h2 id="获取-token">获取 Token&lt;/h2>
 &lt;p>在本地安装 Rclone（&lt;code>pacman -S rclone&lt;/code>），运行 rclone config 进入交互式配置流程，接着&lt;a class="link" href="https://rclone.org/onedrive" target="_blank" rel="noopener"
 >一步步地按照提示操作&lt;/a>，当程序询问 Microsoft App Client Id 和 Microsoft App Client Secret 时，填入上一小节中记录的对应值。&lt;/p>
 &lt;p>完成配置后 Rclone 会把配置数据存放在 ~/.config/rclone/rclone.conf，使用 &lt;code>cat ~/.config/rclone/rclone.conf&lt;/code> 查看。如下所示，下文需要复制对应的值时只需要把等号右边的东西按原样复制粘贴就行了。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-INI" data-lang="INI">&lt;span class="k">[xxx]&lt;/span>
-&lt;span class="na">type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">onedrive&lt;/span>
-&lt;span class="na">client_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
-&lt;span class="na">client_secret&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
-&lt;span class="na">region&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">global&lt;/span>
-&lt;span class="na">drive_type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">personal&lt;/span>
-&lt;span class="na">token&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">{&amp;#34;access_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;token_type&amp;#34;:&amp;#34;Bearer&amp;#34;,&amp;#34;refresh_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;expiry&amp;#34;:&amp;#34;xxx&amp;#34;}&lt;/span>
-&lt;span class="na">drive_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>PS：一点安全提醒，在我们的用例中，client id 与 client secret 都可以公开，但 token 是绝对不能公开的。&lt;/em>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-INI" data-lang="INI">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[xxx]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">onedrive&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">client_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">client_secret&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">region&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">global&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">drive_type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">personal&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">token&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">{&amp;#34;access_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;token_type&amp;#34;:&amp;#34;Bearer&amp;#34;,&amp;#34;refresh_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;expiry&amp;#34;:&amp;#34;xxx&amp;#34;}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">drive_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>PS：一点安全提醒，在我们的用例中，client id 与 client secret 都可以公开，但 token 是绝对不能公开的。&lt;/em>&lt;/p>
 &lt;h2 id="配置-github-actions">配置 GitHub Actions&lt;/h2>
 &lt;p>首先 fork &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
 >arch-build 仓库&lt;/a>，如果你在之前已经使用了它，记得同步到最新版本。与前文所给的例子相比，现在的 workflow 文件（.github/workflows/build.yml）多了 uploadToOneDrive 这一个 job，而用到的 action 需要填入近十个参数，参数量的确很多，接下来让我介绍一下该如何填写这些参数。&lt;/p>
 &lt;p>${{ secrets.xxx }} 这样的变量都是需要在 GitHub 的项目配置中的 Secrets 一栏设置的私密变量，打开项目的 Settings，找到下图所示的界面，然后点击 New repository secret，并填入 RCLONE_ONEDRIVE_CLIENT_ID、RCLONE_ONEDRIVE_CLIENT_SECRET、RCLONE_ONEDRIVE_TOKEN、RCLONE_ONEDRIVE_DRIVE_ID 这四个变量的值（从上一小节的 rclone.conf 中获得）。具体的操作也可参考 &lt;a class="link" href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository" target="_blank" rel="noopener"
 >GitHub 官方文档&lt;/a>。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 206;
-flex-basis: 496px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png" data-size="1868x903">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png"
 width="1868"
 height="903"
 loading="lazy"
-alt="GitHub Actions 添加私密变量">
-&lt;/a>
-&lt;figcaption>GitHub Actions 添加私密变量&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="GitHub Actions 添加私密变量"
+class="gallery-image"
+data-flex-grow="206"
+data-flex-basis="496px"
+>&lt;/p>
 &lt;p>接着回来修改 workflow 文件，RCLONE_ONEDRIVE_REGION 与 RCLONE_ONEDRIVE_DRIVE_TYPE 也是按 rclone.conf 的值填写；而 dest_path 是 OneDrive 上传的目的地路径（如果该路径不存在，Rclone 会自动创建），以 Linux 文件路径的形式填写即可，不建议使用根路径，因为接下来将会把这个路径下的所有东西公开，各位肯定不希望别人打开你的软件仓库页面时还看到其它乱七八糟的文件；repo_name 是你的自建软件仓库的名字，&lt;a class="link" href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
 >它用于 repo-add 的参数&lt;/a>。&lt;/p>
 &lt;p>为了安全，建议为自己的软件源添加 GPG 签名，不签名的话，pacman.conf 中的仓库配置需要加上 &lt;code>SigLevel = Never&lt;/code> 禁用签名校验才能使用。如果你想为自己的软件源添加 GPG 签名的话，建议先生成一个单独的 GPG 密钥对（不要设置密码），而不是使用原有的密钥对，并导出私钥：&lt;/p>
@@ -427,21 +352,15 @@ python3 get_deploy_config.py
 &lt;h3 id="打开链接部署推荐">打开链接部署（推荐）&lt;/h3>
 &lt;p>注册或登录你的 Vercel 账号，然后打开我创建的&lt;a class="link" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvifly%2Furepo&amp;amp;env=code,path,client_secret,client_id,refresh_token" target="_blank" rel="noopener"
 >部署链接&lt;/a>，会出现如下界面，在 GitHub、GitLab、Bitbucket 这三个 Git 平台中选择一个进行连接，Vercel 会把 urepo 仓库复制到连接的平台上。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 134;
-flex-basis: 323px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png" data-size="1204x893">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png"
 width="1204"
 height="893"
 loading="lazy"
-alt="Vercel 导入仓库">
-&lt;/a>
-&lt;figcaption>Vercel 导入仓库&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="Vercel 导入仓库"
+class="gallery-image"
+data-flex-grow="134"
+data-flex-basis="323px"
+>&lt;/p>
 &lt;p>接下来的 Create a Team 只要点击 Skip 跳过就行，然后就是环境变量的设置，urepo 会首先尝试从环境变量中读取这些私密信息，无法找到对应的信息时才会去读取项目根目录下的 auth.json 获取配置，与把访问令牌写在配置文件相比，利用环境变量配置可以避免自己不小心把私密信息公开，根据上文填写这五个环境变量后就完成部署了。&lt;/p>
 &lt;h3 id="从本地上传部署">从本地上传部署&lt;/h3>
 &lt;p>本方法需要安装 NodeJS 相关的工具链，我不太想和这些工具打交道，但 Vercel 本来是一个部署前端应用的平台，所以官方的客户端使用 JS 编写是很正常的事情，如果不想安装这些软件，那可以使用上面的部署方法。&lt;/p>
@@ -453,58 +372,40 @@ alt="Vercel 导入仓库">
 &lt;/code>&lt;/pre>&lt;p>下载 urepo 源码：&lt;/p>
 &lt;pre tabindex="0">&lt;code>git clone git@github.com:vifly/urepo.git
 &lt;/code>&lt;/pre>&lt;p>把 urepo 根目录下的 auth.json.example 重命名为 auth.json，然后把对应的配置填入里面。或者，也可以在上传部署后到 Vercel 的项目面板中设置 code、path、client_secret、client_id、refresh_token 这五个环境变量。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 137;
-flex-basis: 328px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png" data-size="1236x902">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png"
 width="1236"
 height="902"
 loading="lazy"
-alt="Vercel 设置环境变量">
-&lt;/a>
-&lt;figcaption>Vercel 设置环境变量&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="Vercel 设置环境变量"
+class="gallery-image"
+data-flex-grow="137"
+data-flex-basis="328px"
+>&lt;/p>
 &lt;p>最后就是上传部署：&lt;/p>
 &lt;pre tabindex="0">&lt;code>cd urepo
 vercel .
 &lt;/code>&lt;/pre>&lt;h2 id="使用自己的域名可选">使用自己的域名（可选）&lt;/h2>
 &lt;p>尽管 Vercel 会为部署的应用分配一个二级域名（xxx.vercel.app），但自建源使用自己的域名无疑是一个更好的选择。根据&lt;a class="link" href="https://vercel.com/docs/custom-domains#subdomains" target="_blank" rel="noopener"
 >官方文档&lt;/a>，首先需要打开项目的域名管理界面，添加自己想使用的域名。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 151;
-flex-basis: 362px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png" data-size="1319x873">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png"
 width="1319"
 height="873"
 loading="lazy"
-alt="Vercel 添加域名">
-&lt;/a>
-&lt;figcaption>Vercel 添加域名&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>假设各位和我一样使用了自己的子域名，那么在自己的 DNS 解析服务提供商管理面板添加一条 CNAME 解析记录即可，我使用的是 cloudflare，还需要把代理状态设为“仅限 DNS”以确保不会使用 cloudflare 的反代。&lt;/p>
-&lt;p>&lt;figure
+alt="Vercel 添加域名"
 class="gallery-image"
-style="
-flex-grow: 715;
-flex-basis: 1717px"
->
-&lt;a href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png" data-size="1102x154">
-&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png"
+data-flex-grow="151"
+data-flex-basis="362px"
+>&lt;/p>
+&lt;p>假设各位和我一样使用了自己的子域名，那么在自己的 DNS 解析服务提供商管理面板添加一条 CNAME 解析记录即可，我使用的是 cloudflare，还需要把代理状态设为“仅限 DNS”以确保不会使用 cloudflare 的反代。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png"
 width="1102"
 height="154"
 loading="lazy"
-alt="在 cloudflare 设置指向 Vercel 的 CNAME">
-&lt;/a>
-&lt;figcaption>在 cloudflare 设置指向 Vercel 的 CNAME&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="在 cloudflare 设置指向 Vercel 的 CNAME"
+class="gallery-image"
+data-flex-grow="715"
+data-flex-basis="1717px"
+>&lt;/p>
 &lt;h1 id="有待改进的地方">有待改进的地方&lt;/h1>
 &lt;p>尽管这一流程已经能工作了，但有些地方还是可以再改进一下的。&lt;del>首先，目前并没有数字签名，添加这一自建软件源时需要禁用对此的签名校验，在乎安全性的同学可能会对此表示不爽，所以日后有必要加上对软件包签名的支持。其次，urepo 应该无需修改就可以用于分发其它发行版的软件包与数据库（它的本质就是一个简陋的 onedrive index），但前面的 GitHub Actions 只支持 Arch，我未来肯定会加上对 Debian/Ubuntu 的支持，具体什么时候搞定这个，就要看我什么时候有需求了，对其它发行版的支持也是同样的😂&lt;/del>。目前已支持 GPG 签名，也新增了 &lt;a class="link" href="https://github.com/vifly/debian-build" target="_blank" rel="noopener"
 >debian-build&lt;/a> 用于构建 deb 软件包。&lt;/p>
@@ -522,11 +423,11 @@ alt="在 cloudflare 设置指向 Vercel 的 CNAME">
 &lt;p>不少人会回答这是为了解决 Python 的内存管理问题而引入 GIL。且慢，GIL 和内存管理有什么关系？准确来说 GIL 和内存管理中的&lt;a class="link" href="https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29" target="_blank" rel="noopener"
 >垃圾回收&lt;/a>（Garbage Collection，简称 gc）有关，假如你只学过 C 语言，那你可能在刚开始写 Python 时感到有点疑惑：为什么大家的代码在创建新对象后都不手动销毁，不会内存泄漏吗。然后你知道了 Python 有 gc，可以自动帮你回收不用的内存，像 Java、Go 等语言也有 gc，所以大家都不担心自己忘记销毁对象。可为什么其它具有 gc 的语言不存在 GIL 呢？这个问题可以从 Python 的起源获得一部分解答，Python 本身可以说是一个为了好玩而产生的项目，所以采用简单的方式实现 gc 是一个很合理的选择，这个简单的方式就是引用计数（学过 C++ 的同学是否觉得这个名词很熟悉）。&lt;em>经热心群友提醒，Python 的 gc 实现不只是简单的引用计数，还用到了&lt;a class="link" href="https://devguide.python.org/garbage_collector/#optimization-generations" target="_blank" rel="noopener"
 >分代 gc&lt;/a> 作为优化手段，该 gc 实现并不是线程安全的&lt;/em>。Python 中的所有东西都是对象，每个对象都有一个引用计数值，当一个对象的引用计数归零时（代表已经没有任何地方用到这个对象了），Python 就会销毁对象并回收对应的内存，以此实现自动管理内存。你可以通过以下方式查看对象的引用计数：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">sys&lt;/span>
-&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
-&lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>
-&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getrefcount&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>上文说到了引用计数对于 gc 的作用，接下来有个重要的问题：我们该如何确保在多线程环境下对象的引用计数是正确的呢？对并发有点了解的人肯定会回答，这就是一个竞态冲突问题，每次读写线程间共享的对象的引用计数前上锁就行了。的确，这样可以解决上述问题，但是，这可能导致死锁，此外频繁获取与释放锁会带来严重的性能问题，所以 Python 官方没有采用这个方案，而是采用了 GIL（主角登场了）。GIL 的思路很简单：与其对多个对象上锁，不如只对解释器上一个锁，有效避免上多个锁的问题。对于 Python 官方来说，既然已经采用了简单的方法实现 gc，那也采用简单的方法解决引用计数的竞态冲突问题是很合理的，当然，代价就是 Python 的多线程无法实现并行。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">sys&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">sys&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getrefcount&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上文说到了引用计数对于 gc 的作用，接下来有个重要的问题：我们该如何确保在多线程环境下对象的引用计数是正确的呢？对并发有点了解的人肯定会回答，这就是一个竞态冲突问题，每次读写线程间共享的对象的引用计数前上锁就行了。的确，这样可以解决上述问题，但是，这可能导致死锁，此外频繁获取与释放锁会带来严重的性能问题，所以 Python 官方没有采用这个方案，而是采用了 GIL（主角登场了）。GIL 的思路很简单：与其对多个对象上锁，不如只对解释器上一个锁，有效避免上多个锁的问题。对于 Python 官方来说，既然已经采用了简单的方法实现 gc，那也采用简单的方法解决引用计数的竞态冲突问题是很合理的，当然，代价就是 Python 的多线程无法实现并行。&lt;/p>
 &lt;p>在当年来说，使用 GIL 并没有什么问题，可是当 Python 逐渐被用于后端开发后，不少开发者都开始抱怨 GIL，而且正好 Python3 带来了一堆不兼容 Python2 的改变，为什么此时不干掉 GIL 呢？&lt;/p>
 &lt;p>去除 GIL 有很多种办法，例如更改 gc 的实现，使其不再依赖引用计数，或者采用其它解决引用计数的竞态冲突问题的方案，等等。可惜的是，这些方案要么太难以实现，要么会降低单线程应用和多线程 I/O 密集型应用的性能，所以&lt;a class="link" href="https://www.artima.com/weblogs/viewpost.jsp?thread=214235" target="_blank" rel="noopener"
 >移除 GIL 并不简单&lt;/a>。&lt;/p>
@@ -534,72 +435,96 @@ alt="在 cloudflare 设置指向 Vercel 的 CNAME">
 &lt;h2 id="python-的多线程真的没用吗">Python 的多线程真的没用吗&lt;/h2>
 &lt;p>虽然大家都在吐槽 Python 的多线程约等于单线程，但其实在某些情况下 Python 的多线程依然是有用的。首先我们需要区分 I/O 密集型应用与计算密集型应用这两种情况，前者经常等待 I/O 操作，例如读写数据库，上传/下载文件，后者在运行时会消耗掉所有分配给它的 CPU 资源进行计算，例如图像处理。&lt;/p>
 &lt;p>对于计算密集型应用来说，Python 的多线程反倒是一个累赘：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
-&lt;span class="kn">from&lt;/span> &lt;span class="nn">threading&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Thread&lt;/span>
-&lt;span class="n">COUNT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">50000000&lt;/span>
-&lt;span class="k">def&lt;/span> &lt;span class="nf">countdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;span class="k">while&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;span class="n">n&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="mi">1&lt;/span>
-&lt;span class="n">t1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">countdown&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">COUNT&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
-&lt;span class="n">t2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">countdown&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">COUNT&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
-&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
-&lt;span class="n">COUNT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">50000000&lt;/span>
-&lt;span class="k">def&lt;/span> &lt;span class="nf">countdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;span class="k">while&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;span class="n">n&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="mi">1&lt;/span>
-&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">countdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">COUNT&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>实际运行后会发现上面的多线程版本居然比单线程要慢一点，原因就是多线程不能并行，与单线程相比，多线程版本中线程间的上下文切换还浪费了一些时间。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">threading&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Thread&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">COUNT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">50000000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">countdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">countdown&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">COUNT&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">countdown&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">COUNT&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">COUNT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">50000000&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">countdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">countdown&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">COUNT&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>实际运行后会发现上面的多线程版本居然比单线程要慢一点，原因就是多线程不能并行，与单线程相比，多线程版本中线程间的上下文切换还浪费了一些时间。&lt;/p>
 &lt;p>那么 I/O 密集型应用的情况呢（使用 time.sleep 模拟 I/O 操作）：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
-&lt;span class="kn">from&lt;/span> &lt;span class="nn">threading&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Thread&lt;/span>
-&lt;span class="k">def&lt;/span> &lt;span class="nf">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">t1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">fake_io&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
-&lt;span class="n">t2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">fake_io&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
-&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
-&lt;span class="k">def&lt;/span> &lt;span class="nf">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这回多线程版本大获全胜，仅用了约2秒结束运行，而单线程版本用了约4秒。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">threading&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Thread&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">fake_io&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">fake_io&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">t2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">fake_io&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这回多线程版本大获全胜，仅用了约2秒结束运行，而单线程版本用了约4秒。&lt;/p>
 &lt;p>看到这里，有些同学可能有点奇怪，为什么此时多线程看上去像是没有 GIL 那样以并行状态运行，只用了2秒就结束。其实这里并没有并行，Python 始终只使用了一个 CPU 核心，只是 Python 对 I/O 操作做了一个优化：当进行 I/O 或 time.sleep 这样会阻塞当前线程的操作前会主动释放 GIL，自己等待导致阻塞的任务完成，由于 GIL 被释放所以其它的线程能够运行，完成后该线程再获取 GIL。这个优化并不能实现并行，因为在同一时刻依然只有一个单位在工作，但得益于它，Python 的 I/O 密集型应用在多线程下的表现要比单线程好。所以，Python 的多线程并不是完全没用的。&lt;/p>
 &lt;h2 id="为什么依然需要线程锁">为什么依然需要线程锁&lt;/h2>
 &lt;p>当我第一次知道 Python 的 GIL 对多线程的影响后，就产生了一个挥之不去的问题：既然都有 GIL 了，为什么多线程编程还需要上线程锁呢？现在想来，我应该是被相关文章里的“Python 多线程约等于单线程”这个说法给误导了：既然等于单线程，那就不需要用于多线程的线程锁吧？本质上来说，这属于对定义不够了解所产生的问题。从运行时的状态来说，即使采用了多线程编程，Python 在同一时刻也的确只有一个线程在运行，可是这并不代表我们可以忽略线程安全问题。如果对 GIL 和线程锁的定义和作用有足够的了解，那么就不会存在这个问题，显然，假如有了 GIL 后在多线程环境下可以不用线程锁，那 GIL 就必须提供与线程锁相同的功能。从这点出发，上文已经提到，GIL 是作用于解释器的，确保同一时刻只能存在一个线程，而线程锁作用于多线程编程里的临界区，或者说是对应代码里的共享数据，确保不会发生竞态冲突。前者并不能实现后者的功能，举个多线程下的例子：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">threading&lt;/span>
-&lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
-&lt;span class="k">def&lt;/span> &lt;span class="nf">foo&lt;/span>&lt;span class="p">():&lt;/span>
-&lt;span class="k">global&lt;/span> &lt;span class="n">n&lt;/span>
-&lt;span class="n">n&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="mi">1&lt;/span>
-&lt;span class="n">threads&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;span class="n">t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">threading&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">foo&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">threads&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="n">t&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">threads&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;span class="n">t&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="n">t&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">threads&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;span class="n">t&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>有时候这段没有使用线程锁的代码不一定能输出100这个值，具体原因就是 GIL 并不保证执行完成一个线程里的操作后才切换到另一线程，也就是说不加线程锁可能会出现：线程 A 读取了变量 n（假设此时是 10），线程 B 读取变量 n（此时是 10），线程 B 修改了变量 n（n = 10 + 1），线程 A 修改变量 n（n = &lt;strong>10&lt;/strong> + 1）。此时线程 A 对变量 n 的修改会导致错误的结果（它修改的是过时的值）。这与其它语言中的线程安全问题是相似的，&lt;a class="link" href="https://opensource.com/article/17/4/grok-gil" target="_blank" rel="noopener"
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">threading&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">foo&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">global&lt;/span> &lt;span class="n">n&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">n&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">threads&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">threading&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">foo&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">threads&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">t&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">threads&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">t&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">t&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">threads&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">t&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有时候这段没有使用线程锁的代码不一定能输出100这个值，具体原因就是 GIL 并不保证执行完成一个线程里的操作后才切换到另一线程，也就是说不加线程锁可能会出现：线程 A 读取了变量 n（假设此时是 10），线程 B 读取变量 n（此时是 10），线程 B 修改了变量 n（n = 10 + 1），线程 A 修改变量 n（n = &lt;strong>10&lt;/strong> + 1）。此时线程 A 对变量 n 的修改会导致错误的结果（它修改的是过时的值）。这与其它语言中的线程安全问题是相似的，&lt;a class="link" href="https://opensource.com/article/17/4/grok-gil" target="_blank" rel="noopener"
 >Grok the GIL: How to write fast and thread-safe Python&lt;/a> 一文从原子操作的角度解释了为什么 Python 依然需要线程锁。&lt;/p>
 &lt;p>尽管仍然需要线程锁，但是 GIL 还是为 Python 多线程编程带来了一个好处：无需像其它语言那样考虑锁的颗粒度，上粗颗粒度的锁并没有任何问题，只需确保上线程锁的那部分代码不存在 I/O 等会释放 GIL 的操作，不然的话会导致性能下降，原因是：在当前线程进行 I/O 时，GIL 被自动释放，一般情况下会自动切换到另一线程，但是如果此时线程锁未被释放，那将导致另一线程无法进入临界区，不得不等待持有线程锁的线程完成 I/O。&lt;/p>
 &lt;h1 id="如何实现并发">如何实现并发&lt;/h1>
@@ -610,36 +535,45 @@ alt="在 cloudflare 设置指向 Vercel 的 CNAME">
 >FastAPI&lt;/a>、&lt;a class="link" href="https://github.com/encode/httpx" target="_blank" rel="noopener"
 >HTTPX&lt;/a> 等。历史上 Python 存在多种实现协程的方式，如 Gevent、yield 等，现在 Python 官方推荐的是通过 &lt;a class="link" href="https://docs.python.org/zh-cn/3/library/asyncio-task.html" target="_blank" rel="noopener"
 >async/await&lt;/a> 关键字实现。这两者都适合在 I/O 密集型应用中使用。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">asyncio&lt;/span>
-&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
-&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">say_after&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delay&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">what&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;span class="k">await&lt;/span> &lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delay&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">what&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">():&lt;/span>
-&lt;span class="n">task1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">create_task&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;span class="n">say_after&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;hello&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
-&lt;span class="n">task2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">create_task&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;span class="n">say_after&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;world&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;started at &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">%X&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="k">await&lt;/span> &lt;span class="n">task1&lt;/span>
-&lt;span class="k">await&lt;/span> &lt;span class="n">task2&lt;/span>
-&lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;finished at &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">%X&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Time taken in seconds -&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="p">())&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="多进程">多进程&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">asyncio&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">say_after&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delay&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">what&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">await&lt;/span> &lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sleep&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">delay&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">what&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">task1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">create_task&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">say_after&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;hello&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">task2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">create_task&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">say_after&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;world&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;started at &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">%X&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">start&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">await&lt;/span> &lt;span class="n">task1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">await&lt;/span> &lt;span class="n">task2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">end&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;finished at &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="si">%X&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Time taken in seconds -&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="多进程">多进程&lt;/h2>
 &lt;p>这是能让 Python 实现并行的一个方案，原因是 GIL 是针对单个解释器的，既然如此，多开几个解释器不就能同时运行多个工作了吗。当然，考虑到进程上下文切换的代价要比线程大，这个方案比较适合计算密集型应用。&lt;/p>
 &lt;p>Python 内置的 &lt;a class="link" href="https://docs.python.org/zh-cn/3/library/multiprocessing.html" target="_blank" rel="noopener"
 >multiprocessing 库&lt;/a>提供了对应的支持。值得一提的是，&lt;a class="link" href="https://m.douban.com/book/subject/26337939/" target="_blank" rel="noopener"
 >《七周七并发模型》&lt;/a>的第三章“函数式编程”中提到 Clojure 语言提供了 pmap 函数实现对 map 的并行化，Python 通过进程池也可做到这点：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">multiprocessing&lt;/span>
-&lt;span class="kn">from&lt;/span> &lt;span class="nn">multiprocessing&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Pool&lt;/span>
-&lt;span class="k">def&lt;/span> &lt;span class="nf">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">x&lt;/span>
-&lt;span class="k">with&lt;/span> &lt;span class="n">Pool&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">multiprocessing&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cpu_count&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">]))&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="用-c-语言重写耗时的代码">用 C 语言重写耗时的代码&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">multiprocessing&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">multiprocessing&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Pool&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">x&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">Pool&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">multiprocessing&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cpu_count&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">]))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="用-c-语言重写耗时的代码">用 C 语言重写耗时的代码&lt;/h2>
 &lt;p>最后的杀手锏，嫌弃多进程消耗资源大又想并行怎么办，答案就是把相关代码&lt;a class="link" href="https://docs.python.org/zh-cn/3/extending/extending.html" target="_blank" rel="noopener"
 >用 C 语言重写&lt;/a>。C 库中的代码并不受 GIL 限制，而且一般来说 C 语言编写的代码执行速度要比 Python 快不少，还可以充分利用 CPU 的并行能力（如 SIMD），像 &lt;a class="link" href="https://numpy.org/" target="_blank" rel="noopener"
 >NumPy&lt;/a> 这种科学计算库就是很好的例子。虽然性能很诱人，但是用 C 语言重写其实是一个非常麻烦的事情，没有足够技术力的情况下最好不要考虑这个方案。&lt;/p>
@@ -649,37 +583,25 @@ alt="在 cloudflare 设置指向 Vercel 的 CNAME">
 &lt;p>很菜的只拿到了 800 分，但下面还是写一下成功解决的题目的题解吧。&lt;/p>
 &lt;h1 id="签到">签到&lt;/h1>
 &lt;p>为了鼓励参与而设置的送分题，既然是 Web 类的题目那先在浏览器按 F12 打开开发者工具准没错，随便拉一下，点击提取，果然不能拿到 flag，不过看到浏览器发送了一个 GET 请求，其中的参数 number 就是刚才拉到的数字。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 186;
-flex-basis: 446px"
->
-&lt;a href="https://viflythink.com/Hackergame_2020_writeups/try_qiandao.png" data-size="1725x927">
-&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_qiandao.png"
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_qiandao.png"
 width="1725"
 height="927"
 loading="lazy"
-alt="尝试获取签到题的 flag">
-&lt;/a>
-&lt;figcaption>尝试获取签到题的 flag&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>那么我们试试提&lt;strong>一个&lt;/strong> flag 吧。把 number 参数的值改为 1，就成功拿到签到题的 flag 了！&lt;/p>
-&lt;p>&lt;figure
+alt="尝试获取签到题的 flag"
 class="gallery-image"
-style="
-flex-grow: 190;
-flex-basis: 456px"
->
-&lt;a href="https://viflythink.com/Hackergame_2020_writeups/get_qiandao_flag.png" data-size="1723x905">
-&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_qiandao_flag.png"
+data-flex-grow="186"
+data-flex-basis="446px"
+>&lt;/p>
+&lt;p>那么我们试试提&lt;strong>一个&lt;/strong> flag 吧。把 number 参数的值改为 1，就成功拿到签到题的 flag 了！&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_qiandao_flag.png"
 width="1723"
 height="905"
 loading="lazy"
-alt="成功获取签到题的 flag">
-&lt;/a>
-&lt;figcaption>成功获取签到题的 flag&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="成功获取签到题的 flag"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="456px"
+>&lt;/p>
 &lt;h1 id="猫咪问答">猫咪问答++&lt;/h1>
 &lt;p>这题很明显是考验参赛者使用搜索引擎的能力。不过嘛，看到 &lt;a class="link" href="https://github.com/ustclug/hackergame2018-writeups/blob/master/official/ustcquiz/README.md" target="_blank" rel="noopener"
 >2018 年猫咪问答题解&lt;/a>后我想到一些题目也可以靠脚本暴力尝试进行破解，第一和第四小题搜索起来都比较麻烦，所以这两题就靠&lt;a class="link" href="https://gist.github.com/vifly/751221f27ba89f670b8f2c56b96c24a7#file-cat_answers-py" target="_blank" rel="noopener"
@@ -693,53 +615,35 @@ alt="成功获取签到题的 flag">
 &lt;p>对于第一小题，我先通过粗略估计得出答案至少为 6 的结论，接着就是毫无技巧的脚本暴力破解时间，最后得出第一小题答案是 12，第四小题答案是 9。&lt;/p>
 &lt;h1 id="2048">2048&lt;/h1>
 &lt;p>非常有趣的 2048 游戏，但是，既然这是打 CTF，那这题肯定不是考验我们玩 2048 的技术，首先像签到题那样胡乱尝试直到在开发者工具看到一个 GET 请求：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 208;
-flex-basis: 500px"
->
-&lt;a href="https://viflythink.com/Hackergame_2020_writeups/try_2048.png" data-size="1920x920">
-&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_2048.png"
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/try_2048.png"
 width="1920"
 height="920"
 loading="lazy"
-alt="尝试游玩 2048">
-&lt;/a>
-&lt;figcaption>尝试游玩 2048&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>看来这题想要取得 flag 就需要找到出题者喜欢的水果，虽然可以靠脚本暴力尝试所有常见的水果名，不过通过分析网页源代码我们可以找到 2048 获胜时将会发送的网络请求：&lt;/p>
-&lt;p>&lt;figure
+alt="尝试游玩 2048"
 class="gallery-image"
-style="
-flex-grow: 113;
-flex-basis: 272px"
->
-&lt;a href="https://viflythink.com/Hackergame_2020_writeups/2048_source_code.png" data-size="709x624">
-&lt;img src="https://viflythink.com/Hackergame_2020_writeups/2048_source_code.png"
+data-flex-grow="208"
+data-flex-basis="500px"
+>&lt;/p>
+&lt;p>看来这题想要取得 flag 就需要找到出题者喜欢的水果，虽然可以靠脚本暴力尝试所有常见的水果名，不过通过分析网页源代码我们可以找到 2048 获胜时将会发送的网络请求：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/2048_source_code.png"
 width="709"
 height="624"
 loading="lazy"
-alt="2048 的源代码分析">
-&lt;/a>
-&lt;figcaption>2048 的源代码分析&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>好，水果名就藏在其中，只需在开发者工具的控制台里输入 (&amp;lsquo;b&amp;rsquo;+&amp;lsquo;a&amp;rsquo;+ +&amp;lsquo;a&amp;rsquo;+&amp;lsquo;a&amp;rsquo;).toLowerCase() 就能得到“banana”这个答案了（神奇的 JavaScript 语法），发送这个网络请求即可获得 flag。&lt;/p>
-&lt;p>&lt;figure
+alt="2048 的源代码分析"
 class="gallery-image"
-style="
-flex-grow: 529;
-flex-basis: 1269px"
->
-&lt;a href="https://viflythink.com/Hackergame_2020_writeups/get_fruit.png" data-size="656x124">
-&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_fruit.png"
+data-flex-grow="113"
+data-flex-basis="272px"
+>&lt;/p>
+&lt;p>好，水果名就藏在其中，只需在开发者工具的控制台里输入 (&amp;lsquo;b&amp;rsquo;+&amp;lsquo;a&amp;rsquo;+ +&amp;lsquo;a&amp;rsquo;+&amp;lsquo;a&amp;rsquo;).toLowerCase() 就能得到“banana”这个答案了（神奇的 JavaScript 语法），发送这个网络请求即可获得 flag。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_fruit.png"
 width="656"
 height="124"
 loading="lazy"
-alt="获得水果名称">
-&lt;/a>
-&lt;figcaption>获得水果名称&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="获得水果名称"
+class="gallery-image"
+data-flex-grow="529"
+data-flex-basis="1269px"
+>&lt;/p>
 &lt;h1 id="一闪而过的-flag">一闪而过的 Flag&lt;/h1>
 &lt;p>在 Windows 下双击下载的 exe 文件发现黑窗一闪而过，那么很自然的想到在 exe 文件所在的目录下按住 Shift 键并点击右键选择“在此处打开 PowerShell”，输入 ./Untitled01.exe，然后可执行文件就输出了 flag{Are_you_eyes1ght_g00D?_can_you_dIst1nguish_1iI?} 这个答案（我还以为会有其它障碍）！本题难度非常低，基本上在终端里执行过可执行文件的人都知道先尝试这样做。&lt;/p>
 &lt;h1 id="从零开始的记账工具人">从零开始的记账工具人&lt;/h1>
@@ -747,28 +651,22 @@ alt="获得水果名称">
 >Python 库&lt;/a>，接下来就是写一个&lt;a class="link" href="https://gist.github.com/vifly/751221f27ba89f670b8f2c56b96c24a7#file-bills-py" target="_blank" rel="noopener"
 >脚本&lt;/a>来帮我们进行计算了。&lt;/p>
 &lt;p>为了减少工作量（懒得写读取 xlsx 文件的代码），我用 MS Excel 导出文本文件，然后进行计算。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 159;
-flex-basis: 382px"
->
-&lt;a href="https://viflythink.com/Hackergame_2020_writeups/bills_txt.png" data-size="962x604">
-&lt;img src="https://viflythink.com/Hackergame_2020_writeups/bills_txt.png"
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/bills_txt.png"
 width="962"
 height="604"
 loading="lazy"
-alt="导出的账单文件">
-&lt;/a>
-&lt;figcaption>导出的账单文件&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="导出的账单文件"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+>&lt;/p>
 &lt;p>写脚本时需要注意 Excel 导出的 txt 文件采用的是 GBK 编码。根据计算结果得到 flag{11118.23}。&lt;/p>
 &lt;h1 id="233-同学的-docker">233 同学的 Docker&lt;/h1>
 &lt;p>注意到题目描述里说明“写了一行命令删掉这个文件”，对 Docker 有点了解的人应该已经想到这个文件至少在某一层依然存在。&lt;/p>
 &lt;p>首先尝试&lt;a class="link" href="https://gist.github.com/dasgoll/476ecc7a057ac885f0be" target="_blank" rel="noopener"
 >使用 Docker history 回滚&lt;/a>到未删除 flag.txt 文件时的版本，执行 docker history 8b8d3c8324c7/stringtool 后输出：&lt;/p>
 &lt;pre tabindex="0">&lt;code>IMAGE CREATED CREATED BY SIZE COMMENT
-be6d023618d1 2 weeks ago /bin/sh -c #(nop) ENTRYPOINT [&amp;quot;/bin/sh&amp;quot; &amp;quot;-c… 0B
+be6d023618d1 2 weeks ago /bin/sh -c #(nop) ENTRYPOINT [&amp;#34;/bin/sh&amp;#34; &amp;#34;-c… 0B
 &amp;lt;missing&amp;gt; 2 weeks ago /bin/sh -c rm /code/flag.txt 0B
 &amp;lt;missing&amp;gt; 2 weeks ago /bin/sh -c #(nop) COPY dir:c36852c2989cd5e8b… 1.19kB
 &amp;lt;missing&amp;gt; 6 weeks ago /bin/sh -c #(nop) WORKDIR /code 0B
@@ -790,21 +688,15 @@ be6d023618d1 2 weeks ago /bin/sh -c #(nop) ENTRYPOINT [&amp;quot;/bin/sh&amp;quo
 &lt;p>嗯&amp;hellip;公告 1 直接说明我之前的解题思路不对，不过公告 3 倒是给了我灵感：本题需要开多张卡才能解决。那么，也许是利息计算存在误差？我先做了一个测试，得出一张储蓄卡需要至少 167 元才能获得 1 元的利息这个结论。注意到储蓄卡的规则是“利率每日 0.3%“，1 / 0.003 = 333.33，也就是说正常情况下应当存入 334 元才能获得 1 元的利息，但这里只需 167 元即可。然后让我们看看信用卡的规则：利率每日 0.5%，最低 10 元。那么在每日增加 10 元负债的情况下我们最多能从一张信用卡中拿到多少钱呢，答案是 2099 元。2099 / 167 = 12.5689，这意味着我们终于发现了发家致富的好办法，因为此时从信用卡获取的贷款居然能给我们带来比负债利息更大的收益。
 于是具体的赚钱方法就是：开一张信用卡，然后开 12 张储蓄卡，用信用卡给每张储蓄卡转帐 167 元，那么我们每日的净收益就是 12 - 10 = 2 元。不停重复上述步骤直到题目规定的上限，然后吃饭结束一天。具体代码可通过&lt;a class="link" href="https://gist.github.com/vifly/751221f27ba89f670b8f2c56b96c24a7#file-hack_bank-py" target="_blank" rel="noopener"
 > gist &lt;/a>查看。运行脚本后打开网页可看到 flag{W0W.So.R1ch.Much.Smart.52f2d579}。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 112;
-flex-basis: 269px"
->
-&lt;a href="https://viflythink.com/Hackergame_2020_writeups/get_bank_flag.png" data-size="997x887">
-&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_bank_flag.png"
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2020_writeups/get_bank_flag.png"
 width="997"
 height="887"
 loading="lazy"
-alt="成功获取狗狗银行的 flag">
-&lt;/a>
-&lt;figcaption>成功获取狗狗银行的 flag&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="成功获取狗狗银行的 flag"
+class="gallery-image"
+data-flex-grow="112"
+data-flex-basis="269px"
+>&lt;/p>
 &lt;h1 id="一些没做出来的题目">一些没做出来的题目&lt;/h1>
 &lt;p>先说一说令我觉得遗憾（感觉差点就能做出来）的题目吧。看了&lt;a class="link" href="https://github.com/USTC-Hackergame/hackergame2020-writeups/" target="_blank" rel="noopener"
 >官方/非官方题解&lt;/a>后，不得不说有些题目真的只是差一点就能做出来了，请容我在这里倒下苦水。&lt;/p>
@@ -836,31 +728,31 @@ alt="成功获取狗狗银行的 flag">
 >官方文档&lt;/a>来学习一下用法，或者靠&lt;a class="link" href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="noopener"
 >阮一峰的介绍文&lt;/a>快速上手。想要更简短的介绍？没问题，来看看下面的讲解吧。&lt;/p>
 &lt;p>想要使用 GitHub Actions，那首先需要在项目根目录下的 .github/workflows 文件夹下创建一个以 yml 为后缀名的 workflow 文件（如 build.yml），在这个 YAML 文件中写入我们的配置。那么配置该怎么写呢，让我们看一个示例：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Greeting from Mona&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">push&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># ================== 第一个 job，这只有一个 job ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">my-job&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">My Job&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第一个 step，执行单个命令 ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Print a greeting&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">env&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">MY_VAR&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Hi there! My name is&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">FIRST_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Mona&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">MIDDLE_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">The&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">LAST_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Octocat&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第二个 step，使用别人的 action ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v2&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第三个 step，执行多个命令 ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Install the dependencies&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
-&lt;/span>&lt;span class="sd"> sudo apt-get update
-&lt;/span>&lt;span class="sd"> sudo apt-get install pkg-config gettext&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按从上到下的顺序来看，name 对象应该无需解释了，值得注意的是 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#on" target="_blank" rel="noopener"
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Greeting from Mona&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">push&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ================== 第一个 job，这只有一个 job ==================&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">my-job&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">My Job&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第一个 step，执行单个命令 ==================&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Print a greeting&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">env&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">MY_VAR&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Hi there! My name is&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">FIRST_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Mona&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">MIDDLE_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">The&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">LAST_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Octocat&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第二个 step，使用别人的 action ==================&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第三个 step，执行多个命令 ==================&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Install the dependencies&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> sudo apt-get update
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> sudo apt-get install pkg-config gettext&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按从上到下的顺序来看，name 对象应该无需解释了，值得注意的是 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#on" target="_blank" rel="noopener"
 >on&lt;/a> 对象，可以填入单个事件或事件数组作为触发条件，当满足条件时便执行这个 YAML 文件里的内容（一个项目可以存在多个 workflow 文件），在示例中的 push 指的是 git push，即每次推送代码都会触发这个 workflow，完整的事件支持列表可通过&lt;a class="link" href="https://help.github.com/en/articles/events-that-trigger-workflows" target="_blank" rel="noopener"
 >官方文档&lt;/a>获知。&lt;/p>
 &lt;p>接下来就是 jobs 了，在这里我们只创建了一个名为 my-job 的 job，一般而言 jobs 是 workflow 文件的主体，一个 job 由若干个 step 组成，这些 step 会按顺序执行，为了便于阅读，我用分割线将各个 step 分开了。&lt;/p>
@@ -881,50 +773,50 @@ alt="成功获取狗狗银行的 flag">
 >DuckSoft&lt;/a> 提供了这个思路，而且编写了 &lt;a class="link" href="https://github.com/DuckSoft/build-aur-action" target="_blank" rel="noopener"
 >build-aur-action&lt;/a> 这个 action 用来编译打包 AUR 上的软件。现在，我们需要考虑的就是如何自动进行编译，从 CI 的正常使用方式来说，我们应该在 on 对象中设定这样一个触发条件：当 AUR 特定的软件包更新时自动进行编译。不过这个方案还需要写检测更新的代码，为了偷懒，我选择设置定时任务来编译，由于 on 对象支持&lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onschedule" target="_blank" rel="noopener"
 >通过 Cron 语法设定定时任务&lt;/a>，所以这个问题能被轻松解决。就这样，我们完成了一个简单的 workflow 文件：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BUILD&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">schedule&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">cron&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;1 */8 * * *&amp;#39;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">build&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DuckSoft/build-aur-action@master&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">repo-name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">osu-lazer&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>提醒一下，使用别人的 action 时可能需要使用 with 对象输入一些变量，在这里我们输入的就是想要构建的 AUR 软件的软件包名。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BUILD&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">schedule&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">cron&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;1 */8 * * *&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">build&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DuckSoft/build-aur-action@master&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">repo-name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">osu-lazer&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>提醒一下，使用别人的 action 时可能需要使用 with 对象输入一些变量，在这里我们输入的就是想要构建的 AUR 软件的软件包名。&lt;/p>
 &lt;h2 id="上传到-github-releases">上传到 GitHub Releases&lt;/h2>
 &lt;p>在上一步中我们已成功地构建了想要的软件包，接下来需要解决的就是如何把软件包取出来这个问题了。最好的解决方案莫过于将构建出来的软件包上传到 Releases，GitHub 官方提供了 &lt;a class="link" href="https://github.com/actions/upload-release-asset" target="_blank" rel="noopener"
 >upload-release-asset&lt;/a> 来完成这个操作，但我看了说明文档后觉得这个太麻烦了，它不支持通过 Unix 终端规则（例如 “*.zst”）筛选要上传的文件，而且需要先创建 Releases 后才能上传文件。经过一番谷歌，我找到了 &lt;a class="link" href="https://github.com/ncipollo/release-action" target="_blank" rel="noopener"
 >release-action&lt;/a> 这个替代品，与 upload-release-asset 相比，这个 action 的配置明显更简单，从下面这段配置即可看得出来：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ncipollo/release-action@v1.7.3&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">allowUpdates&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">tag&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;packages&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">artifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;./*/*.zst&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">token&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.GITHUB_TOKEN }}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>把这段配置添加到 workflow 中，然后我们先看看 with 对象中输入的变量。token 是上传文件到 Releases 时必需的一项变量，从它的形式就可以看出这是一个私密变量，不过这个私密变量是内置的，我们不需要在项目中手动设置这个变量，直接使用即可；接着就是 tag 了，为了方便管理，我们在仓库的 Releases 页面创建一个 tag，然后将 tag 的名字填入其中。完成配置后这个 action 就会把构建的软件包上传到指定 tag 下的 Releases，我们也可以下载该软件包了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ncipollo/release-action@v1.7.3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">allowUpdates&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">tag&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;packages&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">artifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;./*/*.zst&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">token&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.GITHUB_TOKEN }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>把这段配置添加到 workflow 中，然后我们先看看 with 对象中输入的变量。token 是上传文件到 Releases 时必需的一项变量，从它的形式就可以看出这是一个私密变量，不过这个私密变量是内置的，我们不需要在项目中手动设置这个变量，直接使用即可；接着就是 tag 了，为了方便管理，我们在仓库的 Releases 页面创建一个 tag，然后将 tag 的名字填入其中。完成配置后这个 action 就会把构建的软件包上传到指定 tag 下的 Releases，我们也可以下载该软件包了。&lt;/p>
 &lt;h2 id="使用-matrix-进行改进">使用 matrix 进行改进&lt;/h2>
 &lt;p>虽然目前我们的 workflow 已经能用了，但是需要编译多个 AUR 的软件时需要多次复制粘贴上面的 step，这可太难看了，是否存在更优雅的方法呢？答案是有的，经 DuckSoft 的提醒，可以使用 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix" target="_blank" rel="noopener"
 >matrix&lt;/a>，它基于单个 job 中定义的 steps 并行运行多个 job，多个 job 之间的差异就是特定变量的差异，这些变量以数组的形式存在。一般来说，matrix 的用处就是为不同平台采取同样的步骤进行构建，在本文的场景下就是采用同样的步骤构建不同的 AUR 软件。虽然听着有点抽象，但看一下这个例子你就应该能明白了：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">build&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">strategy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">matrix&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">repos&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="l">osu-lazer, mpv-mpris]&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">fail-fast&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DuckSoft/build-aur-action@master&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">repo-name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ matrix.repos }}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>与之前的 workflow 不同，我们先创建了 repos 数组，并在其中填入需要构建的软件名。如果不把 fail-fast 设置为 false，在并行 job 中出现一个运行失败的 job 时会导致其它的 job 被终止。另外，使用 build-aur-action 时我们没有直接输入 repo-name，而是以 $ 的形式输入，数组中的变量会自动应用到对应的 job 中。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">build&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">strategy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">matrix&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">repos&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="l">osu-lazer, mpv-mpris]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">fail-fast&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DuckSoft/build-aur-action@master&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">repo-name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ matrix.repos }}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>与之前的 workflow 不同，我们先创建了 repos 数组，并在其中填入需要构建的软件名。如果不把 fail-fast 设置为 false，在并行 job 中出现一个运行失败的 job 时会导致其它的 job 被终止。另外，使用 build-aur-action 时我们没有直接输入 repo-name，而是以 $ 的形式输入，数组中的变量会自动应用到对应的 job 中。&lt;/p>
 &lt;h2 id="使用自己的-pkgbuild可选">使用自己的 PKGBUILD（可选）&lt;/h2>
 &lt;p>上述版本已经很完美了，不过还存在一个问题：我需要的某个软件包虽然在 AUR 中存在，但对应的 PKGBUILD 写的太烂了/无法构建成功，此时我写了一个 PKGBUILD，希望能白嫖 GitHub Actions 进行构建，该怎么办呢。这个需求也是早有人想到了，只需使用 &lt;a class="link" href="https://github.com/edlanglois/pkgbuild-action" target="_blank" rel="noopener"
 >pkgbuild-action&lt;/a> 就可解决，它还可以解决打的包还依赖了其它的 AUR 包的问题。为此，我们需要再添加一个 job，checkout 目前仓库获取 PKGBUILD，然后使用 pkgbuild-action 进行构建，需要的 pkgdir 参数就是 PKGBUILD 所在的路径（父文件夹），最后依然是使用 release-action 根据 pkgbuild-action 返回的构建产物路径将其上传到 GitHub Releases。&lt;/p>
@@ -965,21 +857,15 @@ Server = file://ArchRepoDBPath
 首先，打开&lt;a class="link" href="https://workers.cloudflare.com/" target="_blank" rel="noopener"
 >官网&lt;/a>，注册或登录你的 Cloudflare 帐号，点击 Start building，选择免费方案并创建一个专属的子域名（是 workers.dev 的子域名），进入主页后点击 Create a Worker，复制&lt;a class="link" href="https://gitlab.com/NickCao/experiments/-/blob/master/workers/r.js" target="_blank" rel="noopener"
 >这份代码&lt;/a>，像下图这样粘贴到编辑框内：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 229;
-flex-basis: 551px"
->
-&lt;a href="https://viflythink.com/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png" data-size="1918x835">
-&lt;img src="https://viflythink.com/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png"
 width="1918"
 height="835"
 loading="lazy"
-alt="创建 Cloudflare Workers 应用">
-&lt;/a>
-&lt;figcaption>创建 Cloudflare Workers 应用&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="创建 Cloudflare Workers 应用"
+class="gallery-image"
+data-flex-grow="229"
+data-flex-basis="551px"
+>&lt;/p>
 &lt;p>注意，页面中间的域名是 Cloudflare Workers 分配给你的一个专属子域名（形如 xxx.xxx.workers.dev），复制这个域名并用它替换左侧代码中的两处域名，完成修改后点击 Save and Deploy 保存并部署，这样我们就得到了一个可以反代网络资源的应用了。&lt;/p>
 &lt;p>最后，还记得在上一小节中被忽略的 ProxyURL 配置项吗，这里各位只需填入刚刚得到的 xxx.xxx.workers.dev 域名就可以了，脚本会使用这个反代域名高速下载 GitHub Releases 的软件包。&lt;/p></description></item><item><title>永恒才是你的敌人——《永久记录》读后感</title><link>https://viflythink.com/Permanent_Record/</link><pubDate>Fri, 28 Feb 2020 17:11:57 +0000</pubDate><guid>https://viflythink.com/Permanent_Record/</guid><description>&lt;img src="https://viflythink.com/Permanent_Record/show.jpg" alt="Featured image of post 永恒才是你的敌人——《永久记录》读后感" />&lt;p>我在博客的简介中说过这个博客会记录我的折腾与感想，不过到目前为止，本博客的归档里全都是技术折腾类的文章。对于我来说，写折腾记录是一件比写论述文章轻松的事情，后者需要具有明确的写作目的与结构安排，而且通用性更广，而前者则不需要管这么多。虽说如此，我早就想写论述类文章了，毕竟能看到自己的想法以一种规整的形式出现在屏幕前是一种让人十分满足的事情。在好不容易战胜长期宅在家导致的拖延症后，我终于提笔写下了本博客的第一篇论述类文章（笑）。这里顺带说一下，本文标题化用自本人最喜欢的 RPG &lt;a class="link" href="https://store.steampowered.com/app/466300/Planescape_Torment_Enhanced_Edition/" target="_blank" rel="noopener"
 >《异域镇魂曲》&lt;/a>中的一句话，原话是「时间不是你的敌人，永恒才是」。 &lt;br>
@@ -1056,155 +942,101 @@ alt="创建 Cloudflare Workers 应用">
 &lt;/li>
 &lt;/ol></description></item><item><title>将 KDE 改造为 Windows 10</title><link>https://viflythink.com/KDE_to_Windows10/</link><pubDate>Wed, 01 Jan 2020 10:08:32 +0000</pubDate><guid>https://viflythink.com/KDE_to_Windows10/</guid><description>&lt;img src="https://viflythink.com/KDE_to_Windows10/show.jpg" alt="Featured image of post 将 KDE 改造为 Windows 10" />&lt;p>2020 年已然到来，一些博主已经发表了年度总结，总结了不少经验，我想了想，觉得自己好像没什么可以总结的经验，只好写一篇最近的 KDE 折腾记录给各位读者当新年礼物了。想必有不少刚开始使用 Linux 的新手总想着美化自己的桌面吧，我在开始使用 KDE 后也想着折腾美化，随便搜索了一下美化教程后发现不少都是将 KDE 改造为 Mac 风格的，之前听闻 KDE 粉说过“你可以将 KDE 捏成任何形状”，然而很多人都是将它捏成 Mac 的样子，那么，能把 KDE 捏成 win10 的形状吗？我决定挑战一下这个问题，当然，在这里我要承认这有点标题党的嫌疑，我只是想将我认为 win10 做得好的部分转嫁到 KDE 上，并不是将 KDE 完全变为 win10 的样子，后者是一件费力不讨好的事情，而且，在经过一波折腾后，我发现有些细节还暂时无法做到像 win10 那样优秀，只能寄希望于未来了。另外，本文只适用于 Arch，我尚未在其它发行版进行测试。&lt;/p>
 &lt;p>先上一张图片看看改造后的效果（图中标注了下文用到的名词所指代的东西）：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 177;
-flex-basis: 426px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/my_kde_desktop.png" data-size="1920x1080">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/my_kde_desktop.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/my_kde_desktop.png"
 width="1920"
 height="1080"
 loading="lazy"
-alt="我的桌面展示">
-&lt;/a>
-&lt;figcaption>我的桌面展示&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="我的桌面展示"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
 &lt;p>觉得很漂亮吧？那么，接下来就开始我们的改造吧。&lt;/p>
 &lt;h1 id="底部栏">底部栏&lt;/h1>
 &lt;p>在没有打开任何窗口时，底部栏是与 win10 相差最远的一个地方，所以我们的改造工作先从底部栏开始。可以先看看改造完成后的底部栏效果图：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 3840;
-flex-basis: 9216px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/my_bottom.png" data-size="1920x50">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/my_bottom.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/my_bottom.png"
 width="1920"
 height="50"
 loading="lazy"
-alt="底部栏">
-&lt;/a>
-&lt;figcaption>底部栏&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="底部栏"
+class="gallery-image"
+data-flex-grow="3840"
+data-flex-basis="9216px"
+>&lt;/p>
 &lt;h2 id="开始菜单">开始菜单&lt;/h2>
 &lt;p>喜欢 win10 那简洁的开始菜单吗，在 KDE 下只需安装一个部件（widgets）即可拥有同样的体验。下载 &lt;a class="link" href="https://store.kde.org/p/1160672/" target="_blank" rel="noopener"
 >Tiled Menu&lt;/a>，并在底部栏空白处单击右键，然后点击“添加部件”，按照下图所示进行安装。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 32;
-flex-basis: 78px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/install_widget.png" data-size="288x880">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/install_widget.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/install_widget.png"
 width="288"
 height="880"
 loading="lazy"
-alt="安装部件">
-&lt;/a>
-&lt;figcaption>安装部件&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>想要使用的话有两种方法：在你左下角的开始菜单处鼠标右键单击，选择“显示替代方案”，选择 Tiled Menu；在底部栏右键单击，选择“编辑面板”，鼠标移到原来的开始菜单，选择移除，然后选择“添加部件”，选择 Tiled Menu。你可以在弹出的开始菜单右上角按住 ALT 和 鼠标右键进行拖拽以更改菜单大小。&lt;/p>
-&lt;p>&lt;figure
+alt="安装部件"
 class="gallery-image"
-style="
-flex-grow: 827;
-flex-basis: 1986px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_start_menu.png" data-size="1920x232">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_start_menu.png"
+data-flex-grow="32"
+data-flex-basis="78px"
+>&lt;/p>
+&lt;p>想要使用的话有两种方法：在你左下角的开始菜单处鼠标右键单击，选择“显示替代方案”，选择 Tiled Menu；在底部栏右键单击，选择“编辑面板”，鼠标移到原来的开始菜单，选择移除，然后选择“添加部件”，选择 Tiled Menu。你可以在弹出的开始菜单右上角按住 ALT 和 鼠标右键进行拖拽以更改菜单大小。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_start_menu.png"
 width="1920"
 height="232"
 loading="lazy"
-alt="将 Tiled Menu 设为开始菜单">
-&lt;/a>
-&lt;figcaption>将 Tiled Menu 设为开始菜单&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>另外，想实现像在 Windows 那样按下 win 键便弹出开始菜单这一点，还需要做一点设置：右键单击开始菜单并选择“配置Tiled Menu”，点击“Keyboard shortcuts”，然后在下面截图所示位置左键单击并顺序按下 ALT 和 F1 键。&lt;/p>
-&lt;p>&lt;figure
+alt="将 Tiled Menu 设为开始菜单"
 class="gallery-image"
-style="
-flex-grow: 128;
-flex-basis: 307px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_tiled_menu_shortcut.png" data-size="1040x811">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_tiled_menu_shortcut.png"
+data-flex-grow="827"
+data-flex-basis="1986px"
+>&lt;/p>
+&lt;p>另外，想实现像在 Windows 那样按下 win 键便弹出开始菜单这一点，还需要做一点设置：右键单击开始菜单并选择“配置Tiled Menu”，点击“Keyboard shortcuts”，然后在下面截图所示位置左键单击并顺序按下 ALT 和 F1 键。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_tiled_menu_shortcut.png"
 width="1040"
 height="811"
 loading="lazy"
-alt="设置 Tiled Menu 的快捷键">
-&lt;/a>
-&lt;figcaption>设置 Tiled Menu 的快捷键&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="设置 Tiled Menu 的快捷键"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="307px"
+>&lt;/p>
 &lt;h2 id="毛玻璃效果">毛玻璃效果&lt;/h2>
 &lt;p>是否觉得在我的截图中的底部栏非常好看呢，这在很大程度上都是毛玻璃效果带来的。想要做到这样的效果，只需安装一个被称为 &lt;a class="link" href="https://store.kde.org/p/1084931/" target="_blank" rel="noopener"
 >Breeze AlphaBlack&lt;/a> 的 Plasma Themes。下载完成后将其解压到 ~/.local/share/plasma/desktoptheme/，然后打开系统设置，在侧栏点击“Plasma 样式”，选择 Breeze AlphaBlack 并应用更改。重启电脑后就能在系统托盘处见到 AlphaBlack Control（长得像是个雨滴），单击即可进行调整：将“Accent Color”的“Panel, Widget, Window TitleBars &amp;amp; Frames”处的值改为 #343434（默认的纯黑不好看），将“Opacity”的“Panel”处的值调整为 10% 以加强底部栏透明度。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 104;
-flex-basis: 251px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_alpha_black.png" data-size="636x607">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_alpha_black.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_alpha_black.png"
 width="636"
 height="607"
 loading="lazy"
-alt="设置 AlphaBlack">
-&lt;/a>
-&lt;figcaption>设置 AlphaBlack&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>另外，你还可以通过以下方法令 QT 系的应用的右键菜单拥有毛玻璃效果：打开系统设置，在侧栏点击“应用程序风格”，选择“应用样式”，找到“微风”，点击右下角的配置按钮，点击“透明度”一栏，将透明度变大。将透明度变大能达到毛玻璃效果的原因是 KDE 默认的半透明是带有模糊效果的，而不是简单的透明，具体的模糊设置可在系统设置下的“工作空间行为”-&amp;gt;“桌面特效”中找到。&lt;/p>
-&lt;p>&lt;figure
+alt="设置 AlphaBlack"
 class="gallery-image"
-style="
-flex-grow: 140;
-flex-basis: 336px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_breeze_style.png" data-size="1025x732">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_style.png"
+data-flex-grow="104"
+data-flex-basis="251px"
+>&lt;/p>
+&lt;p>另外，你还可以通过以下方法令 QT 系的应用的右键菜单拥有毛玻璃效果：打开系统设置，在侧栏点击“应用程序风格”，选择“应用样式”，找到“微风”，点击右下角的配置按钮，点击“透明度”一栏，将透明度变大。将透明度变大能达到毛玻璃效果的原因是 KDE 默认的半透明是带有模糊效果的，而不是简单的透明，具体的模糊设置可在系统设置下的“工作空间行为”-&amp;gt;“桌面特效”中找到。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_style.png"
 width="1025"
 height="732"
 loading="lazy"
-alt="设置微风的应用程序风格">
-&lt;/a>
-&lt;figcaption>设置微风的应用程序风格&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>&lt;figure
+alt="设置微风的应用程序风格"
 class="gallery-image"
-style="
-flex-grow: 126;
-flex-basis: 303px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_breeze_transparency.png" data-size="583x461">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_transparency.png"
+data-flex-grow="140"
+data-flex-basis="336px"
+>&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_transparency.png"
 width="583"
 height="461"
 loading="lazy"
-alt="设置微风的菜单透明度">
-&lt;/a>
-&lt;figcaption>设置微风的菜单透明度&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="设置微风的菜单透明度"
+class="gallery-image"
+data-flex-grow="126"
+data-flex-basis="303px"
+>&lt;/p>
 &lt;h2 id="任务管理器部件">任务管理器部件&lt;/h2>
 &lt;p>依然是在底部栏右键单击，选择“编辑面板”，将鼠标移动到底部栏空白处，点击“显示替代方案”，选择图标任务管理器（Icon-Only Task Manager），然后你就可以看到类似于 win10 的底部窗口了，这里说明一下，图标任务管理器是自带的一个部件，无需安装。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 768;
-flex-basis: 1843px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_task_manager.png" data-size="1920x250">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_manager.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_manager.png"
 width="1920"
 height="250"
 loading="lazy"
-alt="设置图标任务管理器">
-&lt;/a>
-&lt;figcaption>设置图标任务管理器&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="设置图标任务管理器"
+class="gallery-image"
+data-flex-grow="768"
+data-flex-basis="1843px"
+>&lt;/p>
 &lt;h2 id="快速查看已打开的窗口">快速查看已打开的窗口&lt;/h2>
 &lt;p>win10 可点击左下角的按钮快速查看已打开的窗口，在安装了 &lt;a class="link" href="https://store.kde.org/p/1181039" target="_blank" rel="noopener"
 >Present Windows Button&lt;/a> 这个部件后，我们也可以做到这一点。这个部件的安装方法与 Tiled Menu 时相同，在安装完成后把这个部件放在开始菜单和任务管理器之间。这个部件产生的点击效果与在 Gnome 下将鼠标移动到屏幕左上角触发的效果差不多，KDE 也可设置这样的触发角，不过我觉得设置这样的一个按钮没什么实际意义，可能最大的好处就是没事点一下能有效消遣无聊吧（雾）。这里还有一个能让底部栏变得更美观的 Tips，在底部栏右键单击，选择“编辑面板”后点击“添加间距”，以此添加两个间距，将其缩到最小后对其右键取消勾选“设置可变大小”，然后将这两个间距拖到 Present Windows Button 两边，这能令 Present Windows Button 两边不会显得拥挤，从而变得美观。&lt;/p>
@@ -1219,75 +1051,51 @@ alt="设置图标任务管理器">
 &lt;pre>&lt;code>yay -S breeze10-kde-git
 &lt;/code>&lt;/pre>
 &lt;p>在安装完成后重启系统，打开系统设置，在侧栏点击“应用程序风格”，再点击“窗口装饰”，选择“Breeze10”并应用更改。另外，可以点击那个笔状的图标调整这个主题，例如把字体设置变大。完成后你的应用程序窗口会显得更为美观大方。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 145;
-flex-basis: 349px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_breeze10.png" data-size="1096x752">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze10.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze10.png"
 width="1096"
 height="752"
 loading="lazy"
-alt="使用 Breeze10">
-&lt;/a>
-&lt;figcaption>使用 Breeze10&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="使用 Breeze10"
+class="gallery-image"
+data-flex-grow="145"
+data-flex-basis="349px"
+>&lt;/p>
 &lt;h1 id="颜色">颜色&lt;/h1>
 &lt;p>该怎么说呢，我总觉得开源项目的美工总是不在线：KDE 默认的颜色并不具备所谓的“现代感”。如果你不知道这有多大的影响，可以看看下面使用默认微风与 &lt;a class="link" href="https://aur.archlinux.org/packages/canta-kde-git/" target="_blank" rel="noopener"
 >Canta Light&lt;/a> 的 Dolphin 对比：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 135;
-flex-basis: 325px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/breeze_dolphin.png" data-size="890x656">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/breeze_dolphin.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/breeze_dolphin.png"
 width="890"
 height="656"
 loading="lazy"
-alt="微风 Dolphin">
-&lt;/a>
-&lt;figcaption>微风 Dolphin&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>&lt;figure
+alt="微风 Dolphin"
 class="gallery-image"
-style="
-flex-grow: 135;
-flex-basis: 326px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/canta_light_dolphin.png" data-size="890x655">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/canta_light_dolphin.png"
+data-flex-grow="135"
+data-flex-basis="325px"
+>&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/canta_light_dolphin.png"
 width="890"
 height="655"
 loading="lazy"
-alt="Canta Light Dolphin">
-&lt;/a>
-&lt;figcaption>Canta Light Dolphin&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="Canta Light Dolphin"
+class="gallery-image"
+data-flex-grow="135"
+data-flex-basis="326px"
+>&lt;/p>
 &lt;p>很明显，Canta Light 主题看上去非常好看，AUR 上已有包，这里依然使用 Yay 安装：&lt;/p>
 &lt;pre>&lt;code>yay -S canta-kde-git
 &lt;/code>&lt;/pre>
 &lt;p>安装完成后，打开系统设置，在侧栏点击“颜色”，选择刚安装的 Cantalight，应用更改。虽然白色的窗口装饰看着也还不错，但我还是把窗口装饰的颜色改回黑色以配合整体样式：点击上文提到的 AlphaBlack Control 中的“Apply Colors”就能更改颜色。&lt;/p>
 &lt;h1 id="其它细节">其它细节&lt;/h1>
 &lt;p>当你习惯性地用 ALT + TAB 键想要切换窗口时，就会发现在默认设置的情况下窗口列表将在左侧显示，我个人更喜欢 win10 或 Gnome 那样在切换窗口将列表显示在屏幕中间，为了做到这一点，打开系统设置，在侧栏点击“窗口管理”，然后点击“任务切换器”，在“可视化”处选择大图标，可看下图：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 144;
-flex-basis: 347px"
->
-&lt;a href="https://viflythink.com/KDE_to_Windows10/set_task_switch.png" data-size="1093x754">
-&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_switch.png"
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_switch.png"
 width="1093"
 height="754"
 loading="lazy"
-alt="设置任务切换器">
-&lt;/a>
-&lt;figcaption>设置任务切换器&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="设置任务切换器"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="347px"
+>&lt;/p>
 &lt;p>我并不喜欢每次点击关机按钮后都要进行确认，而是希望像 win10 那样直接关机，这也是稍微修改系统设置即可做到的事情，打开系统设置，在侧栏点击“开机和关机”，然后点击“桌面会话”，在“常规”处取消勾选“确认注销”。&lt;/p>
 &lt;p>差点忘了还有一个细节问题：桌面右上角的按钮好像没什么用，如何隐藏它呢。只需在桌面单击鼠标右键，点击“配置桌面”，再点击侧栏的“调整”，取消勾选“显示桌面工具箱”并点击确定即可。&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
@@ -1299,155 +1107,101 @@ alt="设置任务切换器">
 >在 GitHub 上开源了源代码&lt;/a>，一个&lt;a class="link" href="https://github.com/fangpenlin/elliptic-curve-explained/blob/master/elliptic-curve.ipynb" target="_blank" rel="noopener"
 >适用于实数&lt;/a>，还有一个&lt;a class="link" href="https://github.com/fangpenlin/elliptic-curve-explained/blob/master/elliptic-curve-on-finite-field.ipynb" target="_blank" rel="noopener"
 >适用于有限域&lt;/a>：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 128;
-flex-basis: 309px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png" data-size="2304x1788">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/jupyter-notebook.png"
 width="2304"
 height="1788"
 loading="lazy"
-alt="jupyter-notebook">
-&lt;/a>
-&lt;figcaption>jupyter-notebook&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="jupyter-notebook"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="309px"
+>&lt;/p>
 &lt;p>你可以在 Jupyter Notebook 中找到大多数本文用到的图表。&lt;/p>
 &lt;p>请注意，本文并&lt;strong>不是为了说明如何安全地实现 ECC&lt;/strong>，我们在此使用的示例只是为了使你和我自己便于理解或使用（译者注：警告，除非你是专家，否则不要在软件项目中自己实现加密算法，而应当使用现有的成熟的加密算法库）。我们也不想在数学这个兔子洞挖得太深，我只想集中精力了解它的本质的运作方式。因此，我们将剔除许多数学细节，仅提供参考资料供感兴趣的读者阅读。（译者注：本文存在不少星球大战的梗）&lt;/p>
 &lt;p>现在，我们开始吧？&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 285;
-flex-basis: 685px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif" data-size="500x175">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek-into-darkness.gif"
 width="500"
 height="175"
 loading="lazy"
-alt="star-trek-into-darkness">
-&lt;/a>
-&lt;figcaption>star-trek-into-darkness&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="star-trek-into-darkness"
+class="gallery-image"
+data-flex-grow="285"
+data-flex-basis="685px"
+>&lt;/p>
 &lt;h1 id="让我们先来玩个游戏">让我们先来玩个游戏&lt;/h1>
 &lt;p>一个椭圆曲线是由 $y^{2} = x^{3} + a x + b$ 定义的曲线。 &lt;br>
 举个例子，让 a = −3 和 b = 5，然后当你绘制这条曲线时，它看起来像这样：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve">
-&lt;/a>
-&lt;figcaption>elliptic-curve&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>现在，让我们玩一个游戏。随机选取曲线上 x 值不相同的两个点，并用一条直线连接这两个点，这两个点我们称为 A 和 B。然后你会注意到直线在除了 A 与 B 外的第三点与曲线接触。让我们找到第三个点并将其 y 值翻转到 x 轴的另一侧（译者注：也就是说以 x 轴为对称轴，将第三个点翻转到另一侧），我们将翻转后的点称为 A + B。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-game">
-&lt;/a>
-&lt;figcaption>elliptic-curve-game&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>点 A + B 是 A 与 B 的和。你可以认为此过程是某种太空旅行。想象有敌人正紧跟着你的飞船。要摆脱你的敌人，你可以在航线上走直线捷径，到达航线上的另一点，一旦到达第三个点，就会迅速弹跳到路线的另一侧。&lt;/p>
-&lt;p>&lt;figure
+alt="elliptic-curve-game"
 class="gallery-image"
-style="
-flex-grow: 234;
-flex-basis: 563px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-war.gif" data-size="500x213">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-war.gif"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
+&lt;p>点 A + B 是 A 与 B 的和。你可以认为此过程是某种太空旅行。想象有敌人正紧跟着你的飞船。要摆脱你的敌人，你可以在航线上走直线捷径，到达航线上的另一点，一旦到达第三个点，就会迅速弹跳到路线的另一侧。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-war.gif"
 width="500"
 height="213"
 loading="lazy"
-alt="star-war">
-&lt;/a>
-&lt;figcaption>star-war&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>好吧，敌人仍然跟着你，让我们再来一次。这次我们从最新的点 A + B 开始，到达另一点 C。&lt;/p>
-&lt;p>&lt;figure
+alt="star-war"
 class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png"
+data-flex-grow="234"
+data-flex-basis="563px"
+>&lt;/p>
+&lt;p>好吧，敌人仍然跟着你，让我们再来一次。这次我们从最新的点 A + B 开始，到达另一点 C。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-game02.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-game02">
-&lt;/a>
-&lt;figcaption>elliptic-curve-game02&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-game02"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>如你所见，只要新增的线不是垂直的，我们就可以通过添加新的点来重复相同的技巧，以此跳到一个新的数字。&lt;/p>
 &lt;p>随着时间的流逝，你意识到寻找一个新的弹跳落点很麻烦。为了使这个技巧更直观，更容易重复使用，现在让我们沿当前位置 P 的切线走捷径，它看起来像这样：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-2p">
-&lt;/a>
-&lt;figcaption>elliptic-curve-2p&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-2p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>考虑前面提到的两点式跳跃技巧，就像你看到点 A 和点 B 在 P 处彼此无限靠近，这实际上是相同的技巧。因此我们可以应用前面的规则，称 P 和 P 的结果之和为 P + P，即 2P。&lt;/p>
 &lt;p>同样的，我们可以再一次重复执行相同的步骤以摆脱我们的敌人，这一次，我们从 2P 开始回到起始点 P：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-3p.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-3p">
-&lt;/a>
-&lt;figcaption>elliptic-curve-3p&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-3p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>对于结果，我们将它称为 P + 2P 或 3P。显然，我们可以多次这样做以到达 NP。现在，问题来了，给定点 NP 的坐标，你能找出 N 值吗？换句话说，像下图这样，我们从 P 到 NP 跳了多少次呢？&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-np.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-np">
-&lt;/a>
-&lt;figcaption>elliptic-curve-np&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-np"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>我可以告诉你，在上图中的 NP 点的 N 值为 13。我很容易说出来，因为我选择了这个数字。但你很难找出答案，因为没有已知的简单而又有效率的方法来计算 N 值。&lt;/p>
 &lt;p>就是这样，你已经了解了 ECC 的基础！曲线和起始点 P 是每个人都知道并同意使用的共享值，终点 NP 是你的&lt;strong>公钥&lt;/strong>，分享给任何人都是安全的。你跳了多少步，所对应的值 N 是你的&lt;strong>私钥&lt;/strong>。正如我们上面所说的，只知道 NP 和 P 的人很难推断出你的私钥，因为众所周知这是一个很难解决的问题。&lt;/p>
 &lt;blockquote>
@@ -1460,98 +1214,68 @@ alt="elliptic-curve-np">
 &lt;p>这是一个好问题，实际上我在网上阅读了许多文章后也产生了相同的疑问，但是我发现其中一些文章可以清楚地解释这一点。因此，接下来，我们来讨论在太空中如何真正地使你的敌人无法对你进行跟踪。&lt;/p>
 &lt;h1 id="以曲速前进">以曲速前进&lt;/h1>
 &lt;p>我们提到了用沿曲线跳跃的技巧以摆脱敌人，然而以缓慢的速度使用这个技巧是不明智的，因为它很容易被追踪。你的敌人可以简单地做同样的事情，直到他们弄清楚到达目的地需要跳跃多少次。为了真正使你无法被追踪，你需要以曲速前进。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 177;
-flex-basis: 424px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek.gif" data-size="471x266">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek.gif"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek.gif"
 width="471"
 height="266"
 loading="lazy"
-alt="star-trek">
-&lt;/a>
-&lt;figcaption>star-trek&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="star-trek"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="424px"
+>&lt;/p>
 &lt;p>对于求和运算，或者我们在椭圆曲线上使用的技巧存在着一个有趣的特点，这个有趣的特点在于，曲线上的点与其求和运算都遵循&lt;a class="link" href="https://en.wikipedia.org/wiki/Group_%28mathematics%29" target="_blank" rel="noopener"
 >群律&lt;/a>。其主要想法是，你可以对一个组中的元素进行某些操作，在这里我们称其为“相加”，进行该操作后它们仍将留在这个组中，而且，该操作具有一些特殊的属性。其中被称为关联性（associativity）的一种特殊属性是像这样的：&lt;/p>
 &lt;p>(A + B) + C 与 A + (B + C) 是相同的&lt;/p>
 &lt;p>这个概念背后的数学证明实际上并不简单，如果你感兴趣，可以在&lt;a class="link" href="https://www.andrew.cmu.edu/user/tnayak/papers/EllipticCurves.pdf" target="_blank" rel="noopener"
 >这&lt;/a>或&lt;a class="link" href="https://math.rice.edu/~friedl/papers/AAELLIPTIC.PDF" target="_blank" rel="noopener"
 >这&lt;/a>阅读相关资料。虽然很难证明，但是当你画出曲线和直线时很容易看出这一点。让我们来看一个例子。如你所见，我们在上面已得到一个点 (A + B) + C，根据关联性，我们应该能够先执行 B + C，然后再执行 A + (B + C)（译者注：也就是说将 A 与上一步 B + C 的结果相加），并且执行这两步后应该到达相同的终点。下图是 B + C：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-bc-first.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-bc-first">
-&lt;/a>
-&lt;figcaption>elliptic-curve-bc-first&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-bc-first"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>接下来，让我们执行 A +（B + C）：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-a-plus-bc.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-a-plus-bc">
-&lt;/a>
-&lt;figcaption>elliptic-curve-a-plus-bc&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-a-plus-bc"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>看下终点，它与（A + B）+ C 完全相同。不相信我吗？这是我编写的程序中输出的值：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="n">ab_c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ab&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>
-&lt;span class="n">a_bc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">bc&lt;/span>
-&lt;span class="p">(&lt;/span>&lt;span class="n">ab_c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a_bc&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>(Point(0.9531851331698311, 1.733918191357413),
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">ab_c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ab&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">a_bc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">bc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">ab_c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a_bc&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>(Point(0.9531851331698311, 1.733918191357413),
 Point(0.9531851331698316, 1.7339181913574133))
 &lt;/code>&lt;/pre>&lt;p>如你所见，ab_c 与 a_bc 几乎是相同的。其中的差异是由浮点运算的舍入误差造成的。这实际上是一个&lt;strong>大&lt;/strong>问题，我们将在后面讨论这一点。&lt;/p>
 &lt;p>类似地，对于单点情况，群律允许我们以不同的顺序进行求和以到达相同的位置。这一点很关键，还记得我们如何通过 P + 2P 到达 3P 吗？现在我想告诉你 P + 3P = 4P 与 2P + 2P = 4P 是相同的。&lt;/p>
 &lt;p>首先，让我们看一下愚蠢的计算方式，即只是继续将 P 与 3P 相加。这是计算 P + 3P 的最后一步：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-p-plus-3p.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-p-plus-3p">
-&lt;/a>
-&lt;figcaption>elliptic-curve-p-plus-3p&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-p-plus-3p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>然后，让我们尝试将 2P 与自身相加，这恰好是我们之前使用的技巧：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 149;
-flex-basis: 358px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png" data-size="927x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-2p-plus-2p.png"
 width="927"
 height="621"
 loading="lazy"
-alt="elliptic-curve-2p-plus-2p">
-&lt;/a>
-&lt;figcaption>elliptic-curve-2p-plus-2p&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-2p-plus-2p"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="358px"
+>&lt;/p>
 &lt;p>看到没有？两种方式都产生了相同的结果。就这样，我们可以轻松地将一个点加倍(double)，并且进行相加操作的顺序无关紧要。我们可以通过不断对一个点进行加倍操作来“作弊”，从而快速生成我们想要的值，不再需要将其一一加起来。&lt;/p>
 &lt;p>让我们尝试通过求和到达一个更大的数字，例如 227P，我们首先将其转化为二进制数字，以便获得其两个成分的幂。其二进制表示为 11100011。换句话说，将两个值的所有幂加起来就是：
 $$2^{7}P + 2^{6}P + 2^{5}P + 2^{1}P + 2^{0}P$$ &lt;br>
@@ -1590,60 +1314,42 @@ $$2^{7}P + 2^{6}P + 2^{5}P + 2^{1}P + 2^{0}P$$ &lt;br>
 &lt;p>嗯，M 和 N 都很大，因为我们不希望敌人轻易地找到它。显然，上面的自加操作并不是真的一一相加，而是通过使用我们刚刚介绍的 double and add 技巧来作弊。最终，他们将会在一个只有他们知道的秘密坐标 SK 上会面：&lt;/p>
 &lt;p>SK = (N × M)P = (M × N)P&lt;/p>
 &lt;p>想想看，对于 Alice，每次跳跃的值是 P 点的 M 倍，而她跳跃了 N 次。对于 Bob 而言，每次跳跃的值是 P 点的 N 倍，而他跳跃了 M 倍。假设 Alice 一次跳跃 4 光年，而她总共跳跃了 3 次；Bob 一次跳跃 3 光年，他跳跃了 4 次。对应的运算分别是 4 × 3 与 3 × 4，它们都将在 12 这里结束：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 141;
-flex-basis: 340px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-jump.png" data-size="803x566">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-jump.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-jump.png"
 width="803"
 height="566"
 loading="lazy"
-alt="ecdh-jump">
-&lt;/a>
-&lt;figcaption>ecdh-jump&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="ecdh-jump"
+class="gallery-image"
+data-flex-grow="141"
+data-flex-basis="340px"
+>&lt;/p>
 &lt;p>对于窃听者，他们需要找出 N 或 M 才能获得相同的坐标。通过一步一步运算，最终也会到达终点。但是，正如我们前面提到的，鉴于数字足够大，以致没有简单的方法可以做到这一点，因此我们可以确定只有 Alice 和 Bob 才能知道这个秘密坐标。这种密钥交换协议被称为&lt;a class="link" href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener"
 >椭圆曲线 Diffie–Hellman 密钥交换&lt;/a>。&lt;/p>
 &lt;h1 id="加密">加密&lt;/h1>
 &lt;p>现在让我们谈谈加密。Alice 想要安全地向 Bob 发送信息，他们需要首先进行我们上面刚刚提到的椭圆曲线 Diffie–Hellman 密钥交换：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 188;
-flex-basis: 453px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png" data-size="803x425">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png"
 width="803"
 height="425"
 loading="lazy"
-alt="ecdh-encryption-key-exchange">
-&lt;/a>
-&lt;figcaption>ecdh-encryption-key-exchange&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="ecdh-encryption-key-exchange"
+class="gallery-image"
+data-flex-grow="188"
+data-flex-basis="453px"
+>&lt;/p>
 &lt;p>这里请注意，Alice 需要能够验证公钥 MP 真的是属于 Bob 的。否则，冒名顶替者可以向 Alice 提供自己的公钥，并声称自己是 Bob，然后，Alice 将与攻击者交换共享密钥，再然后，攻击者就可以执行&lt;a class="link" href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener"
 >中间人攻击&lt;/a>。 要解决该问题，就需要另一个概念，它被称为&lt;a class="link" href="https://en.wikipedia.org/wiki/Public_key_infrastructure" target="_blank" rel="noopener"
 >公钥基础架构&lt;/a>，因为这个属于离题范围，如果你感兴趣，可以搜索相关资料。&lt;/p>
 &lt;p>由于今天我们只想专注于 ECC，所以在此假设 Alice 已经取得 MP 并不加思索地相信它来自 Bob，而 Bob 也得到了 Alice 的公钥。现在，在交换密钥之后，他们最终得到了相同的共享秘密坐标，我们可以得到 x 值作为密钥。一旦我们拥有一个共享的密钥，一切就很简单了。得到共享密钥后，我们可以在任何安全的对称加密算法中使用共享密钥 SK 对我们的机密数据进行加密（译者注：出于性能因素的考量，通常只使用 ECC 等非对称加密算法交换对称加密算法所需的共享密钥，此后的通信使用对称加密而不是非对称加密算法进行加密，在这里就是这样做的）。假设我们在这里使用 &lt;a class="link" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank" rel="noopener"
 >AES256&lt;/a>。接收者 Bob 可以使用相同的共享密钥 SK 解密经过加密的消息。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 130;
-flex-basis: 313px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png" data-size="803x614">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-encrypt.png"
 width="803"
 height="614"
 loading="lazy"
-alt="ecdh-encryption-encrypt">
-&lt;/a>
-&lt;figcaption>ecdh-encryption-encrypt&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="ecdh-encryption-encrypt"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="313px"
+>&lt;/p>
 &lt;p>太好了，现在即使帝国的无人机窃听了所有通信，Alice 仍可以安全地将反抗军的新总部位置分享给 Bob。同样的，Bob 可以使用相同的共享密钥 SK 加密消息，并将其发送回 Alice。&lt;/p>
 &lt;p>当 Alice 和 Bob 彼此认识时，我们知道可以使用 ECC 安全地发送消息。但是，如果在某些情况下我们想安全地向某人发送消息，但他们不知道并且可能不在乎你是谁，该怎么办？简单，我们在这举个例子，假设 Bob 已经知道 Alice 的公钥，如果 Alice 知道 Bob 的公钥 MP，她可以使用她自己的私钥 N 生成相同的共享密钥 SK，加密数据并将纯文本形式的公钥 NP 与经过加密的数据一起发送出去。一旦 Bob 收到消息，他就可以使用 NP 和他的私钥 M 创建相同的密钥 SK 并解密经过加密的数据。但是，由于信息中附带的公钥 NP 可能属于任何人，因此 Bob 将无法确认消息是来自谁的。如果 Bob 不在乎发送者是谁，Alice 也可选择为同一操作创建一个临时的新密钥对。&lt;/p>
 &lt;h1 id="浮点数的问题">浮点数的问题&lt;/h1>
@@ -1656,115 +1362,79 @@ alt="ecdh-encryption-encrypt">
 &lt;p>要解释数学中的位于对整数 p 取模的有限域的椭圆曲线：&lt;/p>
 &lt;p>$$y^{2} \equiv x^{3} + a x + b\pmod{p}$$&lt;/p>
 &lt;p>先让我们取 p = 19，a = −3，b = 5，然后画出来：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 148;
-flex-basis: 356px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png" data-size="922x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-finite-field.png"
 width="922"
 height="621"
 loading="lazy"
-alt="elliptic-curve-on-finite-field">
-&lt;/a>
-&lt;figcaption>elliptic-curve-on-finite-field&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-on-finite-field"
+class="gallery-image"
+data-flex-grow="148"
+data-flex-basis="356px"
+>&lt;/p>
 &lt;p>这看起来似乎不太像是一条“曲线”，但这确实是在有限域上的椭圆曲线。基本上，$y^{2}\pmod{p}$ 仅在特定整数点上等于 $x^{3} + a x + b\pmod{p}$。以点(11,7)为例，对于 y：&lt;/p>
 &lt;p>$$y^{2} \equiv 7^{2} \equiv 49 \equiv 11 \pmod{19}$$&lt;/p>
 &lt;p>以及对于 x：&lt;/p>
 &lt;p>$$x^{3} + a x + b \equiv 11^{3} - 3 \times 11 + 5 \equiv 1303 \equiv 11 \pmod{19}$$&lt;/p>
 &lt;p>由于两者在被 19 相除后得到相同的余数 11，所以这确实是曲线上的一个点。&lt;/p>
 &lt;p>虽然它看起来不像是一条曲线，但它确实与在实数范围的椭圆曲线一样遵循相同的群律。让我们看一个例子，假设点 A = (3,2)，B = (5,18)，并使用相同的相加操作来计算 A + B：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 150;
-flex-basis: 360px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png" data-size="937x623">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-b.png"
 width="937"
 height="623"
 loading="lazy"
-alt="elliptic-curve-on-field-a-plus-b">
-&lt;/a>
-&lt;figcaption>elliptic-curve-on-field-a-plus-b&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-on-field-a-plus-b"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>&lt;/p>
 &lt;p>是的，在有限域上的该曲线有些特殊，当一条线到达边界时，实际上可以弯曲到另一端，因为取模操作就是在绕来绕去的。这条线会碰到第三点，就像是在实数上的曲线一样。&lt;/p>
 &lt;p>在此给出我们的例子，(18,8)是我们要到达的点。然后将 y 值 8 翻转为 −8 并将其除以 19 取余，这将会得到(18,11)。 因此，A 和 B 的和为(18,11)。&lt;/p>
 &lt;p>为了让这更容易被理解，我个人非常喜欢将其以甜甜圈的形状呈现在 3D 空间中，就像 &lt;a class="link" href="https://www.youtube.com/watch?v=mFVKuFZ29Fc&amp;amp;list=PLN9KZDpNfsHMd7d7PX87JGesGY_Qzyb3V&amp;amp;index=2" target="_blank" rel="noopener"
 >Trustica 的关于 ECC 的视频系列&lt;/a>那样：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 128;
-flex-basis: 308px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png" data-size="1358x1056">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-donut.png"
 width="1358"
 height="1056"
 loading="lazy"
-alt="elliptic-curve-on-field-donut">
-&lt;/a>
-&lt;figcaption>elliptic-curve-on-field-donut&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-on-field-donut"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="308px"
+>&lt;/p>
 &lt;p>但是考虑到我正在写一篇文章，所以在此将其以简单的 2D 图像呈现出来更加容易。&lt;/p>
 &lt;p>现在，让我们向 A + B 点添加一个新点 C = (10,14)：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 150;
-flex-basis: 362px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png" data-size="937x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png"
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-ab-plus-c.png"
 width="937"
 height="621"
 loading="lazy"
-alt="elliptic-curve-on-field-ab-plus-c">
-&lt;/a>
-&lt;figcaption>elliptic-curve-on-field-ab-plus-c&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>接下来，让我们看看群律的关联性是否仍适用于有限域，这一次我们首先添加 B + C 点：&lt;/p>
-&lt;p>&lt;figure
+alt="elliptic-curve-on-field-ab-plus-c"
 class="gallery-image"
-style="
-flex-grow: 147;
-flex-basis: 355px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png" data-size="922x623">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png"
+data-flex-grow="150"
+data-flex-basis="362px"
+>&lt;/p>
+&lt;p>接下来，让我们看看群律的关联性是否仍适用于有限域，这一次我们首先添加 B + C 点：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-b-plus-c.png"
 width="922"
 height="623"
 loading="lazy"
-alt="elliptic-curve-on-field-b-plus-c">
-&lt;/a>
-&lt;figcaption>elliptic-curve-on-field-b-plus-c&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>然后，我们将 A 加到 B + C 点：&lt;/p>
-&lt;p>&lt;figure
+alt="elliptic-curve-on-field-b-plus-c"
 class="gallery-image"
-style="
-flex-grow: 148;
-flex-basis: 356px"
->
-&lt;a href="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png" data-size="922x621">
-&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png"
+data-flex-grow="147"
+data-flex-basis="355px"
+>&lt;/p>
+&lt;p>然后，我们将 A 加到 B + C 点：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve-on-field-a-plus-bc.png"
 width="922"
 height="621"
 loading="lazy"
-alt="elliptic-curve-on-field-a-plus-bc">
-&lt;/a>
-&lt;figcaption>elliptic-curve-on-field-a-plus-bc&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="elliptic-curve-on-field-a-plus-bc"
+class="gallery-image"
+data-flex-grow="148"
+data-flex-basis="356px"
+>&lt;/p>
 &lt;p>是的，它们最终都在同一个点(14,16)：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="n">a_b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>
-&lt;span class="n">b_c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>
-&lt;span class="p">(&lt;/span>&lt;span class="n">a_b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b_c&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>(Point(p=19, x=14, y=16), Point(p=19, x=14, y=16))
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">a_b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">b_c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">a_b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b_c&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;pre tabindex="0">&lt;code>(Point(p=19, x=14, y=16), Point(p=19, x=14, y=16))
 &lt;/code>&lt;/pre>&lt;p>现在你可能会问，在有限域上如何对一个点进行自加操作？是的，对一个点进行自加操作也是遵循与实数域相同的规则，即用有限域上的切线连接第三点。正如我们已经展示的它如何处理实数一样，我们不想在这里重复一遍，或者说实际上是因为我很懒😅。&lt;/p>
 &lt;p>最后，由于有限域仅在整数上进行运算，所以我们不会损失任何精度。这令它更适合用于密码学。&lt;/p></description></item><item><title>从 Debian 迁移到 Arch Linux</title><link>https://viflythink.com/Try_Arch_Linux/</link><pubDate>Sun, 03 Nov 2019 14:34:27 +0000</pubDate><guid>https://viflythink.com/Try_Arch_Linux/</guid><description>&lt;img src="https://viflythink.com/Try_Arch_Linux/show.jpg" alt="Featured image of post 从 Debian 迁移到 Arch Linux" />&lt;p>在用了将近两年的 Debian 后，我打算尝试另一个与 Debian 存在较大差别的发行版，做了一番比较后（&lt;del>并没有&lt;/del>）选择了相比 Debian 激进许多（经常需要滚包）的 Arch Linux。其实我在刚开始使用 Debian 时便听说过 Arch Linux 了，这都要归功于活跃的&lt;a class="link" href="https://www.archlinuxcn.org/" target="_blank" rel="noopener"
 > Arch Linux 中文社区&lt;/a>，里面的人整天忙着安利 Arch Linux（&lt;del>传教&lt;/del>），而且，&lt;a class="link" href="https://wiki.archlinux.org/index.php/Main_page_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="noopener"
@@ -1802,21 +1472,15 @@ alt="elliptic-curve-on-field-a-plus-bc">
 sudo systemctl start v2ray.service
 &lt;/code>&lt;/pre>
 &lt;p>如果想让桌面应用走代理，可以在 KDE 的系统设置中点击“网络”中的设置，然后点击“代理”，选中“使用系统代理服务器配置”，填入对应的代理信息，示例如下：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 145;
-flex-basis: 350px"
->
-&lt;a href="https://viflythink.com/Try_Arch_Linux/set_kde_proxy.png" data-size="1074x736">
-&lt;img src="https://viflythink.com/Try_Arch_Linux/set_kde_proxy.png"
+&lt;p>&lt;img src="https://viflythink.com/Try_Arch_Linux/set_kde_proxy.png"
 width="1074"
 height="736"
 loading="lazy"
-alt="KDE 设置系统代理">
-&lt;/a>
-&lt;figcaption>KDE 设置系统代理&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="KDE 设置系统代理"
+class="gallery-image"
+data-flex-grow="145"
+data-flex-basis="350px"
+>&lt;/p>
 &lt;p>另外，V2Ray 支持 ShadowSocks 协议，可根据&lt;a class="link" href="https://www.v2ray.com/chapter_02/protocols/shadowsocks.html" target="_blank" rel="noopener"
 > V2Ray 官方文档&lt;/a>写出配置文件，也可使用&lt;a class="link" href="https://www.veekxt.com/utils/v2ray_gen" target="_blank" rel="noopener"
 >在线工具&lt;/a>生成；如果你使用 SSR 翻墙，AUR 中有&lt;a class="link" href="https://aur.archlinux.org/packages/electron-ssr/" target="_blank" rel="noopener"
@@ -1860,36 +1524,24 @@ export GTK_IM_MODULE=&amp;quot;fcitx&amp;quot;
 export QT_IM_MODULE=&amp;quot;fcitx&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;p>另外，需要更改一下输入法配置，操作步骤是右键点击托盘中的输入法图标，选择“配置”，修改后的配置如下图所示（按 Shift 键可切换中英文）：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 83;
-flex-basis: 199px"
->
-&lt;a href="https://viflythink.com/Try_Arch_Linux/set_fcitx_1.png" data-size="683x820">
-&lt;img src="https://viflythink.com/Try_Arch_Linux/set_fcitx_1.png"
+&lt;p>&lt;img src="https://viflythink.com/Try_Arch_Linux/set_fcitx_1.png"
 width="683"
 height="820"
 loading="lazy"
-alt="输入法配置图1">
-&lt;/a>
-&lt;figcaption>输入法配置图1&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>&lt;figure
+alt="输入法配置图1"
 class="gallery-image"
-style="
-flex-grow: 83;
-flex-basis: 200px"
->
-&lt;a href="https://viflythink.com/Try_Arch_Linux/set_fcitx_2.png" data-size="681x816">
-&lt;img src="https://viflythink.com/Try_Arch_Linux/set_fcitx_2.png"
+data-flex-grow="83"
+data-flex-basis="199px"
+>&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Try_Arch_Linux/set_fcitx_2.png"
 width="681"
 height="816"
 loading="lazy"
-alt="输入法配置图2">
-&lt;/a>
-&lt;figcaption>输入法配置图2&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="输入法配置图2"
+class="gallery-image"
+data-flex-grow="83"
+data-flex-basis="200px"
+>&lt;/p>
 &lt;p>最后，将我已经在 Debian 上调校好的 Rime 输入法配置文件拷贝过来（调校 Rime 的教程太多了，这里懒得贴了～），就能畅快地输入中文了。&lt;/p>
 &lt;h1 id="多媒体">多媒体&lt;/h1>
 &lt;p>这里选择在 Debian 上非常熟悉的 MPV 和 Rhythmbox 作为视频和音频播放器，之所以选择 MPV 是因为我已经有了一套&lt;a class="link" href="https://github.com/vifly/dotfiles/blob/master/mpv/.config/mpv/mpv.conf" target="_blank" rel="noopener"
@@ -1898,21 +1550,15 @@ alt="输入法配置图2">
 &lt;pre>&lt;code>yay -S rhythmbox-tray-icon
 &lt;/code>&lt;/pre>
 &lt;p>安装好插件后记得点击 Rhythmbox 右上角的设置按钮-&amp;gt;“插件”，在弹出的窗口中勾选刚安装的插件以激活插件效果，如下图：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 130;
-flex-basis: 312px"
->
-&lt;a href="https://viflythink.com/Try_Arch_Linux/rhythmbox_plugin.png" data-size="778x598">
-&lt;img src="https://viflythink.com/Try_Arch_Linux/rhythmbox_plugin.png"
+&lt;p>&lt;img src="https://viflythink.com/Try_Arch_Linux/rhythmbox_plugin.png"
 width="778"
 height="598"
 loading="lazy"
-alt="Rhythmbox 插件">
-&lt;/a>
-&lt;figcaption>Rhythmbox 插件&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="Rhythmbox 插件"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+>&lt;/p>
 &lt;p>除此以外，我还推荐 rhythmbox-equalizer 插件，安装后可调整 EQ。&lt;/p>
 &lt;h1 id="生产力">生产力&lt;/h1>
 &lt;p>属于生产力的工具有很多，我在这里只选择分享几个比较重要的工具。如果平常使用的生产力工具没有 Linux 客户端，或许可用网页版代替客户端（连网页版都没有的话，折腾下 wine 或放弃在 Linux 下使用吧）。&lt;/p>
@@ -1926,21 +1572,15 @@ alt="Rhythmbox 插件">
 >扫盲 Firefox 定制——从“user.js”到“omni.ja”&lt;/a>进行更高级的定制。另外，从安全补丁的及时性这一角度来说，我也更推荐这两个浏览器，而不是基于这两者的衍生版。&lt;/p>
 &lt;h2 id="代码编辑器与ide">代码编辑器与IDE&lt;/h2>
 &lt;p>要问对程序猿而言最重要的生产力工具是什么，回答肯定是代码编辑器或 IDE。目前在 Linux 下我喜欢的编辑器就是 Visual Studio Code（简称 VS Code）了，虽然这是微软出品的（别跟 VS 搞混了，两者之间的差别非常大），不过用了以后还是要说一句“真香！”。它可以胜任多种需求，常见的 Python、C/C++等完全不在话下，也可以用作 Markdown 写作，像本文就是在 VS Code 下完成的，当然，值得一提的还有美观的界面，开箱即用的设置，这都令它在短时间内打动了我，再配合各种扩展，带来的是十分舒适的体验。对于 VS Code，我目前推荐 TabNine 以及 Markdown Preview Enhanced 这两个扩展，前者带来优秀的主流编程语言自动补全，后者带来更高级的 Markdown 预览体验（例如查看 LaTex）。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 184;
-flex-basis: 441px"
->
-&lt;a href="https://viflythink.com/Try_Arch_Linux/vs_code.png" data-size="1920x1043">
-&lt;img src="https://viflythink.com/Try_Arch_Linux/vs_code.png"
+&lt;p>&lt;img src="https://viflythink.com/Try_Arch_Linux/vs_code.png"
 width="1920"
 height="1043"
 loading="lazy"
-alt="VS Code 图">
-&lt;/a>
-&lt;figcaption>VS Code 图&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="VS Code 图"
+class="gallery-image"
+data-flex-grow="184"
+data-flex-basis="441px"
+>&lt;/p>
 &lt;p>如果需要一个 IDE 的话，我推荐由 JetBrains 出品的 IDE，应该有不少人用过它家的 PyCharm 了，除此以外，Clion(C/C++)与 IntelliJ IDEA(Java)也是非常优秀的 IDE，至少在目前来说，Clion 对 Cmake 项目的支持可比 VS 好多了。另外，配合 Github 的学生认证可以白嫖 JetBrains 的产品，在此强烈推荐学生党尝试一下 Clion。&lt;/p>
 &lt;h2 id="笔记">笔记&lt;/h2>
 &lt;p>作为一个程序猿，总是会有记录笔记的需求，我目前有相当一部分的笔记资料储存在 EverNote 这个云笔记上，而它并没有 Linux 官方客户端，不过，得益于它的开放 API，早就有开发者做了一个在 Linux 下的客户端：NixNote（原名 Nevernote），Arch Linux 官方仓库有这个软件包：&lt;/p>
@@ -1987,10 +1627,10 @@ alt="VS Code 图">
 &lt;p>选好框架后，快来选择一个经典的模型上车吧。以我所在的计算机视觉领域举例来说，经典的模型包括 LeNet 5、AlexNet、VGG 等，各个框架都自带了这些经典模型（Pytorch 的在 torchvision 中），先根据官方文档提供的 demo 实际训练一下模型，看一下 CNN 在图片分类上的效果（选择图片分类任务是因为目前该领域最成熟），这里提供 Pytorch 的一个&lt;a class="link" href="https://github.com/pytorch/examples/blob/master/imagenet/README.md" target="_blank" rel="noopener"
 >demo&lt;/a>。稍微了解了训练流程后，接下来便应该读使用的 demo 中创建神经网络的代码了，例如可以看 Pytorch 官方的&lt;a class="link" href="https://github.com/pytorch/vision/blob/master/torchvision/models/vgg.py" target="_blank" rel="noopener"
 >VGG模型实现代码&lt;/a>。应该如何阅读这部分的代码呢？我建议与原论文或原论文的解析文章进行对照，&lt;strong>将模型结构图与模型代码联系起来&lt;/strong>，因为以后很有可能需要根据模型结构图与描述使用框架构建对应的模型，或者根据模型代码深入理解模型结构，强烈建议在入门阶段便开始锻炼这方面的能力，这与刚入门编程时敲很多代码以熟悉语法和编程有点相似，不同的是：在编程领域这是为了熟悉从现实抽象出来的问题与代码之间的联系，而在这里是为了熟悉模型整体架构与构建出的模型代码之间的联系。当然，急着应用深度学习到实际项目的话可以放低一点要求，知道如何修改现有模型代码的输入层与输出层就可以了。假如觉得代码太长，不够直观，那么直接输出模型结构看看（Pytorch）：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="kn">import&lt;/span> &lt;span class="nn">torchvision.models&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">models&lt;/span>
-&lt;span class="n">model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">models&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">vgg16&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Keras 也可以进行这个操作，使用 model.summary()即可。先不理会 demo 的其它部分代码，好好消化构建模型的方法，这是我觉得入门阶段最适合的方案，因为我觉得入门阶段就接触核心向的东西（深度学习比较简单，所以能在起始阶段便接触偏核心的问题，其它领域不一定喔）能避免以后可能遇到的不少弯路，&lt;del>假如重来一遍，我也不知道这样是不是能保证一切顺利&lt;/del>。虽然我在上文当中都是以计算机视觉举例，不过相信想学习 NLP 的读者也可以从中举一反三，知道该如何通过实战进行入门。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">torchvision.models&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="nn">models&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">model&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">models&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">vgg16&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Keras 也可以进行这个操作，使用 model.summary()即可。先不理会 demo 的其它部分代码，好好消化构建模型的方法，这是我觉得入门阶段最适合的方案，因为我觉得入门阶段就接触核心向的东西（深度学习比较简单，所以能在起始阶段便接触偏核心的问题，其它领域不一定喔）能避免以后可能遇到的不少弯路，&lt;del>假如重来一遍，我也不知道这样是不是能保证一切顺利&lt;/del>。虽然我在上文当中都是以计算机视觉举例，不过相信想学习 NLP 的读者也可以从中举一反三，知道该如何通过实战进行入门。&lt;/p>
 &lt;h1 id="下一步">下一步？&lt;/h1>
 &lt;p>我们直击重点的入门教程算是结束了，&lt;del>虽然我在开头说过自己踩了不少坑，但是写完这篇文章后发现好像并没有怎么提到自己踩过的坑&lt;/del>，我知道很多人会问接下来该干什么？在这里我真的可以说一说下一步该干什么。还记得上面的实战部分并没有提到关于读取数据等方面的内容吗，在日后的实战当中，读取数据并输入神经网络其实也是一个重要的部分，除非你确定以后只需使用主流的公开数据集，不然这部分知识就是必需的。接下来你可以先尝试在自己已能成功运行的 demo 上更换负责读取数据集的代码（更换后的代码不应该使用框架提供的常见数据集的 API，如读取 Imagenet 的 API），让模型使用另一个数据集进行训练完成相同的任务（如图片分类），这部分工作可能会花上几天时间，但是完成以后你应该就能真正理解如何向神经网络中输入数据了，除此以外，你有可能会顺便了解到一些数据预处理的简单操作，在实战当中，使用的数据集与模型的原作者使用的数据集总是不同，无论如何，&lt;strong>一定要参考原作者的数据预处理步骤&lt;/strong>，不然有可能出现很大的指标差异。&lt;/p>
 &lt;p>弄完了上面提到的东西，接下来真的可以说是海阔天空了，接下来的路就是无数个分叉口，入门后的你可以尝试使用神经网络做一个简单的实战项目，例如：用户上传图片，服务器返回分类结果（早已有大厂提供这个 API 了）；也可以找老师开始下一步的科研；当然也可以继续自学，只不过需要自己把握学习方向了。总之，未来就在脚下，&lt;del>祝各位在炼丹的路上一切顺利&lt;/del>。&lt;/p></description></item><item><title>Debian 安装 Matomo (Piwik) 开源统计分析服务</title><link>https://viflythink.com/Install_Matomo_on_Debian/</link><pubDate>Sun, 18 Aug 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/Install_Matomo_on_Debian/</guid><description>&lt;img src="https://viflythink.com/Install_Matomo_on_Debian/show.jpg" alt="Featured image of post Debian 安装 Matomo (Piwik) 开源统计分析服务" />&lt;h1 id="前言">前言&lt;/h1>
@@ -2094,37 +1734,25 @@ rmdir piwik
 &lt;h2 id="在google-play上添加外币信用卡作为付款方式">在Google Play上添加外币信用卡作为付款方式&lt;/h2>
 &lt;p>与申请信用卡相比，这节内容可以说是简单多了，直接根据图片操作即可（我已经添加了付款地址，如果之前尚未添加，那么在要求输入付款地址时可以随便输入相关信息，亲测姓名和地址等信息可以与信用卡上的信息不同；另外，确保信用卡里有大于等于 1 美元的余额/额度）：&lt;br>
 1.打开 Google Play，在侧边栏找到“付款方式”并点击&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 58;
-flex-basis: 140px"
->
-&lt;a href="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/payment_method.jpg" data-size="1071x1834">
-&lt;img src="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/payment_method.jpg"
+&lt;p>&lt;img src="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/payment_method.jpg"
 width="1071"
 height="1834"
 loading="lazy"
-alt="付款方式">
-&lt;/a>
-&lt;figcaption>付款方式&lt;/figcaption>
-&lt;/figure>&lt;/p>
-&lt;p>2.点击“添加信用卡或借记卡”，按照要求输入信用卡卡号，CVC 码，有效日期（别填错了！！！）等&lt;/p>
-&lt;p>&lt;figure
+alt="付款方式"
 class="gallery-image"
-style="
-flex-grow: 57;
-flex-basis: 138px"
->
-&lt;a href="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/add_card.jpg" data-size="1059x1835">
-&lt;img src="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/add_card.jpg"
+data-flex-grow="58"
+data-flex-basis="140px"
+>&lt;/p>
+&lt;p>2.点击“添加信用卡或借记卡”，按照要求输入信用卡卡号，CVC 码，有效日期（别填错了！！！）等&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/How_to_apply_for_non_UnionPay_credit_and_shopping_as_college_student/add_card.jpg"
 width="1059"
 height="1835"
 loading="lazy"
-alt="添加信用卡或借记卡">
-&lt;/a>
-&lt;figcaption>添加信用卡或借记卡&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="添加信用卡或借记卡"
+class="gallery-image"
+data-flex-grow="57"
+data-flex-basis="138px"
+>&lt;/p>
 &lt;p>3.假如一切顺利的话，现在即可使用信用卡在 Google Play 上购买东西了，出现问题的话可参考《&lt;a class="link" href="https://sspai.com/post/45933" target="_blank" rel="noopener"
 >学生党 Google Play 剁手经验分享&lt;/a>》中的“添加卡片并购物”一节进行解决，懒得与客服沟通的话可以先试着申请美区 PayPal 帐号，然后选择美区 PayPal 作为付款方式。&lt;/p>
 &lt;h2 id="一些小贴士">一些小贴士&lt;/h2>
@@ -2166,21 +1794,15 @@ rss: atom.xml
 &lt;h3 id="google">Google&lt;/h3>
 &lt;p>前往 Google 搜索的&lt;a class="link" href="https://search.google.com/search-console/ownership" target="_blank" rel="noopener"
 >控制台&lt;/a>添加自己的博客地址即可，Google 提供了几种验证方式:&lt;br>
-&lt;figure
-class="gallery-image"
-style="
-flex-grow: 85;
-flex-basis: 204px"
->
-&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png" data-size="627x735">
 &lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/google_add_site.png"
 width="627"
 height="735"
 loading="lazy"
-alt="Google 的网站所有权验证">
-&lt;/a>
-&lt;figcaption>Google 的网站所有权验证&lt;/figcaption>
-&lt;/figure> &lt;br>
+alt="Google 的网站所有权验证"
+class="gallery-image"
+data-flex-grow="85"
+data-flex-basis="204px"
+> &lt;br>
 对于 Material 主题，请使用 HTML 标记或 Google 分析（假如你的博客使用了 Google 分析）进行验证，具体操作只需看&lt;a class="link" href="https://github.com/viosey/material-theme-docs/blob/master/intro-zh-cn.md" target="_blank" rel="noopener"
 >官方文档&lt;/a>。&lt;/p>
 &lt;h3 id="bing必应">Bing（必应）&lt;/h3>
@@ -2189,21 +1811,15 @@ alt="Google 的网站所有权验证">
 &lt;pre>&lt;code>&amp;lt;% if(theme.head.site_verification.bing) { %&amp;gt;&amp;lt;meta name=&amp;quot;msvalidate.01&amp;quot; content=&amp;quot;&amp;lt;%= theme.head.site_verification.bing %&amp;gt;&amp;quot; /&amp;gt;&amp;lt;% } %&amp;gt;
 &lt;/code>&lt;/pre>
 &lt;p>&lt;strong>注意，我感觉这里的 meta name 不一定对于每个人都适用，请观察一下 Bing 提供的 HTML 代码后再修改 head.ejs。&lt;/strong>&lt;br>
-&lt;figure
-class="gallery-image"
-style="
-flex-grow: 130;
-flex-basis: 312px"
->
-&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png" data-size="1023x785">
 &lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/bing_add_site.png"
 width="1023"
 height="785"
 loading="lazy"
-alt="Bing 的网站所有权验证">
-&lt;/a>
-&lt;figcaption>Bing 的网站所有权验证&lt;/figcaption>
-&lt;/figure>
+alt="Bing 的网站所有权验证"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+>
 在复制了“&amp;lt;meta name=&amp;ldquo;msvalidate.01&amp;rdquo; content=&amp;ldquo;xxxxxxxxxx&amp;rdquo; /&amp;gt;”中的 xxxxxxxxxx 对应的值后，在主题的_config.yml 中进行修改：&lt;/p>
 &lt;pre>&lt;code>site_verification:
 bing: xxxxxxxxxx
@@ -2224,21 +1840,15 @@ baidu:
 >“SEO 技巧！如何最快时间让 Google 收录你的页面”&lt;/a>中了解到了如何让 Google 及时收录新发布的博文，然而 Google 的控制台页面已经进行了改版，经过一番搜索，在&lt;a class="link" href="https://support.google.com/webmasters/answer/9012289" target="_blank" rel="noopener"
 > Google 官方的帮助文档&lt;/a>找到了新的提交新页面的方法，打开&lt;a class="link" href="https://www.google.com/webmasters/tools" target="_blank" rel="noopener"
 >https://www.google.com/webmasters/tools&lt;/a>，转到网址检查，输入你的新页面的网址，这就可以及时提交新的网页了。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 187;
-flex-basis: 448px"
->
-&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png" data-size="1414x756">
-&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/submit_new_address.png"
 width="1414"
 height="756"
 loading="lazy"
-alt="网址检查">
-&lt;/a>
-&lt;figcaption>网址检查&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="网址检查"
+class="gallery-image"
+data-flex-grow="187"
+data-flex-basis="448px"
+>&lt;/p>
 &lt;h2 id="seo-进阶">SEO 进阶&lt;/h2>
 &lt;p>为了让搜索引擎更好地爬取我们的网页，还需要使用一些技巧。这一部分主要参考了 &lt;a class="link" href="https://hoxis.github.io/Hexo&amp;#43;Next%20SEO%E4%BC%98%E5%8C%96.html" target="_blank" rel="noopener"
 >Hexo 博客 Next 主题 SEO 优化方法&lt;/a>这一博文，虽然 Material 主题与 Next 主题不同，不过有不少地方还是共通的。&lt;/p>
@@ -2276,23 +1886,17 @@ description: 你的博文描述
 &lt;/ol>
 &lt;h3 id="自定义的域名与-github-page-的绑定">自定义的域名与 GitHub Page 的绑定&lt;/h3>
 &lt;p>买好了域名，接下来要做的事就是让我们的域名能够指向自己的博客啦。这个操作流程十分简单，只需前往自己的域名服务商的控制面板，然后参考这条&lt;a class="link" href="https://www.zhihu.com/question/31377141/answer/87541858" target="_blank" rel="noopener"
->知乎回答&lt;/a>进行操作，只需在域名解析当中添加两条 CNAME 记录让域名（以我的域名为例就是 viflythink.com 和 &lt;a class="link" href="http://www.viflythink.com" target="_blank" rel="noopener"
+>知乎回答&lt;/a>进行操作，只需在域名解析当中添加两条 CNAME 记录让域名（以我的域名为例就是 viflythink.com 和 &lt;a class="link" href="https://www.viflythink.com" target="_blank" rel="noopener"
 >www.viflythink.com&lt;/a> ）指向 xxxxxx.github.io，大概就是下面这样： &lt;br>
-&lt;figure
-class="gallery-image"
-style="
-flex-grow: 358;
-flex-basis: 861px"
->
-&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png" data-size="621x173">
 &lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog_advanced/set_dns.png"
 width="621"
 height="173"
 loading="lazy"
-alt="设置DNS解析">
-&lt;/a>
-&lt;figcaption>设置DNS解析&lt;/figcaption>
-&lt;/figure>&lt;br>
+alt="设置DNS解析"
+class="gallery-image"
+data-flex-grow="358"
+data-flex-basis="861px"
+>&lt;br>
 然后在 source 目录下新建一个叫 CNAME 的文本文件，里面填入你的域名（如 viflythink.com），与不少网上的操作不同，我们这里并不需要绑定 GitHub 的 IP，因为有时候 IP 地址会变化，所以绑定 xxxxxx.github.io 会更好。&lt;/p>
 &lt;h3 id="启用-https-加密">启用 HTTPS 加密&lt;/h3>
 &lt;p>为了保证读者的隐私，防止 ISP 的广告植入，稍微提高自己的网站在搜索引擎中的权重，我们需要为自己的域名启用 HTTPS 加密，当你成功启用 HTTPS 加密后读者访问你的网站时就会看到浏览器上出现一个绿色小锁头了，整个步骤也不难，这里参考了&lt;a class="link" href="https://tzhou2018.github.io/2018/04/%E4%B8%BAGitHub-Pages%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%B9%B6%E6%B7%BB%E5%8A%A0SSL-%E5%BC%80%E5%90%AFHTTPS%E5%BC%BA%E5%88%B6/" target="_blank" rel="noopener"
@@ -2400,10 +2004,10 @@ jQuery(&amp;quot;#myslogan&amp;quot;).html(randomSlogan.content);
 &lt;p>使用 Material 主题后，运行 hexo s 后打开网页报错：&lt;/p>
 &lt;pre tabindex="0">&lt;code>Unhandled rejection TypeError: /home/blog/themes/Material/layout/layout.ejs:3
 1| &amp;lt;!DOCTYPE html&amp;gt;
-2| &amp;lt;html style=&amp;quot;display: none;&amp;quot; &amp;lt;% if(config.language !== null) { %&amp;gt;lang=&amp;quot;&amp;lt;%- config.language.substring(0,2) %&amp;gt;&amp;quot;&amp;lt;% } %&amp;gt;&amp;gt;
-&amp;gt;&amp;gt; 3| &amp;lt;%- partial('_partial/head') %&amp;gt;
+2| &amp;lt;html style=&amp;#34;display: none;&amp;#34; &amp;lt;% if(config.language !== null) { %&amp;gt;lang=&amp;#34;&amp;lt;%- config.language.substring(0,2) %&amp;gt;&amp;#34;&amp;lt;% } %&amp;gt;&amp;gt;
+&amp;gt;&amp;gt; 3| &amp;lt;%- partial(&amp;#39;_partial/head&amp;#39;) %&amp;gt;
 4|
-5| &amp;lt;% if(page.layout === 'gallery') { %&amp;gt;
+5| &amp;lt;% if(page.layout === &amp;#39;gallery&amp;#39;) { %&amp;gt;
 &lt;/code>&lt;/pre>&lt;p>在官方仓库的 issues 中找到了&lt;a class="link" href="https://github.com/viosey/hexo-theme-Material/issues/686" target="_blank" rel="noopener"
 >解决方法&lt;/a>，需要对 layout/_widget/dnsprefetch.ejs 进行修改：&lt;br>
 将&lt;/p>
@@ -2448,38 +2052,26 @@ layout: about
 >超详细Hexo+Github博客搭建小白教程&lt;/a>，打开&lt;a class="link" href="https://github.com" target="_blank" rel="noopener"
 >github&lt;/a>并登录你的帐号，如果你还没在 github 帐号中添加 ssh key，请参考&lt;a class="link" href="https://gist.github.com/yisibl/8019693" target="_blank" rel="noopener"
 >这篇文章&lt;/a>进行添加。接着点击右上角的个人头像，再点击 Your repositories：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 215;
-flex-basis: 518px"
->
-&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png" data-size="868x402">
-&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/go_to_repositories.png"
 width="868"
 height="402"
 loading="lazy"
-alt="进入项目页面">
-&lt;/a>
-&lt;figcaption>进入项目页面&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="进入项目页面"
+class="gallery-image"
+data-flex-grow="215"
+data-flex-basis="518px"
+>&lt;/p>
 &lt;p>点击右侧的 New 新建项目。当然，你也可以直接点击&lt;a class="link" href="https://github.com/new" target="_blank" rel="noopener"
 >这个链接&lt;/a>新建项目。输入自己的项目名字，后面一定要加.github.io 后缀，README 初始化也要勾上。&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 126;
-flex-basis: 303px"
->
-&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png" data-size="780x616">
-&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/new_repositories.png"
 width="780"
 height="616"
 loading="lazy"
-alt="新建项目">
-&lt;/a>
-&lt;figcaption>新建项目&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="新建项目"
+class="gallery-image"
+data-flex-grow="126"
+data-flex-basis="303px"
+>&lt;/p>
 &lt;p>创建好项目后，点击 Settings，向下拉到最后有个 GitHub Pages，点击 Choose a theme 选择一个主题。然后等一会儿就可看到页面了。&lt;/p>
 &lt;h2 id="正式部署到github-pages">正式部署到Github Pages&lt;/h2>
 &lt;p>打开&lt;strong>站点配置文件&lt;/strong>，按以下示例进行修改：&lt;/p>
@@ -2489,21 +2081,15 @@ repository: 你的github项目地址
 branch: master
 &lt;/code>&lt;/pre>
 &lt;p>repository 填写的应是类似于 &lt;a class="link" href="mailto:git@github.com" >git@github.com&lt;/a>:vifly/viflyblog.github.io.git 这样的 ssh 地址。假如你不知道地址，那么可以打开你在 github 上的这个项目，点击右侧的 Clone or download，就会出现所需的地址：&lt;/p>
-&lt;p>&lt;figure
-class="gallery-image"
-style="
-flex-grow: 230;
-flex-basis: 552px"
->
-&lt;a href="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png" data-size="1066x463">
-&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png"
+&lt;p>&lt;img src="https://viflythink.com/Use_GithubPages_and_Hexo_to_build_blog/view_repositories_url.png"
 width="1066"
 height="463"
 loading="lazy"
-alt="查看项目ssh地址">
-&lt;/a>
-&lt;figcaption>查看项目ssh地址&lt;/figcaption>
-&lt;/figure>&lt;/p>
+alt="查看项目ssh地址"
+class="gallery-image"
+data-flex-grow="230"
+data-flex-basis="552px"
+>&lt;/p>
 &lt;p>最后，发布到 Github Pages：&lt;/p>
 &lt;pre>&lt;code>hexo d
 &lt;/code>&lt;/pre>
