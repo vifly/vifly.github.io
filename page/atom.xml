@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Vifly 的博客</title><link>https://viflythink.com/page/</link><description>Recent content in Pages on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://viflythink.com/page/atom.xml" rel="self" type="application/rss+xml"/><item><title>GPG key</title><link>https://viflythink.com/gpg/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/gpg/</guid><description>&lt;p>&lt;em>2022.2.25.更新：更新了我的公钥，旧公钥已不再使用。&lt;/em>&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Vifly 的博客</title><link>https://viflythink.com/page/</link><description>Recent content in Pages on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 28 May 2019 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/page/atom.xml" rel="self" type="application/rss+xml"/><item><title>GPG key</title><link>https://viflythink.com/gpg/</link><pubDate>Tue, 28 May 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/gpg/</guid><description>&lt;p>&lt;em>2022.2.25.更新：更新了我的公钥，旧公钥已不再使用。&lt;/em>&lt;/p>
 &lt;p>如果你想与我进行足够安全的通信，那么可以使用 GPG 加密信息，以下是我的 GPG 公钥：&lt;/p>
 &lt;pre tabindex="0">&lt;code>-----BEGIN PGP PUBLIC KEY BLOCK-----
 mQINBGIYzI4BEACor5KDr4jKWiv6hO5B/3/1tDh1ussz0zHPcJiPyl8oYPX899xK
@@ -109,7 +109,7 @@ Q9jbTWanOkjFlitDSmg=
 =qWTW
 -----END PGP PUBLIC KEY BLOCK-----
 &lt;/code>&lt;/pre>&lt;p>将上面以&lt;code>-----BEGIN PGP PUBLIC KEY BLOCK-----&lt;/code>作为开头，以&lt;code>-----END PGP PUBLIC KEY BLOCK-----&lt;/code>作为结尾的文本保存到文本文件中，然后使用 &lt;code>gpg --import public.txt&lt;/code> （假设你把这段文本保存到 public.txt）导入我的公钥。在导入公钥后，请核对密钥指纹：&lt;/p>
-&lt;p>7629 42D8 8B9D CF46 5B06 5498 C4C3 D145 FC74 3104&lt;/p></description></item><item><title>Service</title><link>https://viflythink.com/service/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/service/</guid><description>&lt;p>目前，除了博客以外，我还有一些公共可用的服务，本页面用于列出这些服务并配上相应的说明。&lt;/p>
+&lt;p>7629 42D8 8B9D CF46 5B06 5498 C4C3 D145 FC74 3104&lt;/p></description></item><item><title>Service</title><link>https://viflythink.com/service/</link><pubDate>Tue, 28 May 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/service/</guid><description>&lt;p>目前，除了博客以外，我还有一些公共可用的服务，本页面用于列出这些服务并配上相应的说明。&lt;/p>
 &lt;h1 id="arch-软件源">Arch 软件源&lt;/h1>
 &lt;p>&lt;a class="link" href="https://archrepo.viflythink.com" target="_blank" rel="noopener"
 >https://archrepo.viflythink.com&lt;/a>&lt;/p>
@@ -136,7 +136,7 @@ Server = https://archrepo.viflythink.com
 &lt;p>&lt;a class="link" href="https://share.viflythink.com" target="_blank" rel="noopener"
 >https://share.viflythink.com&lt;/a>&lt;/p>
 &lt;p>还有一个存在感较低的文件分享服务，目前仅用于分发上面所需的签名公钥。&lt;/p>
-&lt;p>其中的文件都存放在我的服务器上。&lt;/p></description></item><item><title>About</title><link>https://viflythink.com/about/</link><pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/about/</guid><description>&lt;h1 id="about-me">About me&lt;/h1>
+&lt;p>其中的文件都存放在我的服务器上。&lt;/p></description></item><item><title>About</title><link>https://viflythink.com/about/</link><pubDate>Sun, 28 Apr 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/about/</guid><description>&lt;h1 id="about-me">About me&lt;/h1>
 &lt;p>Hello, world! &lt;br>
 我是谁呢？这个问题并不是那么容易回答，如果是从现实角度来说，我是一个普通的大学生，喜欢折腾技术与阅读，值得一提的就是目前在学习深度学习（&lt;del>炼丹&lt;/del>）。 &lt;br>
 但是，这短短几句话不足以说明我是谁，我还有很多东西没说，最起码，我应该说清楚我喜欢什么与讨厌什么：&lt;/p>
@@ -172,5 +172,5 @@ data-flex-basis="179px"
 &lt;h1 id="交换友链">交换友链&lt;/h1>
 &lt;p>欢迎各位与我交换博客友链，想要交换友链的话，可以通过上面的联系方式联系我，或者直接在任意博文下留言，以下是一些可能用到的信息：&lt;/p>
 &lt;p>博客简述：Vifly 的自留地，既包括技术折腾记录，也有对于各种东西的感想。&lt;br>
-头像：https://viflythink.com/img/avatar.png&lt;/p></description></item><item><title>Archives</title><link>https://viflythink.com/archives/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/archives/</guid><description/></item><item><title>Tags</title><link>https://viflythink.com/tags/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate><guid>https://viflythink.com/tags/</guid><description/></item><item><title>Links</title><link>https://viflythink.com/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://viflythink.com/links/</guid><description>&lt;p>这里存放了各位友人们的博客站点链接，相信其中总有一些博文能引起你的兴趣。&lt;/p>
+头像：https://viflythink.com/img/avatar.png&lt;/p></description></item><item><title>Archives</title><link>https://viflythink.com/archives/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/archives/</guid><description/></item><item><title>Tags</title><link>https://viflythink.com/tags/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/tags/</guid><description/></item><item><title>Links</title><link>https://viflythink.com/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://viflythink.com/links/</guid><description>&lt;p>这里存放了各位友人们的博客站点链接，相信其中总有一些博文能引起你的兴趣。&lt;/p>
 &lt;p>列表按友链添加时间先后排序。&lt;/p></description></item><item><title>Search</title><link>https://viflythink.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://viflythink.com/search/</guid><description/></item></channel></rss>
