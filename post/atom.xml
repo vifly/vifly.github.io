@@ -25,9 +25,14 @@ data-flex-basis="451px"
 &lt;p>第二小题找起来有点麻烦，首先找到&lt;a class="link" href="https://lug.ustc.edu.cn/wiki/lug/events/sfd/#2022-%E5%B9%B4-sfd" target="_blank" rel="noopener"
 > USTC LUG 的软件自由日历史记录&lt;/a>，然后打开“闪电演讲：《GNOME Wayland 使用体验：一个普通用户的视角》”对应的&lt;a class="link" href="https://ftp.lug.ustc.edu.cn/%E6%B4%BB%E5%8A%A8/2022.9.20_%E8%BD%AF%E4%BB%B6%E8%87%AA%E7%94%B1%E6%97%A5/slides/gnome-wayland-user-perspective.pdf" target="_blank" rel="noopener"
 > slides&lt;/a>，在其中找到如下内容：&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/gnome_wayland_kdenlive.png"
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2022_writeups/gnome_wayland_kdenlive.png"
+width="1236"
+height="666"
 loading="lazy"
 alt="GNOME Wayland 下的 KDE 程序问题"
+class="gallery-image"
+data-flex-grow="185"
+data-flex-basis="445px"
 >&lt;/p>
 &lt;p>在看到截图中标题包含的 HD 1080p 25 fps 以及菜单内容后，我们可以合理猜测这是一个视频剪辑应用，而 KDE 家的著名视频剪辑应用当然就是 Kdenlive。&lt;/p>
 &lt;p>第三小题玩了一个今年的梗，该梗出自&lt;a class="link" href="https://hostloc.com/thread-1078729-1-1.html" target="_blank" rel="noopener"
