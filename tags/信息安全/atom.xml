@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>信息安全 on Vifly 的博客</title><link>https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</link><description>Recent content in 信息安全 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 31 Oct 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/atom.xml" rel="self" type="application/rss+xml"/><item><title>2021 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2021_writeups/</link><pubDate>Sun, 31 Oct 2021 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2021_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/show.jpg" alt="Featured image of post 2021 中科大信息安全大赛题解" />&lt;p>这是我第二次参加 Hackergame 了，今年依然玩的很开心，感受到了来自不同领域的考验，更开心的是与&lt;a class="link" href="https://viflythink.com/Hackergame_2020_writeups/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>信息安全 on Vifly 的博客</title><link>https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</link><description>Recent content in 信息安全 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 05 Nov 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/atom.xml" rel="self" type="application/rss+xml"/><item><title>2022 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2022_writeups/</link><pubDate>Sat, 05 Nov 2022 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2022_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2022_writeups/show.jpg" alt="Featured image of post 2022 中科大信息安全大赛题解" />&lt;p>又到了游玩 Hackergame 的时节，欢迎各位读者阅读本期的年更博文。今年博主拿到了 1300 分，与&lt;a class="link" href="https://viflythink.com/Hackergame_2021_writeups/" target="_blank" rel="noopener"
+>上一年&lt;/a>相比，得分有所增加，排名反倒落后了😂；尽管如此，今年依然玩的很开心，下面就让我分享一下自己的题解吧。&lt;/p>
+&lt;h1 id="签到">签到&lt;/h1>
+&lt;p>打开题目页面，随便点了两下后点击“提交”，发现跳转到的页面 URL 中含有一个 result 参数，既然是 web 方向的题目，那么估计今年的签到题也是简单修改一下请求参数就可以拿到 flag 了，注意到题目描述中有：&lt;/p>
+&lt;blockquote>
+&lt;p>在 CPU 来得及反应之前顺利签下 2022&lt;/p>
+&lt;/blockquote>
+&lt;p>根据这个提示把 result 的值改为 2022 试试，flag 就这样出现了：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2022_writeups/get_2022_qiandao_flag.png"
+width="1915"
+height="1018"
+loading="lazy"
+alt="成功获取签到题的 flag"
+class="gallery-image"
+data-flex-grow="188"
+data-flex-basis="451px"
+>&lt;/p>
+&lt;h1 id="猫咪问答喵">猫咪问答喵&lt;/h1>
+&lt;p>这次的题目与之前两次的猫咪问答有点区别，基本上没有什么提问适合用暴力破解的方式解决，所以今年我全靠谷歌搜索完成。&lt;/p>
+&lt;p>第一小题，直接搜索关键词找到一篇&lt;a class="link" href="https://cybersec.ustc.edu.cn/2022/0826/c23847a565848/page.htm" target="_blank" rel="noopener"
+>新闻稿&lt;/a>，里面提到：&lt;/p>
+&lt;blockquote>
+&lt;p>中国科学技术大学“星云战队（Nebula）”成立于2017年3月&lt;/p>
+&lt;/blockquote>
+&lt;p>第二小题找起来有点麻烦，首先找到&lt;a class="link" href="https://lug.ustc.edu.cn/wiki/lug/events/sfd/#2022-%E5%B9%B4-sfd" target="_blank" rel="noopener"
+> USTC LUG 的软件自由日历史记录&lt;/a>，然后打开“闪电演讲：《GNOME Wayland 使用体验：一个普通用户的视角》”对应的&lt;a class="link" href="https://ftp.lug.ustc.edu.cn/%E6%B4%BB%E5%8A%A8/2022.9.20_%E8%BD%AF%E4%BB%B6%E8%87%AA%E7%94%B1%E6%97%A5/slides/gnome-wayland-user-perspective.pdf" target="_blank" rel="noopener"
+> slides&lt;/a>，在其中找到如下内容：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/gnome_wayland_kdenlive.png"
+loading="lazy"
+alt="GNOME Wayland 下的 KDE 程序问题"
+>&lt;/p>
+&lt;p>在看到截图中标题包含的 HD 1080p 25 fps 以及菜单内容后，我们可以合理猜测这是一个视频剪辑应用，而 KDE 家的著名视频剪辑应用当然就是 Kdenlive。&lt;/p>
+&lt;p>第三小题玩了一个今年的梗，该梗出自&lt;a class="link" href="https://hostloc.com/thread-1078729-1-1.html" target="_blank" rel="noopener"
+> Windows 2000 撑不下去了，还有其他 NT4.0 的系统可以用吗？&lt;/a>，该帖子里的楼主说经过他修改的 Firefox 能用到 28.0，而根据&lt;a class="link" href="https://support.mozilla.org/en-US/questions/1052888#answer-706143" target="_blank" rel="noopener"
+> Mozilla 技术支持的说法&lt;/a>，官方支持 Windows 2000 的最后一个版本是 12.0，所以答案是 12。&lt;/p>
+&lt;p>第四小题是最麻烦的，搜索“CVE-2021-4034”与“Linux kernel argc == 0”等关键词后找到&lt;a class="link" href="https://lwn.net/Articles/882799/" target="_blank" rel="noopener"
+> LWN 上的一篇文章&lt;/a>，当中提到了&lt;a class="link" href="https://lwn.net/ml/linux-kernel/20220126043947.10058-1-ariadne@dereferenced.org/" target="_blank" rel="noopener"
+>最早尝试修复这个漏洞的补丁&lt;/a>，根据这个补丁的内容，其修改了 fs/exec.c 中 do_execveat_common 函数的逻辑。接下来该怎么找对应的提交哈希值呢，在 Linux 内核官网的 Git 前端找？这可太麻烦了，值得庆幸的是内核源码在 GitHub 是有镜像仓库的，所以使用 GitHub 网页的 Blame 功能就比较轻松了，打开其中的 &lt;a class="link" href="https://github.com/torvalds/linux/blob/master/fs/exec.c" target="_blank" rel="noopener"
+>fs/exec.c&lt;/a>，点击 Blame 按钮然后 Ctrl + F 查找 do_execveat_common，就可以找到&lt;a class="link" href="https://github.com/torvalds/linux/blame/27bc50fc90647bbf7b734c3fc306a5e61350da53/fs/exec.c#L1900" target="_blank" rel="noopener"
+>已经经过修复的代码所在的位置&lt;/a>了，在网页左侧显示的就是&lt;a class="link" href="https://github.com/torvalds/linux/commit/dcd46d897adb70d63e025f175a00a89797d31a43" target="_blank" rel="noopener"
+>我们要找的提交&lt;/a>。&lt;/p>
+&lt;p>第五小题，直接搜索“e4:ff:65:d7:be:5d:c8:44:1d:89:6b:50:f5:50:a0:ce”这一串指纹，找到了一条&lt;a class="link" href="https://gist.github.com/jandryuk/61b286220447300ba9dca0faa26526dd" target="_blank" rel="noopener"
+> Gist 记录&lt;/a>，所以该指纹对应的域名就是 sdf.org。&lt;/p>
+&lt;p>最后一道小题，搜索“USTC 网络通定价”的话首先就能看到&lt;a class="link" href="https://www.ustc.edu.cn/info/1057/4931.htm" target="_blank" rel="noopener"
+>这个通知&lt;/a>，当我据此输入 2011-01-01 后发现这是错的，仔细一看下面的价格变更表，发现网络通的价格没有变动，所以这里应该再查找通知开头提到的“网字〔2003〕1号《关于实行新的网络费用分担办法的通知》”，&lt;a class="link" href="http://ustcnet.ustc.edu.cn/2003/0301/c11109a210890/pagem.htm" target="_blank" rel="noopener"
+>其中&lt;/a>提到 2003 年 3 月 1 日起实行，由此得到 2003-03-01 这一正确答案。&lt;/p>
+&lt;h1 id="家目录里的秘密">家目录里的秘密&lt;/h1>
+&lt;p>尝试使用 ripgrep 暴力搜索 flag 相关的文字：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2022_writeups/rg_find_flag.png"
+width="506"
+height="125"
+loading="lazy"
+alt="使用 rg 搜索包含 flag 的文件"
+class="gallery-image"
+data-flex-grow="404"
+data-flex-basis="971px"
+>&lt;/p>
+&lt;h2 id="vs-code-里的-flag">VS Code 里的 flag&lt;/h2>
+&lt;p>逐个查看找到的文件，在 .config/Code/User/History/2f23f721/DUGV.c 的第五行找到了 flag。&lt;/p>
+&lt;h1 id="heilang">HeiLang&lt;/h1>
+&lt;p>黑话与蛇语有什么联系呢，研究一下本题给出的代码后就会发现所谓的 HeiLang 就是一个简单的 Python 魔改版。要用 Python 解释器执行的话，需要先转换一下语法，把含有“|”的语句展开为 Python 的列表赋值语句。总的来说是很轻松的文本查找替换工作，这里我写了&lt;a class="link" href="https://gist.github.com/vifly/1f23c692a07967c3a3175579656177cd#file-convert_hei-py" target="_blank" rel="noopener"
+>一个脚本&lt;/a>用来生成可以符合 Python 语法的 getflag.py。&lt;em>PS：也可以不保存然后直接用 eval 执行。&lt;/em>&lt;/p>
+&lt;h1 id="xcaptcha">Xcaptcha&lt;/h1>
+&lt;p>如何证明自己是机器人，在一秒内解出三道计算题就行了。从题目描述来看是需要自己写代码进行计算了，本题可以算是 Web 爬虫的入门考验，没有任何反爬措施，只要发送请求获取网页内容，然后从中提取要计算的题目并把计算后的结果通过 post 请求发送回去即可。看&lt;a class="link" href="https://gist.github.com/vifly/1f23c692a07967c3a3175579656177cd#file-hack_xcaptcha-py" target="_blank" rel="noopener"
+>我的脚本&lt;/a>就可以理解这样一个简单的爬虫是如何实现的。&lt;/p>
+&lt;h1 id="旅行照片-20">旅行照片 2.0&lt;/h1>
+&lt;p>难得的社会工程学题目，再次说明了一张照片能暴露多少个人信息，此类题目都十分有趣，本题也不算难，仅仅是照片上的体育馆横幅文字就能看出拍摄地点在千叶市 Zozo 海洋球馆附近。虽说如此，上一年的旅行照片我没解出来，今年的这道题则因为没找到能免费显示五个月前航班历史记录的网站而没解决第二小题。&lt;em>PS：赛后发现 &lt;a class="link" href="https://globe.adsbexchange.com/?r" target="_blank" rel="noopener"
+>ADSB Exchange&lt;/a> 提供了免费的长期历史回放功能，但由于其界面过于复古，我在比赛时没找到该功能。😂&lt;/em>&lt;/p>
+&lt;h2 id="照片分析">照片分析&lt;/h2>
+&lt;p>安装 &lt;a class="link" href="https://exiftool.org" target="_blank" rel="noopener"
+>exiftool&lt;/a> 就可以查看照片的 EXIF 信息：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">exiftool ./travel-photo-2.jpg
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里有点坑的地方在于其显示的 EXIF 信息版本需要转换一下，0231 需要转为 2.31 才是正确的答案，其它的答案都是对照 EXIF 填写即可。&lt;/p>
+&lt;h1 id="latex-机器人">LaTeX 机器人&lt;/h1>
+&lt;h2 id="纯文本">纯文本&lt;/h2>
+&lt;p>又是一个因完全信任用户输入而导致 flag 泄露的案例。我并不熟悉 LaTeX，在阅读了后端代码后以为是要在输入的 LaTeX 语句中注入 Shell 命令才能拿到 flag，随手一搜“LaTeX inject”就找到了&lt;a class="link" href="https://0day.work/hacking-with-latex/" target="_blank" rel="noopener"
+>说明 CTF 中 LaTeX 可利用之处的文章&lt;/a>。按该文的说法，存在 -no-shell-escape 参数的情况下，在 LaTeX 中执行 Shell 命令是不行的，但 LaTeX 自身就有一个用于读取文件的宏：\input，所以第一小题只需要输入&lt;code>\input{/flag1}&lt;/code>就能把 flag 放到返回的图片中，然后对图片进行 OCR 并补上括号就可以完成本题了。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2022_writeups/get_flag1_from_latex_bot.png"
+width="1027"
+height="703"
+loading="lazy"
+alt="从 LaTex 机器人获取 flag"
+class="gallery-image"
+data-flex-grow="146"
+data-flex-basis="350px"
+>&lt;/p>
+&lt;h1 id="flag-的痕迹">Flag 的痕迹&lt;/h1>
+&lt;p>Dokuwiki 作为一个成熟的软件，我们恐怕难以能找到绕过其 Action 管理的方法，所以需要从其它的方向着手。首先想到的是管理员是否忘记禁用某些同样能查看历史记录的接口，先从可能未禁用的 Action 开始尝试，翻阅&lt;a class="link" href="https://www.dokuwiki.org/devel:action_modes" target="_blank" rel="noopener"
+> Dokuwiki 支持的 Action 列表&lt;/a>，发现在 revisions 下面有 diff 这个 Action，从名字来看它也是能获取历史记录的，于是尝试访问 http://202.38.93.111:15004/doku.php?do=diff 并发现 diff 没被禁用，查看之前的版本差异就得到了 flag。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2022_writeups/get_flag_from_dokuwiki.png"
+width="1918"
+height="1017"
+loading="lazy"
+alt="从 Dokuwiki 获取 flag"
+class="gallery-image"
+data-flex-grow="188"
+data-flex-basis="452px"
+>&lt;/p>
+&lt;h1 id="微积分计算小练习">微积分计算小练习&lt;/h1>
+&lt;p>对我来说本题是兼具挑战性与趣味性的一道题目。首先从后端代码开始思考，可以看出其主要的逻辑就是先转换用户提供的 URL（杜绝访问外网的可能性）并把 flag 放到 cookie 里，用 headless chrome 访问转换后的 URL，执行 JavaScript 代码查询网页元素并把结果打印出来。&lt;/p>
+&lt;p>到此目标就很清楚了：想办法把 cookie 的内容偷出来，而能否取得 flag 与是否把微积分题目全做出来毫无关系。要获取 cookie 的内容，我们只能从输入的 URL 开始着手，因为从后端代码就可以看出没有其它的选项，所以现在的问题就变成了有什么办法能构造出一个 URL 让浏览器执行任意的代码。仔细一想，这不就是&lt;a class="link" href="https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting" target="_blank" rel="noopener"
+> XSS 攻击&lt;/a>吗，真没想到会遇到一道需要参赛者构造 XSS 攻击的题目。&lt;/p>
+&lt;p>要进行 XSS 攻击，首先要做的就是阅读目标站点的前端代码，从中寻找可供利用的地方。对于我们来说，浏览器访问的是展示测试分数的页面，所以该页面就是目标页面，其中重要的代码如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-JavaScript" data-lang="JavaScript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">urlParams&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;result&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">b64decode&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">atob&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">result&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#greeting&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">innerHTML&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;您好，&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">username&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;！&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">querySelector&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;#score&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">innerHTML&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;您在练习中获得的分数为 &amp;lt;b&amp;gt;&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">score&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;&amp;lt;/b&amp;gt;/100。&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以看出这首先会对 result 参数进行 base64 解码，进行一番字符串操作后获得分数和姓名（上面已省略），最后更改对应的元素以进行显示。base64 解码和字符串操作看上去都没什么可利用的地方，那剩下的可能性就隐藏在显示部分了。回想起来，直接对 innerHTML 进行操作是一个不安全的行为，有可能利用这点吗？谷歌“XSS innerHTML”直接就找到了&lt;a class="link" href="https://gist.github.com/caike/35522c3da161d29fc2ce" target="_blank" rel="noopener"
+>一个例子&lt;/a>，先在做题页面输入名字 &lt;code>&amp;lt;img src=x onerror=&amp;quot;alert(42)&amp;quot;&amp;gt;&lt;/code> 试试，检查随后打开的显示结果的页面是不是弹出了内容为 42 的对话框。&lt;/p>
+&lt;p>测试成功后我们就可以开始构造实际的 payload 了，要做的事情就是把名字改为 &lt;code>&amp;lt;img src=x onerror='document.querySelector(&amp;quot;#score&amp;quot;).innerHTML=document.cookie'&amp;gt;&lt;/code>，这样做会导致原本应该显示分数的地方被改为显示 cookie，交给 headless chrome 访问后就可以拿到 flag 了。所以本题输入 http://202.38.93.111:10056/share?result=MDo8aW1nIHNyYz14IG9uZXJyb3I9J2RvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoIiNzY29yZSIpLmlubmVySFRNTD1kb2N1bWVudC5jb29raWUnPg%3D%3D 这个 URL 就能解决，你也可以通过以下命令构造 result 参数（我用的是 Zsh，注意 Shell 对引号的转义）：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Zsh" data-lang="Zsh">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;0:&amp;lt;img src=x onerror=&amp;#39;document.querySelector(\&amp;#34;#score\&amp;#34;).innerHTML=document.cookie&amp;#39;&amp;gt;&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> base64
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>拿到的 flag 是 flag{xS5_1OI_is_N0t_SOHARD_03d2ec39d4}，嗯，XSS 入门并不难。&lt;/p>
+&lt;h1 id="一些没做出来的题目">一些没做出来的题目&lt;/h1>
+&lt;p>家目录里的秘密的第二小题，虽然我知道 flag2 应该在 .config/rclone/rclone.conf 里，但居然没想到里面的 pass 项是以密文形式存储的，需要阅读 Rclone 中的对应源码才能将其还原为明文获取 flag。&lt;/p>
+&lt;p>猜数字，我只能说没有熟读 IEEE 754 标准真是容易吃亏啊，计算机的浮点数表示总有些违反直觉，本题就体现了这一点：对于任意 a，a ≠ NaN 成立，但 a &amp;lt; NaN 或 NaN &amp;lt; a 均不成立。所以对应的代码用了一种很奇怪的方式判断猜测的数字是否正确：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Java" data-lang="Java">&lt;span class="line">&lt;span class="cl">&lt;span class="n">var&lt;/span> &lt;span class="n">isLess&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">guess&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">number&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1e&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">6&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">var&lt;/span> &lt;span class="n">isMore&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">guess&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">number&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">1e&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">6&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">2&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">var&lt;/span> &lt;span class="n">isPassed&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">!&lt;/span>&lt;span class="n">isLess&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="o">!&lt;/span>&lt;span class="n">isMore&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>二次元神经网络，作为一个炼丹师看到这题可谓是倍感亲切。除非弄个 web 九宫格，神经网络也算 web 类题目，不然本题是不需要参赛者训练神经网络的，我也猜出需要在上传的模型中注入代码并让其被执行，只是因懒得想需要执行什么代码才能拿到 flag 就放弃了。这道题提醒了我们要通过模型进行 RCE（任意代码执行）是如此的简单，所以不要随便加载从网上下载的模型。虽说如此，就我个人观察而言，别说只是想玩下 AI 生成图片的业余人士，就算是业内人士也有不少并不在意这个安全问题，感觉这会成为一个常见的安全风险来源。&lt;/p>
+&lt;h1 id="总结">总结&lt;/h1>
+&lt;p>很不巧的，今年的比赛期间我正好沉迷于斯普拉遁3，所以没投入太多时间和精力来打比赛；而且这一年来也没怎么研究 binary 与 math 类的题目，所以对于这些类型的题目束手无策。总之，虽说今年的比赛也玩的挺开心，但并没有什么进步，我对于没能在 Hackergame 成功挑战自我这一点还是有些遗憾的，希望明年的自己能够更进一步吧。&lt;/p></description></item><item><title>2021 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2021_writeups/</link><pubDate>Sun, 31 Oct 2021 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2021_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2021_writeups/show.jpg" alt="Featured image of post 2021 中科大信息安全大赛题解" />&lt;p>这是我第二次参加 Hackergame 了，今年依然玩的很开心，感受到了来自不同领域的考验，更开心的是与&lt;a class="link" href="https://viflythink.com/Hackergame_2020_writeups/" target="_blank" rel="noopener"
 >上一年&lt;/a>的 800 分相比，今年拿到了 1150 分，有所进步😂。虽然我做出来的题并不多，而且有些简单的题目没解决，但还是写一篇博文提供题解吧。希望本篇博文能够帮到想参加 Hackergame 的各位小伙伴。&lt;/p>
 &lt;h1 id="签到">签到&lt;/h1>
 &lt;p>与上一年的签到题相比，今年连脑筋急转弯都不需要了，每次点 Next 时间都会 +1s（唐突玩梗），我们只要把时间翻到本届大赛的举办日期即可，也就是说需要计算出 1970 年 1 月 1 日与 2021 年 CTF 大赛的时间差（用秒表示）。这里随便选取一个符合 2021 年 CTF 大赛时间范围的时间，然后使用 Python 计算：&lt;/p>
