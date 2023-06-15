@@ -130,8 +130,8 @@ Server = https://archrepo.viflythink.com
 &lt;h2 id="使用方法-1">使用方法&lt;/h2>
 &lt;p>与使用其它第三方软件源相同，首先导入签名公钥。由于 apt-key 会在 Debian 12 被废弃，所以这里不使用 apt-key 导入公钥。&lt;/p>
 &lt;pre tabindex="0">&lt;code>wget -qO - &amp;#39;https://share.viflythink.com/debian-repo.key&amp;#39; | gpg --dearmor | sudo tee /usr/share/keyrings/vifly-keyring.gpg &amp;amp;&amp;gt; /dev/null
-&lt;/code>&lt;/pre>&lt;p>接着在 sources.list.d 添加软件源，记得把 bullseye（对应 Debian 11）改为最新的稳定版系统代号（codename）。&lt;/p>
-&lt;pre tabindex="0">&lt;code>echo &amp;#39;deb [signed-by=/usr/share/keyrings/vifly-keyring.gpg] https://debianrepo.viflythink.com/ bullseye main&amp;#39; | sudo tee /etc/apt/sources.list.d/vifly.list
+&lt;/code>&lt;/pre>&lt;p>接着在 sources.list.d 添加软件源，记得把 bookworm（对应 Debian 12）改为最新的稳定版系统代号（codename）。&lt;/p>
+&lt;pre tabindex="0">&lt;code>echo &amp;#39;deb [signed-by=/usr/share/keyrings/vifly-keyring.gpg] https://debianrepo.viflythink.com/ bookworm main&amp;#39; | sudo tee /etc/apt/sources.list.d/vifly.list
 &lt;/code>&lt;/pre>&lt;h1 id="文件分享">文件分享&lt;/h1>
 &lt;p>&lt;a class="link" href="https://share.viflythink.com" target="_blank" rel="noopener"
 >https://share.viflythink.com&lt;/a>&lt;/p>
