@@ -400,7 +400,8 @@ data-flex-grow="229"
 data-flex-basis="551px"
 >&lt;/p>
 &lt;p>注意，页面中间的域名是 Cloudflare Workers 分配给你的一个专属子域名（形如 xxx.xxx.workers.dev），复制这个域名并用它替换左侧代码中的两处域名，完成修改后点击 Save and Deploy 保存并部署，这样我们就得到了一个可以反代网络资源的应用了。&lt;/p>
-&lt;p>最后，还记得在上一小节中被忽略的 ProxyURL 配置项吗，这里各位只需填入刚刚得到的 xxx.xxx.workers.dev 域名就可以了，脚本会使用这个反代域名高速下载 GitHub Releases 的软件包。&lt;/p></description></item><item><title>将 KDE 改造为 Windows 10</title><link>https://viflythink.com/KDE_to_Windows10/</link><pubDate>Wed, 01 Jan 2020 10:08:32 +0800</pubDate><guid>https://viflythink.com/KDE_to_Windows10/</guid><description>&lt;img src="https://viflythink.com/KDE_to_Windows10/show.jpg" alt="Featured image of post 将 KDE 改造为 Windows 10" />&lt;p>2020 年已然到来，一些博主已经发表了年度总结，总结了不少经验，我想了想，觉得自己好像没什么可以总结的经验，只好写一篇最近的 KDE 折腾记录给各位读者当新年礼物了。想必有不少刚开始使用 Linux 的新手总想着美化自己的桌面吧，我在开始使用 KDE 后也想着折腾美化，随便搜索了一下美化教程后发现不少都是将 KDE 改造为 Mac 风格的，之前听闻 KDE 粉说过“你可以将 KDE 捏成任何形状”，然而很多人都是将它捏成 Mac 的样子，那么，能把 KDE 捏成 win10 的形状吗？我决定挑战一下这个问题，当然，在这里我要承认这有点标题党的嫌疑，我只是想将我认为 win10 做得好的部分转嫁到 KDE 上，并不是将 KDE 完全变为 win10 的样子，后者是一件费力不讨好的事情，而且，在经过一波折腾后，我发现有些细节还暂时无法做到像 win10 那样优秀，只能寄希望于未来了。另外，本文只适用于 Arch，我尚未在其它发行版进行测试。&lt;/p>
+&lt;p>最后，还记得在上一小节中被忽略的 ProxyURL 配置项吗，这里各位只需填入刚刚得到的 xxx.xxx.workers.dev 域名就可以了，脚本会使用这个反代域名高速下载 GitHub Releases 的软件包。&lt;/p></description></item><item><title>将 KDE 改造为 Windows 10</title><link>https://viflythink.com/KDE_to_Windows10/</link><pubDate>Wed, 01 Jan 2020 10:08:32 +0800</pubDate><guid>https://viflythink.com/KDE_to_Windows10/</guid><description>&lt;img src="https://viflythink.com/KDE_to_Windows10/show.jpg" alt="Featured image of post 将 KDE 改造为 Windows 10" />&lt;p>&lt;em>2023.6.18.更新：为适配新版本的 KDE 以及找到了更好的方案，本文大部分内容已被更新。注意旧的一些配图依然有所保留，所以不要对截图风格不统一感到奇怪。&lt;/em>&lt;/p>
+&lt;p>2020 年已然到来，一些博主已经发表了年度总结，总结了不少经验，我想了想，觉得自己好像没什么可以总结的经验，只好写一篇最近的 KDE 折腾记录给各位读者当新年礼物了。想必有不少刚开始使用 Linux 的新手总想着美化自己的桌面吧，我在开始使用 KDE 后也想着折腾美化，随便搜索了一下美化教程后发现不少都是将 KDE 改造为 Mac 风格的，之前听闻 KDE 粉说过“你可以将 KDE 捏成任何形状”，然而很多人都是将它捏成 Mac 的样子，那么，能把 KDE 捏成 win10 的形状吗？我决定挑战一下这个问题，当然，在这里我要承认这有点标题党的嫌疑，我只是想将我认为 win10 做得好的部分转嫁到 KDE 上，并不是将 KDE 完全变为 win10 的样子，后者是一件费力不讨好的事情，而且，在经过一波折腾后，我发现有些细节还暂时无法做到像 win10 那样优秀，只能寄希望于未来了。另外，本文只适用于 Arch，我尚未在其它发行版进行测试。&lt;/p>
 &lt;p>先上一张图片看看改造后的效果（图中标注了下文用到的名词所指代的东西）：&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/my_kde_desktop.png"
 width="1920"
@@ -415,27 +416,27 @@ data-flex-basis="426px"
 &lt;h1 id="底部栏">底部栏&lt;/h1>
 &lt;p>在没有打开任何窗口时，底部栏是与 win10 相差最远的一个地方，所以我们的改造工作先从底部栏开始。可以先看看改造完成后的底部栏效果图：&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/my_bottom.png"
-width="1920"
-height="50"
+width="2558"
+height="52"
 loading="lazy"
 alt="底部栏"
 class="gallery-image"
-data-flex-grow="3840"
-data-flex-basis="9216px"
+data-flex-grow="4919"
+data-flex-basis="11806px"
 >&lt;/p>
 &lt;h2 id="开始菜单">开始菜单&lt;/h2>
-&lt;p>喜欢 win10 那简洁的开始菜单吗，在 KDE 下只需安装一个部件（widgets）即可拥有同样的体验。下载 &lt;a class="link" href="https://store.kde.org/p/1160672/" target="_blank" rel="noopener"
->Tiled Menu&lt;/a>，并在底部栏空白处单击右键，然后点击“添加部件”，按照下图所示进行安装。&lt;/p>
+&lt;p>喜欢 win10 那简洁的开始菜单吗，在 KDE 下只需安装一个挂件（widgets）即可拥有同样的体验。下载 &lt;a class="link" href="https://store.kde.org/p/1160672/" target="_blank" rel="noopener"
+>Tiled Menu&lt;/a>，并在底部栏空白处单击右键，然后点击“添加挂件”，按照下图所示进行安装。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/install_widget.png"
 width="288"
 height="880"
 loading="lazy"
-alt="安装部件"
+alt="安装挂件"
 class="gallery-image"
 data-flex-grow="32"
 data-flex-basis="78px"
 >&lt;/p>
-&lt;p>想要使用的话有两种方法：在你左下角的开始菜单处鼠标右键单击，选择“显示替代方案”，选择 Tiled Menu；在底部栏右键单击，选择“编辑面板”，鼠标移到原来的开始菜单，选择移除，然后选择“添加部件”，选择 Tiled Menu。你可以在弹出的开始菜单右上角按住 ALT 和 鼠标右键进行拖拽以更改菜单大小。&lt;/p>
+&lt;p>想要使用的话有两种方法：在你左下角的开始菜单处鼠标右键单击，选择“显示替代方案”，选择 Tiled Menu；在底部栏右键单击，选择“编辑面板”，鼠标移到原来的开始菜单，选择移除，然后选择“添加挂件”，选择 Tiled Menu。你可以在弹出的开始菜单右上角按住 ALT 和 鼠标右键进行拖拽以更改菜单大小。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_start_menu.png"
 width="1920"
 height="232"
@@ -445,49 +446,8 @@ class="gallery-image"
 data-flex-grow="827"
 data-flex-basis="1986px"
 >&lt;/p>
-&lt;p>另外，想实现像在 Windows 那样按下 win 键便弹出开始菜单这一点，还需要做一点设置：右键单击开始菜单并选择“配置Tiled Menu”，点击“Keyboard shortcuts”，然后在下面截图所示位置左键单击并顺序按下 ALT 和 F1 键。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_tiled_menu_shortcut.png"
-width="1040"
-height="811"
-loading="lazy"
-alt="设置 Tiled Menu 的快捷键"
-class="gallery-image"
-data-flex-grow="128"
-data-flex-basis="307px"
->&lt;/p>
-&lt;h2 id="毛玻璃效果">毛玻璃效果&lt;/h2>
-&lt;p>是否觉得在我的截图中的底部栏非常好看呢，这在很大程度上都是毛玻璃效果带来的。想要做到这样的效果，只需安装一个被称为 &lt;a class="link" href="https://store.kde.org/p/1084931/" target="_blank" rel="noopener"
->Breeze AlphaBlack&lt;/a> 的 Plasma Themes。下载完成后将其解压到 ~/.local/share/plasma/desktoptheme/，然后打开系统设置，在侧栏点击“Plasma 样式”，选择 Breeze AlphaBlack 并应用更改。重启电脑后就能在系统托盘处见到 AlphaBlack Control（长得像是个雨滴），单击即可进行调整：将“Accent Color”的“Panel, Widget, Window TitleBars &amp;amp; Frames”处的值改为 #343434（默认的纯黑不好看），将“Opacity”的“Panel”处的值调整为 10% 以加强底部栏透明度。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_alpha_black.png"
-width="636"
-height="607"
-loading="lazy"
-alt="设置 AlphaBlack"
-class="gallery-image"
-data-flex-grow="104"
-data-flex-basis="251px"
->&lt;/p>
-&lt;p>另外，你还可以通过以下方法令 QT 系的应用的右键菜单拥有毛玻璃效果：打开系统设置，在侧栏点击“应用程序风格”，选择“应用样式”，找到“微风”，点击右下角的配置按钮，点击“透明度”一栏，将透明度变大。将透明度变大能达到毛玻璃效果的原因是 KDE 默认的半透明是带有模糊效果的，而不是简单的透明，具体的模糊设置可在系统设置下的“工作空间行为”-&amp;gt;“桌面特效”中找到。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_style.png"
-width="1025"
-height="732"
-loading="lazy"
-alt="设置微风的应用程序风格"
-class="gallery-image"
-data-flex-grow="140"
-data-flex-basis="336px"
->&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze_transparency.png"
-width="583"
-height="461"
-loading="lazy"
-alt="设置微风的菜单透明度"
-class="gallery-image"
-data-flex-grow="126"
-data-flex-basis="303px"
->&lt;/p>
-&lt;h2 id="任务管理器部件">任务管理器部件&lt;/h2>
-&lt;p>依然是在底部栏右键单击，选择“编辑面板”，将鼠标移动到底部栏空白处，点击“显示替代方案”，选择图标任务管理器（Icon-Only Task Manager），然后你就可以看到类似于 win10 的底部窗口了，这里说明一下，图标任务管理器是自带的一个部件，无需安装。&lt;/p>
+&lt;h2 id="任务管理器挂件">任务管理器挂件&lt;/h2>
+&lt;p>依然是在底部栏右键单击，选择“编辑面板”，将鼠标移动到底部栏空白处，点击“显示替代方案”，选择图标任务管理器（Icon-Only Task Manager），然后你就可以看到类似于 win10 的底部窗口了，这里说明一下，图标任务管理器是自带的一个挂件，无需安装。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_manager.png"
 width="1920"
 height="250"
@@ -499,52 +459,91 @@ data-flex-basis="1843px"
 >&lt;/p>
 &lt;h2 id="快速查看已打开的窗口">快速查看已打开的窗口&lt;/h2>
 &lt;p>win10 可点击左下角的按钮快速查看已打开的窗口，在安装了 &lt;a class="link" href="https://store.kde.org/p/1181039" target="_blank" rel="noopener"
->Present Windows Button&lt;/a> 这个部件后，我们也可以做到这一点。这个部件的安装方法与 Tiled Menu 时相同，在安装完成后把这个部件放在开始菜单和任务管理器之间。这个部件产生的点击效果与在 Gnome 下将鼠标移动到屏幕左上角触发的效果差不多，KDE 也可设置这样的触发角，不过我觉得设置这样的一个按钮没什么实际意义，可能最大的好处就是没事点一下能有效消遣无聊吧（雾）。这里还有一个能让底部栏变得更美观的 Tips，在底部栏右键单击，选择“编辑面板”后点击“添加间距”，以此添加两个间距，将其缩到最小后对其右键取消勾选“设置可变大小”，然后将这两个间距拖到 Present Windows Button 两边，这能令 Present Windows Button 两边不会显得拥挤，从而变得美观。&lt;/p>
+>Present Windows Button&lt;/a> 这个挂件后，我们也可以做到这一点。这个挂件的安装方法与 Tiled Menu 时相同，在安装完成后把这个挂件放在开始菜单和任务管理器之间。这个挂件产生的点击效果与在 Gnome 下将鼠标移动到屏幕左上角触发的效果差不多，KDE 也可设置这样的触发角，不过我觉得设置这样的一个按钮没什么实际意义，可能最大的好处就是没事点一下能有效消遣无聊吧（雾）。这里还有一个能让底部栏变得更美观的 Tips，在底部栏右键单击，选择“编辑面板”后点击“添加间距”，以此添加两个间距，将其缩到最小后对其右键取消勾选“设置可变大小”，根据实际情况可能还需要把间距的空隔宽度设为非零值，然后将这两个间距拖到 Present Windows Button 两边，这能令 Present Windows Button 两边不会显得拥挤，从而变得美观。&lt;/p>
 &lt;h2 id="其它">其它&lt;/h2>
-&lt;p>想要在其他人面前假装自己在使用 win10 吗，将开始菜单的图标更换为 win10 开始菜单的图标无疑能让 KDE 变得更像 win10。你可以在 &lt;a class="link" href="https://www.iconfinder.com/icons/1220364/microsoft_window_windows_icon" target="_blank" rel="noopener"
->IconFinder&lt;/a> 上下载 win10 图标，也可使用我在该图标的基础上&lt;a class="link" href="https://1drv.ms/u/s!AnrGd4m50K7QbMyHxI-JM4EWUu4?e=0JXp1I" target="_blank" rel="noopener"
->使用 Inkscape 手动缩小后的 win10 图标&lt;/a>。右键单击开始菜单并选择“配置Tiled Menu”即可更换图标。我知道存在 &lt;a class="link" href="https://store.kde.org/p/1167558/" target="_blank" rel="noopener"
->Winux10&lt;/a> 之类的图标主题可以将默认的图标替换为 win10 图标，但我经过尝试后发现其覆盖不全面，用以截图假装自己在使用 win10 是可以的，但日常使用会感到违和，所以还是推荐使用默认的图标主题。让我们再关注另一个细节，那就是右下角的时钟，想让它像 win10 那样双栏显示日期和时间并不难：在底部栏空白处右键单击，选择“编辑面板”，左键按住“高度”并进行上下拖拽，这样可以调整面板高度，稍微调高一些后，右键单击时钟，选择“配置数字时钟”，勾选“显示日期”，并将时间显示改为24小时制。&lt;/p>
-&lt;h1 id="窗口装饰">窗口装饰&lt;/h1>
-&lt;p>KDE 的窗口装饰指的是打开的应用程序窗口的顶部部分（就是包含了最小化、最大化、关闭按钮的那一栏）。我在 Google 搜索如何让 KDE 变得像 win10 时发现了一个非常新的 KDE 主题 &lt;a class="link" href="https://github.com/fauzie811/Breeze10" target="_blank" rel="noopener"
->Breeze10&lt;/a>，从 Github 页面上的图片可以看出这个主题可以完美地将窗口装饰变为 win10 的风格。&lt;del>由于目前（2019年12月）还没人打包，所以需要按照其 Github 页面上的操作步骤进行编译安装&lt;/del>。AUR 上已有人打包，所以我们可以在终端输入指令安装（需要安装 Yay 这个 AUR 助手）：&lt;/p>
-&lt;pre>&lt;code>yay -S breeze10-kde-git
+&lt;p>我知道存在 &lt;a class="link" href="https://store.kde.org/p/1167558/" target="_blank" rel="noopener"
+>Winux10&lt;/a> 之类的图标主题可以将默认的图标替换为 win10 图标，但我经过尝试后发现其覆盖不全面，用以截图假装自己在使用 win10 是可以的，但日常使用会感到违和，所以还是推荐使用默认的图标主题。还有一个细节，那就是右下角的时钟，想让它像 win10 那样双栏显示日期和时间并不难：在底部栏空白处右键单击，选择“编辑面板”，编辑“面板高度”的值，稍微调高一些后，右键单击时钟，选择“配置数字时钟”，勾选“显示日期”，并将时间显示改为24小时制。&lt;/p>
+&lt;h1 id="样式大改">样式大改&lt;/h1>
+&lt;h2 id="桌面整体样式">桌面整体样式&lt;/h2>
+&lt;p>仅仅只是桌面布局接近 win10 是不够的，还有相当一部分的桌面细节可以继续改进。这一部分主要是对桌面面板的图标以及挂件的样式进行修改，基于 &lt;a class="link" href="https://github.com/vinceliuice/Fluent-kde" target="_blank" rel="noopener"
+>Fluent-kde&lt;/a> 这一项目来实现。Fluent-kde 包含了应用于各个方面的 Fluent 风格主题，由于我不打算折腾 Kvantum，所以仅使用其提供的 Plasma Desktop Themes。克隆 Fluent-kde 到本地后，进入项目目录并运行：&lt;/p>
+&lt;pre>&lt;code>cp -r ./plasma/desktoptheme/* ~/.local/share/plasma/desktoptheme
 &lt;/code>&lt;/pre>
-&lt;p>在安装完成后重启系统，打开系统设置，在侧栏点击“应用程序风格”，再点击“窗口装饰”，选择“Breeze10”并应用更改。另外，可以点击那个笔状的图标调整这个主题，例如把字体设置变大。完成后你的应用程序窗口会显得更为美观大方。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze10.png"
-width="1096"
-height="752"
+&lt;p>然后就可以在系统设置中的“外观”-&amp;gt;“Plasma 视觉风格”中找到新增加的几个主题了，选择自己喜欢的 Fluent 风格主题并点击“应用”即可。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_plasma_desktop_themes.png"
+width="1465"
+height="1024"
 loading="lazy"
-alt="使用 Breeze10"
+alt="设置 Plasma 视觉风格"
 class="gallery-image"
-data-flex-grow="145"
-data-flex-basis="349px"
+data-flex-grow="143"
+data-flex-basis="343px"
 >&lt;/p>
-&lt;h1 id="颜色">颜色&lt;/h1>
-&lt;p>该怎么说呢，我总觉得开源项目的美工总是不在线：KDE 默认的颜色并不具备所谓的“现代感”。如果你不知道这有多大的影响，可以看看下面使用默认微风与 &lt;a class="link" href="https://aur.archlinux.org/packages/canta-kde-git/" target="_blank" rel="noopener"
->Canta Light&lt;/a> 的 Dolphin 对比：&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/breeze_dolphin.png"
-width="890"
-height="656"
+&lt;h2 id="应用程序内部风格">应用程序内部风格&lt;/h2>
+&lt;p>经过上面的折腾后，桌面截图已经足够接近 win10 了，但一旦随便打开一个应用就会露馅，所以需要也让应用程序的风格向 win10 靠拢。首先我们需要安装 &lt;a class="link" href="https://github.com/Luwx/Lightly" target="_blank" rel="noopener"
+>Lightly&lt;/a> 主题，该主题虽然并非完全向 Fluent 靠拢，但也足够现代。由于目前其并不在积极维护状态，所以仅在 AUR 上有 PKGBUILD，可以在终端输入指令安装（需要安装 Yay 这个 AUR 助手）：&lt;/p>
+&lt;pre>&lt;code>yay -S lightly-git
+&lt;/code>&lt;/pre>
+&lt;p>在安装完成后重启系统，打开系统设置，在侧栏点击“外观”，再点击“应用程序风格”，选择“Lightly”并应用更改；此外为还建议点击那个笔状的图标调整这个主题，把透明度改为下图中的数值。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/use_lightly.png"
+width="1467"
+height="1026"
 loading="lazy"
-alt="微风 Dolphin"
+alt="应用 Lightly 主题"
+class="gallery-image"
+data-flex-grow="142"
+data-flex-basis="343px"
+>&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_lightly_transparency.png"
+width="731"
+height="649"
+loading="lazy"
+alt="设置 Lightly 透明度"
+class="gallery-image"
+data-flex-grow="112"
+data-flex-basis="270px"
+>&lt;/p>
+&lt;p>完成上面的操作随便打开一个 Qt 应用（如 Dolphin）都会发现其风格变得与 win10 应用很像，但 GTK 应用（如我使用的 lollypop）依然死性不改，原因就在于 GTK 应用与 Qt 应用所采用的主题是不一样的，为此我们需要安装同一个作者出品的 &lt;a class="link" href="https://www.gnome-look.org/p/1574551" target="_blank" rel="noopener"
+>Fluent round gtk theme&lt;/a>。打开该主题页面后选择并下载一个自己喜欢的 Fluent 主题，然后将其解压到 ~/.themes 下（如该路径不存在则自行创建），重回刚才设置应用程序风格的界面，点击“配置 GNOME/GTK 应用程序风格”，选择刚安装的主题并点击“应用”。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_gtk_app_theme.png"
+width="1465"
+height="1025"
+loading="lazy"
+alt="设置 GTK 应用风格"
+class="gallery-image"
+data-flex-grow="142"
+data-flex-basis="343px"
+>&lt;/p>
+&lt;p>此时可以看到 lollypop 的风格也向 win10 靠拢了。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/lollypop.png"
+width="1299"
+height="957"
+loading="lazy"
+alt="lollypop"
 class="gallery-image"
 data-flex-grow="135"
 data-flex-basis="325px"
 >&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/canta_light_dolphin.png"
-width="890"
-height="655"
-loading="lazy"
-alt="Canta Light Dolphin"
-class="gallery-image"
-data-flex-grow="135"
-data-flex-basis="326px"
->&lt;/p>
-&lt;p>很明显，Canta Light 主题看上去非常好看，AUR 上已有包，这里依然使用 Yay 安装：&lt;/p>
-&lt;pre>&lt;code>yay -S canta-kde-git
+&lt;h2 id="窗口装饰">窗口装饰&lt;/h2>
+&lt;p>KDE 的窗口装饰指的是打开的应用程序窗口的顶部部分（就是包含了最小化、最大化、关闭按钮的那一栏）。我在 Google 搜索如何让 KDE 变得像 win10 时发现了一个非常新的 KDE 主题 &lt;a class="link" href="https://github.com/fauzie811/Breeze10" target="_blank" rel="noopener"
+>Breeze10&lt;/a>，从 Github 页面上的图片可以看出这个主题可以完美地将窗口装饰变为 win10 的风格。&lt;del>由于目前（2019年12月）还没人打包，所以需要按照其 Github 页面上的操作步骤进行编译安装&lt;/del>。AUR 上已有 PKGBUILD，所以我们可以在终端输入指令安装（需要 Yay）：&lt;/p>
+&lt;pre>&lt;code>yay -S breeze10-kde-git
 &lt;/code>&lt;/pre>
-&lt;p>安装完成后，打开系统设置，在侧栏点击“颜色”，选择刚安装的 Cantalight，应用更改。虽然白色的窗口装饰看着也还不错，但我还是把窗口装饰的颜色改回黑色以配合整体样式：点击上文提到的 AlphaBlack Control 中的“Apply Colors”就能更改颜色。&lt;/p>
+&lt;p>此外，我的&lt;a class="link" href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/" target="_blank" rel="noopener"
+>个人源&lt;/a>里也有该软件包，可以&lt;a class="link" href="https://viflythink.com/service/#arch-%E8%BD%AF%E4%BB%B6%E6%BA%90" target="_blank" rel="noopener"
+>添加我的 Arch 软件源&lt;/a>后安装：&lt;/p>
+&lt;pre>&lt;code>pacman -S breeze10-kde-git
+&lt;/code>&lt;/pre>
+&lt;p>在安装完成后重启系统，打开系统设置，在侧栏点击“外观”，再点击“窗口装饰元素”，选择“Breeze10”并应用更改；此外还可以点击那个笔状的图标调整这个主题，例如把字体设置变大，完成后你的应用程序窗口会显得更为美观大方。最后，把“窗口边框大小”设为“无边框”。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_breeze10.png"
+width="1462"
+height="1027"
+loading="lazy"
+alt="使用 Breeze10"
+class="gallery-image"
+data-flex-grow="142"
+data-flex-basis="341px"
+>&lt;/p>
 &lt;h1 id="其它细节">其它细节&lt;/h1>
 &lt;p>当你习惯性地用 ALT + TAB 键想要切换窗口时，就会发现在默认设置的情况下窗口列表将在左侧显示，我个人更喜欢 win10 或 Gnome 那样在切换窗口将列表显示在屏幕中间，为了做到这一点，打开系统设置，在侧栏点击“窗口管理”，然后点击“任务切换器”，在“可视化”处选择大图标，可看下图：&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/KDE_to_Windows10/set_task_switch.png"
@@ -556,8 +555,7 @@ class="gallery-image"
 data-flex-grow="144"
 data-flex-basis="347px"
 >&lt;/p>
-&lt;p>我并不喜欢每次点击关机按钮后都要进行确认，而是希望像 win10 那样直接关机，这也是稍微修改系统设置即可做到的事情，打开系统设置，在侧栏点击“开机和关机”，然后点击“桌面会话”，在“常规”处取消勾选“确认注销”。&lt;/p>
-&lt;p>差点忘了还有一个细节问题：桌面右上角的按钮好像没什么用，如何隐藏它呢。只需在桌面单击鼠标右键，点击“配置桌面”，再点击侧栏的“调整”，取消勾选“显示桌面工具箱”并点击确定即可。&lt;/p>
+&lt;p>我并不喜欢每次点击关机按钮后都要进行确认，而是希望像 win10 那样直接关机，这也是稍微修改系统设置即可做到的事情，打开系统设置，在侧栏点击“开机和关机”，然后点击“桌面会话”，取消勾选“注销屏幕”一栏的“显示”。&lt;/p>
 &lt;h1 id="总结">总结&lt;/h1>
 &lt;p>经过这么多的折腾后，我总算是大概了解 KDE 了，“你可以将 KDE 捏成任何形状”毕竟只是一句用来吹嘘的话，除非动手改源代码，否则可自定义的部分总是有极限的，例如，在完成上述改造后，我对图标任务管理器并不完全满意，因为其显示的程序图标还是偏大，导致图标之间的间距不足，无法模拟 win10 底部栏的美观大方的感觉，当然，还有其它地方的间距设置也不尽人意，这些都难以通过安装主题等手段进行改造。当然，我个人认为没必要为此下结论说开源项目都处于美工下线的状态，其实无论是 KDE，亦或是 Gnome，它们的整体外观水平已经是与 Windows、Mac 这些商业公司开发的系统持平了，Linux 用户同样能有不差的桌面体验，KDE 等桌面所欠缺的只是一些审美细节，由于我也不懂设计，这里就不多说了。如果有兴趣的话，还可以多翻翻系统设置里的选项，其中包含了大量与桌面相关的自定义选项，这已经提供了非常大的改造空间。最后，在新的一年里，祝各位折腾愉快。&lt;/p></description></item><item><title>从 Debian 迁移到 Arch Linux</title><link>https://viflythink.com/Try_Arch_Linux/</link><pubDate>Sun, 03 Nov 2019 14:34:27 +0800</pubDate><guid>https://viflythink.com/Try_Arch_Linux/</guid><description>&lt;img src="https://viflythink.com/Try_Arch_Linux/show.jpg" alt="Featured image of post 从 Debian 迁移到 Arch Linux" />&lt;p>在用了将近两年的 Debian 后，我打算尝试另一个与 Debian 存在较大差别的发行版，做了一番比较后（&lt;del>并没有&lt;/del>）选择了相比 Debian 激进许多（经常需要滚包）的 Arch Linux。其实我在刚开始使用 Debian 时便听说过 Arch Linux 了，这都要归功于活跃的&lt;a class="link" href="https://www.archlinuxcn.org/" target="_blank" rel="noopener"
 > Arch Linux 中文社区&lt;/a>，里面的人整天忙着安利 Arch Linux（&lt;del>传教&lt;/del>），而且，&lt;a class="link" href="https://wiki.archlinux.org/index.php/Main_page_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29" target="_blank" rel="noopener"
