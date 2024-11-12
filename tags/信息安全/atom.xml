@@ -1,4 +1,165 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>信息安全 on Vifly 的博客</title><link>https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</link><description>Recent content in 信息安全 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 05 Nov 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/atom.xml" rel="self" type="application/rss+xml"/><item><title>2023 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2023_writeups/</link><pubDate>Sun, 05 Nov 2023 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2023_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2023_writeups/show.jpg" alt="Featured image of post 2023 中科大信息安全大赛题解" />&lt;p>又到了更新年更系列的时间，本文的题图来自于今年 Hackergame 中的“逆向工程不需要 F5“这一道题。对于今年的 Hackergame，能明显看到为了吸引更多新人所做的努力，包括增加了不少送分题，还新增了 AI 方向的题目，这使得博主拿到了 2600 分，正好是&lt;a class="link" href="https://viflythink.com/Hackergame_2022_writeups/" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>信息安全 on Vifly 的博客</title><link>https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</link><description>Recent content in 信息安全 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 12 Nov 2024 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/atom.xml" rel="self" type="application/rss+xml"/><item><title>2024 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2024_writeups/</link><pubDate>Tue, 12 Nov 2024 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2024_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/show.jpg" alt="Featured image of post 2024 中科大信息安全大赛题解" />&lt;p>又到了更新年更系列的时间，真没想到今年组委会还在 go（好吧，其实我也是，本文头图同样来源于此）。对我来说，今年花在比赛上的时间明显比往年少了，一方面是因为刚旅游回来太累了，而另一方面则是在 LLM 的帮助下一些简单的题目不再需要更多的时间来解决了。今年只拿了 1850 分，与&lt;a class="link" href="https://viflythink.com/Hackergame_2023_writeups/" target="_blank" rel="noopener"
+>上一年&lt;/a>相比算是退步了，依旧在三百名左右徘徊，只能说我才是最该多练习的人（笑）。&lt;/p>
+&lt;h1 id="签到">签到
+&lt;/h1>&lt;p>今年的签到题又选了某知名手游来玩梗，要求在 60 秒内输入 12 种不同语言的启动，作为 CTF 玩家那肯定不会傻傻按照这个要求来做的，随便输入点什么然后点击下面的“等不及了，马上启动！”，看到跳转的 URL 有一个 pass 参数，将参数值改为 true，搞定。&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/get_2024_qiandao_flag.jpg"
+width="1920"
+height="973"
+loading="lazy"
+alt="成功获取签到题的 flag"
+class="gallery-image"
+data-flex-grow="197"
+data-flex-basis="473px"
+>&lt;/p>
+&lt;h1 id="喜欢做签到的-ctfer-你们好呀">喜欢做签到的 CTFer 你们好呀
+&lt;/h1>&lt;p>Sodayo，我最喜欢做签到了，不过怎么又是选了某个手游作为题图玩梗（虽然跟签到不是同一个）。&lt;/p>
+&lt;p>搜索中科大 CTF 战队招新找到了&lt;a class="link" href="https://github.com/Nebula-CTFTeam/Recruitment-2024" target="_blank" rel="noopener"
+>相关文章&lt;/a>，琢磨了一会后得出结论除非这题考隐写术或者挖 Git 提交历史不然这里应该没什么好挖的，然后找到了&lt;a class="link" href="https://nebuu.la/" target="_blank" rel="noopener"
+>战队主页&lt;/a>，居然是模拟终端进行交互的网页，随手试了几个指令后发现 &lt;code>env&lt;/code> 给出了第一个 flag：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/get_flag1_from_nebula.jpg"
+width="1024"
+height="163"
+loading="lazy"
+alt="env 拿到 Nebula 的第一个 flag"
+class="gallery-image"
+data-flex-grow="628"
+data-flex-basis="1507px"
+>&lt;/p>
+&lt;p>至于另一个 flag，找不到什么思路，想到这是 web 题，尝试在前端代码里搜索 flag，发现了惊喜：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/search_flag_on_nebula_js.jpg"
+width="811"
+height="1024"
+loading="lazy"
+alt="在 Nebula 前端代码里搜索 flag"
+class="gallery-image"
+data-flex-grow="79"
+data-flex-basis="190px"
+>&lt;/p>
+&lt;p>第一个结果看上去是 &lt;code>ls&lt;/code> 列出的结果，用 &lt;code>ls -a&lt;/code> 列出所有项目试试：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/get_flag2_from_nebula.jpg"
+width="1024"
+height="177"
+loading="lazy"
+alt="拿到 Nebula 的第二个 flag"
+class="gallery-image"
+data-flex-grow="578"
+data-flex-basis="1388px"
+>&lt;/p>
+&lt;h1 id="猫咪问答hackergame-十周年纪念版">猫咪问答（Hackergame 十周年纪念版）
+&lt;/h1>&lt;p>又见到考验信息检索能力的题目，还是十周年纪念版呢。&lt;/p>
+&lt;p>第一小题，搜索“中科大信息安全大赛 2015”找到一篇报道：&lt;a class="link" href="https://tengdahuanbao.com/html/20151211c6485a87199page.html" target="_blank" rel="noopener"
+>中国科学技术大学2015信息安全大赛圆满结束&lt;/a>，其中提到：&lt;/p>
+&lt;blockquote>
+&lt;p>主办方在10月17号晚在3A204举办了一场赛前培训&lt;/p>
+&lt;/blockquote>
+&lt;p>第二小题暴力破解，搜近五年的 Hackergame 新闻稿并查找里面的注册参加人数，最后发现答案是 2019 年的 Hackergame，人数是 2682。&lt;em>PS：怎么近两年的 Hackergame 新闻稿都没有精确的注册参加人数。&lt;/em>&lt;/p>
+&lt;p>第三小题从问题来看这应该能从 &lt;a class="link" href="https://github.com/ustclug/hackergame2018-writeups/blob/master/official/ustcquiz/README.md" target="_blank" rel="noopener"
+>Hackergame 2018 的猫咪问答题解&lt;/a> 找到答案，而且给了提示：仅由中文汉字构成，所以答案是程序员的自我修养。&lt;/p>
+&lt;p>第四小题搜索“USENIX Security ustc”并把时间限定在今年就能找到&lt;a class="link" href="https://www.usenix.org/system/files/usenixsecurity24-ma-jinrui.pdf" target="_blank" rel="noopener"
+>对应论文&lt;/a>，不想看论文所以把 PDF 丢给 LLM 得到答案：336。&lt;/p>
+&lt;p>第五小题，可能有不少人都知道这个最近发生的争议性很大的新闻，此事掀起了新一轮有关开源与地缘政治之间关系的讨论，正好之前看到的&lt;a class="link" href="https://lwn.net/Articles/995186/" target="_blank" rel="noopener"
+>对应报道&lt;/a>有附上&lt;a class="link" href="https://git.kernel.org/linus/6e90b675cf94" target="_blank" rel="noopener"
+>这个提交的链接&lt;/a>，得到答案：6e90b6。&lt;/p>
+&lt;p>第六小题，跑不起来 LLM 的童鞋怎么办呢，先尝试一下搜索引擎吧。谷歌输入 llama 3 tokenizer 后有个候选结果：llama 3 tokenizer online，搜索这个然后随便选择&lt;a class="link" href="https://token-counter.app/meta/llama-3" target="_blank" rel="noopener"
+>一个网站&lt;/a>，把猫咪问答页面 HTML 复制粘贴上去，计算出来的 token count 是 1812，提交结果发现不对，那就靠&lt;a class="link" href="https://gist.github.com/vifly/67e439ac69eff8c4c6ae94fe2ca92b15#file-cat_answers-py" target="_blank" rel="noopener"
+>脚本&lt;/a>暴破吧，最后得到的答案是 1833。&lt;/p>
+&lt;h1 id="打不开的盒">打不开的盒
+&lt;/h1>&lt;p>既然题目都这样说了，那先尝试打开这个 3D 模型看看吧，随手找了一个软件：&lt;a class="link" href="https://github.com/fstl-app/fstl" target="_blank" rel="noopener"
+>fstl&lt;/a>，变换角度后看到了 flag：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/get_flag_from_stl.jpg"
+width="1024"
+height="586"
+loading="lazy"
+alt="打开 STL 文件看到 flag"
+class="gallery-image"
+data-flex-grow="174"
+data-flex-basis="419px"
+>&lt;/p>
+&lt;p>&lt;em>PS：脖子快扭了，以及对于这个 flag：flag{Dr4W_Us!nG_fR3E_C4D!!w0W}，只能说 free CAD 我还真没用过。&lt;/em>&lt;/p>
+&lt;h1 id="比大小王">比大小王
+&lt;/h1>&lt;p>本题来源于今年一堆人在小猿口算里欺负小学生的事情（无语），看来出题人也想让大家体会一下寻找口算平台漏洞的快乐，原以为是可以像当时的小猿口算那样直接篡改分数，分析了一下前端代码后发现不行，那解题思路就只剩下把题目全自动化求解然后提交，正好适合萌新入门自动化脚本，唯一要注意的事情是求解完后要等九秒再提交，不然会出现“检测到时空穿越”的错误（上一年是不是见过这个😂），代码&lt;a class="link" href="https://gist.github.com/vifly/67e439ac69eff8c4c6ae94fe2ca92b15#file-hack_compare-py" target="_blank" rel="noopener"
+>在这里&lt;/a>。&lt;/p>
+&lt;h1 id="旅行照片-40">旅行照片 4.0
+&lt;/h1>&lt;p>没想到今年还有社会工程学题目，只能说挖信息的方法真是多种多样啊。虽说已经连续几年见到旅行照片了，不过今年还是只完成了最简单的部分。&lt;/p>
+&lt;h2 id="题目-1-2">题目 1-2
+&lt;/h2>&lt;p>第一小题考虑到校门数量也不多，直接暴破吧，得到答案：东校区西门。第二小题搜索“中科大2024ACG音乐会日期”就能获得答案：20240519。&lt;/p>
+&lt;h1 id="nodejs-is-web-scale">Node.js is Web Scale
+&lt;/h1>&lt;p>从本题开始进入真正的 web 安全领域了，我对 JS 不怎么熟悉，后端代码里虽说有一行“Run commands which are constant and obviously safe.”这样有暗示性的注释，但我也不知道怎么利用，把代码丢给 LLM 让其分析有什么可利用的地方，直接找到了关键点：可以通过原型链污染添加任意指令。我只能表示居然还能这么玩😦，JS 真是太神奇了。执行以下两条指令即可：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">curl -X POST &lt;span class="s2">&amp;#34;https://&amp;lt;REPLACE_IT&amp;gt;.hack-challenge.lug.ustc.edu.cn:8443/set&amp;#34;&lt;/span> -H &lt;span class="s2">&amp;#34;Content-Type: application/json&amp;#34;&lt;/span> -d &lt;span class="s1">&amp;#39;{&amp;#34;key&amp;#34;: &amp;#34;__proto__.flag&amp;#34;, &amp;#34;value&amp;#34;: &amp;#34;cat /flag&amp;#34;}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl &lt;span class="s2">&amp;#34;https://&amp;lt;REPLACE_IT&amp;gt;.hack-challenge.lug.ustc.edu.cn:8443/execute?cmd=flag&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="paolugpt">PaoluGPT
+&lt;/h1>&lt;p>既然给了后端源码那肯定要先读一遍，发现 view 函数里有不对劲的地方：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">results&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">execute_query&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;select title, contents from messages where id = &amp;#39;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">conversation_id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#39;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这个 SQL 语句居然用字符串操作，我立刻就想到了通过 SQL 注入直接拖库，询问 LLM 得到只要构造出 &lt;code>select title, contents from messages where id = '114514' or 1=1&lt;/code> 这样的语句就可以拿到 messages 表里的全部行了，至于原来字符串里的 &amp;rsquo; 如何解决呢，用&lt;a class="link" href="https://book.hacktricks.xyz/pentesting-web/sql-injection#comments" target="_blank" rel="noopener"
+>注释&lt;/a>把第二个 &amp;rsquo; 给注释掉就行。兴高采烈的我尝试了将 conversation_id 设置为 &lt;code>114514' OR 1=1 --&lt;/code> 后发送请求，然后发现只返回了第一条，再次阅读代码发现是查询数据库用了 fetchone，只能返回一行。那就只能写个&lt;a class="link" href="https://gist.github.com/vifly/67e439ac69eff8c4c6ae94fe2ca92b15#file-hack_paolugpt-py" target="_blank" rel="noopener"
+>脚本&lt;/a>遍历全部行来拖库了，执行脚本然后在保存的文件里查找 flag 得到本题的两个 flag。第二个 flag 需要注意 HTML 转义，其应当为 flag{enJ0y_y0uR_Sq1_&amp;amp;_1_would_xiaZHOU_hUI_guo_abeff7b2f2}。&lt;/p>
+&lt;h1 id="惜字如金-30">惜字如金 3.0
+&lt;/h1>&lt;p>又碰到了熟悉的惜字如金，上一年就是靠它拿到了一点 math 题的分数，今年看来也是这样。&lt;/p>
+&lt;h2 id="题目-a">题目 A
+&lt;/h2>&lt;p>我不知道这算 math 题吗，唯一的难点应该是有些童鞋不熟悉 Python 语法。选一个带语法高亮的编辑器打开文件并添加字符修复语法错误就行，题目甚至还很贴心地提醒你最后结果应当是每行有 80 个字符，用 Kate 编辑完成并保存后发现它在保存时自动把填充的空格去掉了，又写了个&lt;a class="link" href="https://gist.github.com/vifly/67e439ac69eff8c4c6ae94fe2ca92b15#file-padding-py" target="_blank" rel="noopener"
+>脚本&lt;/a>把每一行自动填充到 80 个字符，提交拿到 flag。这里附上&lt;a class="link" href="https://gist.github.com/vifly/67e439ac69eff8c4c6ae94fe2ca92b15#file-original_answer_a-py" target="_blank" rel="noopener"
+>还原后的 answer_a.py&lt;/a>。&lt;/p>
+&lt;h1 id="不太分布式的软总线">不太分布式的软总线
+&lt;/h1>&lt;p>看到题目，作为 Fcitx5 输入法贡献者的我瞬间开始兴奋了：这个我知道。D-Bus 作为 Linux 上常见的一种 IPC（进程间通信）手段，在很多你没有注意到的地方都有所应用，例如在 X11 下 Fcitx 主要就是通过 D-Bus 与其它应用进行通信，由作为客户端的应用发送按键等数据到作为服务端的 Fcitx，然后 Fcitx 负责返回候选词等事项，具体代码在&lt;a class="link" href="https://github.com/fcitx/fcitx5/tree/master/src/frontend/dbusfrontend" target="_blank" rel="noopener"
+>这里&lt;/a>。当然，Fcitx 还通过 D-Bus 注册了其它的方法，例如各位使用 Fcitx5 的童鞋可以通过 &lt;code>dbus-send --session --print-reply --dest=org.fcitx.Fcitx5 /controller org.fcitx.Fcitx.Controller1.DebugInfo&lt;/code> 来查看当前与 Fcitx5 通信的应用及其使用的前端（Fcitx5 支持的所有前端在&lt;a class="link" href="https://github.com/fcitx/fcitx5/tree/master/src/frontend" target="_blank" rel="noopener"
+>此&lt;/a>查看）。&lt;/p>
+&lt;p>如何在自己的应用中使用 D-Bus 呢，只要理解作为接收方怎样做才能接收到消息就行。作为接收方，你通常需要有 name、object、interface 等并注册才能收到消息，它们的关系如下图：&lt;/p>
+&lt;p>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/dbus.jpg"
+width="944"
+height="789"
+loading="lazy"
+alt="D-Bus"
+class="gallery-image"
+data-flex-grow="119"
+data-flex-basis="287px"
+>&lt;/p>
+&lt;p>因上图没有体现出来，这里补充一下，每个 interface 都可以有多个属于自己的 property、method、signal，以及 name 是全局唯一的。&lt;/p>
+&lt;p>现在用刚学到的知识来从发送端的角度理解一下上面的 Fcitx5 的例子：&lt;code>org.fcitx.Fcitx5&lt;/code> 就是 name（可以理解为监听的地址），&lt;code>/controller&lt;/code> 是 object（更准确来说是 object path），而 &lt;code>org.fcitx.Fcitx.Controller1.DebugInfo&lt;/code> 则是 method。还有一点要注意，&lt;code>--session&lt;/code> 参数指示 dbus-send 把消息发送到 session 总线上，与之相对的是 &lt;code>--system&lt;/code> 参数，顾名思义它会把消息发送到系统总线，按&lt;a class="link" href="https://elmarco.pages.freedesktop.org/dbus-page/docs/getting-started/" target="_blank" rel="noopener"
+>这里&lt;/a>的说法系统总线是总是可以被访问的。&lt;/p>
+&lt;p>现在我们开始看本题的源码（flagserver.c），可以看到其监听系统总线（说明我们给其发送的消息总是可达的）并且注册的 name 为 &lt;code>cn.edu.ustc.lug.hack.FlagService&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="n">owner_id&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">g_bus_own_name&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">G_BUS_TYPE_SYSTEM&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;cn.edu.ustc.lug.hack.FlagService&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">G_BUS_NAME_OWNER_FLAGS_NONE&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">on_bus_acquired&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">on_name_acquired&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">on_name_lost&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>注册的 object path：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">g_dbus_connection_register_object&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">connection&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;/cn/edu/ustc/lug/hack/FlagService&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">introspection_data&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">interfaces&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">interface_vtable&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="cm">/* user_data */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="cm">/* GDestroyNotify */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>至于 method 则是在 xml 字符串里，这里就不贴了。&lt;/p>
+&lt;h2 id="what-dbus-gonna-do">What DBus Gonna Do?
+&lt;/h2>&lt;p>要求传入一个特定的字符串：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nf">g_variant_is_of_type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">parameters&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nf">G_VARIANT_TYPE&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;(s)&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nf">respond_error_msg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">invocation&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Give me a string, please.&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按照 &lt;a class="link" href="https://dbus.freedesktop.org/doc/dbus-send.1.html" target="_blank" rel="noopener"
+>dbus-send 的文档&lt;/a>可以构造出来以下指令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">dbus-send --system --print-reply --dest&lt;span class="o">=&lt;/span>cn.edu.ustc.lug.hack.FlagService /cn/edu/ustc/lug/hack/FlagService cn.edu.ustc.lug.hack.FlagService.GetFlag1 string:&lt;span class="s2">&amp;#34;Please give me flag1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>将其保存为 shell 文件并上传就搞定了，与 Fcitx5 的例子相比也就多了一个需要传入的参数，应该不难理解。&lt;/p>
+&lt;h2 id="if-i-could-be-a-file-descriptor">If I Could Be A File Descriptor
+&lt;/h2>&lt;p>要求必须是文件描述符：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="nf">g_variant_is_of_type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">parameters&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nf">G_VARIANT_TYPE&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;(h)&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nf">respond_error_msg&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">invocation&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Give me a file descriptor, please.&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>而在 &lt;a class="link" href="https://dbus.freedesktop.org/doc/dbus-send.1.html" target="_blank" rel="noopener"
+>dbus-send 的文档&lt;/a> 列举出来的支持的数据类型中并不包括文件描述符，所以只能写 C 语言代码了。&lt;/p>
+&lt;p>还注意到代码里会检测文件描述符是否存在于文件系统：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="nf">g_snprintf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">sizeof&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s">&amp;#34;/proc/self/fd/%d&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">fd&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">gchar&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">link&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nf">g_file_read_link&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">link&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="nb">NULL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">g_strstr_len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">link&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nf">respond_error_msg&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">invocation&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s">&amp;#34;Please don&amp;#39;t give me a file on disk to trick me!&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我从来没觉得写 C 快乐过，把这些需求丢给 LLM，其给出了使用 socket pair 的办法，代码在&lt;a class="link" href="https://gist.github.com/vifly/67e439ac69eff8c4c6ae94fe2ca92b15#file-dbus_2-c" target="_blank" rel="noopener"
+>此&lt;/a>，运行以下指令编译然后上传：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">gcc dbus_2.c &lt;span class="sb">`&lt;/span>pkg-config --cflags --libs gio-2.0&lt;span class="sb">`&lt;/span> -o dbus_2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="总结">总结
+&lt;/h1>&lt;p>今年的 SQL 和 D-Bus 题还是玩的很开心的，前者尝试构造 payload 的过程还是相当有趣的，而 D-Bus 的话正好是我之前想写的内容。另外 PowerfulShell 是相当令我残念的一道题，都已经找到 &lt;code>$-&lt;/code> 和 &lt;code>$_&lt;/code> 这样的变量了，就是没想到要赋值给 &lt;code>_1&lt;/code> 这样的变量。可惜今年毕竟投入的时间不多，看到 C 和汇编基本都是绕路走，像是 D-Bus 的第三小题都懒得看了，事后看题解发现也不难，不知道明年是否会有更多的时间来玩呢，我们下一年再见吧。&lt;/p></description></item><item><title>2023 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2023_writeups/</link><pubDate>Sun, 05 Nov 2023 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2023_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2023_writeups/show.jpg" alt="Featured image of post 2023 中科大信息安全大赛题解" />&lt;p>又到了更新年更系列的时间，本文的题图来自于今年 Hackergame 中的“逆向工程不需要 F5“这一道题。对于今年的 Hackergame，能明显看到为了吸引更多新人所做的努力，包括增加了不少送分题，还新增了 AI 方向的题目，这使得博主拿到了 2600 分，正好是&lt;a class="link" href="https://viflythink.com/Hackergame_2022_writeups/" target="_blank" rel="noopener"
 >上一年&lt;/a>得分的两倍（虽说如此，排名也没怎么上升）。由于今年解决的题目变多了，所以本文的总文字量也比往年明显增多，不知道明年会不会更长呢，敬请期待吧。&lt;/p>
 &lt;h1 id="hackergame-启动">Hackergame 启动
 &lt;/h1>&lt;p>这个题目很显然玩的是“XX 启动”的梗，点进去以后要求录一段音频并达到与原音频 100% 相似的程度，由于是 web 题，所以先尝试录了一段音频（当然我禁用了麦克风），看到网页跳转到了一个新 URL 并显示相似度有百分之七十多，而 URL 中的 similarity 参数与之对应，把参数改为 100 就会跳到另一个界面，点击“获取 flag”就拿到 flag 了（&lt;em>PS:为啥还配了音乐啊&lt;/em>）。&lt;/p>
