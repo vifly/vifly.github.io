@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>软件安利 on Vifly 的博客</title><link>https://viflythink.com/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%88%A9/</link><description>Recent content in 软件安利 on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%88%A9/atom.xml" rel="self" type="application/rss+xml"/><item><title>我的新 Arch</title><link>https://viflythink.com/New-Install-Arch/</link><pubDate>Tue, 08 Aug 2023 00:00:00 +0800</pubDate><guid>https://viflythink.com/New-Install-Arch/</guid><description>&lt;img src="https://viflythink.com/New-Install-Arch/show.jpg" alt="Featured image of post 我的新 Arch" />&lt;p>前段时间存储相关的元件价格大跳水，博主终于等到了这个时机给自己组装了一台期待已久的台式机。不得不说今年的 PC 组件价格十分魔幻，SSD 甚至能比 HDD 便宜，于是我的台式机只配备了 SSD，另外基于不打算给老黄送钱的心理，也暂时没配置独显，以上使得自己的组装工作避免了一大堆麻烦，不用给 HDD 接 SATA 线，也不用给独显接电源线，整个装机过程非常的轻松愉快。在电脑能开机后，接下来当然是给它装上熟悉的 Arch Linux 用来日常工作与娱乐。尽管在之前的&lt;a class="link" href="https://viflythink.com/Try_Arch_Linux/" target="_blank" rel="noopener"
 >从 Debian 迁移到 Arch Linux&lt;/a> 一文已经说过了我是如何安装 Arch 的，然后还安利了一部分软件，但时过境迁，由于自己能力的进步与发现了更好的软件，这回也折腾了一些之前没试过的新玩意，所以本文既是新安装 Arch 的随手记录，也是对旧文的一个更新，推荐与上面的旧文对比阅读。&lt;/p>
-&lt;h1 id="安装基本系统">安装基本系统&lt;/h1>
-&lt;p>与之前相比，这次安装 Arch 就大胆地实验了一些没尝试过的新玩意。之前完全按教程配置双系统时使用了 GRUB 作为引导加载程序（boot loader），而由于这次不打算在电脑上安装 Windows，所以用 systemd-boot 取而代之。然后也使用了 Btrfs 作为我的新 Arch 的根文件系统（具体原因见下文），当然，还要加上 LUKS 全盘加密，为了方便硬盘解密，还要配置 &lt;a class="link" href="https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html" target="_blank" rel="noopener"
+&lt;h1 id="安装基本系统">安装基本系统
+&lt;/h1>&lt;p>与之前相比，这次安装 Arch 就大胆地实验了一些没尝试过的新玩意。之前完全按教程配置双系统时使用了 GRUB 作为引导加载程序（boot loader），而由于这次不打算在电脑上安装 Windows，所以用 systemd-boot 取而代之。然后也使用了 Btrfs 作为我的新 Arch 的根文件系统（具体原因见下文），当然，还要加上 LUKS 全盘加密，为了方便硬盘解密，还要配置 &lt;a class="link" href="https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html" target="_blank" rel="noopener"
 >systemd 248 版本新增的 systemd-cryptenroll&lt;/a> 让我能用 YubiKey 开机自动解密硬盘，避免输入一长串密码。以上组合使得我能参考的资料极其有限，仅仅 systemd-boot + Btrfs 的话看 Arch Wiki 足矣，但加上全盘加密后事情就变得相当复杂，&lt;a class="link" href="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#Btrfs_subvolumes_with_swap" target="_blank" rel="noopener"
 >Arch Wiki 上的 Btrfs + LUKS 示例&lt;/a>是假设用户也加密 /boot 的（须 EFI 与 boot 分区不同），仅仅不加密 EFI，所以只能用 GRUB，而我的分区规划是把 EFI 分区挂载到 /boot（即两者为同一个东西），且我的威胁模型中也没有那么高级的攻击者，因此我不打算加密 /boot。不同的情况导致我不得不另外查找资料，所幸的是还能找到一篇 &lt;a class="link" href="https://nerdstuff.org/posts/2020/2020-004_arch_linux_luks_btrfs_systemd-boot/" target="_blank" rel="noopener"
 >Installing Arch Linux with Btrfs, systemd-boot and LUKS&lt;/a>。根据这篇文章与 Arch Wiki 安装好了新系统，完成后确认可以通过密码解锁硬盘，然后还得研究如何使用 systemd-cryptenroll。按上面的文章配置是肯定不行的，initramfs 里都没有 systemd，开机根本就不会检测 YubiKey。为此我找到了一篇跟自己的需求较为相似的 &lt;a class="link" href="https://lemmy.eus/post/2898" target="_blank" rel="noopener"
@@ -13,8 +13,8 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options rd.luks.name=&amp;lt;Your-UUID&amp;gt;=luks root=/dev/mapper/luks rootflags=subvol=@ rd.luks.options=&amp;lt;Your-UUID&amp;gt;=fido2-device=auto,discard rw
 &lt;/code>&lt;/pre>&lt;p>这里提醒一下想照抄作业的读者，我并没有加密 /boot，没有启用安全启动，且在挂载加密盘时允许 discard，这都会降低安全性，如果对此比较在意请选择别的方案。&lt;/p>
-&lt;h2 id="为什么选择-btrfs">为什么选择 Btrfs&lt;/h2>
-&lt;p>此前我一直在用经典的 Ext4 作为使用 Linux 时的文件系统，但这么多年过去了，以下几点令我开始认真地考虑尝试使用 Btrfs：&lt;/p>
+&lt;h2 id="为什么选择-btrfs">为什么选择 Btrfs
+&lt;/h2>&lt;p>此前我一直在用经典的 Ext4 作为使用 Linux 时的文件系统，但这么多年过去了，以下几点令我开始认真地考虑尝试使用 Btrfs：&lt;/p>
 &lt;ol>
 &lt;li>Btrfs 可以说已是成熟状态，&lt;a class="link" href="https://btrfs.readthedocs.io/en/latest/Status.html" target="_blank" rel="noopener"
 >绝大部分功能已经稳定&lt;/a>，&lt;a class="link" href="https://www.linux.com/news/how-facebook-uses-linux-and-btrfs-interview-chris-mason/" target="_blank" rel="noopener"
@@ -27,9 +27,9 @@ options rd.luks.name=&amp;lt;Your-UUID&amp;gt;=luks root=/dev/mapper/luks rootfl
 >Arch Wiki&lt;/a> 中查看。&lt;/li>
 &lt;/ol>
 &lt;p>当然，Btrfs 目前也还没到能受到所有人的欢迎的程度：它的读写速度要慢于 Ext4（CoW 的通病），而一旦检测到 checksum 出错则会强制要求用户进行处理也令有些人感到不爽。对于我来说，比较不满的一点是其本身没有加密功能，必须要与 LUKS 之类的方案一起使用才能达成全盘加密，希望未来能有更好的解决方案。&lt;/p>
-&lt;h1 id="日常使用">日常使用&lt;/h1>
-&lt;h2 id="kde">KDE&lt;/h2>
-&lt;p>我在之前已经吐槽过安装 kde-applications 包组后会有一堆用不到的软件，甚至还写了一个&lt;a class="link" href="https://gist.github.com/vifly/33d1a4f63b0b7319c6db9af9d3bdbdb0" target="_blank" rel="noopener"
+&lt;h1 id="日常使用">日常使用
+&lt;/h1>&lt;h2 id="kde">KDE
+&lt;/h2>&lt;p>我在之前已经吐槽过安装 kde-applications 包组后会有一堆用不到的软件，甚至还写了一个&lt;a class="link" href="https://gist.github.com/vifly/33d1a4f63b0b7319c6db9af9d3bdbdb0" target="_blank" rel="noopener"
 >简单的 Python 脚本&lt;/a>来删除它们。现在我发现更好的解决方法应该是在安装时就对此进行处理，根据我的需求这里给各位推荐一个安装 KDE 的方案。首先不要按 &lt;a class="link" href="https://wiki.archlinux.org/title/KDE#Plasma" target="_blank" rel="noopener"
 >Arch Wiki&lt;/a> 上说的先安装 Xorg，直接安装 &lt;a class="link" href="https://archlinux.org/groups/x86_64/plasma/" target="_blank" rel="noopener"
 >plasma 包组&lt;/a>即可，其中的依赖关系会导致 plasma 所需的 Xorg 组件也被安装，如果你需要使用 Wayland 的话请再安装 plasma-wayland-session 包。另外，安装包组有一个好处，那就是可以排除自己不想安装的软件包，例如我就排除了：&lt;/p>
@@ -43,11 +43,11 @@ plasma-workspace-wallpapers
 &lt;/code>&lt;/pre>&lt;p>经过以上操作后已经装好了基础的桌面环境，但我们还需要配套的应用，而如果直接安装 kde-applications-meta 的话会装上一堆用不到的软件和游戏，选择 kde-applications 包组的话需要手动排除的项目也不少，更好的办法是根据 &lt;a class="link" href="https://gitlab.archlinux.org/archlinux/packaging/packages/kde-applications-meta/-/blob/main/PKGBUILD" target="_blank" rel="noopener"
 >kde-applications-meta 的 PKGBUILD&lt;/a> 创建一个属于自己的 kde-applications-meta。这里给出我日常使用软件所构成的 &lt;a class="link" href="https://gist.github.com/vifly/253e3184f5a1d87c1292b131cba1c09c" target="_blank" rel="noopener"
 >meta 包&lt;/a>，下载该 PKGBUILD 后在文件所处的目录下执行 &lt;code>makepkg -si&lt;/code> 即可。&lt;em>PS：如果你仔细查看该 PKGBUILD 就会发现里面没有包含 KDE 家的图片浏览器 gwenview，原因是我使用 nomacs 作为日常的图片浏览器。&lt;/em>&lt;/p>
-&lt;h2 id="美化">美化&lt;/h2>
-&lt;p>在我刚开始使用 KDE 后没多久就写过一篇&lt;a class="link" href="https://viflythink.com/KDE_to_Windows10/" target="_blank" rel="noopener"
+&lt;h2 id="美化">美化
+&lt;/h2>&lt;p>在我刚开始使用 KDE 后没多久就写过一篇&lt;a class="link" href="https://viflythink.com/KDE_to_Windows10/" target="_blank" rel="noopener"
 > KDE 的美化教程&lt;/a>，探索了将 KDE 的外观变成 Windows 10 的可能性。经过了几年，由于 KDE 的版本更新导致部分选项有所改变，且我找到了一些更好的美化方案，所以抽空大改了一波上面的博文，想要美化自己的 KDE 桌面的童鞋继续查看该博文即可。&lt;/p>
-&lt;h2 id="steam">Steam&lt;/h2>
-&lt;p>就日常娱乐来说，Steam 当然是一个好选择，感谢 V 社一直以来对 Linux 游戏的支持（特别是其开发的 Proton 极大地扩充了 Linux 下可游玩的游戏范围），现在 Linux 下大部分游戏的体验已经不亚于 Windows，只需要打开 Steam 一键安装就能开玩。不过对于一个强迫症来说，Steam 及其安装的游戏在家目录下乱扔垃圾这点还是令我挺不爽的。之前我一直在用 &lt;a class="link" href="https://liolok.com/zhs/containerize-steam-with-systemd-nspawn/" target="_blank" rel="noopener"
+&lt;h2 id="steam">Steam
+&lt;/h2>&lt;p>就日常娱乐来说，Steam 当然是一个好选择，感谢 V 社一直以来对 Linux 游戏的支持（特别是其开发的 Proton 极大地扩充了 Linux 下可游玩的游戏范围），现在 Linux 下大部分游戏的体验已经不亚于 Windows，只需要打开 Steam 一键安装就能开玩。不过对于一个强迫症来说，Steam 及其安装的游戏在家目录下乱扔垃圾这点还是令我挺不爽的。之前我一直在用 &lt;a class="link" href="https://liolok.com/zhs/containerize-steam-with-systemd-nspawn/" target="_blank" rel="noopener"
 >systemd-nspawn&lt;/a> 隔离相关应用，但后来发现为此专门准备一个容器所占的空间太大了点，而且隔离级别较高还要解决一些游戏的运行问题，于是在新系统上决定尝试改用 Flatpak 作为安装与使用 Steam 的方式（虽然 Flatpak 会创建 ~/.var 这个目录）。首先根据 &lt;a class="link" href="https://wiki.archlinux.org/title/steam#Flatpak" target="_blank" rel="noopener"
 >Arch Wiki&lt;/a> 先安装 Steam 本体，再加上一些个人使用的配套应用：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">flatpak install flathub com.valvesoftware.Steam com.valvesoftware.Steam.Utility.protontricks com.valvesoftware.SteamLink
@@ -79,15 +79,15 @@ class="gallery-image"
 data-flex-grow="60"
 data-flex-basis="145px"
 >&lt;/p>
-&lt;h2 id="输入法">输入法&lt;/h2>
-&lt;p>目前我已经把输入法方案从 Fcitx4 + RIME 切换到了 Fcitx5 自带的拼音输入法。当年使用 RIME 的主要原因是包括 google pinyin 在内 Fcitx4 自带的拼音输入法的候选词算法都十分糟糕，而现在 fcitx5-chinese-addons 里的拼音输入法已经足够好用，与 RIME 相比，Fcitx5 拼音输入法更开箱即用，候选词算法更优秀，同时在可折腾性上也不输 RIME，支持 Lua 插件、导入第三方词库、输入法皮肤、快速输入 Emoji 与特殊 Unicode 等功能。所以除非有什么非常需要的 RIME 独占功能，否则我都一律推荐使用 Fcitx5 拼音输入法。&lt;/p>
+&lt;h2 id="输入法">输入法
+&lt;/h2>&lt;p>目前我已经把输入法方案从 Fcitx4 + RIME 切换到了 Fcitx5 自带的拼音输入法。当年使用 RIME 的主要原因是包括 google pinyin 在内 Fcitx4 自带的拼音输入法的候选词算法都十分糟糕，而现在 fcitx5-chinese-addons 里的拼音输入法已经足够好用，与 RIME 相比，Fcitx5 拼音输入法更开箱即用，候选词算法更优秀，同时在可折腾性上也不输 RIME，支持 Lua 插件、导入第三方词库、输入法皮肤、快速输入 Emoji 与特殊 Unicode 等功能。所以除非有什么非常需要的 RIME 独占功能，否则我都一律推荐使用 Fcitx5 拼音输入法。&lt;/p>
 &lt;p>只需根据 &lt;a class="link" href="https://wiki.archlinuxcn.org/wiki/Fcitx5" target="_blank" rel="noopener"
 >Arch Wiki&lt;/a> 安装好对应的包组与包后重启即可：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">sudo pacman -S fcitx5-im fcitx5-lua fcitx5-chinese-addons
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>另外，想在 Android 手机上使用 Fcitx5 拼音输入法的童鞋可以尝试 &lt;a class="link" href="https://github.com/fcitx5-android/fcitx5-android" target="_blank" rel="noopener"
 >fcitx5-android&lt;/a> 这个项目。目前日常使用所需的功能已全部就位，可以确保在手机上也有与电脑相同的输入体验。&lt;/p>
-&lt;h2 id="其它">其它&lt;/h2>
-&lt;p>我的音频播放器从 Rhythmbox 切换到了同属 Gnome 家的 Lollypop（KDE 请加油），与 Rhythmbox 相比，Lollypop 的界面更为现代（见下图），还支持自动从互联网下载歌曲封面图片，搜索歌词等功能。&lt;/p>
+&lt;h2 id="其它">其它
+&lt;/h2>&lt;p>我的音频播放器从 Rhythmbox 切换到了同属 Gnome 家的 Lollypop（KDE 请加油），与 Rhythmbox 相比，Lollypop 的界面更为现代（见下图），还支持自动从互联网下载歌曲封面图片，搜索歌词等功能。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/New-Install-Arch/Lollypop.png"
 width="1305"
 height="968"
@@ -114,8 +114,8 @@ data-flex-basis="323px"
 &lt;/blockquote>
 &lt;p>这完全符合我想折腾 Linux 的想法！当然，我认为 Arch Linux 对 Linux 新手来说并不合适，因为光是第一步的使用命令行安装系统（Arch Linux 官方没有提供图形化安装界面）恐怕就能劝退不少人了，不过对于接触过 Linux 的人，通过理解 Arch Linux 安装过程中所需要输入的指令的含义，能体会到一种完全掌握自己的系统的快感（&lt;del>误入邪教&lt;/del>）。总而言之，对于喜欢折腾的人来说，尝试 Arch Linux 是绝对不会后悔的决定。&lt;/p>
 &lt;p>由于 Arch Linux 的激进策略，安装教程很容易过时，我也不打算费力不讨好地写具体的安装步骤了，本文主要分享我在 Arch Linux 下使用的软件，希望能安利更多人使用（提到的不少软件都是跨平台的，即使不使用 Arch Linux 也可使用这些软件）。先在这里说一下我挑选软件的原则：通用性是最重要的，无论在哪个平台上使用都具有近乎一致的体验，为此没有利用单个平台的特性也是可接受的；数据可无障碍导出与导入，尊重用户的选择自由；简单易用且具备可扩展性（例如可安装扩展增强功能），但我也不排斥“一次配置，终身受用”这样需要折腾的软件；当然，开源是最好的。能达到这些要求的软件实属少数派，我在下文仅仅推荐几个，有空再补充。&lt;/p>
-&lt;h1 id="安装">安装&lt;/h1>
-&lt;p>考虑到 Arch Linux 经常变动，所以最好的安装指南应该是官方的&lt;a class="link" href="https://wiki.archlinux.org/index.php/Installation_guide" target="_blank" rel="noopener"
+&lt;h1 id="安装">安装
+&lt;/h1>&lt;p>考虑到 Arch Linux 经常变动，所以最好的安装指南应该是官方的&lt;a class="link" href="https://wiki.archlinux.org/index.php/Installation_guide" target="_blank" rel="noopener"
 > Installation Guide&lt;/a>，我另外也参考了两篇博文，一个是萌狼的&lt;a class="link" href="https://blog.yoitsu.moe/arch-linux/installing_arch_linux_for_complete_newbies.html" target="_blank" rel="noopener"
 >给 GNU/Linux 萌新的 Arch Linux 安装指南 rev.B&lt;/a>，另一个是&lt;a class="link" href="https://www.viseator.com/2017/05/17/arch_install/" target="_blank" rel="noopener"
 >以官方Wiki的方式安装ArchLinux&lt;/a>。对于我这样存在多系统的情况，执行了 grub-mkconfig 后最好检查一下/boot/grub/grub.cfg 是否包括了所有的系统。 &lt;br>
@@ -126,14 +126,14 @@ data-flex-basis="323px"
 > AUR(Arch User Repository) &lt;/a>的存在以及 Arch Linux 打包的低门槛，Arch Linux 拥有数量庞大的软件包，考虑到可能会使用 AUR 里的软件包，所以我安装了&lt;a class="link" href="https://github.com/Jguer/yay" target="_blank" rel="noopener"
 > Yay &lt;/a>这个&lt;a class="link" href="https://wiki.archlinux.org/index.php/AUR_helpers" target="_blank" rel="noopener"
 > AUR 助手&lt;/a>（Yay 完全兼容 Pacman 的命令行参数）帮我节省输入 makepkg 等指令的步骤，下文涉及到安装软件的指令既有可能使用 Pacman，也有可能使用 Yay。&lt;/p>
-&lt;h1 id="中国大陆用户所需的东西">中国大陆用户所需的东西&lt;/h1>
-&lt;h2 id="中文设置">中文设置&lt;/h2>
-&lt;p>我直接根据&lt;a class="link" href="https://szclsya.me/zh-cn/posts/fonts/linux-config-guide/" target="_blank" rel="noopener"
+&lt;h1 id="中国大陆用户所需的东西">中国大陆用户所需的东西
+&lt;/h1>&lt;h2 id="中文设置">中文设置
+&lt;/h2>&lt;p>我直接根据&lt;a class="link" href="https://szclsya.me/zh-cn/posts/fonts/linux-config-guide/" target="_blank" rel="noopener"
 > Linux 下的字体调校指南&lt;/a>一文进行调教，在这里我想说一下该博文中提到的“archlinuxcn required”，这意味着需要&lt;a class="link" href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/" target="_blank" rel="noopener"
 >添加 archlinuxcn 源&lt;/a>，上面介绍已经提到了 Arch Linux 中文社区，而这个社区维护着一个非官方软件仓库，被称为 Arch Linux 中文社区仓库（archlinuxcn 源），该仓库包括了很多中文用户会用到的已编译好的软件包，而 AUR 提供的是 PKGBUILD 打包脚本（这就是为什么你可通过 AUR 安装不少明确禁止二次分发的闭源软件的原因，因为 AUR 分发的是打包脚本而不是软件本体），需要下载后进行编译打包安装，如果你懒得自己打包的话，建议添加 archlinuxcn 源。在配置完成中文字体的显示后，在 KDE 的系统设置中将语言设置为中文就行了。另外，强烈建议阅读官方的&lt;a class="link" href="https://wiki.archlinux.org/index.php/Arch_Linux_%E4%B8%AD%E6%96%87%E5%8C%96" target="_blank" rel="noopener"
 > Arch Linux 中文化&lt;/a>页面。&lt;/p>
-&lt;h2 id="翻墙">翻墙&lt;/h2>
-&lt;p>折腾 Linux 总是会遇到各种问题，这种时候便需要 Google 了，让我们先解决使用无法使用 Google 的问题（此处使用 V2Ray 作为例子，在官方软件仓库有 V2Ray 的软件包真是太好了）：&lt;/p>
+&lt;h2 id="翻墙">翻墙
+&lt;/h2>&lt;p>折腾 Linux 总是会遇到各种问题，这种时候便需要 Google 了，让我们先解决使用无法使用 Google 的问题（此处使用 V2Ray 作为例子，在官方软件仓库有 V2Ray 的软件包真是太好了）：&lt;/p>
 &lt;pre>&lt;code>yay -S v2ray
 &lt;/code>&lt;/pre>
 &lt;p>安装后修改/etc/v2ray/config.json 的配置，然后：&lt;/p>
@@ -155,8 +155,8 @@ data-flex-basis="350px"
 >在线工具&lt;/a>生成；如果你使用 SSR 翻墙，AUR 中有&lt;a class="link" href="https://aur.archlinux.org/packages/electron-ssr/" target="_blank" rel="noopener"
 > electron-ssr&lt;/a>，也有&lt;a class="link" href="https://aur.archlinux.org/packages/shadowsocksr/" target="_blank" rel="noopener"
 > shadowsocksr&lt;/a>，但需要注意的是 electron-ssr 无法在 KDE 下自动设置代理（它使用了 gsetting 设置系统代理，不支持 KDE）。总之，安装好翻墙软件后终于能在电脑上使用 Google 查问题了。&lt;/p>
-&lt;h1 id="终端模拟器与-shell">终端模拟器与 Shell&lt;/h1>
-&lt;p>既然在 Linux 下，那么肯定免不了与终端打交道，既然如此，我们就需要一个美观、实用的终端（模拟器）。要说美观的话，KDE 自带的 Konsole 已经足够漂亮了，透明背景这一点让一直使用 Gnome Terminal 的我感到非常舒服，只需要稍微调整一下，就可以做到&lt;a class="link" href="https://kirikira.moe/post/28/#3" target="_blank" rel="noopener"
+&lt;h1 id="终端模拟器与-shell">终端模拟器与 Shell
+&lt;/h1>&lt;p>既然在 Linux 下，那么肯定免不了与终端打交道，既然如此，我们就需要一个美观、实用的终端（模拟器）。要说美观的话，KDE 自带的 Konsole 已经足够漂亮了，透明背景这一点让一直使用 Gnome Terminal 的我感到非常舒服，只需要稍微调整一下，就可以做到&lt;a class="link" href="https://kirikira.moe/post/28/#3" target="_blank" rel="noopener"
 > kiri 大佬这样的效果&lt;/a>，让自己一整天都保持心情愉悦。不过在实用性方面我开始时遇到了一点问题，Konsole 使用的 Shell 是 Bash，而 Arch Linux 本身的 Bash 并没有自动补全配置，想要自动补全的话需要安装 bash-completion：&lt;/p>
 &lt;pre>&lt;code>sudo pacman -S bash-completion
 &lt;/code>&lt;/pre>
@@ -182,8 +182,8 @@ sudo chsh -s /bin/zsh username
 &lt;/code>&lt;/pre>
 &lt;p>你可以在&lt;a class="link" href="https://github.com/vifly/dotfiles/blob/master/zsh/.zshrc" target="_blank" rel="noopener"
 > GitHub &lt;/a>查看我的 zsh 配置，不过请记得根据自己的需求进行修改。&lt;/p>
-&lt;h1 id="输入法">输入法&lt;/h1>
-&lt;p>前面搞定了中文字体的显示，但是还没解决输入中文这个问题，在这里我选择了与使用 Debian 时同样的方案：基于 Fcitx 框架的 Rime 输入法。先贴一波安装指令（其它基于 Fcitx 框架的输入法请看&lt;a class="link" href="https://wiki.archlinux.org/index.php/Fcitx" target="_blank" rel="noopener"
+&lt;h1 id="输入法">输入法
+&lt;/h1>&lt;p>前面搞定了中文字体的显示，但是还没解决输入中文这个问题，在这里我选择了与使用 Debian 时同样的方案：基于 Fcitx 框架的 Rime 输入法。先贴一波安装指令（其它基于 Fcitx 框架的输入法请看&lt;a class="link" href="https://wiki.archlinux.org/index.php/Fcitx" target="_blank" rel="noopener"
 > Wiki 页面&lt;/a>）：&lt;/p>
 &lt;pre>&lt;code>sudo pacman -S fcitx fcitx-im fcitx-rime
 &lt;/code>&lt;/pre>
@@ -212,8 +212,8 @@ data-flex-grow="83"
 data-flex-basis="200px"
 >&lt;/p>
 &lt;p>最后，将我已经在 Debian 上调校好的 Rime 输入法配置文件拷贝过来（调校 Rime 的教程太多了，这里懒得贴了～），就能畅快地输入中文了。&lt;/p>
-&lt;h1 id="多媒体">多媒体&lt;/h1>
-&lt;p>这里选择在 Debian 上非常熟悉的 MPV 和 Rhythmbox 作为视频和音频播放器，之所以选择 MPV 是因为我已经有了一套&lt;a class="link" href="https://github.com/vifly/dotfiles/blob/master/mpv/.config/mpv/mpv.conf" target="_blank" rel="noopener"
+&lt;h1 id="多媒体">多媒体
+&lt;/h1>&lt;p>这里选择在 Debian 上非常熟悉的 MPV 和 Rhythmbox 作为视频和音频播放器，之所以选择 MPV 是因为我已经有了一套&lt;a class="link" href="https://github.com/vifly/dotfiles/blob/master/mpv/.config/mpv/mpv.conf" target="_blank" rel="noopener"
 >配置方案&lt;/a>，没必要选择其它播放器了，如果你还没使用过 MPV，那么&lt;a class="link" href="https://vcb-s.com/archives/7594/comment-page-1" target="_blank" rel="noopener"
 >这里&lt;/a>有一篇相当不错的配置教程。而 Rhythmbox 支持不少插件，例如，在 KDE 桌面下，Rhythmbox 无法在关闭窗口时隐藏到托盘继续播放，可以通过安装 rhythmbox-tray-icon 插件解决：&lt;/p>
 &lt;pre>&lt;code>yay -S rhythmbox-tray-icon
@@ -229,18 +229,18 @@ data-flex-grow="130"
 data-flex-basis="312px"
 >&lt;/p>
 &lt;p>除此以外，我还推荐 rhythmbox-equalizer 插件，安装后可调整 EQ。&lt;/p>
-&lt;h1 id="生产力">生产力&lt;/h1>
-&lt;p>属于生产力的工具有很多，我在这里只选择分享几个比较重要的工具。如果平常使用的生产力工具没有 Linux 客户端，或许可用网页版代替客户端（连网页版都没有的话，折腾下 wine 或放弃在 Linux 下使用吧）。&lt;/p>
-&lt;h2 id="浏览器">浏览器&lt;/h2>
-&lt;p>都说程序猿是面向 Google 编程的，既然如此，怎能缺少一个趁手的浏览器用于查资料呢。直接安装我在 Debian 上一直在使用的 Firefox 与 Chromium（Google Chrome 的开源部分）：&lt;/p>
+&lt;h1 id="生产力">生产力
+&lt;/h1>&lt;p>属于生产力的工具有很多，我在这里只选择分享几个比较重要的工具。如果平常使用的生产力工具没有 Linux 客户端，或许可用网页版代替客户端（连网页版都没有的话，折腾下 wine 或放弃在 Linux 下使用吧）。&lt;/p>
+&lt;h2 id="浏览器">浏览器
+&lt;/h2>&lt;p>都说程序猿是面向 Google 编程的，既然如此，怎能缺少一个趁手的浏览器用于查资料呢。直接安装我在 Debian 上一直在使用的 Firefox 与 Chromium（Google Chrome 的开源部分）：&lt;/p>
 &lt;pre>&lt;code>yay -S firefox-i18n-zh-cn chromium
 &lt;/code>&lt;/pre>
 &lt;p>这两个浏览器都有云同步机制，可直接将在其它平台上的浏览器资料同步过来，不想使用云同步的话，也可以手动复制用户资料以进行数据备份和迁移，Chromium 的用户资料在~/.config/chromium/Default/，浏览器扩展及其数据存放在这个目录下带有“Extensions”的子目录中；Firefox 有些不同，它轻松支持多个用户配置，你可以打开&lt;a class="link" href="about:profiles" > about:profiles &lt;/a>页面查看用户配置文件路径，显示“正在使用此配置文件，因而不能删除。”的就是当前的用户配置文件。 &lt;br>
 对于我来说，选择这两个浏览器的一个重要原因就是可以安装扩展改善各种功能，例如禁用 JS 的 NoScript/ScriptSafe，拦截广告的 uBlock，为网页注入实用 JS 的 Greasemonkey，对于 Firefox 用户，还可参考编程随想的&lt;a class="link" href="https://program-think.blogspot.com/2016/10/custom-firefox-theme-without-extension.html" target="_blank" rel="noopener"
 >无需任何插件或扩展，定制 Firefox 外观&lt;/a>和&lt;a class="link" href="https://program-think.blogspot.com/2019/07/Customize-Firefox.html" target="_blank" rel="noopener"
 >扫盲 Firefox 定制——从“user.js”到“omni.ja”&lt;/a>进行更高级的定制。另外，从安全补丁的及时性这一角度来说，我也更推荐这两个浏览器，而不是基于这两者的衍生版。&lt;/p>
-&lt;h2 id="代码编辑器与ide">代码编辑器与IDE&lt;/h2>
-&lt;p>要问对程序猿而言最重要的生产力工具是什么，回答肯定是代码编辑器或 IDE。目前在 Linux 下我喜欢的编辑器就是 Visual Studio Code（简称 VS Code）了，虽然这是微软出品的（别跟 VS 搞混了，两者之间的差别非常大），不过用了以后还是要说一句“真香！”。它可以胜任多种需求，常见的 Python、C/C++等完全不在话下，也可以用作 Markdown 写作，像本文就是在 VS Code 下完成的，当然，值得一提的还有美观的界面，开箱即用的设置，这都令它在短时间内打动了我，再配合各种扩展，带来的是十分舒适的体验。对于 VS Code，我目前推荐 TabNine 以及 Markdown Preview Enhanced 这两个扩展，前者带来优秀的主流编程语言自动补全，后者带来更高级的 Markdown 预览体验（例如查看 LaTex）。&lt;/p>
+&lt;h2 id="代码编辑器与ide">代码编辑器与IDE
+&lt;/h2>&lt;p>要问对程序猿而言最重要的生产力工具是什么，回答肯定是代码编辑器或 IDE。目前在 Linux 下我喜欢的编辑器就是 Visual Studio Code（简称 VS Code）了，虽然这是微软出品的（别跟 VS 搞混了，两者之间的差别非常大），不过用了以后还是要说一句“真香！”。它可以胜任多种需求，常见的 Python、C/C++等完全不在话下，也可以用作 Markdown 写作，像本文就是在 VS Code 下完成的，当然，值得一提的还有美观的界面，开箱即用的设置，这都令它在短时间内打动了我，再配合各种扩展，带来的是十分舒适的体验。对于 VS Code，我目前推荐 TabNine 以及 Markdown Preview Enhanced 这两个扩展，前者带来优秀的主流编程语言自动补全，后者带来更高级的 Markdown 预览体验（例如查看 LaTex）。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/Try_Arch_Linux/vs_code.png"
 width="1920"
 height="1043"
@@ -251,8 +251,8 @@ data-flex-grow="184"
 data-flex-basis="441px"
 >&lt;/p>
 &lt;p>如果需要一个 IDE 的话，我推荐由 JetBrains 出品的 IDE，应该有不少人用过它家的 PyCharm 了，除此以外，Clion (C/C++) 与 IntelliJ IDEA (Java) 也是非常优秀的 IDE，至少在目前来说，Clion 对 Cmake 项目的支持可比 VS 好多了。另外，配合 Github 的学生认证可以白嫖 JetBrains 的产品，在此强烈推荐学生党尝试一下 Clion。&lt;/p>
-&lt;h2 id="笔记">笔记&lt;/h2>
-&lt;p>作为一个程序猿，总是会有记录笔记的需求，我目前有相当一部分的笔记资料储存在 EverNote 这个云笔记上，而它并没有 Linux 官方客户端，不过，得益于它的开放 API，早就有开发者做了一个在 Linux 下的客户端：NixNote（原名 Nevernote），Arch Linux 官方仓库有这个软件包：&lt;/p>
+&lt;h2 id="笔记">笔记
+&lt;/h2>&lt;p>作为一个程序猿，总是会有记录笔记的需求，我目前有相当一部分的笔记资料储存在 EverNote 这个云笔记上，而它并没有 Linux 官方客户端，不过，得益于它的开放 API，早就有开发者做了一个在 Linux 下的客户端：NixNote（原名 Nevernote），Arch Linux 官方仓库有这个软件包：&lt;/p>
 &lt;pre>&lt;code>sudo pacman -S nixnote2
 &lt;/code>&lt;/pre>
 &lt;p>&lt;del>只不过我遇到了在已设置应用程序使用语言为中文的情况下，菜单依然为英文的问题，Google 后找到一篇&lt;a class="link" href="https://blue-leaf81.net/archives/nixnote-translate-jp/" target="_blank" rel="noopener"
@@ -261,12 +261,12 @@ data-flex-basis="441px"
 当然，EverNote 在 Linux 下还有&lt;a class="link" href="https://itsfoss.com/evernote-on-linux/" target="_blank" rel="noopener"
 >几个非官方客户端&lt;/a>，我选择 NixNote 的原因在于它是使用 C++ QT 开发的，而不是类似于&lt;a class="link" href="https://github.com/klauscfhq/tusk" target="_blank" rel="noopener"
 > Tusk &lt;/a>等使用前端技术开发的套壳 Web 应用，但对于 EverNote 的高级用户，我建议使用 EverNote 的网页版，而不是使用 NixNote，因为网页版的编辑功能比 NixNote 更优秀。&lt;/p>
-&lt;h2 id="虚拟机">虚拟机&lt;/h2>
-&lt;p>我有时候会有使用虚拟机运行 Windows 或其它 Linux 发行版的需求，这个时候就需要用到虚拟机了，VirtualBox 是一个操作简单且免费开源的虚拟机软件，根据&lt;a class="link" href="https://wiki.archlinux.org/index.php/VirtualBox" target="_blank" rel="noopener"
+&lt;h2 id="虚拟机">虚拟机
+&lt;/h2>&lt;p>我有时候会有使用虚拟机运行 Windows 或其它 Linux 发行版的需求，这个时候就需要用到虚拟机了，VirtualBox 是一个操作简单且免费开源的虚拟机软件，根据&lt;a class="link" href="https://wiki.archlinux.org/index.php/VirtualBox" target="_blank" rel="noopener"
 > Wiki 页面&lt;/a>进行安装（安装时会要求选择内核模块，没有更换默认内核的话，选择 virtualbox-host-modules-arch，不然选择 virtualbox-host-dkms）：&lt;/p>
 &lt;pre>&lt;code>yay -S virtualbox virtualbox-ext-oracle virtualbox-guest-iso
 &lt;/code>&lt;/pre>
 &lt;p>假如你没有用过 VirtualBox，那么这里提醒一句，拖放文件和共享粘贴板等功能需要在运行中的虚拟机窗口上方点击“设备”-&amp;gt;“安装增强功能”才可使用。&lt;/p>
-&lt;h1 id="后记">后记&lt;/h1>
-&lt;p>得益于我对软件的通用性的要求，可以说是无痛从 Debian 迁移到了 Arch Linux，不少软件只需简单地复制粘贴配置文件即可（前提是已经有配置文件了），而且 Arch Linux 的系统安装过程也并不像我之前想象的那样复杂。折腾完这堆东西后最大的感触就是之前折腾积累的东西（如相关知识与配置）并没有浪费，若是没有相关的积累，面对安装 Arch Linux 以及安装完成后做什么这些问题恐怕会一头雾水，浪费不少时间，从节约时间的角度来说，编程随想所说的&lt;a class="link" href="https://program-think.blogspot.com/2013/10/personal-it-infrastructure.html" target="_blank" rel="noopener"
+&lt;h1 id="后记">后记
+&lt;/h1>&lt;p>得益于我对软件的通用性的要求，可以说是无痛从 Debian 迁移到了 Arch Linux，不少软件只需简单地复制粘贴配置文件即可（前提是已经有配置文件了），而且 Arch Linux 的系统安装过程也并不像我之前想象的那样复杂。折腾完这堆东西后最大的感触就是之前折腾积累的东西（如相关知识与配置）并没有浪费，若是没有相关的积累，面对安装 Arch Linux 以及安装完成后做什么这些问题恐怕会一头雾水，浪费不少时间，从节约时间的角度来说，编程随想所说的&lt;a class="link" href="https://program-think.blogspot.com/2013/10/personal-it-infrastructure.html" target="_blank" rel="noopener"
 >重视个人 IT 基础设施的改善&lt;/a>是很有道理的。总之，安装好 Arch Linux 的我就像是一个刚得到新玩具的小孩子，正迫不及待地想要探索这个新玩具的有趣之处，更多有趣的软件留待日后补充好了。&lt;/p></description></item></channel></rss>

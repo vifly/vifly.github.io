@@ -27,8 +27,8 @@ class="gallery-image"
 data-flex-grow="285"
 data-flex-basis="685px"
 >&lt;/p>
-&lt;h1 id="让我们先来玩个游戏">让我们先来玩个游戏&lt;/h1>
-&lt;p>一个椭圆曲线是由 $y^{2} = x^{3} + a x + b$ 定义的曲线。 &lt;br>
+&lt;h1 id="让我们先来玩个游戏">让我们先来玩个游戏
+&lt;/h1>&lt;p>一个椭圆曲线是由 $y^{2} = x^{3} + a x + b$ 定义的曲线。 &lt;br>
 举个例子，让 a = −3 和 b = 5，然后当你绘制这条曲线时，它看起来像这样：&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/elliptic-curve.png"
 width="927"
@@ -111,8 +111,8 @@ data-flex-basis="358px"
 &lt;p>要到达 NP 点，并不意味着你需要进行 N 次这样的操作。如果你可以在合理的时间内完成该操作，那么我是否可以做同样的事情，即一步一步前进，直到遇到相同的点 NP，这不就确切地发现了需要走多少步了吗？&lt;/p>
 &lt;/blockquote>
 &lt;p>这是一个好问题，实际上我在网上阅读了许多文章后也产生了相同的疑问，但是我发现其中一些文章可以清楚地解释这一点。因此，接下来，我们来讨论在太空中如何真正地使你的敌人无法对你进行跟踪。&lt;/p>
-&lt;h1 id="以曲速前进">以曲速前进&lt;/h1>
-&lt;p>我们提到了用沿曲线跳跃的技巧以摆脱敌人，然而以缓慢的速度使用这个技巧是不明智的，因为它很容易被追踪。你的敌人可以简单地做同样的事情，直到他们弄清楚到达目的地需要跳跃多少次。为了真正使你无法被追踪，你需要以曲速前进。&lt;/p>
+&lt;h1 id="以曲速前进">以曲速前进
+&lt;/h1>&lt;p>我们提到了用沿曲线跳跃的技巧以摆脱敌人，然而以缓慢的速度使用这个技巧是不明智的，因为它很容易被追踪。你的敌人可以简单地做同样的事情，直到他们弄清楚到达目的地需要跳跃多少次。为了真正使你无法被追踪，你需要以曲速前进。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/star-trek.gif"
 width="471"
 height="266"
@@ -194,8 +194,8 @@ $$2^{7}P + 2^{6}P + 2^{5}P + 2^{1}P + 2^{0}P$$ &lt;br>
 &lt;p>这仅需 8 步，与 227 步相比，这种方法快得多了。此方法被称为 &lt;a class="link" href="https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication#Double-and-add" target="_blank" rel="noopener"
 >double and add&lt;/a>。它使我们可以快速地在一个椭圆曲线上跳跃以到达所需的点。在此示例中的数字 227 是很小的，我们可以在 $O(\log{}n)$ 的时间复杂度下到达我们期望的数字，就算这个数字是与宇宙中原子的数量一样大（一般而言是 $10^{82}$，约等于 $2^{275}$），此方法仍可以在 275 次 double and add 操作后完成计算。&lt;/p>
 &lt;p>现在我们知道了如何以曲速在椭圆曲线上向前跳跃，因此，我们可以轻松地向前跳跃数十亿次。虽然这个操作对我们来说很容易，但是对于攻击者而言，要准确地找出我们跳了多少次是极其困难的，此问题等价于：在给定 NP 与 P 且 N 足够大的情况下，找出 N 值。这被称为椭圆曲线离散对数问题，如果你想了解有关此主题的更多信息，可以自己去网上搜索。&lt;/p>
-&lt;h1 id="让我们在一个秘密的地方会面">让我们在一个秘密的地方会面&lt;/h1>
-&lt;p>我们之前一直在谈论如何以光速在愚蠢的椭圆曲线上跳跃，但是加密呢？别急，我们这就介绍它。在此之前，让我们首先谈下密钥交换。&lt;/p>
+&lt;h1 id="让我们在一个秘密的地方会面">让我们在一个秘密的地方会面
+&lt;/h1>&lt;p>我们之前一直在谈论如何以光速在愚蠢的椭圆曲线上跳跃，但是加密呢？别急，我们这就介绍它。在此之前，让我们首先谈下密钥交换。&lt;/p>
 &lt;p>想想看，Alice 和 Bob 正在太空旅行，他们将交换反抗军新总部的位置。突然，他们发现帝国的无人机正在尾随他们并拦截他们飞船之间的通信。为了安全地交换信息，他们同意在只有他们两个都知道的秘密坐标下会面。但是，如果敌人正在窃听，他们如何交换这个秘密坐标呢？现在，ECC 在这里为他们提供帮助。下面是 Alice 和 Bob 要做的事情：&lt;/p>
 &lt;p>Alice：&lt;/p>
 &lt;blockquote>
@@ -224,8 +224,8 @@ data-flex-basis="340px"
 >&lt;/p>
 &lt;p>对于窃听者，他们需要找出 N 或 M 才能获得相同的坐标。通过一步一步运算，最终也会到达终点。但是，正如我们前面提到的，鉴于数字足够大，以致没有简单的方法可以做到这一点，因此我们可以确定只有 Alice 和 Bob 才能知道这个秘密坐标。这种密钥交换协议被称为&lt;a class="link" href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman" target="_blank" rel="noopener"
 >椭圆曲线 Diffie–Hellman 密钥交换&lt;/a>。&lt;/p>
-&lt;h1 id="加密">加密&lt;/h1>
-&lt;p>现在让我们谈谈加密。Alice 想要安全地向 Bob 发送信息，他们需要首先进行我们上面刚刚提到的椭圆曲线 Diffie–Hellman 密钥交换：&lt;/p>
+&lt;h1 id="加密">加密
+&lt;/h1>&lt;p>现在让我们谈谈加密。Alice 想要安全地向 Bob 发送信息，他们需要首先进行我们上面刚刚提到的椭圆曲线 Diffie–Hellman 密钥交换：&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/translate_elliptic_curve_cryptography_explained/ecdh-encryption-key-exchange.png"
 width="803"
 height="425"
@@ -251,8 +251,8 @@ data-flex-basis="313px"
 >&lt;/p>
 &lt;p>太好了，现在即使帝国的无人机窃听了所有通信，Alice 仍可以安全地将反抗军的新总部位置分享给 Bob。同样的，Bob 可以使用相同的共享密钥 SK 加密消息，并将其发送回 Alice。&lt;/p>
 &lt;p>当 Alice 和 Bob 彼此认识时，我们知道可以使用 ECC 安全地发送消息。但是，如果在某些情况下我们想安全地向某人发送消息，但他们不知道并且可能不在乎你是谁，该怎么办？简单，我们在这举个例子，假设 Bob 已经知道 Alice 的公钥，如果 Alice 知道 Bob 的公钥 MP，她可以使用她自己的私钥 N 生成相同的共享密钥 SK，加密数据并将纯文本形式的公钥 NP 与经过加密的数据一起发送出去。一旦 Bob 收到消息，他就可以使用 NP 和他的私钥 M 创建相同的密钥 SK 并解密经过加密的数据。但是，由于信息中附带的公钥 NP 可能属于任何人，因此 Bob 将无法确认消息是来自谁的。如果 Bob 不在乎发送者是谁，Alice 也可选择为同一操作创建一个临时的新密钥对。&lt;/p>
-&lt;h1 id="浮点数的问题">浮点数的问题&lt;/h1>
-&lt;p>到目前为止，我们一直在讨论在实数范围进行计算的 ECC。我们在这里使用实数的原因是，它更易于解释和理解。在现实世界中，这实际上并不是我们进行加密的方式。使用实数会带来很多问题，我们之前展示的一个大问题就是会出现计算错误。还有另一个问题，在某些极端情况下，该数字可能会非常大，而浮点数可能无法容纳它。&lt;/p>
+&lt;h1 id="浮点数的问题">浮点数的问题
+&lt;/h1>&lt;p>到目前为止，我们一直在讨论在实数范围进行计算的 ECC。我们在这里使用实数的原因是，它更易于解释和理解。在现实世界中，这实际上并不是我们进行加密的方式。使用实数会带来很多问题，我们之前展示的一个大问题就是会出现计算错误。还有另一个问题，在某些极端情况下，该数字可能会非常大，而浮点数可能无法容纳它。&lt;/p>
 &lt;p>要回答你可能会问的这个问题，我们给出的答案是在&lt;a class="link" href="https://en.wikipedia.org/wiki/Finite_field_arithmetic" target="_blank" rel="noopener"
 >有限域&lt;/a>，或者更精确地来说是在对整数 p 取模（p 为质数）的有限域上进行计算。同样的，我们也不想将兔子洞挖得太深，因此，如果你对此有兴趣，可以阅读 &lt;a class="link" href="https://andrea.corbellini.name/2015/05/23/elliptic-curve-cryptography-finite-fields-and-discrete-logarithms/" target="_blank" rel="noopener"
 >Elliptic Curve Cryptography: finite fields and discrete logarithms&lt;/a>，或者观看 &lt;a class="link" href="https://www.youtube.com/watch?v=mFVKuFZ29Fc&amp;amp;list=PLN9KZDpNfsHMd7d7PX87JGesGY_Qzyb3V&amp;amp;index=2" target="_blank" rel="noopener"

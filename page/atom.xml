@@ -110,34 +110,34 @@ Q9jbTWanOkjFlitDSmg=
 -----END PGP PUBLIC KEY BLOCK-----
 &lt;/code>&lt;/pre>&lt;p>将上面以&lt;code>-----BEGIN PGP PUBLIC KEY BLOCK-----&lt;/code>作为开头，以&lt;code>-----END PGP PUBLIC KEY BLOCK-----&lt;/code>作为结尾的文本保存到文本文件中，然后使用 &lt;code>gpg --import public.txt&lt;/code> （假设你把这段文本保存到 public.txt）导入我的公钥。在导入公钥后，请核对密钥指纹：&lt;/p>
 &lt;p>7629 42D8 8B9D CF46 5B06 5498 C4C3 D145 FC74 3104&lt;/p></description></item><item><title>Service</title><link>https://viflythink.com/service/</link><pubDate>Tue, 28 May 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/service/</guid><description>&lt;p>目前，除了博客以外，我还有一些公共可用的服务，本页面用于列出这些服务并配上相应的说明。&lt;/p>
-&lt;h1 id="arch-软件源">Arch 软件源&lt;/h1>
-&lt;p>&lt;a class="link" href="https://archrepo.viflythink.com" target="_blank" rel="noopener"
+&lt;h1 id="arch-软件源">Arch 软件源
+&lt;/h1>&lt;p>&lt;a class="link" href="https://archrepo.viflythink.com" target="_blank" rel="noopener"
 >https://archrepo.viflythink.com&lt;/a>&lt;/p>
 &lt;p>这是我自用的 Arch 软件源，国内外均可高速访问，里面主要包含根据 AUR 的 PKGBUILD 进行打包的软件，质量没有足够的保证，有相关的问题可以在 &lt;a class="link" href="https://github.com/vifly/arch-build/issues" target="_blank" rel="noopener"
 >GitHub Issues&lt;/a> 中提出。&lt;/p>
-&lt;h2 id="使用方法">使用方法&lt;/h2>
-&lt;p>首先导入并信任我的签名公钥，如果将来有一天软件包签名失效的话，那有可能是我更换了签名用的密钥，重新执行以下步骤就可以解决：&lt;/p>
+&lt;h2 id="使用方法">使用方法
+&lt;/h2>&lt;p>首先导入并信任我的签名公钥，如果将来有一天软件包签名失效的话，那有可能是我更换了签名用的密钥，重新执行以下步骤就可以解决：&lt;/p>
 &lt;pre tabindex="0">&lt;code>wget -O /tmp/vifly-repo.key &amp;#39;https://share.viflythink.com/arch-repo.key&amp;#39; &amp;amp;&amp;amp; sudo pacman-key --add /tmp/vifly-repo.key
 sudo pacman-key --lsign-key viflythink@gmail.com
 &lt;/code>&lt;/pre>&lt;p>接着就是像添加 archlinuxcn 等第三方软件源一样在 /etc/pacman.conf 末尾添加下面几行：&lt;/p>
 &lt;pre tabindex="0">&lt;code>[vifly]
 Server = https://archrepo.viflythink.com
-&lt;/code>&lt;/pre>&lt;h1 id="debian-软件源">Debian 软件源&lt;/h1>
-&lt;p>&lt;a class="link" href="https://debianrepo.viflythink.com" target="_blank" rel="noopener"
+&lt;/code>&lt;/pre>&lt;h1 id="debian-软件源">Debian 软件源
+&lt;/h1>&lt;p>&lt;a class="link" href="https://debianrepo.viflythink.com" target="_blank" rel="noopener"
 >https://debianrepo.viflythink.com&lt;/a>&lt;/p>
 &lt;p>除了 Arch 软件源外，我还有为 Debian 准备的软件源，同样是国内外均可高速访问，其中包含 fcitx5 百万肥猫词典（中文维基百科包含的词语）、萌娘百科词典等桌面用户所需的软件包，未来也会添加在服务器使用的软件。如有问题可在 &lt;a class="link" href="https://github.com/vifly/debian-build/issues" target="_blank" rel="noopener"
 >GitHub Issues&lt;/a> 提出。注意，本软件源目前只确保在最新的 Debian 稳定版（stable）可用，如果你使用旧稳定版/测试版/不稳定版 Debian，那么请自行解决报错。&lt;/p>
-&lt;h2 id="使用方法-1">使用方法&lt;/h2>
-&lt;p>与使用其它第三方软件源相同，首先导入签名公钥。由于 apt-key 会在 Debian 12 被废弃，所以这里不使用 apt-key 导入公钥。&lt;/p>
+&lt;h2 id="使用方法-1">使用方法
+&lt;/h2>&lt;p>与使用其它第三方软件源相同，首先导入签名公钥。由于 apt-key 会在 Debian 12 被废弃，所以这里不使用 apt-key 导入公钥。&lt;/p>
 &lt;pre tabindex="0">&lt;code>wget -qO - &amp;#39;https://share.viflythink.com/debian-repo.key&amp;#39; | gpg --dearmor | sudo tee /usr/share/keyrings/vifly-keyring.gpg &amp;amp;&amp;gt; /dev/null
 &lt;/code>&lt;/pre>&lt;p>接着在 sources.list.d 添加软件源，记得把 bookworm（对应 Debian 12）改为最新的稳定版系统代号（codename）。&lt;/p>
 &lt;pre tabindex="0">&lt;code>echo &amp;#39;deb [signed-by=/usr/share/keyrings/vifly-keyring.gpg] https://debianrepo.viflythink.com/ bookworm main&amp;#39; | sudo tee /etc/apt/sources.list.d/vifly.list
-&lt;/code>&lt;/pre>&lt;h1 id="文件分享">文件分享&lt;/h1>
-&lt;p>&lt;a class="link" href="https://share.viflythink.com" target="_blank" rel="noopener"
+&lt;/code>&lt;/pre>&lt;h1 id="文件分享">文件分享
+&lt;/h1>&lt;p>&lt;a class="link" href="https://share.viflythink.com" target="_blank" rel="noopener"
 >https://share.viflythink.com&lt;/a>&lt;/p>
 &lt;p>还有一个存在感较低的文件分享服务，目前仅用于分发上面所需的签名公钥。&lt;/p>
-&lt;p>其中的文件都存放在我的服务器上。&lt;/p></description></item><item><title>About</title><link>https://viflythink.com/about/</link><pubDate>Sun, 28 Apr 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/about/</guid><description>&lt;h1 id="about-me">About me&lt;/h1>
-&lt;p>Hello, world! &lt;br>
+&lt;p>其中的文件都存放在我的服务器上。&lt;/p></description></item><item><title>About</title><link>https://viflythink.com/about/</link><pubDate>Sun, 28 Apr 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/about/</guid><description>&lt;h1 id="about-me">About me
+&lt;/h1>&lt;p>Hello, world! &lt;br>
 我是谁呢？这个问题并不是那么容易回答，如果是从现实角度来说，我目前是一个程序猿，除了写代码以外也会搞深度学习（&lt;del>炼丹&lt;/del>），除了技术以外的日常爱好也不少。
 但是，这短短几句话不足以说明我是谁，我还有很多东西没说，最起码，我应该说清楚我喜欢什么与讨厌什么：&lt;/p>
 &lt;p>&lt;strong>喜欢的东西：&lt;/strong>&lt;/p>
@@ -169,8 +169,8 @@ data-flex-basis="179px"
 &lt;p>最后，路还很长，有话慢慢说。欢迎各位与我交流，我的邮箱是 &lt;a class="link" href="mailto:viflythink@gmail.com" >viflythink@gmail.com&lt;/a>，你也可以通过&lt;a class="link" href="https://t.me/viflythink" target="_blank" rel="noopener"
 > Telegram &lt;/a>联系我，或者使用&lt;a class="link" href="https://twitter.com/viflythink" target="_blank" rel="noopener"
 > Twitter &lt;/a>（较少使用）私信我。&lt;/p>
-&lt;h1 id="交换友链">交换友链&lt;/h1>
-&lt;p>欢迎各位与我交换博客友链，想要交换友链的话，可以通过上面的联系方式联系我，或者直接在任意博文下留言，以下是一些可能用到的信息：&lt;/p>
+&lt;h1 id="交换友链">交换友链
+&lt;/h1>&lt;p>欢迎各位与我交换博客友链，想要交换友链的话，可以通过上面的联系方式联系我，或者直接在任意博文下留言，以下是一些可能用到的信息：&lt;/p>
 &lt;p>博客简述：Vifly 的自留地，既包括技术折腾记录，也有对于各种东西的感想。&lt;br>
 头像：https://viflythink.com/img/avatar.png&lt;/p></description></item><item><title>Archives</title><link>https://viflythink.com/archives/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/archives/</guid><description/></item><item><title>Tags</title><link>https://viflythink.com/tags/</link><pubDate>Sun, 07 Apr 2019 00:00:00 +0800</pubDate><guid>https://viflythink.com/tags/</guid><description/></item><item><title>Links</title><link>https://viflythink.com/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://viflythink.com/links/</guid><description>&lt;p>这里存放了各位友人们的博客站点链接，相信其中总有一些博文能引起你的兴趣。&lt;/p>
 &lt;p>列表按友链添加时间先后排序。&lt;/p></description></item><item><title>Search</title><link>https://viflythink.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://viflythink.com/search/</guid><description/></item></channel></rss>

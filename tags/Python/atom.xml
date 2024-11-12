@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Vifly 的博客</title><link>https://viflythink.com/tags/Python/</link><description>Recent content in Python on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 08 May 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/Python/atom.xml" rel="self" type="application/rss+xml"/><item><title>Python GIL 和并发编程</title><link>https://viflythink.com/Python_GIL_and_concurrency/</link><pubDate>Sat, 08 May 2021 00:00:00 +0800</pubDate><guid>https://viflythink.com/Python_GIL_and_concurrency/</guid><description>&lt;img src="https://viflythink.com/Python_GIL_and_concurrency/show.jpg" alt="Featured image of post Python GIL 和并发编程" />&lt;p>各位读者好，又是本鸽子久违的更新。最近在应聘后端开发岗位的过程中为了应对面试官各种奇怪的问题，特意整理了自己为 Python 并发编程所做的笔记，一看内容已经足够填满一篇博文了，那就作为新的一篇博文发布吧。&lt;/p>
 &lt;p>由于并发（concurrency）与并行（parallelism）这两个词的意义总是纠缠不清，以至于有时会看到“Python 不支持并发”这样让我哭笑不得的说法，所以先明确一下在本文中这两个词的定义：根据&lt;a class="link" href="https://laike9m.com/blog/huan-zai-yi-huo-bing-fa-he-bing-xing,61/" target="_blank" rel="noopener"
 >还在疑惑并发和并行？&lt;/a>的说明，我们把并行定义为&lt;strong>同时&lt;/strong>有多个单位工作，这指的是运行时的&lt;strong>状态&lt;/strong>，而并发则是一种&lt;strong>程序结构设计&lt;/strong>，能够实现&lt;strong>一段时间&lt;/strong>内执行逻辑上存在区别的多个操作。在应用程序层面，并发是并行的必要条件。&lt;/p>
-&lt;h1 id="python-的-gil">Python 的 GIL&lt;/h1>
-&lt;p>说起 Python 的并发，那么总是绕不开 GIL（全局解释器锁）这个东西，这就是导致我们采用的很多种并发手段无法实现并行的罪魁祸首，要注意的是并不是说所有并发手段都无法实现并行，例如多进程就可以。为了破解 Python 的并行难题，下面就让我们先解析一下这个让无数 Python 开发者怨声载道的 GIL。&lt;/p>
-&lt;h2 id="gil-是什么">GIL 是什么&lt;/h2>
-&lt;p>全局解释器锁（Global Interpreter Lock），顾名思义是一种锁，与我们平常在多线程环境下用到的锁不同，GIL 确保的是在同一时刻，在一个 Python 解释器中只有&lt;strong>一个线程&lt;/strong>能够处于执行状态。回想一下我们写的 Python 代码是如何被执行的：在不考虑优化的情况下，Python 解释器一行一行地读取我们写的代码，然后把代码翻译为机器指令（准确来说是 bytecode）执行。GIL 就是对这个解释器上了一把锁，让它在任何时刻都只能执行一条指令。对于 GIL 的实现细节，可以在阅读完本文后参阅 &lt;a class="link" href="https://cyrusin.github.io/2016/04/27/python-gil-implementaion/" target="_blank" rel="noopener"
+&lt;h1 id="python-的-gil">Python 的 GIL
+&lt;/h1>&lt;p>说起 Python 的并发，那么总是绕不开 GIL（全局解释器锁）这个东西，这就是导致我们采用的很多种并发手段无法实现并行的罪魁祸首，要注意的是并不是说所有并发手段都无法实现并行，例如多进程就可以。为了破解 Python 的并行难题，下面就让我们先解析一下这个让无数 Python 开发者怨声载道的 GIL。&lt;/p>
+&lt;h2 id="gil-是什么">GIL 是什么
+&lt;/h2>&lt;p>全局解释器锁（Global Interpreter Lock），顾名思义是一种锁，与我们平常在多线程环境下用到的锁不同，GIL 确保的是在同一时刻，在一个 Python 解释器中只有&lt;strong>一个线程&lt;/strong>能够处于执行状态。回想一下我们写的 Python 代码是如何被执行的：在不考虑优化的情况下，Python 解释器一行一行地读取我们写的代码，然后把代码翻译为机器指令（准确来说是 bytecode）执行。GIL 就是对这个解释器上了一把锁，让它在任何时刻都只能执行一条指令。对于 GIL 的实现细节，可以在阅读完本文后参阅 &lt;a class="link" href="https://cyrusin.github.io/2016/04/27/python-gil-implementaion/" target="_blank" rel="noopener"
 >GIL 的实现细节&lt;/a>一文加深理解。&lt;/p>
 &lt;p>需要注意的是，GIL 仅存在于 Python 官方的 CPython 实现和 PyPy 中，使用其它语言实现的 Python 解释器（如 Jython）并不存在这个限制，所以本文涉及 GIL 时所指的 Python 都是 CPython 实现。&lt;/p>
-&lt;h2 id="为什么需要-gil">为什么需要 GIL&lt;/h2>
-&lt;p>对于其它的主流语言（C/C++ 和 Java 等），它们并不会阻止在同一时刻多个线程的存在，为什么 Python 这么特殊，非要给解释器上一个锁，令我们写的多线程代码没法并行呢。&lt;/p>
+&lt;h2 id="为什么需要-gil">为什么需要 GIL
+&lt;/h2>&lt;p>对于其它的主流语言（C/C++ 和 Java 等），它们并不会阻止在同一时刻多个线程的存在，为什么 Python 这么特殊，非要给解释器上一个锁，令我们写的多线程代码没法并行呢。&lt;/p>
 &lt;p>不少人会回答这是为了解决 Python 的内存管理问题而引入 GIL。且慢，GIL 和内存管理有什么关系？准确来说 GIL 和内存管理中的&lt;a class="link" href="https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29" target="_blank" rel="noopener"
 >垃圾回收&lt;/a>（Garbage Collection，简称 gc）有关，假如你只学过 C 语言，那你可能在刚开始写 Python 时感到有点疑惑：为什么大家的代码在创建新对象后都不手动销毁，不会内存泄漏吗。然后你知道了 Python 有 gc，可以自动帮你回收不用的内存，像 Java、Go 等语言也有 gc，所以大家都不担心自己忘记销毁对象。可为什么其它具有 gc 的语言不存在 GIL 呢？这个问题可以从 Python 的起源获得一部分解答，Python 本身可以说是一个为了好玩而产生的项目，所以采用简单的方式实现 gc 是一个很合理的选择，这个简单的方式就是引用计数（学过 C++ 的同学是否觉得这个名词很熟悉）。&lt;em>经热心群友提醒，Python 的 gc 实现不只是简单的引用计数，还用到了&lt;a class="link" href="https://devguide.python.org/garbage_collector/#optimization-generations" target="_blank" rel="noopener"
 >分代 gc&lt;/a> 作为优化手段，该 gc 实现并不是线程安全的&lt;/em>。Python 中的所有东西都是对象，每个对象都有一个引用计数值，当一个对象的引用计数归零时（代表已经没有任何地方用到这个对象了），Python 就会销毁对象并回收对应的内存，以此实现自动管理内存。你可以通过以下方式查看对象的引用计数：&lt;/p>
@@ -21,8 +21,8 @@
 &lt;p>去除 GIL 有很多种办法，例如更改 gc 的实现，使其不再依赖引用计数，或者采用其它解决引用计数的竞态冲突问题的方案，等等。可惜的是，这些方案要么太难以实现，要么会降低单线程应用和多线程 I/O 密集型应用的性能，所以&lt;a class="link" href="https://www.artima.com/weblogs/viewpost.jsp?thread=214235" target="_blank" rel="noopener"
 >移除 GIL 并不简单&lt;/a>。&lt;/p>
 &lt;p>除此以外，还有一个原因，那就是我们提到 Python 的优点时经常列举的一点：Python 可以轻易集成使用 C/C++ 语言编写的库，它们极大丰富了 Python 的生态，调用这些库时也不用担心性能问题。虽然这些 C 库铸就了 Python 的辉煌，但也存在一个问题：这些 C 库本身不一定是线程安全的，在多线程环境下可能会出现各种奇怪的问题，这点应该不少用 C 语言写过应用的人都深有体会，要想兼容这些线程不安全的 C 库，GIL 是最简单（也许是唯一）的方案。&lt;/p>
-&lt;h2 id="python-的多线程真的没用吗">Python 的多线程真的没用吗&lt;/h2>
-&lt;p>虽然大家都在吐槽 Python 的多线程约等于单线程，但其实在某些情况下 Python 的多线程依然是有用的。首先我们需要区分 I/O 密集型应用与计算密集型应用这两种情况，前者经常等待 I/O 操作，例如读写数据库，上传/下载文件，后者在运行时会消耗掉所有分配给它的 CPU 资源进行计算，例如图像处理。&lt;/p>
+&lt;h2 id="python-的多线程真的没用吗">Python 的多线程真的没用吗
+&lt;/h2>&lt;p>虽然大家都在吐槽 Python 的多线程约等于单线程，但其实在某些情况下 Python 的多线程依然是有用的。首先我们需要区分 I/O 密集型应用与计算密集型应用这两种情况，前者经常等待 I/O 操作，例如读写数据库，上传/下载文件，后者在运行时会消耗掉所有分配给它的 CPU 资源进行计算，例如图像处理。&lt;/p>
 &lt;p>对于计算密集型应用来说，Python 的多线程反倒是一个累赘：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">time&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">threading&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Thread&lt;/span>
@@ -91,8 +91,8 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这回多线程版本大获全胜，仅用了约2秒结束运行，而单线程版本用了约4秒。&lt;/p>
 &lt;p>看到这里，有些同学可能有点奇怪，为什么此时多线程看上去像是没有 GIL 那样以并行状态运行，只用了2秒就结束。其实这里并没有并行，Python 始终只使用了一个 CPU 核心，只是 Python 对 I/O 操作做了一个优化：当进行 I/O 或 time.sleep 这样会阻塞当前线程的操作前会主动释放 GIL，自己等待导致阻塞的任务完成，由于 GIL 被释放所以其它的线程能够运行，完成后该线程再获取 GIL。这个优化并不能实现并行，因为在同一时刻依然只有一个单位在工作，但得益于它，Python 的 I/O 密集型应用在多线程下的表现要比单线程好。所以，Python 的多线程并不是完全没用的。&lt;/p>
-&lt;h2 id="为什么依然需要线程锁">为什么依然需要线程锁&lt;/h2>
-&lt;p>当我第一次知道 Python 的 GIL 对多线程的影响后，就产生了一个挥之不去的问题：既然都有 GIL 了，为什么多线程编程还需要上线程锁呢？现在想来，我应该是被相关文章里的“Python 多线程约等于单线程”这个说法给误导了：既然等于单线程，那就不需要用于多线程的线程锁吧？本质上来说，这属于对定义不够了解所产生的问题。从运行时的状态来说，即使采用了多线程编程，Python 在同一时刻也的确只有一个线程在运行，可是这并不代表我们可以忽略线程安全问题。如果对 GIL 和线程锁的定义和作用有足够的了解，那么就不会存在这个问题，显然，假如有了 GIL 后在多线程环境下可以不用线程锁，那 GIL 就必须提供与线程锁相同的功能。从这点出发，上文已经提到，GIL 是作用于解释器的，确保同一时刻只能存在一个线程，而线程锁作用于多线程编程里的临界区，或者说是对应代码里的共享数据，确保不会发生竞态冲突。前者并不能实现后者的功能，举个多线程下的例子：&lt;/p>
+&lt;h2 id="为什么依然需要线程锁">为什么依然需要线程锁
+&lt;/h2>&lt;p>当我第一次知道 Python 的 GIL 对多线程的影响后，就产生了一个挥之不去的问题：既然都有 GIL 了，为什么多线程编程还需要上线程锁呢？现在想来，我应该是被相关文章里的“Python 多线程约等于单线程”这个说法给误导了：既然等于单线程，那就不需要用于多线程的线程锁吧？本质上来说，这属于对定义不够了解所产生的问题。从运行时的状态来说，即使采用了多线程编程，Python 在同一时刻也的确只有一个线程在运行，可是这并不代表我们可以忽略线程安全问题。如果对 GIL 和线程锁的定义和作用有足够的了解，那么就不会存在这个问题，显然，假如有了 GIL 后在多线程环境下可以不用线程锁，那 GIL 就必须提供与线程锁相同的功能。从这点出发，上文已经提到，GIL 是作用于解释器的，确保同一时刻只能存在一个线程，而线程锁作用于多线程编程里的临界区，或者说是对应代码里的共享数据，确保不会发生竞态冲突。前者并不能实现后者的功能，举个多线程下的例子：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">threading&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">n&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
@@ -116,10 +116,10 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>有时候这段没有使用线程锁的代码不一定能输出100这个值，具体原因就是 GIL 并不保证执行完成一个线程里的操作后才切换到另一线程，也就是说不加线程锁可能会出现：线程 A 读取了变量 n（假设此时是 10），线程 B 读取变量 n（此时是 10），线程 B 修改了变量 n（n = 10 + 1），线程 A 修改变量 n（n = &lt;strong>10&lt;/strong> + 1）。此时线程 A 对变量 n 的修改会导致错误的结果（它修改的是过时的值）。这与其它语言中的线程安全问题是相似的，&lt;a class="link" href="https://opensource.com/article/17/4/grok-gil" target="_blank" rel="noopener"
 >Grok the GIL: How to write fast and thread-safe Python&lt;/a> 一文从原子操作的角度解释了为什么 Python 依然需要线程锁。&lt;/p>
 &lt;p>尽管仍然需要线程锁，但是 GIL 还是为 Python 多线程编程带来了一个好处：无需像其它语言那样考虑锁的颗粒度，上粗颗粒度的锁并没有任何问题，只需确保上线程锁的那部分代码不存在 I/O 等会释放 GIL 的操作，不然的话会导致性能下降，原因是：在当前线程进行 I/O 时，GIL 被自动释放，一般情况下会自动切换到另一线程，但是如果此时线程锁未被释放，那将导致另一线程无法进入临界区，不得不等待持有线程锁的线程完成 I/O。&lt;/p>
-&lt;h1 id="如何实现并发">如何实现并发&lt;/h1>
-&lt;p>在存在 GIL 的情况下，该如何实现并发编程并且让 Python 能在同样的时间内处理更多的事情呢？大致有以下几种思路。&lt;/p>
-&lt;h2 id="多线程协程">多线程/协程&lt;/h2>
-&lt;p>之所以把多线程和协程放在一起，是因为这两者都无法实现并行。&lt;a class="link" href="https://en.wikipedia.org/wiki/Coroutine" target="_blank" rel="noopener"
+&lt;h1 id="如何实现并发">如何实现并发
+&lt;/h1>&lt;p>在存在 GIL 的情况下，该如何实现并发编程并且让 Python 能在同样的时间内处理更多的事情呢？大致有以下几种思路。&lt;/p>
+&lt;h2 id="多线程协程">多线程/协程
+&lt;/h2>&lt;p>之所以把多线程和协程放在一起，是因为这两者都无法实现并行。&lt;a class="link" href="https://en.wikipedia.org/wiki/Coroutine" target="_blank" rel="noopener"
 >协程（Coroutine）&lt;/a>也是在遇到 I/O 等阻塞操作时主动让出 CPU 的控制权让其它协程能够运行，思路都是让 CPU 单核不要浪费时间在等待阻塞操作上，只不过与多线程相比协程的花销更小，现在越来越多的强调性能的 Python 框架开始采用协程，如 &lt;a class="link" href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener"
 >FastAPI&lt;/a>、&lt;a class="link" href="https://github.com/encode/httpx" target="_blank" rel="noopener"
 >HTTPX&lt;/a> 等。历史上 Python 存在多种实现协程的方式，如 Gevent、yield 等，现在 Python 官方推荐的是通过 &lt;a class="link" href="https://docs.python.org/zh-cn/3/library/asyncio-task.html" target="_blank" rel="noopener"
@@ -149,8 +149,8 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Time taken in seconds -&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">end&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">start&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">asyncio&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="p">())&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="多进程">多进程&lt;/h2>
-&lt;p>这是能让 Python 实现并行的一个方案，原因是 GIL 是针对单个解释器的，既然如此，多开几个解释器不就能同时运行多个工作了吗。当然，考虑到进程上下文切换的代价要比线程大，这个方案比较适合计算密集型应用。&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="多进程">多进程
+&lt;/h2>&lt;p>这是能让 Python 实现并行的一个方案，原因是 GIL 是针对单个解释器的，既然如此，多开几个解释器不就能同时运行多个工作了吗。当然，考虑到进程上下文切换的代价要比线程大，这个方案比较适合计算密集型应用。&lt;/p>
 &lt;p>Python 内置的 &lt;a class="link" href="https://docs.python.org/zh-cn/3/library/multiprocessing.html" target="_blank" rel="noopener"
 >multiprocessing 库&lt;/a>提供了对应的支持。值得一提的是，&lt;a class="link" href="https://m.douban.com/book/subject/26337939/" target="_blank" rel="noopener"
 >《七周七并发模型》&lt;/a>的第三章“函数式编程”中提到 Clojure 语言提供了 pmap 函数实现对 map 的并行化，Python 通过进程池也可做到这点：&lt;/p>
@@ -162,10 +162,10 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span> &lt;span class="n">Pool&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">multiprocessing&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cpu_count&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">]))&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="用-c-语言重写耗时的代码">用 C 语言重写耗时的代码&lt;/h2>
-&lt;p>最后的杀手锏，嫌弃多进程消耗资源大又想并行怎么办，答案就是把相关代码&lt;a class="link" href="https://docs.python.org/zh-cn/3/extending/extending.html" target="_blank" rel="noopener"
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="用-c-语言重写耗时的代码">用 C 语言重写耗时的代码
+&lt;/h2>&lt;p>最后的杀手锏，嫌弃多进程消耗资源大又想并行怎么办，答案就是把相关代码&lt;a class="link" href="https://docs.python.org/zh-cn/3/extending/extending.html" target="_blank" rel="noopener"
 >用 C 语言重写&lt;/a>。C 库中的代码并不受 GIL 限制，而且一般来说 C 语言编写的代码执行速度要比 Python 快不少，还可以充分利用 CPU 的并行能力（如 SIMD），像 &lt;a class="link" href="https://numpy.org/" target="_blank" rel="noopener"
 >NumPy&lt;/a> 这种科学计算库就是很好的例子。虽然性能很诱人，但是用 C 语言重写其实是一个非常麻烦的事情，没有足够技术力的情况下最好不要考虑这个方案。&lt;/p>
-&lt;h1 id="结语">结语&lt;/h1>
-&lt;p>Python 的 GIL 给想要实现并行的程序员带来了一定的挑战，同时由于 Python 作为解释型语言的先天劣势，其性能在面对短时间内高流量的情况时有些无力，当然，虽说如此，不少能人还是探索了相当多的解决方案，使得 Python 的性能不至于太差，让 Python 在后端开发中依旧占据一席之地。&lt;/p>
+&lt;h1 id="结语">结语
+&lt;/h1>&lt;p>Python 的 GIL 给想要实现并行的程序员带来了一定的挑战，同时由于 Python 作为解释型语言的先天劣势，其性能在面对短时间内高流量的情况时有些无力，当然，虽说如此，不少能人还是探索了相当多的解决方案，使得 Python 的性能不至于太差，让 Python 在后端开发中依旧占据一席之地。&lt;/p>
 &lt;p>当然，如果你实在受不了 GIL，还可以考虑使用其它语言的 Python 实现，只是，是否能使用 C 库和不同实现的细节差异所带来的坑使得并没有什么人选择这样做，改用其它语言的后端框架也是一种选择。当对高性能有所要求时，不要为难自己，换一门语言海阔天空。&lt;/p></description></item></channel></rss>
