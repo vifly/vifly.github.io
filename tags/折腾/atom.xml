@@ -174,7 +174,8 @@ data-flex-basis="502px"
 &lt;p>另外，有一个读者无法察觉但我能明显感知到的变化：迁移后的博客构建速度变快了。这大概是 Hugo 的优化比 Hexo 好导致的，不过并不能完全怪罪 Hexo，因为这也与我之前用的 Material 主题许久不更新，没有用上 Hexo 的用于加快构建速度的新特性有关。总之目前的构建速度终于让我感到舒服了，能够快速看到改动效果这一点在修改主题样式时十分有用。&lt;/p>
 &lt;h1 id="总结">总结
 &lt;/h1>&lt;p>我有时会开玩笑说：“写博客哪有写博客主题有意思”，包括这次迁移在内，看着刚开始时一个标准的模板被改造成了自己想要的样子的确很有意思，但我认为开设博客的目的更应该是写一些自己觉得有价值的内容，博客的外观与设计的确很重要，体现了博主的品位与喜好，但世界上并不缺少能展示自己品位的方法，写博客却是少有的通过文字阐述观点、分享知识与经历的行为，所以我会尽量不让与网站相关的博文占到总博文数的一半，而是尽量让博客涉及更多领域的内容，这也是我为本博客所设立的一个目标。&lt;/p>
-&lt;p>最后，希望本次愉快的博客迁移能激励我提高一些更新博客的频率（咕咕咕）。最近来说，我也有了一些新想法，考虑到不是所有的新想法都有必要写一篇博文来说明，未来我可能会在其它平台（Twitter、Telegram 频道等）或另一个自建站点记录与说明这些东西，也可能会考虑建立公开 Wiki 知识库这样的站点来分享自己的知识，总之这些都是目前只存在于脑海中的想法，这些任务就交给未来的自己了。本篇水文到此结束，谢谢有耐心读到最后的读者。&lt;/p></description></item><item><title>使用 Vercel 与 OneDrive 自建软件源</title><link>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</link><pubDate>Sat, 04 Sep 2021 00:00:00 +0800</pubDate><guid>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</guid><description>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg" alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" />&lt;p>&lt;em>2021.11.12.更新：增加了关于 GPG 签名的说明。&lt;/em>&lt;/p>
+&lt;p>最后，希望本次愉快的博客迁移能激励我提高一些更新博客的频率（咕咕咕）。最近来说，我也有了一些新想法，考虑到不是所有的新想法都有必要写一篇博文来说明，未来我可能会在其它平台（Twitter、Telegram 频道等）或另一个自建站点记录与说明这些东西，也可能会考虑建立公开 Wiki 知识库这样的站点来分享自己的知识，总之这些都是目前只存在于脑海中的想法，这些任务就交给未来的自己了。本篇水文到此结束，谢谢有耐心读到最后的读者。&lt;/p></description></item><item><title>使用 Vercel 与 OneDrive 自建软件源</title><link>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</link><pubDate>Sat, 04 Sep 2021 00:00:00 +0800</pubDate><guid>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</guid><description>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg" alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" />&lt;p>&lt;em>2021.11.12.更新：增加了关于 GPG 签名的说明。&lt;/em>
+&lt;em>2024.11.23.更新：现在支持上传软件包到其它 Rclone 支持的云存储了，所以更新了对 uploadToOneDrive job 的说明。&lt;/em>&lt;/p>
 &lt;p>大家好，又是本鸽子久违的博客更新。之前的&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
 >《GitHub Actions 打造 AUR 打包下载一条龙服务》&lt;/a>已经折腾出了完全白嫖的编译机，可好景不长，当我的机器数量变多后，我发现在每台机器上运行脚本下载软件包的确有点麻烦，与其自己写一个脚本下载软件包，还不如直接自建一个软件源呢。经过一番研究后，我盯上了 OneDrive 与 Vercel 这两个可以免费使用的服务，通过它们实现了自建一个完全免费而且在国内外都可高速访问的软件源。&lt;/p>
 &lt;p>本文是对&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
@@ -205,7 +206,7 @@ class="gallery-image"
 data-flex-grow="243"
 data-flex-basis="584px"
 >&lt;/p>
-&lt;p>在打开的界面中输入应用的名字（这里我用了 rclone 这个名字），Supported account types 这一项选择 Accounts in any orGitHub Actionsnizational directory，在 Redirect URI (optional) 这一项选择 Web 并在右边的输入框里输入 http://localhost:53682/ 这一网址。完成后点击 Register。&lt;/p>
+&lt;p>在打开的界面中输入应用的名字（这里我用了 rclone 这个名字），Supported account types 这一项选择图中的第二项（也是包含范围最广泛的那项），在 Redirect URI (optional) 这一项选择 Web 并在右边的输入框里输入 http://localhost:53682/ 这一网址。完成后点击 Register。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png"
 width="1904"
 height="878"
@@ -239,7 +240,7 @@ data-flex-basis="513px"
 &lt;h2 id="获取-token">获取 Token
 &lt;/h2>&lt;p>在本地安装 Rclone（&lt;code>pacman -S rclone&lt;/code>），运行 rclone config 进入交互式配置流程，接着&lt;a class="link" href="https://rclone.org/onedrive" target="_blank" rel="noopener"
 >一步步地按照提示操作&lt;/a>，当程序询问 Microsoft App Client Id 和 Microsoft App Client Secret 时，填入上一小节中记录的对应值。&lt;/p>
-&lt;p>完成配置后 Rclone 会把配置数据存放在 ~/.config/rclone/rclone.conf，使用 &lt;code>cat ~/.config/rclone/rclone.conf&lt;/code> 查看。如下所示，下文需要复制对应的值时只需要把等号右边的东西按原样复制粘贴就行了。&lt;/p>
+&lt;p>完成配置后 Rclone 会把配置数据存放在 ~/.config/rclone/rclone.conf，使用 &lt;code>cat ~/.config/rclone/rclone.conf&lt;/code> 查看。如下所示，下文的 RCLONE_CONFIG 就需要把这些东西复制粘贴进去。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-INI" data-lang="INI">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[xxx]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">onedrive&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">client_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
@@ -248,22 +249,21 @@ data-flex-basis="513px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">drive_type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">personal&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">token&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">{&amp;#34;access_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;token_type&amp;#34;:&amp;#34;Bearer&amp;#34;,&amp;#34;refresh_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;expiry&amp;#34;:&amp;#34;xxx&amp;#34;}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">drive_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>PS：一点安全提醒，在我们的用例中，client id 与 client secret 都可以公开，但 token 是绝对不能公开的。&lt;/em>&lt;/p>
-&lt;h2 id="配置-github-actions">配置 GitHub Actions
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置-github-actions">配置 GitHub Actions
 &lt;/h2>&lt;p>首先 fork &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
->arch-build 仓库&lt;/a>，如果你在之前已经使用了它，记得同步到最新版本。与前文所给的例子相比，现在的 workflow 文件（.github/workflows/build.yml）多了 uploadToOneDrive 这一个 job，而用到的 action 需要填入近十个参数，参数量的确很多，接下来让我介绍一下该如何填写这些参数。&lt;/p>
-&lt;p>${{ secrets.xxx }} 这样的变量都是需要在 GitHub 的项目配置中的 Secrets 一栏设置的私密变量，打开项目的 Settings，找到下图所示的界面，然后点击 New repository secret，并填入 RCLONE_ONEDRIVE_CLIENT_ID、RCLONE_ONEDRIVE_CLIENT_SECRET、RCLONE_ONEDRIVE_TOKEN、RCLONE_ONEDRIVE_DRIVE_ID 这四个变量的值（从上一小节的 rclone.conf 中获得）。具体的操作也可参考 &lt;a class="link" href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository" target="_blank" rel="noopener"
+>arch-build 仓库&lt;/a>，如果你在之前已经使用了它，记得同步到最新版本。与前文所给的例子相比，现在的 workflow 文件（.github/workflows/build.yml）多了 uploadToOneDrive 这一个 job，虽然我这里用的是 OneDrive，但其实你也可以用它把软件包上传到其它 Rclone 支持的云存储上。&lt;/p>
+&lt;p>${{ secrets.xxx }} 这样的变量都是需要在 GitHub 的项目配置中的 Secrets 一栏设置的私密变量，打开项目的 Settings，找到下图所示的界面，然后点击 New repository secret，并填入 RCLONE_CONFIG 这个变量的值（把上一小节的 rclone.conf 内容复制粘贴进去即可）。具体的操作也可参考 &lt;a class="link" href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository" target="_blank" rel="noopener"
 >GitHub 官方文档&lt;/a>。&lt;/p>
 &lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png"
-width="1868"
-height="903"
+width="1752"
+height="1026"
 loading="lazy"
 alt="GitHub Actions 添加私密变量"
 class="gallery-image"
-data-flex-grow="206"
-data-flex-basis="496px"
+data-flex-grow="170"
+data-flex-basis="409px"
 >&lt;/p>
-&lt;p>接着回来修改 workflow 文件，RCLONE_ONEDRIVE_REGION 与 RCLONE_ONEDRIVE_DRIVE_TYPE 也是按 rclone.conf 的值填写；而 dest_path 是 OneDrive 上传的目的地路径（如果该路径不存在，Rclone 会自动创建），以 Linux 文件路径的形式填写即可，不建议使用根路径，因为接下来将会把这个路径下的所有东西公开，各位肯定不希望别人打开你的软件仓库页面时还看到其它乱七八糟的文件；repo_name 是你的自建软件仓库的名字，&lt;a class="link" href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
+&lt;p>接着回来修改 workflow 文件，dest_path 是 OneDrive 上传的目的地路径（如果该路径不存在，Rclone 会自动创建），以 Linux 文件路径的形式填写即可，不建议使用根路径，因为接下来将会把这个路径下的所有东西公开，各位肯定不希望别人打开你的软件仓库页面时还看到其它乱七八糟的文件；repo_name 是你的自建软件仓库的名字，&lt;a class="link" href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
 >它用于 repo-add 的参数&lt;/a>。&lt;/p>
 &lt;p>为了安全，建议为自己的软件源添加 GPG 签名，不签名的话，pacman.conf 中的仓库配置需要加上 &lt;code>SigLevel = Never&lt;/code> 禁用签名校验才能使用。如果你想为自己的软件源添加 GPG 签名的话，建议先生成一个单独的 GPG 密钥对（不要设置密码），而不是使用原有的密钥对，并导出私钥：&lt;/p>
 &lt;pre tabindex="0">&lt;code>gpg --gen-key
