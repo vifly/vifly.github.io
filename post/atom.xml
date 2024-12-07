@@ -921,7 +921,9 @@ data-flex-grow="133"
 data-flex-basis="319px"
 >&lt;/p>
 &lt;p>最后就是一些遗憾了，没能与 &lt;a class="link" href="https://farseerfc.me/" target="_blank" rel="noopener"
->FC 老师&lt;/a>面基，秋叶原只是草草逛过，上野公园一带的博物馆也没有完整逛完，没有去附近的旧岩崎家宅邸庭园（久远寺有珠家的原型）进行魔法使之夜的圣地巡礼，以上进行圣地巡礼的作品也有些遗漏的地方，更别提还有其它在东京取景的作品被忽略掉了。不过这些遗憾让我更期待下一次的日本之旅了，只去一次根本不够啊。&lt;/p></description></item><item><title>2024 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2024_writeups/</link><pubDate>Tue, 12 Nov 2024 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2024_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/show.jpg" alt="Featured image of post 2024 中科大信息安全大赛题解" />&lt;p>又到了更新年更系列的时间，真没想到今年组委会还在 go（好吧，其实我也是，本文头图同样来源于此）。对我来说，今年花在比赛上的时间明显比往年少了，一方面是因为刚旅游回来太累了，而另一方面则是在 LLM 的帮助下一些简单的题目不再需要更多的时间来解决了。今年只拿了 1850 分，与&lt;a class="link" href="https://viflythink.com/Hackergame_2023_writeups/" target="_blank" rel="noopener"
+>FC 老师&lt;/a>面基，秋叶原只是草草逛过，上野公园一带的博物馆也没有完整逛完，没有去附近的旧岩崎家宅邸庭园（久远寺有珠家的原型）进行魔法使之夜的圣地巡礼，以上进行圣地巡礼的作品也有些遗漏的地方，更别提还有其它在东京取景的作品被忽略掉了。不过这些遗憾让我更期待下一次的日本之旅了，只去一次根本不够啊。&lt;/p></description></item><item><title>2024 中科大信息安全大赛题解</title><link>https://viflythink.com/Hackergame_2024_writeups/</link><pubDate>Tue, 12 Nov 2024 00:00:00 +0800</pubDate><guid>https://viflythink.com/Hackergame_2024_writeups/</guid><description>&lt;img src="https://viflythink.com/Hackergame_2024_writeups/show.jpg" alt="Featured image of post 2024 中科大信息安全大赛题解" />&lt;p>又到了更新年更系列的时间，真没想到今年组委会还在 go（好吧，&lt;a class="link" href="https://viflythink.com/Tokyo_2024/#bang-dream-its-mygo" target="_blank" rel="noopener"
+>其实我也是&lt;/a>，本文头图同样来源于此）。对我来说，今年花在比赛上的时间明显比往年少了，一方面是因为&lt;a class="link" href="https://viflythink.com/Tokyo_2024/" target="_blank" rel="noopener"
+>刚旅游回来&lt;/a>太累了，而另一方面则是在 LLM 的帮助下一些简单的题目不再需要更多的时间来解决了。今年只拿了 1850 分，与&lt;a class="link" href="https://viflythink.com/Hackergame_2023_writeups/" target="_blank" rel="noopener"
 >上一年&lt;/a>相比算是退步了，依旧在三百名左右徘徊，只能说我才是最该多练习的人（笑）。&lt;/p>
 &lt;h1 id="签到">签到
 &lt;/h1>&lt;p>今年的签到题又选了某知名手游来玩梗，要求在 60 秒内输入 12 种不同语言的启动，作为 CTF 玩家那肯定不会傻傻按照这个要求来做的，随便输入点什么然后点击下面的“等不及了，马上启动！”，看到跳转的 URL 有一个 pass 参数，将参数值改为 true，搞定。&lt;/p>
