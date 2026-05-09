@@ -1,332 +1,252 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI on Vifly 的博客</title><link>https://viflythink.com/tags/CI/</link><description>Recent content in CI on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/CI/atom.xml" rel="self" type="application/rss+xml"/><item><title>使用 Vercel 与 OneDrive 自建软件源</title><link>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</link><pubDate>Sat, 04 Sep 2021 00:00:00 +0800</pubDate><guid>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</guid><description>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg" alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" />&lt;p>&lt;em>2021.11.12.更新：增加了关于 GPG 签名的说明。&lt;/em>
-&lt;em>2024.11.23.更新：现在支持上传软件包到其它 Rclone 支持的云存储了，所以更新了对 uploadToOneDrive job 的说明。&lt;/em>&lt;/p>
-&lt;p>大家好，又是本鸽子久违的博客更新。之前的&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
->《GitHub Actions 打造 AUR 打包下载一条龙服务》&lt;/a>已经折腾出了完全白嫖的编译机，可好景不长，当我的机器数量变多后，我发现在每台机器上运行脚本下载软件包的确有点麻烦，与其自己写一个脚本下载软件包，还不如直接自建一个软件源呢。经过一番研究后，我盯上了 OneDrive 与 Vercel 这两个可以免费使用的服务，通过它们实现了自建一个完全免费而且在国内外都可高速访问的软件源。&lt;/p>
-&lt;p>本文是对&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
->《GitHub Actions 打造 AUR 打包下载一条龙服务》&lt;/a>的扩展，如果你还没有读过该博文，请先读完它再回来阅读本文。通过前文与本文，你可以在没有服务器，不花一分钱的情况下搭建一个基于 OneDrive 的高速自建软件仓库，体验到白嫖与折腾 Linux 的双重快乐。&lt;/p>
-&lt;p>为了得到一个公开的软件仓库，只是把软件包构建出来并放到 GitHub Release 是不够的，没有软件包数据库，软件包管理器可不知道如何获取这些软件包，更不用提校验与安装等等。生成软件包数据库只需要一行 &lt;code>repo-add ./reponame.db.tar.gz *.tar.zst&lt;/code>，然后把它们都放到 GitHub Release 这样的免费存储后端就可以解决分发问题了，实际上有一个 &lt;a class="link" href="https://github.com/Brx86/repo" target="_blank" rel="noopener"
->arch-build 的 fork&lt;/a> 就是这样做的。当然，我对其还是不够满意，通过 fastgit 等 GitHub 反代服务的确可以加速 GitHub Release 的下载速度，但还是不够稳定；还有一个更重要的原因，我不仅想要自建 Arch 软件源，也想要自建 Debian 软件源，而 GitHub Release 的路径不够灵活，无法构造像 yourrepo.com/debian/pool/main/n/nginx/ 这样的 URL，没法满足自建 Debian 软件源的需求。所以嘛，只能自己再造一个轮子了。&lt;/p>
-&lt;p>在看下文之前，不妨先打开&lt;a class="link" href="https://archrepo.viflythink.com/" target="_blank" rel="noopener"
->我的自建仓库&lt;/a>页面查看最终效果，如果想使用我的自建软件源，需要先执行以下指令导入 GPG 公钥：&lt;/p>
-&lt;pre tabindex="0">&lt;code>wget -O /tmp/vifly-repo.key &amp;#39;https://share.viflythink.com/arch-repo.key&amp;#39; &amp;amp;&amp;amp; sudo pacman-key --add /tmp/vifly-repo.key
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI on Vifly 的博客</title><link>https://viflythink.com/tags/CI/</link><description>Recent content in CI on Vifly 的博客</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://viflythink.com/tags/CI/atom.xml" rel="self" type="application/rss+xml"/><item><title>使用 Vercel 与 OneDrive 自建软件源</title><link>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</link><pubDate>Sat, 04 Sep 2021 00:00:00 +0800</pubDate><guid>https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/</guid><description>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/show.jpg" alt="Featured image of post 使用 Vercel 与 OneDrive 自建软件源" /&gt;&lt;p&gt;&lt;em&gt;2021.11.12.更新：增加了关于 GPG 签名的说明。&lt;/em&gt;
+&lt;em&gt;2024.11.23.更新：现在支持上传软件包到其它 Rclone 支持的云存储了，所以更新了对 uploadToOneDrive job 的说明。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;大家好，又是本鸽子久违的博客更新。之前的&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
+ &gt;《GitHub Actions 打造 AUR 打包下载一条龙服务》&lt;/a&gt;已经折腾出了完全白嫖的编译机，可好景不长，当我的机器数量变多后，我发现在每台机器上运行脚本下载软件包的确有点麻烦，与其自己写一个脚本下载软件包，还不如直接自建一个软件源呢。经过一番研究后，我盯上了 OneDrive 与 Vercel 这两个可以免费使用的服务，通过它们实现了自建一个完全免费而且在国内外都可高速访问的软件源。&lt;/p&gt;
+&lt;p&gt;本文是对&lt;a class="link" href="https://viflythink.com/Use_GitHubActions_to_build_AUR" target="_blank" rel="noopener"
+ &gt;《GitHub Actions 打造 AUR 打包下载一条龙服务》&lt;/a&gt;的扩展，如果你还没有读过该博文，请先读完它再回来阅读本文。通过前文与本文，你可以在没有服务器，不花一分钱的情况下搭建一个基于 OneDrive 的高速自建软件仓库，体验到白嫖与折腾 Linux 的双重快乐。&lt;/p&gt;
+&lt;p&gt;为了得到一个公开的软件仓库，只是把软件包构建出来并放到 GitHub Release 是不够的，没有软件包数据库，软件包管理器可不知道如何获取这些软件包，更不用提校验与安装等等。生成软件包数据库只需要一行 &lt;code&gt;repo-add ./reponame.db.tar.gz *.tar.zst&lt;/code&gt;，然后把它们都放到 GitHub Release 这样的免费存储后端就可以解决分发问题了，实际上有一个 &lt;a class="link" href="https://github.com/Brx86/repo" target="_blank" rel="noopener"
+ &gt;arch-build 的 fork&lt;/a&gt; 就是这样做的。当然，我对其还是不够满意，通过 fastgit 等 GitHub 反代服务的确可以加速 GitHub Release 的下载速度，但还是不够稳定；还有一个更重要的原因，我不仅想要自建 Arch 软件源，也想要自建 Debian 软件源，而 GitHub Release 的路径不够灵活，无法构造像 yourrepo.com/debian/pool/main/n/nginx/ 这样的 URL，没法满足自建 Debian 软件源的需求。所以嘛，只能自己再造一个轮子了。&lt;/p&gt;
+&lt;p&gt;在看下文之前，不妨先打开&lt;a class="link" href="https://archrepo.viflythink.com/" target="_blank" rel="noopener"
+ &gt;我的自建仓库&lt;/a&gt;页面查看最终效果，如果想使用我的自建软件源，需要先执行以下指令导入 GPG 公钥：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;wget -O /tmp/vifly-repo.key &amp;#39;https://share.viflythink.com/arch-repo.key&amp;#39; &amp;amp;&amp;amp; sudo pacman-key --add /tmp/vifly-repo.key
 sudo pacman-key --lsign-key viflythink@gmail.com
-&lt;/code>&lt;/pre>&lt;p>然后在 /etc/pacman.conf 末尾添加下面几行后执行 pacman -Syu：&lt;/p>
-&lt;pre tabindex="0">&lt;code>[vifly]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后在 /etc/pacman.conf 末尾添加下面几行后执行 pacman -Syu：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[vifly]
 Server = https://archrepo.viflythink.com
-&lt;/code>&lt;/pre>&lt;p>尽管本文最终提供的成品目前只用在 Arch 自建源上，但对脚本稍加修改后也可以用来自建其它 Linux 发行版的软件仓库。&lt;/p>
-&lt;h1 id="上传到-onedrive">上传到 OneDrive
-&lt;/h1>&lt;p>之前配置的 GitHub Actions 已经可以把软件包上传到 Release 上，现在只需要对原来的配置文件稍加改造就可以让 GitHub Actions 把软件包也上传到 OneDrive，为了尽量不重复造轮子，在这里我选择了 Rclone 进行上传，它提供了非常完善的文件传输功能，例如上传或下载时遇到文件内容相同的情况会自动跳过。&lt;/p>
-&lt;h2 id="在-azure-创建应用">在 Azure 创建应用
-&lt;/h2>&lt;p>根据 &lt;a class="link" href="https://rclone.org/onedrive/#getting-your-own-client-id-and-key" target="_blank" rel="noopener"
->Rclone 的官方文档&lt;/a>操作即可，以下给出图文操作步骤。尽管 Rclone 官方认为这是可选的，但在 Vercel 部署直链下载应用时也需要在 Azure 创建应用获取 Token，所以便把相关步骤放这里了，另外基于权限最小化的原则，这里我们创建的是一个拥有读写权限的应用，而在 Vercel 部署时则是创建一个具有只读权限的应用，两个应用用在不同的地方，这样可有效提升安全性。&lt;/p>
-&lt;p>打开 &lt;a class="link" href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade" target="_blank" rel="noopener"
->Azure 的应用管理页面&lt;/a>，点击 New registration。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png"
-width="1914"
-height="786"
-loading="lazy"
-alt="Azure 应用列表"
-class="gallery-image"
-data-flex-grow="243"
-data-flex-basis="584px"
->&lt;/p>
-&lt;p>在打开的界面中输入应用的名字（这里我用了 rclone 这个名字），Supported account types 这一项选择图中的第二项（也是包含范围最广泛的那项），在 Redirect URI (optional) 这一项选择 Web 并在右边的输入框里输入 http://localhost:53682/ 这一网址。完成后点击 Register。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png"
-width="1904"
-height="878"
-loading="lazy"
-alt="Azure 注册应用"
-class="gallery-image"
-data-flex-grow="216"
-data-flex-basis="520px"
->&lt;/p>
-&lt;p>此时应用已经注册完成，记录下 Application (client) ID 的值，这就是下文会用到的 client id。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png"
-width="1918"
-height="876"
-loading="lazy"
-alt="Azure 获取 client id"
-class="gallery-image"
-data-flex-grow="218"
-data-flex-basis="525px"
->&lt;/p>
-&lt;p>点击左侧菜单的 Certificates &amp;amp; secrets，然后点击 New client secret，在 Description 一栏随便填点什么，把 Expires（过期时间）设为最长的 24 months（两年后记得更新 client secret），点击 Add。最后记录下新增的 client secret 的值（在图中标注的 Value）。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png"
-width="1918"
-height="897"
-loading="lazy"
-alt="Azure 获取 client secret"
-class="gallery-image"
-data-flex-grow="213"
-data-flex-basis="513px"
->&lt;/p>
-&lt;p>到此为止就完成了。有些同学可能会感到奇怪：Rclone 文档中不是还有第 4 与第 5 步设置权限吗？根据我的实测，这两步并没有必要执行，所以这里不会附上这两步操作的示意图。&lt;/p>
-&lt;h2 id="获取-token">获取 Token
-&lt;/h2>&lt;p>在本地安装 Rclone（&lt;code>pacman -S rclone&lt;/code>），运行 rclone config 进入交互式配置流程，接着&lt;a class="link" href="https://rclone.org/onedrive" target="_blank" rel="noopener"
->一步步地按照提示操作&lt;/a>，当程序询问 Microsoft App Client Id 和 Microsoft App Client Secret 时，填入上一小节中记录的对应值。&lt;/p>
-&lt;p>完成配置后 Rclone 会把配置数据存放在 ~/.config/rclone/rclone.conf，使用 &lt;code>cat ~/.config/rclone/rclone.conf&lt;/code> 查看。如下所示，下文的 RCLONE_CONFIG 就需要把这些东西复制粘贴进去。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-INI" data-lang="INI">&lt;span class="line">&lt;span class="cl">&lt;span class="k">[xxx]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">onedrive&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">client_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">client_secret&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">region&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">global&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">drive_type&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">personal&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">token&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">{&amp;#34;access_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;token_type&amp;#34;:&amp;#34;Bearer&amp;#34;,&amp;#34;refresh_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;expiry&amp;#34;:&amp;#34;xxx&amp;#34;}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="na">drive_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s">xxx&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置-github-actions">配置 GitHub Actions
-&lt;/h2>&lt;p>首先 fork &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
->arch-build 仓库&lt;/a>，如果你在之前已经使用了它，记得同步到最新版本。与前文所给的例子相比，现在的 workflow 文件（.github/workflows/build.yml）多了 uploadToOneDrive 这一个 job，虽然我这里用的是 OneDrive，但其实你也可以用它把软件包上传到其它 Rclone 支持的云存储上。&lt;/p>
-&lt;p>${{ secrets.xxx }} 这样的变量都是需要在 GitHub 的项目配置中的 Secrets 一栏设置的私密变量，打开项目的 Settings，找到下图所示的界面，然后点击 New repository secret，并填入 RCLONE_CONFIG 这个变量的值（把上一小节的 rclone.conf 内容复制粘贴进去即可）。具体的操作也可参考 &lt;a class="link" href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository" target="_blank" rel="noopener"
->GitHub 官方文档&lt;/a>。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png"
-width="1752"
-height="1026"
-loading="lazy"
-alt="GitHub Actions 添加私密变量"
-class="gallery-image"
-data-flex-grow="170"
-data-flex-basis="409px"
->&lt;/p>
-&lt;p>接着回来修改 workflow 文件，dest_path 是 OneDrive 上传的目的地路径（如果该路径不存在，Rclone 会自动创建），以 Linux 文件路径的形式填写即可，不建议使用根路径，因为接下来将会把这个路径下的所有东西公开，各位肯定不希望别人打开你的软件仓库页面时还看到其它乱七八糟的文件；repo_name 是你的自建软件仓库的名字，&lt;a class="link" href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
->它用于 repo-add 的参数&lt;/a>。&lt;/p>
-&lt;p>为了安全，建议为自己的软件源添加 GPG 签名，不签名的话，pacman.conf 中的仓库配置需要加上 &lt;code>SigLevel = Never&lt;/code> 禁用签名校验才能使用。如果你想为自己的软件源添加 GPG 签名的话，建议先生成一个单独的 GPG 密钥对（不要设置密码），而不是使用原有的密钥对，并导出私钥：&lt;/p>
-&lt;pre tabindex="0">&lt;code>gpg --gen-key
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;尽管本文最终提供的成品目前只用在 Arch 自建源上，但对脚本稍加修改后也可以用来自建其它 Linux 发行版的软件仓库。&lt;/p&gt;
+&lt;h1 id="上传到-onedrive"&gt;上传到 OneDrive
+&lt;/h1&gt;&lt;p&gt;之前配置的 GitHub Actions 已经可以把软件包上传到 Release 上，现在只需要对原来的配置文件稍加改造就可以让 GitHub Actions 把软件包也上传到 OneDrive，为了尽量不重复造轮子，在这里我选择了 Rclone 进行上传，它提供了非常完善的文件传输功能，例如上传或下载时遇到文件内容相同的情况会自动跳过。&lt;/p&gt;
+&lt;h2 id="在-azure-创建应用"&gt;在 Azure 创建应用
+&lt;/h2&gt;&lt;p&gt;根据 &lt;a class="link" href="https://rclone.org/onedrive/#getting-your-own-client-id-and-key" target="_blank" rel="noopener"
+ &gt;Rclone 的官方文档&lt;/a&gt;操作即可，以下给出图文操作步骤。尽管 Rclone 官方认为这是可选的，但在 Vercel 部署直链下载应用时也需要在 Azure 创建应用获取 Token，所以便把相关步骤放这里了，另外基于权限最小化的原则，这里我们创建的是一个拥有读写权限的应用，而在 Vercel 部署时则是创建一个具有只读权限的应用，两个应用用在不同的地方，这样可有效提升安全性。&lt;/p&gt;
+&lt;p&gt;打开 &lt;a class="link" href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade" target="_blank" rel="noopener"
+ &gt;Azure 的应用管理页面&lt;/a&gt;，点击 New registration。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Azure 应用列表" class="gallery-image" data-flex-basis="584px" data-flex-grow="243" height="786" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_applist.png" width="1914"&gt;&lt;/p&gt;
+&lt;p&gt;在打开的界面中输入应用的名字（这里我用了 rclone 这个名字），Supported account types 这一项选择图中的第二项（也是包含范围最广泛的那项），在 Redirect URI (optional) 这一项选择 Web 并在右边的输入框里输入 http://localhost:53682/ 这一网址。完成后点击 Register。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Azure 注册应用" class="gallery-image" data-flex-basis="520px" data-flex-grow="216" height="878" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_app_register.png" width="1904"&gt;&lt;/p&gt;
+&lt;p&gt;此时应用已经注册完成，记录下 Application (client) ID 的值，这就是下文会用到的 client id。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Azure 获取 client id" class="gallery-image" data-flex-basis="525px" data-flex-grow="218" height="876" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_id.png" width="1918"&gt;&lt;/p&gt;
+&lt;p&gt;点击左侧菜单的 Certificates &amp;amp; secrets，然后点击 New client secret，在 Description 一栏随便填点什么，把 Expires（过期时间）设为最长的 24 months（两年后记得更新 client secret），点击 Add。最后记录下新增的 client secret 的值（在图中标注的 Value）。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Azure 获取 client secret" class="gallery-image" data-flex-basis="513px" data-flex-grow="213" height="897" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/azure_get_client_secret.png" width="1918"&gt;&lt;/p&gt;
+&lt;p&gt;到此为止就完成了。有些同学可能会感到奇怪：Rclone 文档中不是还有第 4 与第 5 步设置权限吗？根据我的实测，这两步并没有必要执行，所以这里不会附上这两步操作的示意图。&lt;/p&gt;
+&lt;h2 id="获取-token"&gt;获取 Token
+&lt;/h2&gt;&lt;p&gt;在本地安装 Rclone（&lt;code&gt;pacman -S rclone&lt;/code&gt;），运行 rclone config 进入交互式配置流程，接着&lt;a class="link" href="https://rclone.org/onedrive" target="_blank" rel="noopener"
+ &gt;一步步地按照提示操作&lt;/a&gt;，当程序询问 Microsoft App Client Id 和 Microsoft App Client Secret 时，填入上一小节中记录的对应值。&lt;/p&gt;
+&lt;p&gt;完成配置后 Rclone 会把配置数据存放在 ~/.config/rclone/rclone.conf，使用 &lt;code&gt;cat ~/.config/rclone/rclone.conf&lt;/code&gt; 查看。如下所示，下文的 RCLONE_CONFIG 就需要把这些东西复制粘贴进去。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-INI" data-lang="INI"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;[xxx]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;onedrive&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;client_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;xxx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;client_secret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;xxx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;region&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;global&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;drive_type&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;personal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;token&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;{&amp;#34;access_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;token_type&amp;#34;:&amp;#34;Bearer&amp;#34;,&amp;#34;refresh_token&amp;#34;:&amp;#34;xxx&amp;#34;,&amp;#34;expiry&amp;#34;:&amp;#34;xxx&amp;#34;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;drive_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;xxx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="配置-github-actions"&gt;配置 GitHub Actions
+&lt;/h2&gt;&lt;p&gt;首先 fork &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
+ &gt;arch-build 仓库&lt;/a&gt;，如果你在之前已经使用了它，记得同步到最新版本。与前文所给的例子相比，现在的 workflow 文件（.github/workflows/build.yml）多了 uploadToOneDrive 这一个 job，虽然我这里用的是 OneDrive，但其实你也可以用它把软件包上传到其它 Rclone 支持的云存储上。&lt;/p&gt;
+&lt;p&gt;${{ secrets.xxx }} 这样的变量都是需要在 GitHub 的项目配置中的 Secrets 一栏设置的私密变量，打开项目的 Settings，找到下图所示的界面，然后点击 New repository secret，并填入 RCLONE_CONFIG 这个变量的值（把上一小节的 rclone.conf 内容复制粘贴进去即可）。具体的操作也可参考 &lt;a class="link" href="https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository" target="_blank" rel="noopener"
+ &gt;GitHub 官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GitHub Actions 添加私密变量" class="gallery-image" data-flex-basis="409px" data-flex-grow="170" height="1026" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/github_actions_add_secret.png" width="1752"&gt;&lt;/p&gt;
+&lt;p&gt;接着回来修改 workflow 文件，dest_path 是 OneDrive 上传的目的地路径（如果该路径不存在，Rclone 会自动创建），以 Linux 文件路径的形式填写即可，不建议使用根路径，因为接下来将会把这个路径下的所有东西公开，各位肯定不希望别人打开你的软件仓库页面时还看到其它乱七八糟的文件；repo_name 是你的自建软件仓库的名字，&lt;a class="link" href="https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
+ &gt;它用于 repo-add 的参数&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;为了安全，建议为自己的软件源添加 GPG 签名，不签名的话，pacman.conf 中的仓库配置需要加上 &lt;code&gt;SigLevel = Never&lt;/code&gt; 禁用签名校验才能使用。如果你想为自己的软件源添加 GPG 签名的话，建议先生成一个单独的 GPG 密钥对（不要设置密码），而不是使用原有的密钥对，并导出私钥：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;gpg --gen-key
 gpg --armor --export-secret-keys your_keyid &amp;gt; private.key
-&lt;/code>&lt;/pre>&lt;p>回到 GitHub 的项目配置新增 Secrets，Name 为 gpg_private_key，Value 则是导出的私钥内容。最后在 workflow 文件的 uploadToOneDrive job 的参数加上 gpg-privatekey: ${{ secrets.gpg_private_key }}（即 dest_path、repo_name 等配置所在的位置）。现在得到的软件源将具有 GPG 签名，需要按以下步骤导入公钥才能使用：&lt;/p>
-&lt;pre tabindex="0">&lt;code>gpg --armor --export your_keyid &amp;gt; public.key
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;回到 GitHub 的项目配置新增 Secrets，Name 为 gpg_private_key，Value 则是导出的私钥内容。最后在 workflow 文件的 uploadToOneDrive job 的参数加上 gpg-privatekey: ${{ secrets.gpg_private_key }}（即 dest_path、repo_name 等配置所在的位置）。现在得到的软件源将具有 GPG 签名，需要按以下步骤导入公钥才能使用：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;gpg --armor --export your_keyid &amp;gt; public.key
 sudo pacman-key --add public.key
 sudo pacman-key --lsign-key your_keyid
-&lt;/code>&lt;/pre>&lt;p>为了节省存储空间，这个 job 只会在 OneDrive 存储最新版本的软件包，不像 Arch 官方软件仓库那样还提供了归档。如果你对使用 Rclone 同步到 OneDrive 或构建软件包数据库的细节感兴趣，那么可以查看 &lt;a class="link" href="https://github.com/vifly/arch-build/blob/master/create-db-and-upload-action/entrypoint.sh" target="_blank" rel="noopener"
->entrypoint.sh&lt;/a> 脚本了解细节，不到三十行便完成了这些工作（其实是因为我把复杂的逻辑用 Python 实现了）。&lt;/p>
-&lt;h1 id="在-vercel-部署直链下载应用">在 Vercel 部署直链下载应用
-&lt;/h1>&lt;p>上面我们已经把软件包成功放到了 OneDrive 中，OneDrive 本身也有分享功能，可是它的分享链接地址没有任何的规律，Pacman 可不知道一个软件包对应的下载地址与 OneDrive 分享地址的联系，它只认 yourrepo.com/package 这样的下载地址（Apt 等包管理器认的 URL 更复杂，但依然有明显的规律），所以我们需要一个应用来实现链接的转换，这就是直链下载应用要干的事情。&lt;/p>
-&lt;p>GitHub 上已经有不少 onedrive index 项目实现 OneDrive 的直链下载，我嫌它们提供的功能太多了（没忍住自造轮子的冲动），所以也用 Python 造了一个非常简陋的应用 &lt;a class="link" href="https://github.com/vifly/urepo" target="_blank" rel="noopener"
->urepo&lt;/a>，支持在 Vercel 上部署，也支持直接在 VPS 上部署，它和 Rclone 一样采用了微软官方提供的 API 实现提取文件下载链接的功能。下文将使用 urepo 实现直链下载，如果你之前已经部署了其它的 onedrive index 应用，那参照下文继续用原来的应用也是可以的。&lt;/p>
-&lt;h2 id="获取访问令牌">获取访问令牌
-&lt;/h2>&lt;p>既然 urepo 和 Rclone 一样采用了微软官方提供的 API，那么它同样也要像使用 Rclone 那样获取访问令牌。回到上面的“在 Azure 创建应用”这一小节，按同样的步骤再创建一个应用，只是这次的 Redirect URI (optional) 应输入 http://localhost/ ，完成后得到 client id 与 client secret。&lt;/p>
-&lt;p>与上面依靠 Rclone 获取 Token 不同的是，这次则是使用一个脚本获取 Token，它不会像 Rclone 那样申请写入权限。下载我写好的&lt;a class="link" href="https://github.com/vifly/urepo/blob/main/client-tools/get_deploy_config.py" target="_blank" rel="noopener"
->获取 Token 脚本&lt;/a>与&lt;a class="link" href="https://github.com/vifly/urepo/blob/main/client-tools/config.py.example" target="_blank" rel="noopener"
->配置示例&lt;/a>，并确保已经安装了 Python 的 Requests 库（&lt;code>pacman -S python-requests&lt;/code>），然后把配置示例（config.py.example）重命名为 config.py，并填入 CLITENT_ID 与 CLITENT_SECRET。&lt;/p>
-&lt;p>运行脚本：&lt;/p>
-&lt;pre tabindex="0">&lt;code>cd downloadpath
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了节省存储空间，这个 job 只会在 OneDrive 存储最新版本的软件包，不像 Arch 官方软件仓库那样还提供了归档。如果你对使用 Rclone 同步到 OneDrive 或构建软件包数据库的细节感兴趣，那么可以查看 &lt;a class="link" href="https://github.com/vifly/arch-build/blob/master/create-db-and-upload-action/entrypoint.sh" target="_blank" rel="noopener"
+ &gt;entrypoint.sh&lt;/a&gt; 脚本了解细节，不到三十行便完成了这些工作（其实是因为我把复杂的逻辑用 Python 实现了）。&lt;/p&gt;
+&lt;h1 id="在-vercel-部署直链下载应用"&gt;在 Vercel 部署直链下载应用
+&lt;/h1&gt;&lt;p&gt;上面我们已经把软件包成功放到了 OneDrive 中，OneDrive 本身也有分享功能，可是它的分享链接地址没有任何的规律，Pacman 可不知道一个软件包对应的下载地址与 OneDrive 分享地址的联系，它只认 yourrepo.com/package 这样的下载地址（Apt 等包管理器认的 URL 更复杂，但依然有明显的规律），所以我们需要一个应用来实现链接的转换，这就是直链下载应用要干的事情。&lt;/p&gt;
+&lt;p&gt;GitHub 上已经有不少 onedrive index 项目实现 OneDrive 的直链下载，我嫌它们提供的功能太多了（没忍住自造轮子的冲动），所以也用 Python 造了一个非常简陋的应用 &lt;a class="link" href="https://github.com/vifly/urepo" target="_blank" rel="noopener"
+ &gt;urepo&lt;/a&gt;，支持在 Vercel 上部署，也支持直接在 VPS 上部署，它和 Rclone 一样采用了微软官方提供的 API 实现提取文件下载链接的功能。下文将使用 urepo 实现直链下载，如果你之前已经部署了其它的 onedrive index 应用，那参照下文继续用原来的应用也是可以的。&lt;/p&gt;
+&lt;h2 id="获取访问令牌"&gt;获取访问令牌
+&lt;/h2&gt;&lt;p&gt;既然 urepo 和 Rclone 一样采用了微软官方提供的 API，那么它同样也要像使用 Rclone 那样获取访问令牌。回到上面的“在 Azure 创建应用”这一小节，按同样的步骤再创建一个应用，只是这次的 Redirect URI (optional) 应输入 http://localhost/ ，完成后得到 client id 与 client secret。&lt;/p&gt;
+&lt;p&gt;与上面依靠 Rclone 获取 Token 不同的是，这次则是使用一个脚本获取 Token，它不会像 Rclone 那样申请写入权限。下载我写好的&lt;a class="link" href="https://github.com/vifly/urepo/blob/main/client-tools/get_deploy_config.py" target="_blank" rel="noopener"
+ &gt;获取 Token 脚本&lt;/a&gt;与&lt;a class="link" href="https://github.com/vifly/urepo/blob/main/client-tools/config.py.example" target="_blank" rel="noopener"
+ &gt;配置示例&lt;/a&gt;，并确保已经安装了 Python 的 Requests 库（&lt;code&gt;pacman -S python-requests&lt;/code&gt;），然后把配置示例（config.py.example）重命名为 config.py，并填入 CLITENT_ID 与 CLITENT_SECRET。&lt;/p&gt;
+&lt;p&gt;运行脚本：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cd downloadpath
 python3 get_deploy_config.py
-&lt;/code>&lt;/pre>&lt;p>根据提示操作，最后得到 code 与 refresh_token。此时我们已经获得 client id、client secret、code、refresh_token 这四项配置。至于下文中需要用到的 path，那就是在“配置 GitHub Actions”这一小节中的 dest_path。&lt;/p>
-&lt;h2 id="部署到-vercel">部署到 Vercel
-&lt;/h2>&lt;p>&lt;a class="link" href="https://vercel.com/" target="_blank" rel="noopener"
->Vercel&lt;/a> 是一个免费的应用部署平台，主要用来测试和部署 Serverless 应用，通过它，我们可以零成本地部署直链下载应用。Vercel 提供了两种部署方式，从下面两种方式任选其一执行即可。&lt;/p>
-&lt;h3 id="打开链接部署推荐">打开链接部署（推荐）
-&lt;/h3>&lt;p>注册或登录你的 Vercel 账号，然后打开我创建的&lt;a class="link" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvifly%2Furepo&amp;amp;env=code,path,client_secret,client_id,refresh_token" target="_blank" rel="noopener"
->部署链接&lt;/a>，会出现如下界面，在 GitHub、GitLab、Bitbucket 这三个 Git 平台中选择一个进行连接，Vercel 会把 urepo 仓库复制到连接的平台上。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png"
-width="1204"
-height="893"
-loading="lazy"
-alt="Vercel 导入仓库"
-class="gallery-image"
-data-flex-grow="134"
-data-flex-basis="323px"
->&lt;/p>
-&lt;p>接下来的 Create a Team 只要点击 Skip 跳过就行，然后就是环境变量的设置，urepo 会首先尝试从环境变量中读取这些私密信息，无法找到对应的信息时才会去读取项目根目录下的 auth.json 获取配置，与把访问令牌写在配置文件相比，利用环境变量配置可以避免自己不小心把私密信息公开，根据上文填写这五个环境变量后就完成部署了。&lt;/p>
-&lt;h3 id="从本地上传部署">从本地上传部署
-&lt;/h3>&lt;p>本方法需要安装 NodeJS 相关的工具链，我不太想和这些工具打交道，但 Vercel 本来是一个部署前端应用的平台，所以官方的客户端使用 JS 编写是很正常的事情，如果不想安装这些软件，那可以使用上面的部署方法。&lt;/p>
-&lt;p>首先安装 Yarn 或其它 NodeJS 包管理器：&lt;code>pacman -S yarn&lt;/code>，由于 JS 应用总是喜欢在用户的家目录乱丢东西，所以为了让 Yarn 遵循&lt;a class="link" href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html" target="_blank" rel="noopener"
-> XDG 目录规范&lt;/a>，我们可以执行 &lt;code>yarn config set prefix ~/.local&lt;/code>。然后执行下面的指令全局安装 vercel 应用，这会把它安装到你的家目录（~/.local/bin，记得让你的 $PATH 包含这个路径）：&lt;/p>
-&lt;pre tabindex="0">&lt;code>yarn global add vercel
-&lt;/code>&lt;/pre>&lt;p>安装完成后执行下面的指令进行登录，在打开的浏览器窗口注册或登录你的 Vercel 账号并进行验证：&lt;/p>
-&lt;pre tabindex="0">&lt;code>vercel login
-&lt;/code>&lt;/pre>&lt;p>下载 urepo 源码：&lt;/p>
-&lt;pre tabindex="0">&lt;code>git clone git@github.com:vifly/urepo.git
-&lt;/code>&lt;/pre>&lt;p>把 urepo 根目录下的 auth.json.example 重命名为 auth.json，然后把对应的配置填入里面。或者，也可以在上传部署后到 Vercel 的项目面板中设置 code、path、client_secret、client_id、refresh_token 这五个环境变量。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png"
-width="1236"
-height="902"
-loading="lazy"
-alt="Vercel 设置环境变量"
-class="gallery-image"
-data-flex-grow="137"
-data-flex-basis="328px"
->&lt;/p>
-&lt;p>最后就是上传部署：&lt;/p>
-&lt;pre tabindex="0">&lt;code>cd urepo
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;根据提示操作，最后得到 code 与 refresh_token。此时我们已经获得 client id、client secret、code、refresh_token 这四项配置。至于下文中需要用到的 path，那就是在“配置 GitHub Actions”这一小节中的 dest_path。&lt;/p&gt;
+&lt;h2 id="部署到-vercel"&gt;部署到 Vercel
+&lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://vercel.com/" target="_blank" rel="noopener"
+ &gt;Vercel&lt;/a&gt; 是一个免费的应用部署平台，主要用来测试和部署 Serverless 应用，通过它，我们可以零成本地部署直链下载应用。Vercel 提供了两种部署方式，从下面两种方式任选其一执行即可。&lt;/p&gt;
+&lt;h3 id="打开链接部署推荐"&gt;打开链接部署（推荐）
+&lt;/h3&gt;&lt;p&gt;注册或登录你的 Vercel 账号，然后打开我创建的&lt;a class="link" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvifly%2Furepo&amp;amp;env=code,path,client_secret,client_id,refresh_token" target="_blank" rel="noopener"
+ &gt;部署链接&lt;/a&gt;，会出现如下界面，在 GitHub、GitLab、Bitbucket 这三个 Git 平台中选择一个进行连接，Vercel 会把 urepo 仓库复制到连接的平台上。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Vercel 导入仓库" class="gallery-image" data-flex-basis="323px" data-flex-grow="134" height="893" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_import_repo.png" width="1204"&gt;&lt;/p&gt;
+&lt;p&gt;接下来的 Create a Team 只要点击 Skip 跳过就行，然后就是环境变量的设置，urepo 会首先尝试从环境变量中读取这些私密信息，无法找到对应的信息时才会去读取项目根目录下的 auth.json 获取配置，与把访问令牌写在配置文件相比，利用环境变量配置可以避免自己不小心把私密信息公开，根据上文填写这五个环境变量后就完成部署了。&lt;/p&gt;
+&lt;h3 id="从本地上传部署"&gt;从本地上传部署
+&lt;/h3&gt;&lt;p&gt;本方法需要安装 NodeJS 相关的工具链，我不太想和这些工具打交道，但 Vercel 本来是一个部署前端应用的平台，所以官方的客户端使用 JS 编写是很正常的事情，如果不想安装这些软件，那可以使用上面的部署方法。&lt;/p&gt;
+&lt;p&gt;首先安装 Yarn 或其它 NodeJS 包管理器：&lt;code&gt;pacman -S yarn&lt;/code&gt;，由于 JS 应用总是喜欢在用户的家目录乱丢东西，所以为了让 Yarn 遵循&lt;a class="link" href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html" target="_blank" rel="noopener"
+ &gt; XDG 目录规范&lt;/a&gt;，我们可以执行 &lt;code&gt;yarn config set prefix ~/.local&lt;/code&gt;。然后执行下面的指令全局安装 vercel 应用，这会把它安装到你的家目录（~/.local/bin，记得让你的 $PATH 包含这个路径）：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;yarn global add vercel
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;安装完成后执行下面的指令进行登录，在打开的浏览器窗口注册或登录你的 Vercel 账号并进行验证：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;vercel login
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下载 urepo 源码：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;git clone git@github.com:vifly/urepo.git
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;把 urepo 根目录下的 auth.json.example 重命名为 auth.json，然后把对应的配置填入里面。或者，也可以在上传部署后到 Vercel 的项目面板中设置 code、path、client_secret、client_id、refresh_token 这五个环境变量。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Vercel 设置环境变量" class="gallery-image" data-flex-basis="328px" data-flex-grow="137" height="902" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_set_env.png" width="1236"&gt;&lt;/p&gt;
+&lt;p&gt;最后就是上传部署：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cd urepo
 vercel .
-&lt;/code>&lt;/pre>&lt;h2 id="使用自己的域名可选">使用自己的域名（可选）
-&lt;/h2>&lt;p>尽管 Vercel 会为部署的应用分配一个二级域名（xxx.vercel.app），但自建源使用自己的域名无疑是一个更好的选择。根据&lt;a class="link" href="https://vercel.com/docs/custom-domains#subdomains" target="_blank" rel="noopener"
->官方文档&lt;/a>，首先需要打开项目的域名管理界面，添加自己想使用的域名。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png"
-width="1319"
-height="873"
-loading="lazy"
-alt="Vercel 添加域名"
-class="gallery-image"
-data-flex-grow="151"
-data-flex-basis="362px"
->&lt;/p>
-&lt;p>假设各位和我一样使用了自己的子域名，那么在自己的 DNS 解析服务提供商管理面板添加一条 CNAME 解析记录即可，我使用的是 cloudflare，还需要把代理状态设为“仅限 DNS”以确保不会使用 cloudflare 的反代。&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png"
-width="1102"
-height="154"
-loading="lazy"
-alt="在 cloudflare 设置指向 Vercel 的 CNAME"
-class="gallery-image"
-data-flex-grow="715"
-data-flex-basis="1717px"
->&lt;/p>
-&lt;h1 id="有待改进的地方">有待改进的地方
-&lt;/h1>&lt;p>尽管这一流程已经能工作了，但有些地方还是可以再改进一下的。&lt;del>首先，目前并没有数字签名，添加这一自建软件源时需要禁用对此的签名校验，在乎安全性的同学可能会对此表示不爽，所以日后有必要加上对软件包签名的支持。其次，urepo 应该无需修改就可以用于分发其它发行版的软件包与数据库（它的本质就是一个简陋的 onedrive index），但前面的 GitHub Actions 只支持 Arch，我未来肯定会加上对 Debian/Ubuntu 的支持，具体什么时候搞定这个，就要看我什么时候有需求了，对其它发行版的支持也是同样的😂&lt;/del>。目前已支持 GPG 签名，也新增了 &lt;a class="link" href="https://github.com/vifly/debian-build" target="_blank" rel="noopener"
->debian-build&lt;/a> 用于构建 deb 软件包。&lt;/p>
-&lt;p>另外，我编写的 urepo 与 GitHub Actions 脚本的报错信息并不够用户友好，由于大量采用了 Python 进行编写，假如出现错误的话对于没学过 Python 的同学来说可能难以根据输出的错误信息解决问题。这个问题也是留待日后解决。&lt;/p></description></item><item><title>GitHub Actions 打造 AUR 打包下载一条龙服务</title><link>https://viflythink.com/Use_GitHubActions_to_build_AUR/</link><pubDate>Tue, 28 Apr 2020 00:00:00 +0800</pubDate><guid>https://viflythink.com/Use_GitHubActions_to_build_AUR/</guid><description>&lt;img src="https://viflythink.com/Use_GitHubActions_to_build_AUR/show.png" alt="Featured image of post GitHub Actions 打造 AUR 打包下载一条龙服务" />&lt;p>&lt;em>2021.2.2.更新：受 &lt;a class="link" href="https://www.aloxaf.com/2020/06/build_aur_with_github_actions/" target="_blank" rel="noopener"
->Aloxaf 的博文&lt;/a>启发新增使用自己的 PKGBUILD 进行构建的说明。&lt;/em>&lt;/p>
-&lt;p>尽管目前博主我还在考研，但最近还是经不住折腾 Arch 的诱惑，抽空对使用 Arch 以来一直觉得体验不够好的安装 AUR 软件包流程进行改造，最终的结果就是搭建了这一个自动化的 AUR 编译打包下载安装一条龙服务，并写下本文向各位安利。要问为什么我想折腾这个东西，当然是因为使用 AUR 助手安装 AUR 的软件包存在如下缺点：&lt;/p>
-&lt;ol>
-&lt;li>下载速度慢，由于很多时候都需要从 GitHub 下载文件，所以每秒 10 KB 的下载速度是很常见的（虽然这点可以通过设置 http_proxy 环境变量让 Yay 等 AUR 助手使用代理来解决）&lt;/li>
-&lt;li>编译需要时间，如果你只是需要几个小软件包那可以无视这点&lt;/li>
-&lt;li>给别人分享已打好的软件包有点麻烦，每次更新你都需要通过某种方式传输文件给对方（凑够三点 ／人◕‿‿◕人＼）&lt;/li>
-&lt;/ol>
-&lt;p>为了解决以上问题，本文使用免费的 GitHub Actions 与 Cloudflare Workers，手把手教你搭建一个自动化 AUR 软件构建流程，只需一次配置，你就可以享受船新的&lt;del>白嫖&lt;/del> AUR 使用体验。另外，这也是我第一次实际使用 CI（持续集成），通过配置整个工作流，我算是学习了一把 CI 的使用（&lt;em>PS：这才是真正的目的&lt;/em>），所以你也可以把这篇文章当作我的 CI 学习笔记。&lt;/p>
-&lt;h1 id="github-actions-简介">GitHub Actions 简介
-&lt;/h1>&lt;p>首先，GitHub Actions 是 GitHub 在 2019 年推出的一项 CI 服务。如果你没听说过 CI，那这里我尝试用一句话来解释，CI 就是对新的项目更改进行自动化构建，在本文的场景下，新的更改指的是 AUR 上的 PKGBUILD 文件发生变更（实际上我为了偷懒，选择了设置定时任务而不是监测 PKGBUILD 的变更），自动化构建就是自动编译加打包以及上传（如果是闭源软件那就不是编译而是拆包等操作）。嗯，就是这么简单，如果想知道 CI 的详细定义，可以看下&lt;a class="link" href="https://www.redhat.com/zh/topics/devops/what-is-ci-cd" target="_blank" rel="noopener"
->红帽的文章&lt;/a>。&lt;/p>
-&lt;p>GitHub Actions 的特点是支持的触发条件种类数非常多，而且与 GitHub 的集成很好，学习难度也不高，只要简单地写一个配置文件即可，还可轻松调用别人写好的操作步骤，对于开源项目作者来说最大的好处就是可以白嫖 GitHub 的机器用来为不同的平台编译。如果你已经对 GitHub Actions 感到心动，那么不妨阅读&lt;a class="link" href="https://help.github.com/en/actions/getting-started-with-github-actions" target="_blank" rel="noopener"
->官方文档&lt;/a>来学习一下用法，或者靠&lt;a class="link" href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="noopener"
->阮一峰的介绍文&lt;/a>快速上手。想要更简短的介绍？没问题，来看看下面的讲解吧。&lt;/p>
-&lt;p>想要使用 GitHub Actions，那首先需要在项目根目录下的 .github/workflows 文件夹下创建一个以 yml 为后缀名的 workflow 文件（如 build.yml），在这个 YAML 文件中写入我们的配置。那么配置该怎么写呢，让我们看一个示例：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Greeting from Mona&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">push&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># ================== 第一个 job，这只有一个 job ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">my-job&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">My Job&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第一个 step，执行单个命令 ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Print a greeting&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">env&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">MY_VAR&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Hi there! My name is&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">FIRST_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Mona&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">MIDDLE_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">The&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">LAST_NAME&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Octocat&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第二个 step，使用别人的 action ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v2&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># ================== 第三个 step，执行多个命令 ==================&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Install the dependencies&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> sudo apt-get update
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> sudo apt-get install pkg-config gettext&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按从上到下的顺序来看，name 对象应该无需解释了，值得注意的是 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#on" target="_blank" rel="noopener"
->on&lt;/a> 对象，可以填入单个事件或事件数组作为触发条件，当满足条件时便执行这个 YAML 文件里的内容（一个项目可以存在多个 workflow 文件），在示例中的 push 指的是 git push，即每次推送代码都会触发这个 workflow，完整的事件支持列表可通过&lt;a class="link" href="https://help.github.com/en/articles/events-that-trigger-workflows" target="_blank" rel="noopener"
->官方文档&lt;/a>获知。&lt;/p>
-&lt;p>接下来就是 jobs 了，在这里我们只创建了一个名为 my-job 的 job，一般而言 jobs 是 workflow 文件的主体，一个 job 由若干个 step 组成，这些 step 会按顺序执行，为了便于阅读，我用分割线将各个 step 分开了。&lt;/p>
-&lt;p>在解释 step 前我们不妨先看下每一个 job 中都要填写的 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on" target="_blank" rel="noopener"
->runs-on&lt;/a> 对象，它指定了该 job 的工作系统环境，目前可选的系统有 windows-latest、ubuntu-latest、ubuntu-16.04、macos-latest，这覆盖了主流的操作系统平台，为不同平台的编译提供了便利。&lt;/p>
-&lt;p>最后，就是每个 job 中必须存在的 step 了，每个 step 都代表一个单独的操作步骤，既可以在 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsrun" target="_blank" rel="noopener"
->run&lt;/a> 对象内填入你需要执行的 Shell 命令，也可以在 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses" target="_blank" rel="noopener"
->uses&lt;/a> 对象里填入对应的配置以使用别人的 action（在 &lt;a class="link" href="https://github.com/marketplace?type=actions" target="_blank" rel="noopener"
->Marketplace&lt;/a> 中浏览全部 action）。&lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsenv" target="_blank" rel="noopener"
->env&lt;/a> 对象用来设置环境变量，这个对象存在一个非常有趣的应用场景：如果你的 step 需要使用不宜公开的 Token，那你可以&lt;a class="link" href="https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets" target="_blank" rel="noopener"
->在项目设置中设置该 Token&lt;/a>，然后在 env 对象中使用 super_secret: $ 将这个 Token 设为一个环境变量，并在自己的 step 中读取该环境变量以取得 Token，这样就能避免在 workflow 文件中硬编码 Token。当你再次看到 $ 这样的变量时，你就应该明白这是一个私密变量，是不能公开的。&lt;/p>
-&lt;h1 id="开始构造打包工作流">开始构造打包工作流
-&lt;/h1>&lt;p>经过上文的介绍，各位应该对 GitHub Actions 有了一定的了解，接下来就让我们开始白嫖 GitHub Actions 吧。注意，本节中的说明均与最新版本的 &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
->arch-build&lt;/a> 存在差异，仅用作描述思路，想要抄作业的请直接跳到“最终成品与配置”一节。&lt;/p>
-&lt;h2 id="自动编译-aur-的软件包">自动编译 AUR 的软件包
-&lt;/h2>&lt;p>一般而言，我们都是在 Arch Linux 上构建 AUR 上的软件包，但是上文提到的 runs-on 对象可以填入的系统并不包括 Arch，那该怎么办呢？答案是使用基于 Arch 的容器，在容器内构建。这里要感谢 &lt;a class="link" href="https://github.com/Qv2ray/Qv2ray" target="_blank" rel="noopener"
->Qv2ray&lt;/a> 的一位开发者 &lt;a class="link" href="https://www.ducksoft.site/" target="_blank" rel="noopener"
->DuckSoft&lt;/a> 提供了这个思路，而且编写了 &lt;a class="link" href="https://github.com/DuckSoft/build-aur-action" target="_blank" rel="noopener"
->build-aur-action&lt;/a> 这个 action 用来编译打包 AUR 上的软件。现在，我们需要考虑的就是如何自动进行编译，从 CI 的正常使用方式来说，我们应该在 on 对象中设定这样一个触发条件：当 AUR 特定的软件包更新时自动进行编译。不过这个方案还需要写检测更新的代码，为了偷懒，我选择设置定时任务来编译，由于 on 对象支持&lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onschedule" target="_blank" rel="noopener"
->通过 Cron 语法设定定时任务&lt;/a>，所以这个问题能被轻松解决。就这样，我们完成了一个简单的 workflow 文件：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">BUILD&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">schedule&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">cron&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;1 */8 * * *&amp;#39;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">build&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DuckSoft/build-aur-action@master&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">repo-name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">osu-lazer&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>提醒一下，使用别人的 action 时可能需要使用 with 对象输入一些变量，在这里我们输入的就是想要构建的 AUR 软件的软件包名。&lt;/p>
-&lt;h2 id="上传到-github-releases">上传到 GitHub Releases
-&lt;/h2>&lt;p>在上一步中我们已成功地构建了想要的软件包，接下来需要解决的就是如何把软件包取出来这个问题了。最好的解决方案莫过于将构建出来的软件包上传到 Releases，GitHub 官方提供了 &lt;a class="link" href="https://github.com/actions/upload-release-asset" target="_blank" rel="noopener"
->upload-release-asset&lt;/a> 来完成这个操作，但我看了说明文档后觉得这个太麻烦了，它不支持通过 Unix 终端规则（例如 “*.zst”）筛选要上传的文件，而且需要先创建 Releases 后才能上传文件。经过一番谷歌，我找到了 &lt;a class="link" href="https://github.com/ncipollo/release-action" target="_blank" rel="noopener"
->release-action&lt;/a> 这个替代品，与 upload-release-asset 相比，这个 action 的配置明显更简单，从下面这段配置即可看得出来：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ncipollo/release-action@v1.7.3&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">allowUpdates&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">tag&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;packages&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">artifacts&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;./*/*.zst&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">token&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.GITHUB_TOKEN }}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>把这段配置添加到 workflow 中，然后我们先看看 with 对象中输入的变量。token 是上传文件到 Releases 时必需的一项变量，从它的形式就可以看出这是一个私密变量，不过这个私密变量是内置的，我们不需要在项目中手动设置这个变量，直接使用即可；接着就是 tag 了，为了方便管理，我们在仓库的 Releases 页面创建一个 tag，然后将 tag 的名字填入其中。完成配置后这个 action 就会把构建的软件包上传到指定 tag 下的 Releases，我们也可以下载该软件包了。&lt;/p>
-&lt;h2 id="使用-matrix-进行改进">使用 matrix 进行改进
-&lt;/h2>&lt;p>虽然目前我们的 workflow 已经能用了，但是需要编译多个 AUR 的软件时需要多次复制粘贴上面的 step，这可太难看了，是否存在更优雅的方法呢？答案是有的，经 DuckSoft 的提醒，可以使用 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix" target="_blank" rel="noopener"
->matrix&lt;/a>，它基于单个 job 中定义的 steps 并行运行多个 job，多个 job 之间的差异就是特定变量的差异，这些变量以数组的形式存在。一般来说，matrix 的用处就是为不同平台采取同样的步骤进行构建，在本文的场景下就是采用同样的步骤构建不同的 AUR 软件。虽然听着有点抽象，但看一下这个例子你就应该能明白了：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-YAML" data-lang="YAML">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">build&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">strategy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">matrix&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">repos&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="l">osu-lazer, mpv-mpris]&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">fail-fast&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-latest&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">DuckSoft/build-aur-action@master&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">repo-name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ matrix.repos }}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>与之前的 workflow 不同，我们先创建了 repos 数组，并在其中填入需要构建的软件名。如果不把 fail-fast 设置为 false，在并行 job 中出现一个运行失败的 job 时会导致其它的 job 被终止。另外，使用 build-aur-action 时我们没有直接输入 repo-name，而是以 $ 的形式输入，数组中的变量会自动应用到对应的 job 中。&lt;/p>
-&lt;h2 id="使用自己的-pkgbuild可选">使用自己的 PKGBUILD（可选）
-&lt;/h2>&lt;p>上述版本已经很完美了，不过还存在一个问题：我需要的某个软件包虽然在 AUR 中存在，但对应的 PKGBUILD 写的太烂了/无法构建成功，此时我写了一个 PKGBUILD，希望能白嫖 GitHub Actions 进行构建，该怎么办呢。这个需求也是早有人想到了，只需使用 &lt;a class="link" href="https://github.com/edlanglois/pkgbuild-action" target="_blank" rel="noopener"
->pkgbuild-action&lt;/a> 就可解决，它还可以解决打的包还依赖了其它的 AUR 包的问题。为此，我们需要再添加一个 job，checkout 目前仓库获取 PKGBUILD，然后使用 pkgbuild-action 进行构建，需要的 pkgdir 参数就是 PKGBUILD 所在的路径（父文件夹），最后依然是使用 release-action 根据 pkgbuild-action 返回的构建产物路径将其上传到 GitHub Releases。&lt;/p>
-&lt;h1 id="最终成品与配置">最终成品与配置
-&lt;/h1>&lt;p>最终版的 workflow 可以在&lt;a class="link" href="https://github.com/vifly/arch-build/blob/master/.github/workflows/build.yml" target="_blank" rel="noopener"
->这&lt;/a>查看，只需 fork &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
->arch-build&lt;/a>，然后按下面的说明修改一下 workflow 文件即可食用。注意，经过一段时间的改进，最终版的配置已与上文存在一定区别，其中的 uploadToOneDrive 是&lt;a class="link" href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo" target="_blank" rel="noopener"
->《使用 Vercel 与 OneDrive 自建软件源》&lt;/a>中所需的 job，如果你不需要建立一个可公共访问的软件源请删掉它。&lt;/p>
-&lt;p>如果只是需要构建上传 AUR 包，那只需修改 buildAUR 这个 job 中的内容，根据自己的需要修改其 matrix 内的软件包名，buildNonAUR 的内容则可以删掉。&lt;/p>
-&lt;p>如果想使用自己的 PKGBUILD 进行构建，那还需要修改 buildNonAUR 这个 job，依然需要修改其 matrix 内的软件包名，另外还需要在仓库的根目录下新建以软件包名命名的文件夹，在其中存放对应的 PKGBUILD 文件和其它构建过程中所需的资源文件。经过我的修改后的 pkgbuild-action 还支持一个新功能：如果想构建的软件包依赖某个 AUR 软件包而你不想使用 AUR 上的 PKGBUILD，那么你可以新建一个子文件夹，在其中放入自己的 PKGBUILD。结构如下所示：&lt;/p>
-&lt;pre tabindex="0">&lt;code>├── foo
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="使用自己的域名可选"&gt;使用自己的域名（可选）
+&lt;/h2&gt;&lt;p&gt;尽管 Vercel 会为部署的应用分配一个二级域名（xxx.vercel.app），但自建源使用自己的域名无疑是一个更好的选择。根据&lt;a class="link" href="https://vercel.com/docs/custom-domains#subdomains" target="_blank" rel="noopener"
+ &gt;官方文档&lt;/a&gt;，首先需要打开项目的域名管理界面，添加自己想使用的域名。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Vercel 添加域名" class="gallery-image" data-flex-basis="362px" data-flex-grow="151" height="873" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/vercel_add_domain.png" width="1319"&gt;&lt;/p&gt;
+&lt;p&gt;假设各位和我一样使用了自己的子域名，那么在自己的 DNS 解析服务提供商管理面板添加一条 CNAME 解析记录即可，我使用的是 cloudflare，还需要把代理状态设为“仅限 DNS”以确保不会使用 cloudflare 的反代。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="在 cloudflare 设置指向 Vercel 的 CNAME" class="gallery-image" data-flex-basis="1717px" data-flex-grow="715" height="154" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo/cloudflare_set_vercel_cname.png" width="1102"&gt;&lt;/p&gt;
+&lt;h1 id="有待改进的地方"&gt;有待改进的地方
+&lt;/h1&gt;&lt;p&gt;尽管这一流程已经能工作了，但有些地方还是可以再改进一下的。&lt;del&gt;首先，目前并没有数字签名，添加这一自建软件源时需要禁用对此的签名校验，在乎安全性的同学可能会对此表示不爽，所以日后有必要加上对软件包签名的支持。其次，urepo 应该无需修改就可以用于分发其它发行版的软件包与数据库（它的本质就是一个简陋的 onedrive index），但前面的 GitHub Actions 只支持 Arch，我未来肯定会加上对 Debian/Ubuntu 的支持，具体什么时候搞定这个，就要看我什么时候有需求了，对其它发行版的支持也是同样的😂&lt;/del&gt;。目前已支持 GPG 签名，也新增了 &lt;a class="link" href="https://github.com/vifly/debian-build" target="_blank" rel="noopener"
+ &gt;debian-build&lt;/a&gt; 用于构建 deb 软件包。&lt;/p&gt;
+&lt;p&gt;另外，我编写的 urepo 与 GitHub Actions 脚本的报错信息并不够用户友好，由于大量采用了 Python 进行编写，假如出现错误的话对于没学过 Python 的同学来说可能难以根据输出的错误信息解决问题。这个问题也是留待日后解决。&lt;/p&gt;</description></item><item><title>GitHub Actions 打造 AUR 打包下载一条龙服务</title><link>https://viflythink.com/Use_GitHubActions_to_build_AUR/</link><pubDate>Tue, 28 Apr 2020 00:00:00 +0800</pubDate><guid>https://viflythink.com/Use_GitHubActions_to_build_AUR/</guid><description>&lt;img src="https://viflythink.com/Use_GitHubActions_to_build_AUR/show.png" alt="Featured image of post GitHub Actions 打造 AUR 打包下载一条龙服务" /&gt;&lt;p&gt;&lt;em&gt;2021.2.2.更新：受 &lt;a class="link" href="https://www.aloxaf.com/2020/06/build_aur_with_github_actions/" target="_blank" rel="noopener"
+ &gt;Aloxaf 的博文&lt;/a&gt;启发新增使用自己的 PKGBUILD 进行构建的说明。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;尽管目前博主我还在考研，但最近还是经不住折腾 Arch 的诱惑，抽空对使用 Arch 以来一直觉得体验不够好的安装 AUR 软件包流程进行改造，最终的结果就是搭建了这一个自动化的 AUR 编译打包下载安装一条龙服务，并写下本文向各位安利。要问为什么我想折腾这个东西，当然是因为使用 AUR 助手安装 AUR 的软件包存在如下缺点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;下载速度慢，由于很多时候都需要从 GitHub 下载文件，所以每秒 10 KB 的下载速度是很常见的（虽然这点可以通过设置 http_proxy 环境变量让 Yay 等 AUR 助手使用代理来解决）&lt;/li&gt;
+&lt;li&gt;编译需要时间，如果你只是需要几个小软件包那可以无视这点&lt;/li&gt;
+&lt;li&gt;给别人分享已打好的软件包有点麻烦，每次更新你都需要通过某种方式传输文件给对方（凑够三点 ／人◕‿‿◕人＼）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;为了解决以上问题，本文使用免费的 GitHub Actions 与 Cloudflare Workers，手把手教你搭建一个自动化 AUR 软件构建流程，只需一次配置，你就可以享受船新的&lt;del&gt;白嫖&lt;/del&gt; AUR 使用体验。另外，这也是我第一次实际使用 CI（持续集成），通过配置整个工作流，我算是学习了一把 CI 的使用（&lt;em&gt;PS：这才是真正的目的&lt;/em&gt;），所以你也可以把这篇文章当作我的 CI 学习笔记。&lt;/p&gt;
+&lt;h1 id="github-actions-简介"&gt;GitHub Actions 简介
+&lt;/h1&gt;&lt;p&gt;首先，GitHub Actions 是 GitHub 在 2019 年推出的一项 CI 服务。如果你没听说过 CI，那这里我尝试用一句话来解释，CI 就是对新的项目更改进行自动化构建，在本文的场景下，新的更改指的是 AUR 上的 PKGBUILD 文件发生变更（实际上我为了偷懒，选择了设置定时任务而不是监测 PKGBUILD 的变更），自动化构建就是自动编译加打包以及上传（如果是闭源软件那就不是编译而是拆包等操作）。嗯，就是这么简单，如果想知道 CI 的详细定义，可以看下&lt;a class="link" href="https://www.redhat.com/zh/topics/devops/what-is-ci-cd" target="_blank" rel="noopener"
+ &gt;红帽的文章&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;GitHub Actions 的特点是支持的触发条件种类数非常多，而且与 GitHub 的集成很好，学习难度也不高，只要简单地写一个配置文件即可，还可轻松调用别人写好的操作步骤，对于开源项目作者来说最大的好处就是可以白嫖 GitHub 的机器用来为不同的平台编译。如果你已经对 GitHub Actions 感到心动，那么不妨阅读&lt;a class="link" href="https://help.github.com/en/actions/getting-started-with-github-actions" target="_blank" rel="noopener"
+ &gt;官方文档&lt;/a&gt;来学习一下用法，或者靠&lt;a class="link" href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="noopener"
+ &gt;阮一峰的介绍文&lt;/a&gt;快速上手。想要更简短的介绍？没问题，来看看下面的讲解吧。&lt;/p&gt;
+&lt;p&gt;想要使用 GitHub Actions，那首先需要在项目根目录下的 .github/workflows 文件夹下创建一个以 yml 为后缀名的 workflow 文件（如 build.yml），在这个 YAML 文件中写入我们的配置。那么配置该怎么写呢，让我们看一个示例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-YAML" data-lang="YAML"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Greeting from Mona&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;push&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;jobs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# ================== 第一个 job，这只有一个 job ==================&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;my-job&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;My Job&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;runs-on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;ubuntu-latest&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c"&gt;# ================== 第一个 step，执行单个命令 ==================&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Print a greeting&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;env&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;MY_VAR&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Hi there! My name is&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;FIRST_NAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Mona&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;MIDDLE_NAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;The&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;LAST_NAME&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Octocat&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c"&gt;# ================== 第二个 step，使用别人的 action ==================&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;actions/checkout@v2&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c"&gt;# ================== 第三个 step，执行多个命令 ==================&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Install the dependencies&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="sd"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sd"&gt; sudo apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="sd"&gt; sudo apt-get install pkg-config gettext&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;按从上到下的顺序来看，name 对象应该无需解释了，值得注意的是 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#on" target="_blank" rel="noopener"
+ &gt;on&lt;/a&gt; 对象，可以填入单个事件或事件数组作为触发条件，当满足条件时便执行这个 YAML 文件里的内容（一个项目可以存在多个 workflow 文件），在示例中的 push 指的是 git push，即每次推送代码都会触发这个 workflow，完整的事件支持列表可通过&lt;a class="link" href="https://help.github.com/en/articles/events-that-trigger-workflows" target="_blank" rel="noopener"
+ &gt;官方文档&lt;/a&gt;获知。&lt;/p&gt;
+&lt;p&gt;接下来就是 jobs 了，在这里我们只创建了一个名为 my-job 的 job，一般而言 jobs 是 workflow 文件的主体，一个 job 由若干个 step 组成，这些 step 会按顺序执行，为了便于阅读，我用分割线将各个 step 分开了。&lt;/p&gt;
+&lt;p&gt;在解释 step 前我们不妨先看下每一个 job 中都要填写的 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on" target="_blank" rel="noopener"
+ &gt;runs-on&lt;/a&gt; 对象，它指定了该 job 的工作系统环境，目前可选的系统有 windows-latest、ubuntu-latest、ubuntu-16.04、macos-latest，这覆盖了主流的操作系统平台，为不同平台的编译提供了便利。&lt;/p&gt;
+&lt;p&gt;最后，就是每个 job 中必须存在的 step 了，每个 step 都代表一个单独的操作步骤，既可以在 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsrun" target="_blank" rel="noopener"
+ &gt;run&lt;/a&gt; 对象内填入你需要执行的 Shell 命令，也可以在 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses" target="_blank" rel="noopener"
+ &gt;uses&lt;/a&gt; 对象里填入对应的配置以使用别人的 action（在 &lt;a class="link" href="https://github.com/marketplace?type=actions" target="_blank" rel="noopener"
+ &gt;Marketplace&lt;/a&gt; 中浏览全部 action）。&lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsenv" target="_blank" rel="noopener"
+ &gt;env&lt;/a&gt; 对象用来设置环境变量，这个对象存在一个非常有趣的应用场景：如果你的 step 需要使用不宜公开的 Token，那你可以&lt;a class="link" href="https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets" target="_blank" rel="noopener"
+ &gt;在项目设置中设置该 Token&lt;/a&gt;，然后在 env 对象中使用 super_secret: $ 将这个 Token 设为一个环境变量，并在自己的 step 中读取该环境变量以取得 Token，这样就能避免在 workflow 文件中硬编码 Token。当你再次看到 $ 这样的变量时，你就应该明白这是一个私密变量，是不能公开的。&lt;/p&gt;
+&lt;h1 id="开始构造打包工作流"&gt;开始构造打包工作流
+&lt;/h1&gt;&lt;p&gt;经过上文的介绍，各位应该对 GitHub Actions 有了一定的了解，接下来就让我们开始白嫖 GitHub Actions 吧。注意，本节中的说明均与最新版本的 &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
+ &gt;arch-build&lt;/a&gt; 存在差异，仅用作描述思路，想要抄作业的请直接跳到“最终成品与配置”一节。&lt;/p&gt;
+&lt;h2 id="自动编译-aur-的软件包"&gt;自动编译 AUR 的软件包
+&lt;/h2&gt;&lt;p&gt;一般而言，我们都是在 Arch Linux 上构建 AUR 上的软件包，但是上文提到的 runs-on 对象可以填入的系统并不包括 Arch，那该怎么办呢？答案是使用基于 Arch 的容器，在容器内构建。这里要感谢 &lt;a class="link" href="https://github.com/Qv2ray/Qv2ray" target="_blank" rel="noopener"
+ &gt;Qv2ray&lt;/a&gt; 的一位开发者 &lt;a class="link" href="https://www.ducksoft.site/" target="_blank" rel="noopener"
+ &gt;DuckSoft&lt;/a&gt; 提供了这个思路，而且编写了 &lt;a class="link" href="https://github.com/DuckSoft/build-aur-action" target="_blank" rel="noopener"
+ &gt;build-aur-action&lt;/a&gt; 这个 action 用来编译打包 AUR 上的软件。现在，我们需要考虑的就是如何自动进行编译，从 CI 的正常使用方式来说，我们应该在 on 对象中设定这样一个触发条件：当 AUR 特定的软件包更新时自动进行编译。不过这个方案还需要写检测更新的代码，为了偷懒，我选择设置定时任务来编译，由于 on 对象支持&lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#onschedule" target="_blank" rel="noopener"
+ &gt;通过 Cron 语法设定定时任务&lt;/a&gt;，所以这个问题能被轻松解决。就这样，我们完成了一个简单的 workflow 文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-YAML" data-lang="YAML"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;BUILD&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;schedule&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;cron&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;1 */8 * * *&amp;#39;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;jobs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;build&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;runs-on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;ubuntu-latest&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;DuckSoft/build-aur-action@master&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;repo-name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;osu-lazer&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;提醒一下，使用别人的 action 时可能需要使用 with 对象输入一些变量，在这里我们输入的就是想要构建的 AUR 软件的软件包名。&lt;/p&gt;
+&lt;h2 id="上传到-github-releases"&gt;上传到 GitHub Releases
+&lt;/h2&gt;&lt;p&gt;在上一步中我们已成功地构建了想要的软件包，接下来需要解决的就是如何把软件包取出来这个问题了。最好的解决方案莫过于将构建出来的软件包上传到 Releases，GitHub 官方提供了 &lt;a class="link" href="https://github.com/actions/upload-release-asset" target="_blank" rel="noopener"
+ &gt;upload-release-asset&lt;/a&gt; 来完成这个操作，但我看了说明文档后觉得这个太麻烦了，它不支持通过 Unix 终端规则（例如 “*.zst”）筛选要上传的文件，而且需要先创建 Releases 后才能上传文件。经过一番谷歌，我找到了 &lt;a class="link" href="https://github.com/ncipollo/release-action" target="_blank" rel="noopener"
+ &gt;release-action&lt;/a&gt; 这个替代品，与 upload-release-asset 相比，这个 action 的配置明显更简单，从下面这段配置即可看得出来：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-YAML" data-lang="YAML"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;- &lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;ncipollo/release-action@v1.7.3&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;allowUpdates&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;packages&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;artifacts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;./*/*.zst&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;token&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;${{ secrets.GITHUB_TOKEN }}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把这段配置添加到 workflow 中，然后我们先看看 with 对象中输入的变量。token 是上传文件到 Releases 时必需的一项变量，从它的形式就可以看出这是一个私密变量，不过这个私密变量是内置的，我们不需要在项目中手动设置这个变量，直接使用即可；接着就是 tag 了，为了方便管理，我们在仓库的 Releases 页面创建一个 tag，然后将 tag 的名字填入其中。完成配置后这个 action 就会把构建的软件包上传到指定 tag 下的 Releases，我们也可以下载该软件包了。&lt;/p&gt;
+&lt;h2 id="使用-matrix-进行改进"&gt;使用 matrix 进行改进
+&lt;/h2&gt;&lt;p&gt;虽然目前我们的 workflow 已经能用了，但是需要编译多个 AUR 的软件时需要多次复制粘贴上面的 step，这可太难看了，是否存在更优雅的方法呢？答案是有的，经 DuckSoft 的提醒，可以使用 &lt;a class="link" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix" target="_blank" rel="noopener"
+ &gt;matrix&lt;/a&gt;，它基于单个 job 中定义的 steps 并行运行多个 job，多个 job 之间的差异就是特定变量的差异，这些变量以数组的形式存在。一般来说，matrix 的用处就是为不同平台采取同样的步骤进行构建，在本文的场景下就是采用同样的步骤构建不同的 AUR 软件。虽然听着有点抽象，但看一下这个例子你就应该能明白了：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-YAML" data-lang="YAML"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;jobs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;build&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;strategy&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;repos&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="l"&gt;osu-lazer, mpv-mpris]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;fail-fast&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;runs-on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;ubuntu-latest&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;DuckSoft/build-aur-action@master&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;repo-name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;${{ matrix.repos }}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;与之前的 workflow 不同，我们先创建了 repos 数组，并在其中填入需要构建的软件名。如果不把 fail-fast 设置为 false，在并行 job 中出现一个运行失败的 job 时会导致其它的 job 被终止。另外，使用 build-aur-action 时我们没有直接输入 repo-name，而是以 $ 的形式输入，数组中的变量会自动应用到对应的 job 中。&lt;/p&gt;
+&lt;h2 id="使用自己的-pkgbuild可选"&gt;使用自己的 PKGBUILD（可选）
+&lt;/h2&gt;&lt;p&gt;上述版本已经很完美了，不过还存在一个问题：我需要的某个软件包虽然在 AUR 中存在，但对应的 PKGBUILD 写的太烂了/无法构建成功，此时我写了一个 PKGBUILD，希望能白嫖 GitHub Actions 进行构建，该怎么办呢。这个需求也是早有人想到了，只需使用 &lt;a class="link" href="https://github.com/edlanglois/pkgbuild-action" target="_blank" rel="noopener"
+ &gt;pkgbuild-action&lt;/a&gt; 就可解决，它还可以解决打的包还依赖了其它的 AUR 包的问题。为此，我们需要再添加一个 job，checkout 目前仓库获取 PKGBUILD，然后使用 pkgbuild-action 进行构建，需要的 pkgdir 参数就是 PKGBUILD 所在的路径（父文件夹），最后依然是使用 release-action 根据 pkgbuild-action 返回的构建产物路径将其上传到 GitHub Releases。&lt;/p&gt;
+&lt;h1 id="最终成品与配置"&gt;最终成品与配置
+&lt;/h1&gt;&lt;p&gt;最终版的 workflow 可以在&lt;a class="link" href="https://github.com/vifly/arch-build/blob/master/.github/workflows/build.yml" target="_blank" rel="noopener"
+ &gt;这&lt;/a&gt;查看，只需 fork &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
+ &gt;arch-build&lt;/a&gt;，然后按下面的说明修改一下 workflow 文件即可食用。注意，经过一段时间的改进，最终版的配置已与上文存在一定区别，其中的 uploadToOneDrive 是&lt;a class="link" href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo" target="_blank" rel="noopener"
+ &gt;《使用 Vercel 与 OneDrive 自建软件源》&lt;/a&gt;中所需的 job，如果你不需要建立一个可公共访问的软件源请删掉它。&lt;/p&gt;
+&lt;p&gt;如果只是需要构建上传 AUR 包，那只需修改 buildAUR 这个 job 中的内容，根据自己的需要修改其 matrix 内的软件包名，buildNonAUR 的内容则可以删掉。&lt;/p&gt;
+&lt;p&gt;如果想使用自己的 PKGBUILD 进行构建，那还需要修改 buildNonAUR 这个 job，依然需要修改其 matrix 内的软件包名，另外还需要在仓库的根目录下新建以软件包名命名的文件夹，在其中存放对应的 PKGBUILD 文件和其它构建过程中所需的资源文件。经过我的修改后的 pkgbuild-action 还支持一个新功能：如果想构建的软件包依赖某个 AUR 软件包而你不想使用 AUR 上的 PKGBUILD，那么你可以新建一个子文件夹，在其中放入自己的 PKGBUILD。结构如下所示：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;├── foo
 │   ├── PKGBUILD
 │   └── bar (dependences of foo)
 │   ├── PKGBUILD
 │   └── baz (dependences of bar)
 │   └── PKGBUILD
-&lt;/code>&lt;/pre>&lt;p>到此为止，借助 GitHub Actions，我们拥有了一个 24 小时可用的编译机以及公开的软件包存储库，解决了本文开始提到的第二与第三点问题。这些都是全自动且免费的，为了更好的体验，下文将介绍如何让安装软件包也实现自动化。&lt;/p>
-&lt;h1 id="简单的自动更新仓库">简单的自动更新仓库
-&lt;/h1>&lt;p>打开浏览器，从 Releases 页面下载软件包，然后执行 pacman -U xxx.pkg.tar.zst 安装软件包，这些操作实在太麻烦了，为何不建立一个软件源，令每次执行 pacman -Syu 时自动安装最新版本的软件呢。自建软件源听上去十分高大上，但其实只是建立一个本地软件源并不难，&lt;a class="link" href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
->Arch WiKi 几段文字&lt;/a>便说明白了，当然，如果想建立一个在线的公用软件源会麻烦一些，所以这里只说明如何建立一个自动更新的本地软件源。想要建立公用软件源的话请跳过下文，阅读我的新博文&lt;a class="link" href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo" target="_blank" rel="noopener"
->《使用 Vercel 与 OneDrive 自建软件源》&lt;/a>。&lt;/p>
-&lt;h2 id="使用自动化脚本">使用自动化脚本
-&lt;/h2>&lt;p>作为一个爱偷懒的人，我肯定希望能自动化下载软件包与更新软件仓库的操作，为此我写了一个脚本来完成这些事情，各位只需打开&lt;a class="link" href="https://github.com/vifly/helper" target="_blank" rel="noopener"
->项目地址&lt;/a>，下载代码并根据说明进行操作即可。我在这里说明一下 conf.py 的配置：UserName 和 GitHubRepoName 并不难理解，举个例子，我的白嫖仓库地址是 &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
->https://github.com/vifly/arch-build&lt;/a> ，那么需要填写的 UserName 便是 vifly，GitHubRepoName 则是 arch-build；ProxyURL 在下一小节会提到，这里先不说；DownloadPath 是从 Releases 下载的软件包的存储路径；末尾的 ArchRepoDBPath 和 ArchRepoName 是用于生成本地软件源的数据库的，脚本会调用 repo-add 根据 DownloadPath 中的软件包生成路径为 ArchRepoDBPath/ArchRepoName.db.tar.gz 的数据库。&lt;br>
-当你成功运行脚本建立了一个本地软件源后，还需要修改 /etc/pacman.conf 文件，在末尾添加以下配置以让 Pacman 同步你的软件源的数据库（自行替换 ArchRepoName 与 ArchRepoDBPath）：&lt;/p>
-&lt;pre>&lt;code>[ArchRepoName]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;到此为止，借助 GitHub Actions，我们拥有了一个 24 小时可用的编译机以及公开的软件包存储库，解决了本文开始提到的第二与第三点问题。这些都是全自动且免费的，为了更好的体验，下文将介绍如何让安装软件包也实现自动化。&lt;/p&gt;
+&lt;h1 id="简单的自动更新仓库"&gt;简单的自动更新仓库
+&lt;/h1&gt;&lt;p&gt;打开浏览器，从 Releases 页面下载软件包，然后执行 pacman -U xxx.pkg.tar.zst 安装软件包，这些操作实在太麻烦了，为何不建立一个软件源，令每次执行 pacman -Syu 时自动安装最新版本的软件呢。自建软件源听上去十分高大上，但其实只是建立一个本地软件源并不难，&lt;a class="link" href="https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks#Custom_local_repository" target="_blank" rel="noopener"
+ &gt;Arch WiKi 几段文字&lt;/a&gt;便说明白了，当然，如果想建立一个在线的公用软件源会麻烦一些，所以这里只说明如何建立一个自动更新的本地软件源。想要建立公用软件源的话请跳过下文，阅读我的新博文&lt;a class="link" href="https://viflythink.com/Use_Vercel_and_OneDrive_to_setup_your_repo" target="_blank" rel="noopener"
+ &gt;《使用 Vercel 与 OneDrive 自建软件源》&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id="使用自动化脚本"&gt;使用自动化脚本
+&lt;/h2&gt;&lt;p&gt;作为一个爱偷懒的人，我肯定希望能自动化下载软件包与更新软件仓库的操作，为此我写了一个脚本来完成这些事情，各位只需打开&lt;a class="link" href="https://github.com/vifly/helper" target="_blank" rel="noopener"
+ &gt;项目地址&lt;/a&gt;，下载代码并根据说明进行操作即可。我在这里说明一下 conf.py 的配置：UserName 和 GitHubRepoName 并不难理解，举个例子，我的白嫖仓库地址是 &lt;a class="link" href="https://github.com/vifly/arch-build" target="_blank" rel="noopener"
+ &gt;https://github.com/vifly/arch-build&lt;/a&gt; ，那么需要填写的 UserName 便是 vifly，GitHubRepoName 则是 arch-build；ProxyURL 在下一小节会提到，这里先不说；DownloadPath 是从 Releases 下载的软件包的存储路径；末尾的 ArchRepoDBPath 和 ArchRepoName 是用于生成本地软件源的数据库的，脚本会调用 repo-add 根据 DownloadPath 中的软件包生成路径为 ArchRepoDBPath/ArchRepoName.db.tar.gz 的数据库。&lt;br&gt;
+当你成功运行脚本建立了一个本地软件源后，还需要修改 /etc/pacman.conf 文件，在末尾添加以下配置以让 Pacman 同步你的软件源的数据库（自行替换 ArchRepoName 与 ArchRepoDBPath）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[ArchRepoName]
 SigLevel = Optional TrustAll
 Server = file://ArchRepoDBPath
-&lt;/code>&lt;/pre>
-&lt;p>另外，为了让本地的软件仓库保持最新，我们可以通过 &lt;a class="link" href="https://wiki.archlinux.org/index.php/cron" target="_blank" rel="noopener"
->Cron&lt;/a> 设置一个定时任务自动运行这个脚本。现在，我们得到了一个完全免费、自动更新的个人软件仓库，快执行 pacman -Syu 开始享受白嫖的快乐吧。&lt;/p>
-&lt;h2 id="使用-cloudflare-workers-反代加速下载可选">使用 Cloudflare Workers 反代加速下载（可选）
-&lt;/h2>&lt;p>为了解决在国内 GitHub 下载速度慢的问题，让我们继续发扬白嫖的精神，使用 &lt;a class="link" href="https://workers.cloudflare.com/" target="_blank" rel="noopener"
->Cloudflare Workers&lt;/a>（不需要拥有域名） 来加快下载速度。广大白嫖党早已发现可以使用免费的 Cloudflare Workers 部署 serverless 应用反代国内无法访问的网络资源，在这里我们也使用这种方式加速下载。刚开始时我使用了 &lt;a class="link" href="https://github.com/hunshcn/gh-proxy" target="_blank" rel="noopener"
->gh-proxy&lt;/a> 这个加速 GitHub 下载的项目，不过后来 Arch 群的 &lt;a class="link" href="https://nichi.co/" target="_blank" rel="noopener"
->NickCao&lt;/a> 同学推荐了他写的更通用的反代应用，感谢 NickCao，接下来我们便开始部署反代应用吧。 &lt;br>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;另外，为了让本地的软件仓库保持最新，我们可以通过 &lt;a class="link" href="https://wiki.archlinux.org/index.php/cron" target="_blank" rel="noopener"
+ &gt;Cron&lt;/a&gt; 设置一个定时任务自动运行这个脚本。现在，我们得到了一个完全免费、自动更新的个人软件仓库，快执行 pacman -Syu 开始享受白嫖的快乐吧。&lt;/p&gt;
+&lt;h2 id="使用-cloudflare-workers-反代加速下载可选"&gt;使用 Cloudflare Workers 反代加速下载（可选）
+&lt;/h2&gt;&lt;p&gt;为了解决在国内 GitHub 下载速度慢的问题，让我们继续发扬白嫖的精神，使用 &lt;a class="link" href="https://workers.cloudflare.com/" target="_blank" rel="noopener"
+ &gt;Cloudflare Workers&lt;/a&gt;（不需要拥有域名） 来加快下载速度。广大白嫖党早已发现可以使用免费的 Cloudflare Workers 部署 serverless 应用反代国内无法访问的网络资源，在这里我们也使用这种方式加速下载。刚开始时我使用了 &lt;a class="link" href="https://github.com/hunshcn/gh-proxy" target="_blank" rel="noopener"
+ &gt;gh-proxy&lt;/a&gt; 这个加速 GitHub 下载的项目，不过后来 Arch 群的 &lt;a class="link" href="https://nichi.co/" target="_blank" rel="noopener"
+ &gt;NickCao&lt;/a&gt; 同学推荐了他写的更通用的反代应用，感谢 NickCao，接下来我们便开始部署反代应用吧。 &lt;br&gt;
 首先，打开&lt;a class="link" href="https://workers.cloudflare.com/" target="_blank" rel="noopener"
->官网&lt;/a>，注册或登录你的 Cloudflare 帐号，点击 Start building，选择免费方案并创建一个专属的子域名（是 workers.dev 的子域名），进入主页后点击 Create a Worker，复制&lt;a class="link" href="https://gitlab.com/NickCao/experiments/-/blob/master/workers/r.js" target="_blank" rel="noopener"
->这份代码&lt;/a>，像下图这样粘贴到编辑框内：&lt;/p>
-&lt;p>&lt;img src="https://viflythink.com/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png"
-width="1918"
-height="835"
-loading="lazy"
-alt="创建 Cloudflare Workers 应用"
-class="gallery-image"
-data-flex-grow="229"
-data-flex-basis="551px"
->&lt;/p>
-&lt;p>注意，页面中间的域名是 Cloudflare Workers 分配给你的一个专属子域名（形如 xxx.xxx.workers.dev），复制这个域名并用它替换左侧代码中的两处域名，完成修改后点击 Save and Deploy 保存并部署，这样我们就得到了一个可以反代网络资源的应用了。&lt;/p>
-&lt;p>最后，还记得在上一小节中被忽略的 ProxyURL 配置项吗，这里各位只需填入刚刚得到的 xxx.xxx.workers.dev 域名就可以了，脚本会使用这个反代域名高速下载 GitHub Releases 的软件包。&lt;/p></description></item></channel></rss>
+ &gt;官网&lt;/a&gt;，注册或登录你的 Cloudflare 帐号，点击 Start building，选择免费方案并创建一个专属的子域名（是 workers.dev 的子域名），进入主页后点击 Create a Worker，复制&lt;a class="link" href="https://gitlab.com/NickCao/experiments/-/blob/master/workers/r.js" target="_blank" rel="noopener"
+ &gt;这份代码&lt;/a&gt;，像下图这样粘贴到编辑框内：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="创建 Cloudflare Workers 应用" class="gallery-image" data-flex-basis="551px" data-flex-grow="229" height="835" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://viflythink.com/Use_GitHubActions_to_build_AUR/create_cloudflare_workers.png" width="1918"&gt;&lt;/p&gt;
+&lt;p&gt;注意，页面中间的域名是 Cloudflare Workers 分配给你的一个专属子域名（形如 xxx.xxx.workers.dev），复制这个域名并用它替换左侧代码中的两处域名，完成修改后点击 Save and Deploy 保存并部署，这样我们就得到了一个可以反代网络资源的应用了。&lt;/p&gt;
+&lt;p&gt;最后，还记得在上一小节中被忽略的 ProxyURL 配置项吗，这里各位只需填入刚刚得到的 xxx.xxx.workers.dev 域名就可以了，脚本会使用这个反代域名高速下载 GitHub Releases 的软件包。&lt;/p&gt;</description></item></channel></rss>
